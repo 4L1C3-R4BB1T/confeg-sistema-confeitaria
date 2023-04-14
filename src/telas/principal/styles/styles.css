@@ -98,12 +98,13 @@
 
 .area-bolo .titulo {
     -fx-text-weight: bold;
+    -fx-font-size: 14px;
 }
 
 .area-bolo .subtitulo {
-    -fx-font-size: 12px;
+    -fx-font-size: 13px;
     -fx-font-style: italic;
-    -fx-text-fill: #00000098;
+    -fx-text-fill: #0000009f;
 }
 
 
