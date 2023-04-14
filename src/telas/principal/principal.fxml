@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="800.0" prefWidth="1200.0" styleClass="container" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.PrincipalControlador">
    <center>
@@ -81,38 +80,6 @@
                         <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="7.0" layoutY="178.0" prefHeight="522.0" prefWidth="1200.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="178.0">
                            <content>
                               <FlowPane alignment="CENTER_LEFT" hgap="30.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" styleClass="area-exibicao">
-                                 <children>
-                                    <AnchorPane prefHeight="420.0" prefWidth="300.0" style="-fx-background-color: #fff;" styleClass="area-bolo">
-                                       <children>
-                                          <VBox alignment="TOP_CENTER" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <ImageView fitHeight="160.0" fitWidth="280.0" pickOnBounds="true" smooth="false">
-                                                   <image>
-                                                      <Image url="@images/bolo-foto.png" />
-                                                   </image>
-                                                   <VBox.margin>
-                                                      <Insets />
-                                                   </VBox.margin>
-                                                </ImageView>
-                                                <Label styleClass="titulo" text="INFORMAÇÕES" />
-                                                <Label prefHeight="40.0" prefWidth="265.0" styleClass="subtitulo" text="Esse é um bolo de chocolate, bastante recheado e com flocos de goiabada" textAlignment="CENTER" wrapText="true" />
-                                                <AnchorPane prefHeight="175.0" prefWidth="300.0">
-                                                   <children>
-                                                      <Label layoutX="194.0" layoutY="22.0" styleClass="validade" text="Val: 10/10/1000" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="20.0" />
-                                                      <Label layoutX="14.0" layoutY="21.0" styleClass="fabricao" text="Fab: 10/10/1000" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="20.0" />
-                                                      <Label layoutX="193.0" layoutY="61.0" styleClass="preco" text="Preço: R$ 75.00" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="15.0" />
-                                                      <Label layoutX="15.0" layoutY="60.0" styleClass="peso" text="Peso: 100g" AnchorPane.leftAnchor="15.0" />
-                                                      <Button layoutX="19.0" layoutY="107.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" text="ENCOMENDAR" />
-                                                   </children>
-                                                </AnchorPane>
-                                             </children>
-                                             <padding>
-                                                <Insets top="10.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
                                  <padding>
                                     <Insets left="30.0" right="30.0" />
                                  </padding>

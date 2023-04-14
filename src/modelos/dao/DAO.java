@@ -1,13 +1,10 @@
 package modelos.dao;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-
-
 
 import conexoes.FabricarConexao;
 
@@ -22,8 +19,6 @@ public class DAO {
             "admin"
         ).getConexao();
     }
-
-
 
     public <E> E consultar(Class<E> classe, String query) {
         try(PreparedStatement ps = conexao.prepareStatement(query)) {
