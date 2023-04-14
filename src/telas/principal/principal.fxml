@@ -20,11 +20,11 @@
                <children>
                   <HBox prefHeight="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="150.0" styleClass="ativo" text="PRINCIPAL" />
-                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirMenuPedidos" prefWidth="150.0" text="PEDIDOS" />
-                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="150.0" text="BOLOS" />
-                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="150.0" text="CLIENTES" />
-                        <Button maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" prefWidth="50.0">
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" styleClass="ativo" text="PRINCIPAL" />
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirMenuPedidos" prefHeight="50.0" prefWidth="119.0" text="PEDIDOS" />
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="44.0" prefWidth="111.0" text="BOLOS" />
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="45.0" prefWidth="114.0" text="CLIENTES" />
+                        <Button maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="81.0">
                            <graphic>
                               <ImageView>
                                  <image>
@@ -86,15 +86,15 @@
                               </FlowPane>
                            </content>
                         </ScrollPane>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="menuPedidos" layoutX="150.0" prefHeight="100.0" prefWidth="150.0" styleClass="modal" visible="false" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <HBox layoutX="10.0" layoutY="34.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="34.0">
+                        <AnchorPane fx:id="menuPedidos" layoutX="125.0" prefHeight="80.0" prefWidth="122.0" styleClass="modal" visible="false" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Listar" />
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="34.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Listar" />
+                                 </children>
+                              </HBox>
                            </children>
-                        </HBox>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="menuUsuario" layoutX="1036.0" layoutY="14.0" prefHeight="160.0" prefWidth="160.0" styleClass="modal" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
