@@ -1,9 +1,35 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @FunctionalInterface
 interface Conversor<T, R> {
     R converter(T t);
+}
+
+class Pessoa implements Comparable<Pessoa> {
+    String nome;
+    Integer idade;
+
+    Pessoa(String nome, Integer idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+    
+    @Override 
+    public int compareTo(Pessoa other) {
+       if (this.idade > other.idade) {
+            return 1;
+       } else if (this.idade < other.idade) {
+            return -1;
+       }
+       return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "nome: " + nome + " - idade: " + idade;
+    }
 }
 
 
@@ -32,24 +58,8 @@ public class App {
         pessoas.add(new Pessoa("Gabriel", 23));
         pessoas.add(new Pessoa("Marcos", 15));
 
-        for (Pessoa p : pessoas) {
-            System.out.println(p);
-        }
-
+        Collections.sort(pessoas);
+        pessoas.forEach(System.out::println);
     }
 }
 
-class Pessoa {
-    String nome;
-    Integer idade;
-
-    Pessoa(String nome, Integer idade) {
-        this.nome = nome;
-        this.idade = idade;
-    }
-
-    @Override
-    public String toString() {
-        return "nome: " + nome + " - idade: " + idade;
-    }
-}
