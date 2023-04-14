@@ -88,7 +88,13 @@
     -fx-background-color: #D9D9D9;
 }
 
+.area-exibicao AnchorPane {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.300), 5px, 0, 0, 3px);
+}
+
 /* /////////////////////////////////// */
+
+
 
 .area-bolo .titulo {
     -fx-text-weight: bold;
@@ -115,16 +121,20 @@
 
 .area-bolo .fabricao {
     -fx-text-fill: #557C97;
+    -fx-font-size: 13px;
 }
 
 .area-bolo .validade {
     -fx-text-fill: #DA0000;
+    -fx-font-size: 13px;
 }
 
 .area-bolo .peso {
     -fx-text-fill: #978E0D;
+    -fx-font-size: 13px;
 }
 
 .area-bolo .preco {
     -fx-text-fill: #006B1E;
+    -fx-font-size: 13px;
 }

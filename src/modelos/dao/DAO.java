@@ -1,10 +1,13 @@
 package modelos.dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.util.Arrays;
+import java.sql.SQLException;
+
+
 
 import conexoes.FabricarConexao;
 
@@ -13,11 +16,16 @@ public class DAO {
     private Connection conexao;
 
     public DAO() {
-        conexao = new FabricarConexao("jdbc:postgresql://localhost:5432/test", "postgres", "admin")
-            .getConexao();
+        conexao = new FabricarConexao(
+            "jdbc:postgresql://localhost:5432/test", 
+            "postgres", 
+            "admin"
+        ).getConexao();
     }
-    
-   public <E> E consultar(Class<E> classe, String query) {
+
+
+
+    public <E> E consultar(Class<E> classe, String query) {
         try(PreparedStatement ps = conexao.prepareStatement(query)) {
             
             ResultSet resultado = ps.executeQuery();
@@ -36,8 +44,31 @@ public class DAO {
                 return classe.getConstructor(tipos).newInstance(valores);
             }
         } catch (Exception erro) { 
-            // Faz nada 
+            // Colocar um erro aqui 
         }
         return null;
+    }
+
+   public DAO transacao() {
+        try {
+            conexao.setAutoCommit(false);
+        } catch (SQLException erro) {
+            ///
+        }
+        return this;
    }
+
+   public DAO concluir() {
+        try {
+            conexao.commit();
+        } catch (SQLException erro) { }
+        return this;
+    }
+
+    public DAO desfazer() {
+        try {
+            conexao.rollback();
+        } catch (SQLException erro) { }
+        return this;
+    }
 }

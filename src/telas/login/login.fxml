@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -38,11 +39,11 @@
                         <Insets bottom="30.0" top="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="campoSenha" alignment="CENTER" prefHeight="50.0" prefWidth="400.0" promptText="Senha" VBox.vgrow="ALWAYS">
+                  <PasswordField fx:id="campoSenha" alignment="CENTER" prefHeight="50.0" prefWidth="400.0" promptText="Senha">
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin>
-                  </TextField>
+                  </PasswordField>
                   <Button mnemonicParsing="false" onAction="#entrar" prefHeight="50.0" prefWidth="400.0" text="Entrar">
                      <VBox.margin>
                         <Insets bottom="20.0" />
