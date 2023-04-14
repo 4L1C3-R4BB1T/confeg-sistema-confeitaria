@@ -1,0 +1,80 @@
+* {
+    -fx-font-family: "Montreal";
+}
+
+.cabecalho {
+    -fx-background-color: rgba(0, 0, 0, 0.878);
+}
+
+
+.area-esquerda {
+    -fx-background-image: url("../images/background.png");
+    -fx-background-size: cover;
+}
+
+.area-esquerda  VBox {
+    -fx-background-color: rgba(0, 0, 0, 0.60);
+}
+
+.area-esquerda .titulo {
+    -fx-font-size: 60px;
+    -fx-font-weight: bold;
+}
+
+.area-esquerda .sub-titulo {
+    -fx-font-size: 18px;
+    -fx-text-fill: #ffffff74;
+}
+
+.area-esquerda .titulo, 
+.area-esquerda .sub-titulo {
+    -fx-text-fill: #fff;
+}
+
+.area-esquerda .sub-titulo {
+    -fx-text-fill: #ffffffaf;
+}
+
+/* /////////////////////////////////////// */
+
+.area-direita {
+    -fx-background-color: #D9D9D9;
+}
+
+.area-direita .text-field {
+    -fx-background-radius: 10px;
+    -fx-border-width: 0;
+    -fx-background-color: #D9D9D9;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.304), 5, 0, 0, 5px);
+    -fx-prompt-text-fill: #000000b1;
+    -fx-font-size: 18px;
+}
+
+.area-direita .button {
+    -fx-background-color: rgba(0, 0, 0, 0.79);
+    -fx-font-size: 16px;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.304), 5, 0, 0, 4px);
+    -fx-text-fill: #fff;
+}
+
+.area-direita .button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.40);
+}
+
+.area-direita .label-sem-conta {
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(0, 0, 0, 0.622);
+    -fx-font-size: 16px;
+}
+
+.area-direita .cadastra-se {
+    -fx-font-size: 16px;
+    -fx-text-fill: rgba(38, 33, 33, 0.65);
+    -fx-cursor: hand;
+}
+
+.area-direita .cadastra-se:hover {
+    -fx-text-fill: rgba(38,33,33,0.3);
+}

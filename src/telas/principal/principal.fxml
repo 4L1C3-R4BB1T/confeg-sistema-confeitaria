@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane styleClass="container" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.PrincipalControlador">
+   <center>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+         <top>
+            <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="150.0" styleClass="ativo" text="PRINCIPAL" />
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirMenuPedidos" prefWidth="150.0" text="PEDIDOS" />
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="150.0" text="BOLOS" />
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="150.0" text="CLIENTES" />
+                        <Button maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" prefWidth="50.0">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@images/carrinho.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="1026.0" layoutY="-25.0" prefHeight="47.0" prefWidth="176.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@images/user.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Gabriel" HBox.hgrow="ALWAYS" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirMenuUsuario" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <ImageView fx:id="menuUsuarioSeta">
+                                 <image>
+                                    <Image url="@images/seta_baixo.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: silver;" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane layoutX="181.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0" styleClass="area-conteudo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" layoutX="879.0" layoutY="57.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa">
+                           <children>
+                              <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" promptText="Pesquisar..." />
+                              <ImageView fitHeight="28.0" fitWidth="28.0" HBox.hgrow="ALWAYS">
+                                 <image>
+                                    <Image url="@images/lupa.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <Label layoutX="484.0" layoutY="102.0" styleClass="area-conteudo-titulo" text="BOLOS EM DESTAQUE" />
+                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="7.0" layoutY="178.0" prefHeight="522.0" prefWidth="1200.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="178.0">
+                           <content>
+                              <FlowPane alignment="CENTER_LEFT" hgap="30.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" styleClass="area-exibicao">
+                                 <children>
+                                    <AnchorPane prefHeight="420.0" prefWidth="300.0" style="-fx-background-color: #fff;" styleClass="area-bolo">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <ImageView fitHeight="160.0" fitWidth="280.0" pickOnBounds="true" smooth="false">
+                                                   <image>
+                                                      <Image url="@images/bolo-foto.png" />
+                                                   </image>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </ImageView>
+                                                <Label styleClass="titulo" text="INFORMAÇÕES" />
+                                                <Label prefHeight="40.0" prefWidth="265.0" styleClass="subtitulo" text="Esse é um bolo de chocolate, bastante recheado e com flocos de goiabada" textAlignment="CENTER" wrapText="true" />
+                                                <AnchorPane prefHeight="175.0" prefWidth="300.0">
+                                                   <children>
+                                                      <Label layoutX="194.0" layoutY="22.0" styleClass="validade" text="Val: 10/10/1000" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="20.0" />
+                                                      <Label layoutX="14.0" layoutY="21.0" styleClass="fabricao" text="Fab: 10/10/1000" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="20.0" />
+                                                      <Label layoutX="193.0" layoutY="61.0" styleClass="preco" text="Preço: R$ 75.00" />
+                                                      <Label layoutX="15.0" layoutY="60.0" styleClass="peso" text="Peso: 100g" />
+                                                      <Button layoutX="19.0" layoutY="107.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" text="ENCOMENDAR" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                             <padding>
+                                                <Insets top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                                 <padding>
+                                    <Insets left="30.0" right="30.0" />
+                                 </padding>
+                              </FlowPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="menuPedidos" layoutX="150.0" prefHeight="100.0" prefWidth="150.0" styleClass="modal" visible="false" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox layoutX="10.0" layoutY="34.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="34.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Listar" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="menuUsuario" layoutX="1036.0" layoutY="14.0" prefHeight="160.0" prefWidth="160.0" styleClass="modal" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="15.0" layoutY="33.0" prefHeight="34.0" prefWidth="130.0" styleClass="botao" text="Perfil" />
+                        <ImageView layoutX="28.0" layoutY="40.0">
+                           <image>
+                              <Image url="@images/user-preto.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutX="15.0" layoutY="90.0" prefHeight="34.0" prefWidth="130.0" styleClass="botao" text="Perfil" />
+                        <ImageView layoutX="28.0" layoutY="97.0">
+                           <image>
+                              <Image url="@images/seta_lado.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </center>
+   <top>
+      <AnchorPane prefHeight="30.0" prefWidth="200.0" styleClass="area-fechamento" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView layoutX="1142.0" layoutY="3.0">
+               <image>
+                  <Image url="@images/minimizar.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="1172.0" layoutY="5.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="@images/fechar.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

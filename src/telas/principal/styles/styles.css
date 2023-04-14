@@ -1,0 +1,130 @@
+* {
+    -fx-font-family: "Montreal";
+}
+
+.area-fechamento {
+    -fx-background-color: rgba(0, 0, 0, 0.874);
+}
+
+.area-fechamento .image-view {
+    -fx-cursor: hand;
+}
+
+.cabecalho {
+    -fx-background-color: rgba(0,0,0,0.79);
+}
+
+.cabecalho .button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-size: 16px;
+    -fx-text-fill: #fff;
+}
+
+.cabecalho .button.ativo {
+    -fx-background-color: #736F7E;
+}
+
+/* ///////////////////////////// */
+
+.modal {
+    -fx-background-color: rgba(0,0,0,0.79);
+    -fx-background-radius: 0 0 10px 10px;
+    -fx-font-size: 16px;
+}
+
+.modal .botao {
+    -fx-background-radius: 10px;
+    -fx-background-color: #fff;
+    -fx-cursor: hand;
+}
+
+.modal .botao:hover {
+    -fx-background-color: #ffffffc0;
+}
+
+/* ///////////////////////////// */ 
+
+.pesquisa {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5px, 0, 0, 5px);
+}
+
+.pesquisa, .text-field {
+    -fx-background-color: #fff;
+    -fx-background-radius: 10px;
+}
+
+.pesquisa .text-field {
+    -fx-padding: 10px;
+    -fx-font-size: 16px;
+    -fx-border-width: 0;
+    -fx-border-color: none;
+}
+
+.pesquisa .image-view {
+    -fx-cursor: hand;
+}
+
+/* ///////////////////////////// */ 
+
+.area-conteudo {
+    -fx-background-color: #D9D9D9;
+}
+
+.area-conteudo .scroll-pane {
+    -fx-background-color: none;
+}
+
+.area-conteudo .area-conteudo-titulo {
+    -fx-font-size: 28px;
+    -fx-text-fill: rgba(115, 111, 126, 0.9);
+    -fx-text-weight: bold;
+
+}
+
+/* //////////////////////////////// */
+
+.area-exibicao {
+    -fx-background-color: #D9D9D9;
+}
+
+/* /////////////////////////////////// */
+
+.area-bolo .titulo {
+    -fx-text-weight: bold;
+}
+
+.area-bolo .subtitulo {
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+    -fx-text-fill: #00000098;
+}
+
+
+.area-bolo .button {
+    -fx-background-radius: 10px;
+    -fx-background-color: #1E6E11;
+    -fx-text-fill: #fff;
+    -fx-text-weight: bold;
+    -fx-cursor: hand;
+}
+
+.area-bolo .button:hover {
+    -fx-background-color: #1d6e119b;
+}
+
+.area-bolo .fabricao {
+    -fx-text-fill: #557C97;
+}
+
+.area-bolo .validade {
+    -fx-text-fill: #DA0000;
+}
+
+.area-bolo .peso {
+    -fx-text-fill: #978E0D;
+}
+
+.area-bolo .preco {
+    -fx-text-fill: #006B1E;
+}
