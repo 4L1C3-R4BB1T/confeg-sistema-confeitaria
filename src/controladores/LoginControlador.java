@@ -1,5 +1,6 @@
 package controladores;
 
+import aplicacao.App;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,14 +71,15 @@ public class LoginControlador {
     public void carregarTelaPrincipal() {
         try {
             Parent raiz = FXMLLoader.load(getClass().getResource("/telas/principal/principal.fxml"));
-            Scene scene = new Scene(raiz);
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
+            Scene cena = new Scene(raiz);
+            Stage palco = new Stage();
+            palco.initStyle(StageStyle.TRANSPARENT);
+            palco.setScene(cena);
             if (palcoLogin != null) {
                 palcoLogin.close();
             }
-            stage.show();
+            App.adicionarMovimento(palco, cena);
+            palco.show();
         } catch (Exception erro) {
             // Faz nada por enquanto
         }
