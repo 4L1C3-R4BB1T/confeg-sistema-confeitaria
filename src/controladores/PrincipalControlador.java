@@ -22,33 +22,35 @@ public class PrincipalControlador {
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
-        menuPedidos.setVisible(!menuPedidos.isVisible());
+        adicionaEfeitoMenuSuave(menuPedidos);
     }
 
     @FXML
     public void abrirMenuUsuario(ActionEvent event) {
-        FadeTransition transicao = new FadeTransition(Duration.millis(300), menuUsuario);
+        if (!adicionaEfeitoMenuSuave(menuUsuario)) {
+            String caminhoSetaBaixo = PrincipalControlador.class.getResource("/telas/principal/images/seta_baixo.png").toExternalForm();
+            menuUsuarioSeta.setImage(new Image(caminhoSetaBaixo));
+        } else {
+            String caminhoSetaCima = PrincipalControlador.class.getResource("/telas/principal/images/seta_cima.png").toExternalForm();
+            menuUsuarioSeta.setImage(new Image(caminhoSetaCima));
+        }
+    }
 
-        if (menuUsuario.isVisible()) {
+    public boolean adicionaEfeitoMenuSuave(AnchorPane menu) {
+        FadeTransition transicao = new FadeTransition(Duration.millis(300), menu);
+        if (menu.isVisible()) {
             transicao.setFromValue(1);
             transicao.setToValue(0);
-            transicao.setOnFinished( e -> {
-                menuUsuario.setVisible(false);
-                String caminhoSetaBaixo = PrincipalControlador.class.getResource("/telas/principal/images/seta_baixo.png").toExternalForm();
-                menuUsuarioSeta.setImage(new Image(caminhoSetaBaixo));
-            });
+            transicao.setOnFinished( e -> menu.setVisible(false));
+            transicao.play();
+            return false;
         } else {
             transicao.setFromValue(0);
             transicao.setToValue(1);
-            transicao.setOnFinished( e -> {
-                menuUsuario.setVisible(true);
-                String caminhoSetaCima = PrincipalControlador.class.getResource("/telas/principal/images/seta_cima.png").toExternalForm();
-                menuUsuarioSeta.setImage(new Image(caminhoSetaCima));
-            });
+            transicao.setOnFinished( e -> menu.setVisible(true));
+            transicao.play();
+            return true;
         }
-
-        transicao.play();
-      
     }
 
 }
