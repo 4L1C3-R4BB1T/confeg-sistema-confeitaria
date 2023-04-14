@@ -35,14 +35,15 @@ public class LoginControlador {
 
     private int fotoAtual = 0;
 
-    
-
     private Stage palcoLogin;
+
+
 
 
     @FXML
     public void entrar(ActionEvent event) throws Exception {
         if (podeEntrar()) {
+            System.out.println("sasas");
             carregarTelaPrincipal();
         }
     }
@@ -81,7 +82,7 @@ public class LoginControlador {
             App.adicionarMovimento(palco, cena);
             palco.show();
         } catch (Exception erro) {
-            // Faz nada por enquanto
+            System.out.println(erro.getMessage());
         }
     }
 
@@ -102,6 +103,7 @@ public class LoginControlador {
                 } catch (Exception erro) {}
             }
         }).start();
+        
     }
 
 }
