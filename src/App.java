@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 @FunctionalInterface
 interface Conversor<T, R> {
@@ -24,5 +26,30 @@ public class App {
         System.out.println(lambda.converter("125.24"));
 
 
+        List<Pessoa> pessoas = new ArrayList<>();
+
+        pessoas.add(new Pessoa("Livia", 22));
+        pessoas.add(new Pessoa("Gabriel", 23));
+        pessoas.add(new Pessoa("Marcos", 15));
+
+        for (Pessoa p : pessoas) {
+            System.out.println(p);
+        }
+
+    }
+}
+
+class Pessoa {
+    String nome;
+    Integer idade;
+
+    Pessoa(String nome, Integer idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    @Override
+    public String toString() {
+        return "nome: " + nome + " - idade: " + idade;
     }
 }
