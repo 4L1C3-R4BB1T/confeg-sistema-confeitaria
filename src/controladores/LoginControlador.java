@@ -95,7 +95,7 @@ public class LoginControlador {
                     Platform.runLater(() -> {
                         areaDeFoto.setStyle(String.format("-fx-background-image: url('%s') !important;", fotos[fotoAtual++ % fotos.length]));
                     });
-                    Thread.sleep(3000);
+                    Thread.sleep(5000);
 
                 } catch (Exception erro) {}
             }
