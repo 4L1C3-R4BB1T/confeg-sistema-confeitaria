@@ -27,9 +27,9 @@ CREATE TABLE estado (
 );
 
 CREATE TABLE cidade (
-    cod_cidade      INTEGER     NOT NULL,
-    nome_cidade     VARCHAR(120) NOT NULL,
-    cod_estado      INTEGER     NOT NULL,
+    cod_cidade      SERIAL          NOT NULL,
+    nome_cidade     VARCHAR(120)    NOT NULL,
+    cod_estado      INTEGER         NOT NULL,
     CONSTRAINT pk_cidade
         PRIMARY KEY (cod_cidade),
     CONSTRAINT fk_cidade_estado 
@@ -42,7 +42,7 @@ CREATE TABLE endereco (
     cep_endereco    CHAR(8)     NOT NULL,
     cod_estado      INTEGER     NOT NULL,
     cod_cidade      INTEGER     NOT NULL,
-    bairro_endereco VARCHAR(20) NOT NULL,
+    bairro_endereco VARCHAR(30) NOT NULL,
     rua_endereco    VARCHAR(30) NOT NULL,
     numero_endereco INTEGER     NOT NULL,
     CONSTRAINT pk_endereco
@@ -66,7 +66,7 @@ CREATE TABLE cliente (
     cod_cliente         SERIAL      NOT NULL,
     nome_cliente        VARCHAR(60) NOT NULL,
     cpf_cliente         CHAR(11)    NOT NULL,
-    telefone_cliente    CHAR(11)    NOT NULL,
+    telefone_cliente    CHAR(15)    NOT NULL,
     cod_endereco        INTEGER     NOT NULL,
     CONSTRAINT pk_cliente
         PRIMARY KEY (cod_cliente),
@@ -79,7 +79,7 @@ CREATE TABLE funcionario (
     cod_funcionario         SERIAL      NOT NULL,
     nome_funcionario        VARCHAR(60) NOT NULL,
     cpf_funcionario         CHAR(11)    NOT NULL,
-    telefone_funcionario    CHAR(11)    NOT NULL,
+    telefone_funcionario    CHAR(15)    NOT NULL,
     cod_tipo_funcionario    INTEGER     NOT NULL, 
     cod_endereco            INTEGER     NOT NULL, 
     email                   VARCHAR(30) NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE sabor (
 );
 
 CREATE TABLE bolo (
-    cod_bolo                INTEGER         NOT NULL,
+    cod_bolo                SERIAL          NOT NULL,
     cod_sabor               INTEGER         NOT NULL,
     descricao_bolo          VARCHAR(200)    NOT NULL,
     peso_bolo               NUMERIC(10,2)   NOT NULL,
@@ -117,15 +117,16 @@ CREATE TABLE bolo (
 );
 
 CREATE TABLE adicional (
-    cod_adicional       SERIAL      NOT NULL,
-    descricao_adicional VARCHAR(20) NOT NULL,
+    cod_adicional       SERIAL          NOT NULL,
+    descricao_adicional VARCHAR(60)     NOT NULL,
+    preco_adicional     NUMERIC(10,2)   NOT NULL,
     CONSTRAINT pk_adicional
         PRIMARY KEY (cod_adicional)
 );
 
 CREATE TABLE metodo_pagamento (
     cod_metodo_pagamento        SERIAL      NOT NULL,
-    descricao_metodo_pagamento  VARCHAR(20) NOT NULL,
+    descricao_metodo_pagamento  VARCHAR(30) NOT NULL,
     CONSTRAINT pk_metodo_pagamento
         PRIMARY KEY (cod_metodo_pagamento)
 );
@@ -137,7 +138,7 @@ CREATE TABLE pedido (
     data_pedido             DATE        NOT NULL,
     cod_metodo_pagamento    INTEGER     NOT NULL,
     status_pedido           VARCHAR(10) NOT NULL,
-    observacao_pedido       VARCHAR(60) NOT NULL,
+    observacao_pedido       VARCHAR(60) NULL,
     CONSTRAINT pk_pedido
         PRIMARY KEY (cod_pedido),
     CONSTRAINT fk_pedido_cliente
@@ -166,21 +167,18 @@ CREATE TABLE pedido_bolo (
 );
 
 CREATE TABLE pedido_adicional (
-    cod_pedido          INTEGER NOT NULL,
-    cod_bolo            INTEGER NOT NULL,
-    cod_adicional        INTEGER NOT NULL,
-    quantidade_adicional INTEGER NOT NULL,
+    cod_pedido              INTEGER NOT NULL,
+    cod_bolo                INTEGER NOT NULL,
+    cod_adicional           INTEGER NOT NULL,
+    quantidade_adicional    INTEGER NOT NULL,
     CONSTRAINT pk_pedido_adicional
         PRIMARY KEY (cod_pedido, cod_bolo, cod_adicional),
-    CONSTRAINT fk_pedido_adicional_pedido
-        FOREIGN KEY (cod_pedido)
-        REFERENCES pedido(cod_pedido),
-    CONSTRAINT fk_pedido_adicional_bolo
-        FOREIGN KEY (cod_bolo)
-        REFERENCES bolo(cod_bolo),
+    CONSTRAINT fk_pedido_adicional_pedido_bolo
+        FOREIGN KEY (cod_pedido, cod_bolo)
+        REFERENCES pedido_bolo (cod_pedido, cod_bolo),
     CONSTRAINT fk_pedido_adicional_adicional
         FOREIGN KEY (cod_adicional)
-        REFERENCES adicional(cod_adicional)
+        REFERENCES adicional(cod_adicional)        
 );
 
 CREATE TABLE confimacao_pedido (
@@ -199,7 +197,7 @@ CREATE TABLE confimacao_pedido (
 
 CREATE TABLE ingrediente (
     cod_ingrediente         SERIAL      NOT NULL,
-    descricao_ingrediente   VARCHAR(20) NOT NULL,
+    descricao_ingrediente   VARCHAR(30) NOT NULL,
     CONSTRAINT pk_ingrediente
         PRIMARY KEY (cod_ingrediente)
 );
