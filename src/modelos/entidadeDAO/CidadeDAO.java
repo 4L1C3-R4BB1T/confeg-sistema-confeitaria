@@ -11,19 +11,19 @@ import modelos.entidades.Estado;
 
 public class CidadeDAO {
 
-    private Connection connection;
+    private Connection conexao;
 
-    public CidadeDAO(Connection connection) {
-        this.connection = connection;
+    public CidadeDAO(Connection conexao) {
+        this.conexao = conexao;
     }
 
 
     public Cidade buscar(long codigo) {
         String comando = "SELECT * FROM cidade WHERE codigo = ?";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();
-            EstadoDAO estadoDAO = new EstadoDAO(connection);
+            EstadoDAO estadoDAO = new EstadoDAO(conexao);
             if (resultado.next()) {
                 return new Cidade(
                     resultado.getLong("cod_cidade"),
@@ -41,10 +41,10 @@ public class CidadeDAO {
     public List<Cidade> buscarPorEstado(Estado estado) {
         List<Cidade> cidades = new ArrayList<>();
         String comando = "SELECT * FROM cidade WHERE cod_estado = ?";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, estado.getCodigo());
             ResultSet resultado = ps.executeQuery();
-            EstadoDAO estadoDAO = new EstadoDAO(connection);
+            EstadoDAO estadoDAO = new EstadoDAO(conexao);
             while (resultado.next()) {
                 cidades.add(new Cidade(
                     resultado.getLong("cod_cidade"),
@@ -59,11 +59,11 @@ public class CidadeDAO {
     }
 
     public Connection getConnection() {
-        return connection;
+        return conexao;
     }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public void setConnection(Connection conexao) {
+        this.conexao = conexao;
     }
 
 }

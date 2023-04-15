@@ -8,11 +8,11 @@ import modelos.entidades.MetodoPagamento;
 
 public class MetodoPagamentoDAO {
 
-    private Connection connection;
+    private Connection conexao;
 
     public MetodoPagamento encontrar(Long codigo) {
         String comando = "SELECT * FROM metodo_pagamento WHERE cod_metodo_pagamento = ?";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();
             if (resultado.next()) {

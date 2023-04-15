@@ -10,15 +10,15 @@ import modelos.entidades.TipoFuncionario;
 
 public class TipoFuncionarioDAO {
     
-    private Connection connection;
+    private Connection conexao;
 
-    public TipoFuncionarioDAO(Connection connection) {
-        this.connection = connection;
+    public TipoFuncionarioDAO(Connection conexao) {
+        this.conexao = conexao;
     }
 
     public TipoFuncionario encontrar(Long codigo) {
         String comando = "SELECT * FROM tipo_funcionario WHERE cod_tipo_funcionario = ?";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();
             if (resultado.next()) {
@@ -36,7 +36,7 @@ public class TipoFuncionarioDAO {
     public List<TipoFuncionario> obterTodos() {
         List<TipoFuncionario> tipos = new ArrayList<>();
         String query = "SELECT * FROM tipo_funcionario";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+        try (PreparedStatement ps = conexao.prepareStatement(query)) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
                 tipos.add(new TipoFuncionario(
@@ -52,11 +52,11 @@ public class TipoFuncionarioDAO {
     }
 
     public Connection getConnection() {
-        return connection;
+        return conexao;
     }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public void setConnection(Connection conexao) {
+        this.conexao = conexao;
     }
 
 }

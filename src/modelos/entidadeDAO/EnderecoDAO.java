@@ -8,15 +8,15 @@ import modelos.entidades.Endereco;
 
 public class EnderecoDAO {
 
-    private Connection connection;
+    private Connection conexao;
 
-    public EnderecoDAO(Connection connection) {
-        this.connection = connection;
+    public EnderecoDAO(Connection conexao) {
+        this.conexao = conexao;
     }
 
     public boolean inserir(Endereco endereco) {
         String comando = "INSERT INTO endereco (cep_endereco, cod_estado, cod_cidade, bairro_endereco, rua_endereco, numero_endereco) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setString(1, endereco.getCep());
             ps.setLong(2, endereco.getEstado().getCodigo());
             ps.setLong(3, endereco.getCidade().getCodigo());
@@ -32,11 +32,11 @@ public class EnderecoDAO {
 
     public Endereco encontrar(Long codigo) {
         String comando = "SELECT * FROM endereco WHERE cod_endereco = ?";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();
-            EstadoDAO estadoDAO = new EstadoDAO(connection);
-            CidadeDAO cidadeDAO = new CidadeDAO(connection);
+            EstadoDAO estadoDAO = new EstadoDAO(conexao);
+            CidadeDAO cidadeDAO = new CidadeDAO(conexao);
             if (resultado.next()) {
                 return new Endereco(
                     resultado.getLong("cod_endereco"),
@@ -56,11 +56,11 @@ public class EnderecoDAO {
     }
 
     public Connection getConnection() {
-        return connection;
+        return conexao;
     }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public void setConnection(Connection conexao) {
+        this.conexao = conexao;
     }
 
 }

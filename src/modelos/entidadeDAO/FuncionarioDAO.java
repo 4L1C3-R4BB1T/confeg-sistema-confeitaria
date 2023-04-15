@@ -5,21 +5,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import modelos.entidades.Funcionario;
-import modelos.entidades.TipoFuncionario;
 
 public class FuncionarioDAO {
 
-    private Connection connection;
+    private Connection conexao;
 
-    public FuncionarioDAO(Connection connection) {
-        this.connection = connection;
+    public FuncionarioDAO(Connection conexao) {
+        this.conexao = conexao;
     }
     
     public Long inserir(Funcionario funcionario) {
         String comando = "INSERT INTO funcionario (nome_funcionario, cpf_funcionario, telefone_funcionario, cod_tipo_funcionario, cod_endereco) VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, funcionario.getNome());
             ps.setString(2, funcionario.getCpf());
             ps.setString(3, funcionario.getTelefone());
@@ -40,7 +38,7 @@ public class FuncionarioDAO {
 
     public boolean alterar(Funcionario funcionario) {
         String comando = "UPDATE funcionario SET nome_funcionario = ?, cpf_funcionario = ?, telefone_funcionario = ?, cod_tipo_funcionario = ?, cod_endereco = ? WHERE cod_funcionario = ?";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setString(1, funcionario.getNome());
             ps.setString(2, funcionario.getCpf());
             ps.setString(3, funcionario.getTelefone());
@@ -57,7 +55,7 @@ public class FuncionarioDAO {
 
     public boolean remover(Funcionario funcionario) {
         String comando = "DELETE FROM funcionario WHERE cod_funcionario = ?";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, funcionario.getCodigo());
             ps.execute();
             return true;
@@ -69,11 +67,11 @@ public class FuncionarioDAO {
 
     public Funcionario encontrar(Long codigo) {
         String comando = "SELECT * FROM funcionario WHERE cod_funcionario = ?";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();
-            TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(connection);
-            EnderecoDAO enderecoDAO = new EnderecoDAO(connection);
+            TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(conexao);
+            EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             if (resultado.next()) {
                 return new Funcionario(
                     resultado.getString("nome_funcionario"), 
@@ -94,10 +92,10 @@ public class FuncionarioDAO {
     public List<Funcionario> buscarTodos() {
         String comando = "SELECT * FROM funcionario";
         List<Funcionario> funcionarios = new ArrayList<>();
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
-            TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(connection);
-            EnderecoDAO enderecoDAO = new EnderecoDAO(connection);
+            TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(conexao);
+            EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             while (resultado.next()) {
                 funcionarios.add(new Funcionario(
                         resultado.getString("nome_funcionario"), 
@@ -125,7 +123,7 @@ public class FuncionarioDAO {
     // SETAR O EMAIL GERADO NO FUNCIONARIO
     public boolean inserirEmaileSenha(Long codigo) {
         String comando = "UPDATE funcionario SET email = ?, senha = ? WHERE cod_funcionario = ?";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setString(1, gerarEmail(encontrar(codigo)));
             ps.setString(2, "confeg123");
             ps.setLong(3, codigo);
@@ -138,11 +136,11 @@ public class FuncionarioDAO {
     }
 
     public Connection getConnection() {
-        return connection;
+        return conexao;
     }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public void setConnection(Connection conexao) {
+        this.conexao = conexao;
     }
 
 }

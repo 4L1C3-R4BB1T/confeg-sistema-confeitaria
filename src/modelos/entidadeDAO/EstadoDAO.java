@@ -10,15 +10,15 @@ import modelos.entidades.Estado;
 
 public class EstadoDAO {
 
-    private Connection connection;
+    private Connection conexao;
 
-    public EstadoDAO(Connection connection) {
-        this.connection = connection;
+    public EstadoDAO(Connection conexao) {
+        this.conexao = conexao;
     }
 
     public Estado encontrar(Long codigo) {
         String comando = "SELECT * FROM estado WHERE cod_estado = ?";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();
             if (resultado.next()) {
@@ -36,7 +36,7 @@ public class EstadoDAO {
 
     public List<Estado> buscarTodos() {
         List<Estado> estados = new ArrayList<>();
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM estado")) {
+        try (PreparedStatement ps = conexao.prepareStatement("SELECT * FROM estado")) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
                 estados.add(new Estado(
@@ -52,11 +52,11 @@ public class EstadoDAO {
     }
 
     public Connection getConnection() {
-        return connection;
+        return conexao;
     }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public void setConnection(Connection conexao) {
+        this.conexao = conexao;
     }
 
 }

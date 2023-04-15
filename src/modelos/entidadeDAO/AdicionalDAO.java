@@ -10,15 +10,15 @@ import modelos.entidades.Adicional;
 
 public class AdicionalDAO {
 
-    private Connection connection;
+    private Connection conexao;
     
-    public AdicionalDAO(Connection connection) {
-        this.connection = connection;
+    public AdicionalDAO(Connection conexao) {
+        this.conexao = conexao;
     }
 
     public Adicional encontrar(Long codigo) {
         String comando = "SELECT * FROM adicional WHERE cod_adicional = ?";
-        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();
             if (resultado.next()) {
@@ -36,7 +36,7 @@ public class AdicionalDAO {
     
     public List<Adicional> buscarTodos() {
         List<Adicional> adicionais = new ArrayList<>();
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM adicional")) {
+        try (PreparedStatement ps = conexao.prepareStatement("SELECT * FROM adicional")) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
                 adicionais.add(new Adicional(
@@ -52,11 +52,11 @@ public class AdicionalDAO {
     }
 
     public Connection getConnection() {
-        return connection;
+        return conexao;
     }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public void setConnection(Connection conexao) {
+        this.conexao = conexao;
     }
 
 }

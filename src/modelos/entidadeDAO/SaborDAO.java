@@ -10,15 +10,15 @@ import modelos.entidades.Sabor;
 
 public class SaborDAO {
 
-    private Connection connection;
+    private Connection conexao;
 
-    public SaborDAO(Connection connection) {
-        this.connection = connection;
+    public SaborDAO(Connection conexao) {
+        this.conexao = conexao;
     }
 
     public Sabor encontrar(long codigo) {
         String query = "SELECT * FROM sabor WHERE codigo = ?";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+        try (PreparedStatement ps = conexao.prepareStatement(query)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();
             if (resultado.next()) {
@@ -37,7 +37,7 @@ public class SaborDAO {
     public List<Sabor> buscarTodos() {
         List<Sabor> sabores = new ArrayList<>();
         String query = "SELECT * FROM sabor";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+        try (PreparedStatement ps = conexao.prepareStatement(query)) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
                sabores.add(new Sabor(
@@ -52,11 +52,11 @@ public class SaborDAO {
     }
 
     public Connection getConnection() {
-        return connection;
+        return conexao;
     }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public void setConnection(Connection conexao) {
+        this.conexao = conexao;
     }
     
 }
