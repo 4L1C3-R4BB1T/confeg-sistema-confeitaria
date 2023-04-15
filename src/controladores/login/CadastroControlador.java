@@ -111,8 +111,10 @@ public class CadastroControlador {
                 Endereco endereco = new Endereco(getEstado(), getCidade(), getCep(), getBairro(), getRua(), getNumero());
                 endereco.setCodigo(enderecoDAO.inserir(endereco));
                 Funcionario funcionario = new Funcionario(getNome(), getCpf(), getTipo(), endereco, getCep(), getBairro());
-                funcionarioDAO.inserir(funcionario);
+                Long codigoFuncionario = funcionarioDAO.inserir(funcionario);
                 conexao.commit();
+                // SETAR EMAIL E SENHA AUTOMATICO NO FUNCIONARIO
+                funcionarioDAO.inserirEmaileSenha(codigoFuncionario); 
                 salvo = true;
                 Window janela = (Window) ((Node) event.getSource()).getScene().getWindow();
                 ((Stage) janela).close();
