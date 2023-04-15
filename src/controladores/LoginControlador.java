@@ -50,7 +50,6 @@ public class LoginControlador {
         clicouBotaoCadastrar = true;
         FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/login/cadastro/cadastro.fxml"));
         Parent raiz = carregar.load();
-        CadastroFuncionarioControlador controlador = (CadastroFuncionarioControlador) carregar.getController();
         Scene cena = new Scene(raiz);
         Stage palco = new Stage();
         palcoCadastro = palco;
