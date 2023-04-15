@@ -74,6 +74,7 @@ public class FuncionarioDAO {
             EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             if (resultado.next()) {
                 return new Funcionario(
+                    resultado.getLong("cod_funcionario"),
                     resultado.getString("nome_funcionario"), 
                     resultado.getString("cpf_funcionario"),
                     resultado.getString("telefone_funcionario"),
@@ -98,6 +99,7 @@ public class FuncionarioDAO {
             EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             while (resultado.next()) {
                 funcionarios.add(new Funcionario(
+                        resultado.getLong("cod_funcionario"),
                         resultado.getString("nome_funcionario"), 
                         resultado.getString("cpf_funcionario"),
                         resultado.getString("telefone_funcionario"),

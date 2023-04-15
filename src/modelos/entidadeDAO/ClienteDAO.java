@@ -70,6 +70,7 @@ public class ClienteDAO {
             EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             if (resultado.next()) {
                 return new Cliente(
+                    resultado.getLong("cod_cliente"),
                     resultado.getString("nome_cliente"), 
                     resultado.getString("cpf_cliente"),
                     resultado.getString("telefone_cliente"),
@@ -90,6 +91,7 @@ public class ClienteDAO {
             EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             while (resultado.next()) {
                 clientes.add(new Cliente(
+                        resultado.getLong("cod_cliente"),
                         resultado.getString("nome_cliente"), 
                         resultado.getString("cpf_cliente"),
                         resultado.getString("telefone_cliente"),

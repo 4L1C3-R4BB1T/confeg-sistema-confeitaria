@@ -17,7 +17,7 @@ public class CidadeDAO {
         this.conexao = conexao;
     }
 
-    public Cidade buscar(long codigo) {
+    public Cidade buscar(Long codigo) {
         String comando = "SELECT * FROM cidade WHERE codigo = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
