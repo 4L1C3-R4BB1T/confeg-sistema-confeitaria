@@ -7,11 +7,23 @@ public class ConfirmacaoPedido {
     private Cliente cliente;
     private Pedido pedido;
     private Date dataConfirmacao;
+    private String pago;
+    private String observacao;
    
-    public ConfirmacaoPedido(Cliente cliente, Pedido pedido, Date dataConfirmacao) {
+    public ConfirmacaoPedido(Cliente cliente, Pedido pedido, Date dataConfirmacao,
+        String pago, String observacao) {
         this.cliente = cliente;
         this.pedido = pedido;
         this.dataConfirmacao = dataConfirmacao;
+        this.pago = pago;
+        this.observacao = observacao;
+    }
+
+    public ConfirmacaoPedido(Cliente cliente, Pedido pedido, Date dataConfirmacao, String pago) {
+        this.cliente = cliente;
+        this.pedido = pedido;
+        this.dataConfirmacao = dataConfirmacao;
+        this.pago = pago;
     }
 
     public Cliente getCliente() {
@@ -36,6 +48,22 @@ public class ConfirmacaoPedido {
 
     public void setDataConfirmacao(Date dataConfirmacao) {
         this.dataConfirmacao = dataConfirmacao;
+    }
+
+    public String getPago() {
+        return pago;
+    }
+
+    public void setPago(String pago) {
+        this.pago = pago;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
 }

@@ -10,12 +10,22 @@ public class PedidoCompra {
     private Funcionario funcionario;
     private Date dataPedido;
     private Status status;
+    private String observacao;
     
-    public PedidoCompra(Long codigo, Funcionario funcionario, Date dataPedido, Status status) {
+    public PedidoCompra(Long codigo, Funcionario funcionario, Date dataPedido, 
+        Status status, String observacao) {
         this.codigo = codigo;
         this.funcionario = funcionario;
         this.dataPedido = dataPedido;
         this.status = status;
+        this.observacao = observacao;
+    }
+
+    public PedidoCompra(Long codigo, Funcionario funcionario, Date dataPedido, Status status) {
+        this.codigo = codigo;
+        this.funcionario = funcionario;
+        this.dataPedido = dataPedido;
+        this.status = status;   
     }
 
     public Long getCodigo() {
@@ -48,6 +58,14 @@ public class PedidoCompra {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
 }
