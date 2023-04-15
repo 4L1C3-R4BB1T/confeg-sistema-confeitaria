@@ -3,6 +3,8 @@ package modelos.entidadeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import modelos.entidades.MetodoPagamento;
 
@@ -31,7 +33,21 @@ public class MetodoPagamentoDAO {
         return null;
     } 
 
-    /* IMPLEMENTAR BUSCAR TODOS PRO SELECT EM REGISTRAR PEDIDO */
+    public List<MetodoPagamento> buscarTodos() {
+        List<MetodoPagamento> metodos = new ArrayList<>();
+        try (PreparedStatement ps = conexao.prepareStatement("SELECT * FROM metodo_pagamento")) {
+            ResultSet resultado = ps.executeQuery();
+            while (resultado.next()) {
+                metodos.add(new MetodoPagamento(
+                    resultado.getLong("cod_metodo_pagamento"),
+                    resultado.getString("descricao_metodo_pagamento")
+                ));
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return metodos;
+    }
 
     public Connection getConnection() {
         return conexao;
