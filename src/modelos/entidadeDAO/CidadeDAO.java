@@ -17,6 +17,27 @@ public class CidadeDAO {
         this.connection = connection;
     }
 
+
+    public Cidade buscar(long codigo) {
+        String comando = "SELECT * FROM cidade WHERE codigo = ?";
+        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+            ps.setLong(1, codigo);
+            ResultSet resultado = ps.executeQuery();
+            EstadoDAO estadoDAO = new EstadoDAO(connection);
+            if (resultado.next()) {
+                return new Cidade(
+                    resultado.getLong("cod_cidade"),
+                    resultado.getString("nome_cidade"),
+                    estadoDAO.encontrar(resultado.getLong("cod_estado"))
+                );
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+
+        return null;
+    }
+
     public List<Cidade> buscarPorEstado(Estado estado) {
         List<Cidade> cidades = new ArrayList<>();
         String comando = "SELECT * FROM cidade WHERE cod_estado = ?";

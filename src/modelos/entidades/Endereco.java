@@ -3,7 +3,6 @@ package modelos.entidades;
 public class Endereco {
 
     private Long codigo;
-    private String endereco;
     private Estado estado;
     private Cidade cidade;
     private String cep;
@@ -12,9 +11,8 @@ public class Endereco {
     private Integer numero;
 
 
-    public Endereco(String endereco, Estado estado, Cidade cidade, String cep, String bairro, String rua,
-            Integer numero) {
-        this.endereco = endereco;
+
+    public Endereco(Estado estado, Cidade cidade, String cep, String bairro, String rua, Integer numero) {
         this.estado = estado;
         this.cidade = cidade;
         this.cep = cep;
@@ -23,10 +21,8 @@ public class Endereco {
         this.numero = numero;
     }
 
-    public Endereco(Long codigo, String endereco, Estado estado, Cidade cidade, String cep, String bairro, String rua,
-            Integer numero) {
+    public Endereco(Long codigo, Estado estado, Cidade cidade, String cep, String bairro, String rua, Integer numero) {
         this.codigo = codigo;
-        this.endereco = endereco;
         this.estado = estado;
         this.cidade = cidade;
         this.cep = cep;
@@ -41,14 +37,6 @@ public class Endereco {
 
     public void setCodigo(Long codigo) {
         this.codigo = codigo;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
     }
 
     public Estado getEstado() {

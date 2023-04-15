@@ -3,6 +3,8 @@ package modelos.entidadeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import modelos.entidades.Endereco;
 
 public class EnderecoDAO {
@@ -27,6 +29,34 @@ public class EnderecoDAO {
             System.out.println("Erro: " + erro.getMessage());
         }
         return false;
+    }
+
+    public Endereco buscar(Long codigo) {
+        String comando = "SELECT * FROM endereco WHERE cod_endereco = ?";
+        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+            ps.setLong(1, codigo);
+
+            ResultSet resultado = ps.executeQuery();
+            EstadoDAO estadoDAO = new EstadoDAO(connection);
+            CidadeDAO cidadeDAO = new CidadeDAO(connection);
+            if (resultado.next()) {
+                return new Endereco(
+                    resultado.getLong("cod_endereco"),
+                    estadoDAO.encontrar(resultado.getLong("cod_estado")),
+                    cidadeDAO.buscar(resultado.getLong("cod_cidade")),
+                    resultado.getString("cep_endereco"),
+                    resultado.getString("bairro_endereco"),
+                    resultado.getString("rua_endereco"),
+                    resultado.getInt("numero_endereco")
+                );
+            }
+    
+
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return null;
+
     }
 
     public Connection getConnection() {
