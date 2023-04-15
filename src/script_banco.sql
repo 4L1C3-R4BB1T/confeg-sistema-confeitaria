@@ -182,9 +182,11 @@ CREATE TABLE pedido_adicional (
 );
 
 CREATE TABLE confimacao_pedido (
-    cod_cliente             INTEGER NOT NULL,
-    cod_pedido              INTEGER NOT NULL,
-    data_confirmacao_pedido DATE    NOT NULL,
+    cod_cliente                     INTEGER     NOT NULL,
+    cod_pedido                      INTEGER     NOT NULL,
+    data_confirmacao_pedido         DATE        NOT NULL,
+    pago_confirmacao_pedido         CHAR(3)     NOT NULL,
+    observacao_confirmacao_pedido   VARCHAR(60) NULL,
     CONSTRAINT pk_confirmacao_pedido
         PRIMARY KEY (cod_cliente, cod_pedido),
     CONSTRAINT fk_confimacao_pedido_cliente
@@ -203,10 +205,11 @@ CREATE TABLE ingrediente (
 );
 
 CREATE TABLE pedido_compra (
-    cod_pedido_compra       SERIAL      NOT NULL,
-    cod_funcionario         INTEGER     NOT NULL,
-    data_pedido_compra      DATE        NOT NULL,
-    status_pedido_compra    VARCHAR(10) NOT NULL,
+    cod_pedido_compra           SERIAL      NOT NULL,
+    cod_funcionario             INTEGER     NOT NULL,
+    data_pedido_compra          DATE        NOT NULL,
+    status_pedido_compra        VARCHAR(10) NOT NULL,
+    observacao_pedido_compra    VARCHAR(60) NULL,
     CONSTRAINT pk_pedido_compra
         PRIMARY KEY (cod_pedido_compra),
     CONSTRAINT fk_pedido_compra_ingrediente_funcionario
