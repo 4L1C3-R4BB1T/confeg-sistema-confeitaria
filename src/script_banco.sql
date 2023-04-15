@@ -2,11 +2,9 @@ DROP TABLE IF EXISTS pedido_compra_ingrediente CASCADE;
 DROP TABLE IF EXISTS pedido_compra CASCADE;
 DROP TABLE IF EXISTS ingrediente CASCADE;
 DROP TABLE IF EXISTS confimacao_pedido CASCADE;
-DROP TABLE IF EXISTS pedido_adicional CASCADE;
 DROP TABLE IF EXISTS pedido_bolo CASCADE;
 DROP TABLE IF EXISTS pedido CASCADE;
 DROP TABLE IF EXISTS metodo_pagamento CASCADE;
-DROP TABLE IF EXISTS adicional CASCADE;
 DROP TABLE IF EXISTS bolo CASCADE;
 DROP TABLE IF EXISTS sabor CASCADE;
 DROP TABLE IF EXISTS cliente CASCADE;
@@ -115,14 +113,6 @@ CREATE TABLE bolo (
         REFERENCES sabor(cod_sabor)
 );
 
-CREATE TABLE adicional (
-    cod_adicional       SERIAL          NOT NULL,
-    descricao_adicional VARCHAR(60)     NOT NULL,
-    preco_adicional     NUMERIC(10,2)   NOT NULL,
-    CONSTRAINT pk_adicional
-        PRIMARY KEY (cod_adicional)
-);
-
 CREATE TABLE metodo_pagamento (
     cod_metodo_pagamento        SERIAL      NOT NULL,
     descricao_metodo_pagamento  VARCHAR(30) NOT NULL,
@@ -164,21 +154,6 @@ CREATE TABLE pedido_bolo (
     CONSTRAINT fk_pedido_bolo_bolo
         FOREIGN KEY (cod_bolo)
         REFERENCES bolo(cod_bolo)
-);
-
-CREATE TABLE pedido_adicional (
-    cod_pedido_adicional    SERIAL  NOT NULL,   
-    cod_pedido_bolo         INTEGER NOT NULL,
-    cod_adicional           INTEGER NOT NULL,
-    quantidade_adicional    INTEGER NOT NULL,
-    CONSTRAINT pk_pedido_adicional
-        PRIMARY KEY (cod_pedido_adicional),
-    CONSTRAINT fk_pedido_adicional_pedido_bolo
-        FOREIGN KEY (cod_pedido_bolo)
-        REFERENCES pedido_bolo(cod_pedido_bolo),
-    CONSTRAINT fk_pedido_adicional_adicional
-        FOREIGN KEY (cod_adicional)
-        REFERENCES adicional(cod_adicional)        
 );
 
 CREATE TABLE confimacao_pedido (
@@ -5892,13 +5867,6 @@ INSERT INTO bolo (cod_sabor, descricao_bolo, peso_bolo, preco_bolo, data_fabrica
 (3, 'Um delicioso bolo de Cenoura', 2.0, 40.0, '2023-04-15', '2023-04-19'),
 (4, 'Um delicioso bolo Floresta Negra', 1.0, 30.0, '2023-04-15', '2023-04-17');
 
-INSERT INTO adicional (descricao_adicional, preco_adicional) VALUES
-('Granulado', 1.00),
-('Bombom', 2.50),
-('Morango', 1.40),
-('Chocolate', 5.00),
-('Brigadeiro', 2.30);
-
 INSERT INTO metodo_pagamento (descricao_metodo_pagamento) VALUES 
 ('Dinheiro'),
 ('Boleto Bancário'),
@@ -5952,14 +5920,6 @@ INSERT INTO pedido_bolo (cod_pedido, cod_bolo, quantidade_bolo) VALUES
 (15, 3, 1),
 (15, 6, 3);
 
-INSERT INTO pedido_adicional (cod_pedido_bolo, cod_adicional, quantidade_adicional) VALUES
-(18, 2, 10),
-(18, 5, 10),
-(17, 1, 3),
-(17, 2, 2),
-(8, 4, 1),
-(1, 1, 2);
-
 INSERT INTO confimacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido, pago_confirmacao_pedido, observacao_confirmacao_pedido) VALUES
 (1, 1, '2022-01-17', 'Sim', null),
 (3, 13, '2023-04-16', 'Sim', 'Desconto à vista.'),
@@ -5977,13 +5937,13 @@ INSERT INTO ingrediente (descricao_ingrediente) VALUES
 ('Banana'),
 ('Canela');
 
-INSERT INTO pedido_compra (cod_funcionario, data_pedido_compra, status_pedido_compra) VALUES
-(1, '2023-02-01', 'PENDENTE'),
-(2, '2023-02-02', 'PENDENTE'),
-(3, '2023-02-03', 'CONCLUIDO'),
-(4, '2023-02-04', 'CANCELADO'),
-(5, '2023-02-05', 'PENDENTE'),
-(1, '2023-02-06', 'CONCLUIDO');
+INSERT INTO pedido_compra (cod_funcionario, data_pedido_compra, status_pedido_compra, observacao_pedido_compra) VALUES
+(1, '2023-02-01', 'PENDENTE', 'Para hoje!'),
+(2, '2023-02-02', 'PENDENTE', 'Não tenho pressa.'),
+(3, '2023-02-03', 'CONCLUIDO', null),
+(4, '2023-02-04', 'CANCELADO', null),
+(5, '2023-02-05', 'PENDENTE', null),
+(1, '2023-02-06', 'CONCLUIDO', 'Compre da marca X.');
 
 INSERT INTO pedido_compra_ingrediente (cod_pedido_compra, cod_ingrediente, quantidade_ingrediente) VALUES
 (1, 1, 3),
