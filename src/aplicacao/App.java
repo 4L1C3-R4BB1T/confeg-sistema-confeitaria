@@ -1,4 +1,5 @@
 package aplicacao;
+
 import controladores.LoginControlador;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

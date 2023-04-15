@@ -1,6 +1,5 @@
 package controladores;
 
-
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

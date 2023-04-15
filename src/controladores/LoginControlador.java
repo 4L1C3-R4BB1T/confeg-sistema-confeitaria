@@ -28,17 +28,14 @@ public class LoginControlador {
     private StackPane areaDeFoto;
 
     private String[] fotos = {
-        getClass().getResource("/telas/login/images/background-1.png").toExternalForm(),
-        getClass().getResource("/telas/login/images/background-2.png").toExternalForm(),
-        getClass().getResource("/telas/login/images/background-3.png").toExternalForm()
+            getClass().getResource("/telas/login/images/background-1.png").toExternalForm(),
+            getClass().getResource("/telas/login/images/background-2.png").toExternalForm(),
+            getClass().getResource("/telas/login/images/background-3.png").toExternalForm()
     };
 
     private int fotoAtual = 0;
 
     private Stage palcoLogin;
-
-
-
 
     @FXML
     public void entrar(ActionEvent event) throws Exception {
@@ -60,10 +57,11 @@ public class LoginControlador {
     public boolean podeEntrar() {
         if (!campoUsuario.getText().isEmpty() && !campoSenha.getText().isEmpty()) {
             DAO dao = new DAO();
-            String consulta = String.format("SELECT * FROM usuarios u WHERE u.email = '%s' AND u.senha = '%s'", campoUsuario.getText(), campoSenha.getText());
+            String consulta = String.format("SELECT * FROM usuarios u WHERE u.email = '%s' AND u.senha = '%s'",
+                    campoUsuario.getText(), campoSenha.getText());
             Usuario usuario = dao.consultar(Usuario.class, consulta);
             if (usuario != null) {
-               return true;
+                return true;
             }
         }
         return false;
@@ -88,7 +86,7 @@ public class LoginControlador {
 
     public void setPalco(Stage palcoLogin) {
         this.palcoLogin = palcoLogin;
-    } 
+    }
 
     @FXML
     public void initialize() {
@@ -96,14 +94,15 @@ public class LoginControlador {
             while (true) {
                 try {
                     Platform.runLater(() -> {
-                        areaDeFoto.setStyle(String.format("-fx-background-image: url('%s') !important;", fotos[fotoAtual++ % fotos.length]));
+                        areaDeFoto.setStyle(String.format("-fx-background-image: url('%s') !important;",
+                                fotos[fotoAtual++ % fotos.length]));
                     });
                     Thread.sleep(5000);
 
-                } catch (Exception erro) {}
+                } catch (Exception erro) {
+                }
             }
         }).start();
-        
     }
 
 }
