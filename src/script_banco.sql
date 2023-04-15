@@ -79,7 +79,6 @@ CREATE TABLE funcionario (
     cod_funcionario         SERIAL      NOT NULL,
     nome_funcionario        VARCHAR(60) NOT NULL,
     cpf_funcionario         CHAR(11)    NOT NULL,
-    telefone_funcionario    CHAR(15)    NOT NULL,
     cod_tipo_funcionario    INTEGER     NOT NULL, 
     cod_endereco            INTEGER     NOT NULL, 
     email                   VARCHAR(30) NULL,
@@ -5863,12 +5862,12 @@ INSERT INTO cliente (nome_cliente, cpf_cliente, telefone_cliente, cod_endereco) 
 ('Ricardo Ferreira', '90123456788', '(91) 11111-1111', 9),
 ('Camila Rodrigues', '01234567899', '(32) 99999-8888', 10);
 
-INSERT INTO funcionario (nome_funcionario, cpf_funcionario, telefone_funcionario, cod_tipo_funcionario, cod_endereco, email, senha) VALUES
-('Pedro Silva', '12345678900', '(11) 99999-9999', 1, 11, 'funcionario1@confeg.com', 'funcionario123'),
-('Ana Santos', '23456789011', '(21) 88888-8888', 1, 12, 'funcionario2@confeg.com', 'funcionario123'),
-('José Pereira', '34567890122', '(31) 77777-7777', 1, 13, 'funcionario3@confeg.com', 'funcionario123'),
-('Fernanda Alves', '45678901233', '(41) 66666-6666', 2, 14, 'gerente1@confeg.com', 'gerente123'),
-('Mariana Rodrigues', '56789012344', '(51) 55555-5555', 1, 15, 'gerente2@confeg.com', 'gerente123');
+INSERT INTO funcionario (nome_funcionario, cpf_funcionario, cod_tipo_funcionario, cod_endereco, email, senha) VALUES
+('Pedro Silva', '12345678900', 1, 11, 'funcionario1@confeg.com', 'funcionario123'),
+('Ana Santos', '23456789011', 1, 12, 'funcionario2@confeg.com', 'funcionario123'),
+('José Pereira', '34567890122', 1, 13, 'funcionario3@confeg.com', 'funcionario123'),
+('Fernanda Alves', '45678901233', 2, 14, 'gerente1@confeg.com', 'gerente123'),
+('Mariana Rodrigues', '56789012344', 1, 15, 'gerente2@confeg.com', 'gerente123');
 
 INSERT INTO sabor (descricao_sabor) VALUES
 ('Chocolate'),

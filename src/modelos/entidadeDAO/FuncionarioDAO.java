@@ -16,13 +16,12 @@ public class FuncionarioDAO {
     }
     
     public Long inserir(Funcionario funcionario) {
-        String comando = "INSERT INTO funcionario (nome_funcionario, cpf_funcionario, telefone_funcionario, cod_tipo_funcionario, cod_endereco) VALUES (?, ?, ?, ?, ?)";
+        String comando = "INSERT INTO funcionario (nome_funcionario, cpf_funcionario, cod_tipo_funcionario, cod_endereco) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = conexao.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, funcionario.getNome());
             ps.setString(2, funcionario.getCpf());
-            ps.setString(3, funcionario.getTelefone());
-            ps.setLong(4, funcionario.getTipo().getCodigo());
-            ps.setLong(5, funcionario.getEndereco().getCodigo());
+            ps.setLong(3, funcionario.getTipo().getCodigo());
+            ps.setLong(4, funcionario.getEndereco().getCodigo());
             ps.execute();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
@@ -37,14 +36,13 @@ public class FuncionarioDAO {
     }
 
     public boolean alterar(Funcionario funcionario) {
-        String comando = "UPDATE funcionario SET nome_funcionario = ?, cpf_funcionario = ?, telefone_funcionario = ?, cod_tipo_funcionario = ?, cod_endereco = ? WHERE cod_funcionario = ?";
+        String comando = "UPDATE funcionario SET nome_funcionario = ?, cpf_funcionario = ?, cod_tipo_funcionario = ?, cod_endereco = ? WHERE cod_funcionario = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setString(1, funcionario.getNome());
             ps.setString(2, funcionario.getCpf());
-            ps.setString(3, funcionario.getTelefone());
-            ps.setLong(4, funcionario.getTipo().getCodigo());
-            ps.setLong(5, funcionario.getEndereco().getCodigo());
-            ps.setLong(6, funcionario.getCodigo());
+            ps.setLong(3, funcionario.getTipo().getCodigo());
+            ps.setLong(4, funcionario.getEndereco().getCodigo());
+            ps.setLong(5, funcionario.getCodigo());
             ps.execute();
             return true;
         } catch (Exception erro) {
@@ -77,7 +75,6 @@ public class FuncionarioDAO {
                     resultado.getLong("cod_funcionario"),
                     resultado.getString("nome_funcionario"), 
                     resultado.getString("cpf_funcionario"),
-                    resultado.getString("telefone_funcionario"),
                     tipoDAO.buscarPorCodigo(resultado.getLong("cod_tipo_funcionario")),
                     enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
                     resultado.getString("email"),
@@ -102,7 +99,6 @@ public class FuncionarioDAO {
                         resultado.getLong("cod_funcionario"),
                         resultado.getString("nome_funcionario"), 
                         resultado.getString("cpf_funcionario"),
-                        resultado.getString("telefone_funcionario"),
                         tipoDAO.buscarPorCodigo(resultado.getLong("cod_tipo_funcionario")),
                         enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
                         resultado.getString("email"),

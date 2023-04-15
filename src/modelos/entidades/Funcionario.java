@@ -6,17 +6,17 @@ public class Funcionario extends Pessoa {
     private String email;
     private String senha;
 
-    public Funcionario(String nome, String cpf, String telefone, TipoFuncionario tipo, Endereco endereco, String email,
+    public Funcionario(String nome, String cpf, TipoFuncionario tipo, Endereco endereco, String email,
             String senha) {
-        super(nome, cpf, telefone, endereco);
+        super(nome, cpf, endereco);
         this.tipo = tipo;
         this.email = email;
         this.senha = senha;
     }
 
-    public Funcionario(Long codigo, String nome, String cpf, String telefone, TipoFuncionario tipo, Endereco endereco,
+    public Funcionario(Long codigo, String nome, String cpf, TipoFuncionario tipo, Endereco endereco,
             String email, String senha) {
-        super(codigo, nome, cpf, telefone, endereco);
+        super(codigo, nome, cpf, endereco);
         this.tipo = tipo;
         this.email = email;
         this.senha = senha;
