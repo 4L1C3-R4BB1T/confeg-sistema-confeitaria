@@ -13,14 +13,16 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import modelos.entidadeDAO.CidadeDAO;
 import modelos.entidadeDAO.EstadoDAO;
+import modelos.entidadeDAO.TipoFuncionarioDAO;
 import modelos.entidades.Cidade;
 import modelos.entidades.Estado;
+import modelos.entidades.TipoFuncionario;
 
 // TELA DE LOGIN/CADASTRO
 public class CadastroFuncionarioControlador {
 
     @FXML
-    private ComboBox<?> tipo;
+    private ComboBox<TipoFuncionario> tipo;
 
     @FXML
     private TextField nome;
@@ -73,7 +75,7 @@ public class CadastroFuncionarioControlador {
 
     @FXML
     public void initialize() {
-        carregarEstados();
+        carregarDados();
         estado.getSelectionModel().selectedItemProperty().addListener((observavel, antigoEstado, novoEstado) -> {
             if (novoEstado != null) {
                 CidadeDAO cidadeDAO = new CidadeDAO(conexao);
@@ -83,9 +85,11 @@ public class CadastroFuncionarioControlador {
         });
     }
 
-    public void carregarEstados() {
+    public void carregarDados() {
         EstadoDAO estadoDAO = new EstadoDAO(conexao);
+        TipoFuncionarioDAO tipoFuncionarioDAO = new TipoFuncionarioDAO(conexao);
         estado.getItems().setAll(estadoDAO.buscarTodos());
+        tipo.getItems().setAll(tipoFuncionarioDAO.obterTodos());
     }
 
 
