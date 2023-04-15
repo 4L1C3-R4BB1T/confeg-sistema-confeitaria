@@ -79,8 +79,10 @@ public class FuncionarioDAO {
                     resultado.getString("nome_funcionario"), 
                     resultado.getString("cpf_funcionario"),
                     resultado.getString("telefone_funcionario"),
+                    enderecoDAO.encontrar(resultado.getLong("cod_endereco")),
                     tipoDAO.encontrar(resultado.getLong("cod_tipo_funcionario")),
-                    enderecoDAO.encontrar(resultado.getLong("cod_endereco"))
+                    resultado.getString("email"),
+                    resultado.getString("senha")
                 );
             }
         } catch (Exception erro) {
@@ -101,8 +103,10 @@ public class FuncionarioDAO {
                         resultado.getString("nome_funcionario"), 
                         resultado.getString("cpf_funcionario"),
                         resultado.getString("telefone_funcionario"),
+                        enderecoDAO.encontrar(resultado.getLong("cod_endereco")),
                         tipoDAO.encontrar(resultado.getLong("cod_tipo_funcionario")),
-                        enderecoDAO.encontrar(resultado.getLong("cod_endereco"))
+                        resultado.getString("email"),
+                        resultado.getString("senha")
                     )
                 );
             }

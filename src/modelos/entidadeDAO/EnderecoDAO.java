@@ -2,8 +2,7 @@ package modelos.entidadeDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
-import javax.naming.spi.DirStateFactory.Result;
+import java.sql.ResultSet;
 
 import modelos.entidades.Endereco;
 
@@ -15,7 +14,7 @@ public class EnderecoDAO {
         this.connection = connection;
     }
 
-    public boolean adicionar(Endereco endereco) {
+    public boolean inserir(Endereco endereco) {
         String comando = "INSERT INTO endereco (cep_endereco, cod_estado, cod_cidade, bairro_endereco, rua_endereco, numero_endereco) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(comando)) {
             ps.setString(1, endereco.getCep());
@@ -31,11 +30,10 @@ public class EnderecoDAO {
         return false;
     }
 
-    public Endereco buscar(Long codigo) {
+    public Endereco encontrar(Long codigo) {
         String comando = "SELECT * FROM endereco WHERE cod_endereco = ?";
         try (PreparedStatement ps = connection.prepareStatement(comando)) {
             ps.setLong(1, codigo);
-
             ResultSet resultado = ps.executeQuery();
             EstadoDAO estadoDAO = new EstadoDAO(connection);
             CidadeDAO cidadeDAO = new CidadeDAO(connection);
@@ -50,8 +48,6 @@ public class EnderecoDAO {
                     resultado.getInt("numero_endereco")
                 );
             }
-    
-
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
@@ -67,6 +63,4 @@ public class EnderecoDAO {
         this.connection = connection;
     }
 
-
-    
 }
