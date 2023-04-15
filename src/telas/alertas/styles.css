@@ -28,10 +28,6 @@ AnchorPane {
 
 /* ////////////////////////////// */
 
-.alerta-fracasso {
-    -fx-background-color: #E06060;
-}
-
 .alerta-fracasso .titulo {
     -fx-text-fill: #fff !important;
     -fx-font-weight: bold;
@@ -39,7 +35,7 @@ AnchorPane {
 }
 
 .alerta-fracasso {
-    -fx-background-color: #25AB3F;
+    -fx-background-color: #E06060;
     -fx-background-radius: 10px;
 }
 

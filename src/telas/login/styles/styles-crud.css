@@ -89,6 +89,12 @@
     -fx-background-color: rgba(168, 2, 2, 0.8);
 }
 
+.container .confirmar:hover, 
+.container .cancelar:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
 .container ComboBox {
     -fx-cursor: hand;
 }

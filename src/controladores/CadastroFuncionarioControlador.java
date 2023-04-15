@@ -1,6 +1,7 @@
-package controladores.login;
+package controladores;
 
 import java.sql.Connection;
+import java.util.stream.Stream;
 
 import conexoes.FabricarConexao;
 import javafx.event.ActionEvent;
@@ -17,9 +18,10 @@ import modelos.entidadeDAO.TipoFuncionarioDAO;
 import modelos.entidades.Cidade;
 import modelos.entidades.Estado;
 import modelos.entidades.TipoFuncionario;
+import modelos.validacao.Validacao;
 
 // TELA DE LOGIN/CADASTRO
-public class CadastroControlador {
+public class CadastroFuncionarioControlador {
 
     @FXML
     private ComboBox<TipoFuncionario> tipo;
@@ -65,7 +67,7 @@ public class CadastroControlador {
 
     @FXML
     public void salvar(ActionEvent event) {
-        
+        System.out.println(checarCamposPreenchidos());
     }
 
     @FXML 
@@ -93,6 +95,19 @@ public class CadastroControlador {
         tipo.getItems().setAll(tipoFuncionarioDAO.buscarTodos());
     }
     
+    public boolean checarCamposPreenchidos() {
+        return Stream.of(
+            getTipo(),
+            getNome(),
+            getCep(),
+            getEstado(),
+            getCidade(),
+            getBairro(),
+            getRua(),
+            getNumero(),
+            getCpf()
+        ).filter(Validacao::validarNuloOuVazio).count() == 9;
+    }
 
     public TipoFuncionario getTipo() {
         return tipo.getSelectionModel().getSelectedItem();
@@ -124,6 +139,10 @@ public class CadastroControlador {
 
     public Integer getNumero() {
         return Integer.parseInt(numero.getText());
+    }
+
+    public String getCpf() {
+        return cpf.getText();
     }
 
 }

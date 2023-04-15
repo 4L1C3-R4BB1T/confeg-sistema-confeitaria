@@ -25,7 +25,7 @@ public class LoginControlador {
     @FXML
     private TextField campoSenha;
 
-    @FXML
+    @FXML // Implementa isso, para exibir alertas
     private VBox areaDeAlerta;
 
     @FXML
