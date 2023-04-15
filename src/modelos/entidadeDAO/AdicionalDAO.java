@@ -6,49 +6,49 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelos.entidades.Estado;
+import modelos.entidades.Adicional;
 
-public class EstadoDAO {
+public class AdicionalDAO {
 
     private Connection connection;
-
-    public EstadoDAO(Connection connection) {
+    
+    public AdicionalDAO(Connection connection) {
         this.connection = connection;
     }
 
-    public Estado encontrar(Long codigo) {
-        String comando = "SELECT * FROM estado WHERE cod_estado = ?";
+    public Adicional encontrar(Long codigo) {
+        String comando = "SELECT * FROM adicional WHERE cod_adicional = ?";
         try (PreparedStatement ps = connection.prepareStatement(comando)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();
             if (resultado.next()) {
-                return new Estado(
-                    resultado.getLong("cod_estado"),
-                    resultado.getString("nome_estado"),
-                    resultado.getString("sigla_estado")
+                return new Adicional(
+                    resultado.getLong("cod_adicional"),
+                    resultado.getString("descricao_adicional"),
+                    resultado.getDouble("preco_adicional")
                 );
             }
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
         return null;
-    } 
-
-    public List<Estado> buscarTodos() {
-        List<Estado> estados = new ArrayList<>();
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM estado")) {
+    }
+    
+    public List<Adicional> buscarTodos() {
+        List<Adicional> adicionais = new ArrayList<>();
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM adicional")) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
-                estados.add(new Estado(
-                    resultado.getLong("cod_estado"),
-                    resultado.getString("nome_estado"),
-                    resultado.getString("sigla_estado")
+                adicionais.add(new Adicional(
+                    resultado.getLong("cod_adicional"),
+                    resultado.getString("descricao_adicional"),
+                    resultado.getDouble("preco_adicional")
                 ));
             }
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
-        return estados;
+        return adicionais;
     }
 
     public Connection getConnection() {

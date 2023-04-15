@@ -5,7 +5,7 @@ public class Funcionario extends Pessoa {
     private TipoFuncionario tipo;
     private String email;
     private String senha;
-    
+
     public Funcionario(String nome, String cpf, String telefone, Endereco endereco, TipoFuncionario tipo, String email,
             String senha) {
         super(nome, cpf, telefone, endereco);
@@ -13,7 +13,7 @@ public class Funcionario extends Pessoa {
         this.email = email;
         this.senha = senha;
     }
-    
+
     public Funcionario(Long codigo, String nome, String cpf, String telefone, Endereco endereco, TipoFuncionario tipo,
             String email, String senha) {
         super(codigo, nome, cpf, telefone, endereco);
@@ -46,5 +46,4 @@ public class Funcionario extends Pessoa {
         this.senha = senha;
     }
 
-    
-}  
+}

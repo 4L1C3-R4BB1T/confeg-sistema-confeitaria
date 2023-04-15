@@ -17,7 +17,30 @@ public class CidadeDAO {
         this.connection = connection;
     }
 
+<<<<<<< HEAD
     public List<Cidade> buscarPorEstado(Estado estado) {
+=======
+    public Cidade encontrar(Long codigo) {
+        String comando = "SELECT * FROM cidade WHERE cod_cidade = ?";
+        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+            ps.setLong(1, codigo);
+            ResultSet resultado = ps.executeQuery();
+            if (resultado.next()) {
+                EstadoDAO estadoDAO = new EstadoDAO(connection);
+                return new Cidade (
+                    resultado.getLong("cod_cidade"),
+                    resultado.getString("nome_cidade"),
+                    estadoDAO.encontrar(resultado.getLong("cod_estado"))
+                );
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return null;
+    } 
+
+    public List<Cidade> buscarTodos() {
+>>>>>>> e111689d7a32f85901e8995deac1cd77fae3140e
         List<Cidade> cidades = new ArrayList<>();
         String comando = "SELECT * FROM cidade WHERE cod_estado = ?";
         try (PreparedStatement ps = connection.prepareStatement(comando)) {
@@ -28,17 +51,14 @@ public class CidadeDAO {
                 cidades.add(new Cidade(
                     resultado.getLong("cod_cidade"),
                     resultado.getString("nome_cidade"),
-                   estadoDAO.encontrar(resultado.getLong("cod_estado"))
+                    estadoDAO.encontrar(resultado.getLong("cod_estado"))
                 ));
             }
-
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
-
         return cidades;
     }
-
 
     public Connection getConnection() {
         return connection;
@@ -47,6 +67,5 @@ public class CidadeDAO {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
-
 
 }

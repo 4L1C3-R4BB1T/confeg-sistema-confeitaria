@@ -15,7 +15,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+<<<<<<< HEAD
 // TELA DE LOGIN
+=======
+>>>>>>> e111689d7a32f85901e8995deac1cd77fae3140e
 public class LoginControlador {
 
     @FXML
