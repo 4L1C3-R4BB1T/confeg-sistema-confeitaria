@@ -171,7 +171,17 @@ public class LoginControlador {
         controlador.setDescricao(descricao);
         limparAreaDeAlerta();
         areaDeAlerta.getChildren().add(raiz);
-        adicionaEfeitoMenuSuave(areaDeAlerta);
+        adicionaEfeitoSuave(areaDeAlerta);
+        new Thread(() -> {
+
+            try {
+                Thread.sleep(1500);
+                Platform.runLater(() -> removerEfeitoSuave(areaDeAlerta));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }).start();
     }
 
     public void exibirAlertDeFracasso(String titulo, String descricao) throws Exception {
@@ -183,7 +193,17 @@ public class LoginControlador {
         controlador.setDescricao(descricao);
         limparAreaDeAlerta();
         areaDeAlerta.getChildren().add(raiz);
-        adicionaEfeitoMenuSuave(areaDeAlerta);
+        adicionaEfeitoSuave(areaDeAlerta);
+        new Thread(() -> {
+
+            try {
+                Thread.sleep(1500);
+                Platform.runLater(() -> removerEfeitoSuave(areaDeAlerta));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }).start();
     }
 
     public void exibirAlertDeInformacao(String titulo, String descricao) throws Exception {
@@ -195,14 +215,32 @@ public class LoginControlador {
         controlador.setDescricao(descricao);
         limparAreaDeAlerta();
         areaDeAlerta.getChildren().add(raiz);
-        adicionaEfeitoMenuSuave(areaDeAlerta);
+        adicionaEfeitoSuave(areaDeAlerta);
+        new Thread(() -> {
+
+            try {
+                Thread.sleep(1500);
+                Platform.runLater(() -> removerEfeitoSuave(areaDeAlerta));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }).start();
     }
 
-    public void adicionaEfeitoMenuSuave(VBox menu) {
-        FadeTransition transicao = new FadeTransition(Duration.millis(1000), menu);
+    public void adicionaEfeitoSuave(VBox box) {
+        FadeTransition transicao = new FadeTransition(Duration.millis(500), box);
         transicao.setFromValue(0);
         transicao.setToValue(1);
-        transicao.setOnFinished( e -> menu.setVisible(true));
+        transicao.setOnFinished( e -> box.setVisible(true));
+        transicao.play();
+    }
+
+    public void removerEfeitoSuave(VBox box) {
+        FadeTransition transicao = new FadeTransition(Duration.millis(1000), box);
+        transicao.setFromValue(1);
+        transicao.setToValue(0);
+        transicao.setOnFinished( e -> box.setVisible(false));
         transicao.play();
     }
 
