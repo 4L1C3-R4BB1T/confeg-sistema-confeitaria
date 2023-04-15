@@ -16,13 +16,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import modelos.entidadeDAO.CidadeDAO;
+import modelos.entidadeDAO.EnderecoDAO;
 import modelos.entidadeDAO.EstadoDAO;
+import modelos.entidadeDAO.FuncionarioDAO;
 import modelos.entidadeDAO.TipoFuncionarioDAO;
 import modelos.entidades.Cidade;
+import modelos.entidades.Endereco;
 import modelos.entidades.Estado;
+import modelos.entidades.Funcionario;
 import modelos.entidades.TipoFuncionario;
 import modelos.validacao.ValidaFormulario;
-import modelos.validacao.Validacao;
+
 
 // TELA DE LOGIN/CADASTRO
 public class CadastroControlador {
@@ -87,6 +91,10 @@ public class CadastroControlador {
 
     private volatile boolean clicouBotaoPodeCadastrar = false;
 
+    private volatile boolean encerrarThreadValidacao = false;
+
+    private volatile boolean salvo = false;
+
     @FXML
     public void cancelar(ActionEvent event) {
         Window janela = (Window) ((Node) event.getSource()).getScene().getWindow();
@@ -94,10 +102,24 @@ public class CadastroControlador {
     }
 
     @FXML
-    public void salvar(ActionEvent event) {
+    public void salvar(ActionEvent event) throws Exception {
         clicouBotaoPodeCadastrar = true;
         if (podeCadastrar()) {
-            System.out.println("Pode sim");
+            conexao.setAutoCommit(false);
+            try {
+                EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
+                FuncionarioDAO funcionarioDAO = new FuncionarioDAO(conexao);
+                Endereco endereco = new Endereco(null, getEstado(), getCidade(), getCep(), getBairro(), getRua(), getNumero());
+                Funcionario funcionario = new Funcionario(getNome(), getCpf(), getTipo(), endereco, getCep(), getBairro());
+                enderecoDAO.inserir(endereco);
+                funcionarioDAO.inserir(funcionario);
+                conexao.commit();
+                salvo = true;
+                Window janela = (Window) ((Node) event.getSource()).getScene().getWindow();
+                ((Stage) janela).close();
+            } catch (Exception erro) {
+                conexao.rollback();
+            }
         }
     }
 
@@ -120,7 +142,7 @@ public class CadastroControlador {
         });
 
         new Thread(() -> {
-            while (true) {
+            while (!encerrarThreadValidacao) {
                 if (clicouBotaoPodeCadastrar) {
                     Platform.runLater(() -> {
                         vf.validarTipo(exibirErroNoTipo, getTipo());
@@ -162,7 +184,14 @@ public class CadastroControlador {
        ).allMatch( valor -> valor == true);
     }
 
-    
+    public void setEncerrarThreadValidacao(boolean b) {
+        encerrarThreadValidacao = true;
+    }
+
+    public boolean dadosForamSalvos() {
+        return salvo;
+    }
+
     public TipoFuncionario getTipo() {
         return tipo.getSelectionModel().getSelectedItem();
     }

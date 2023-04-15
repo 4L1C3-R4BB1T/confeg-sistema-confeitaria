@@ -1,4 +1,4 @@
-package controladores.login.utilatarios;
+package controladores.login.utilitarios;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -7,7 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class AlertaFracasso {
+public class AlertaInformacao {
 
     @FXML
     private Label titulo;

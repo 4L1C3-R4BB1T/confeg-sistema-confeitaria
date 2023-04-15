@@ -1,6 +1,10 @@
 package controladores.login;
 
 import aplicacao.App;
+import controladores.login.utilitarios.AlertaFracasso;
+import controladores.login.utilitarios.AlertaInformacao;
+import controladores.login.utilitarios.AlertaSucesso;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,10 +15,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 // TELA DE LOGIN
 public class LoginControlador {
@@ -54,6 +60,7 @@ public class LoginControlador {
         clicouBotaoCadastrar = true;
         FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/login/cadastro/cadastro.fxml"));
         Parent raiz = carregar.load();
+        CadastroControlador controlador = carregar.getController();
         Scene cena = new Scene(raiz);
         Stage palco = new Stage();
         palcoCadastro = palco;
@@ -61,7 +68,13 @@ public class LoginControlador {
         App.adicionarMovimento(palco, cena);
         palco.initStyle(StageStyle.UNDECORATED);
         palco.showAndWait();
-        clicouBotaoCadastrar = false;
+        controlador.setEncerrarThreadValidacao(true);
+        clicouBotaoCadastrar = false; 
+        if(controlador.dadosForamSalvos()) {
+            exibirAlertDeSucesso("Dados salvos", "Verifique o banco de dados.");
+        } else {
+            exibirAlertDeFracasso("Dados não salvos", "Tente novamente, mais tarde.");
+        }
     }
 
     @FXML // Se a tela de cadastro estiver aberta e a tela de login for fechada, será fechado a tela cadastro tambem.
@@ -80,14 +93,18 @@ public class LoginControlador {
     public void entrar(ActionEvent event) throws Exception {
         if (podeEntrar()) {
             carregarTelaPrincipal();
+        } else {
+            exibirAlertDeInformacao("Informação", "Email ou senha inválidos");
         }
     }
 
     @FXML
-    public void clicouTeclado(KeyEvent event) {
+    public void clicouTeclado(KeyEvent event) throws Exception {
         if (event.getCode() == KeyCode.ENTER) {
             if (podeEntrar()) {
                 carregarTelaPrincipal();
+            } else {
+                exibirAlertDeInformacao("Informação", "Email ou senha inválidos");
             }
         }
     }
@@ -144,5 +161,53 @@ public class LoginControlador {
             palcoLogin.close();
         }
     }
+
+    public void exibirAlertDeSucesso(String titulo, String descricao) throws Exception {
+        areaDeAlerta.setVisible(false);
+        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/alertas/sucesso.fxml"));
+        Parent raiz = carregar.load();
+        AlertaSucesso controlador = carregar.getController();
+        controlador.setTitulo(titulo);
+        controlador.setDescricao(descricao);
+        limparAreaDeAlerta();
+        areaDeAlerta.getChildren().add(raiz);
+        adicionaEfeitoMenuSuave(areaDeAlerta);
+    }
+
+    public void exibirAlertDeFracasso(String titulo, String descricao) throws Exception {
+        areaDeAlerta.setVisible(false);
+        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/alertas/fracasso.fxml"));
+        Parent raiz = carregar.load();
+        AlertaFracasso controlador = carregar.getController();
+        controlador.setTitulo(titulo);
+        controlador.setDescricao(descricao);
+        limparAreaDeAlerta();
+        areaDeAlerta.getChildren().add(raiz);
+        adicionaEfeitoMenuSuave(areaDeAlerta);
+    }
+
+    public void exibirAlertDeInformacao(String titulo, String descricao) throws Exception {
+        areaDeAlerta.setVisible(false);
+        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/alertas/informacao.fxml"));
+        Parent raiz = carregar.load();
+        AlertaInformacao controlador = carregar.getController();
+        controlador.setTitulo(titulo);
+        controlador.setDescricao(descricao);
+        limparAreaDeAlerta();
+        areaDeAlerta.getChildren().add(raiz);
+        adicionaEfeitoMenuSuave(areaDeAlerta);
+    }
+
+    public void adicionaEfeitoMenuSuave(VBox menu) {
+        FadeTransition transicao = new FadeTransition(Duration.millis(1000), menu);
+        transicao.setFromValue(0);
+        transicao.setToValue(1);
+        transicao.setOnFinished( e -> menu.setVisible(true));
+        transicao.play();
+    }
+
+    public void limparAreaDeAlerta() {
+        areaDeAlerta.getChildren().clear();
+    }   
 
 }

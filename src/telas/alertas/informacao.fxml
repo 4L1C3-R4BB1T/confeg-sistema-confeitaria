@@ -9,11 +9,6 @@
    <children>
       <Label fx:id="titulo" layoutX="95.0" layoutY="34.0" styleClass="titulo" text="Informação" />
       <Label fx:id="descricao" alignment="TOP_LEFT" layoutX="95.0" layoutY="72.0" prefHeight="74.0" prefWidth="405.0" styleClass="conteudo" text="Não foi possível inserir as informações" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="0.0" />
-      <ImageView layoutX="433.0" layoutY="18.0" onMouseClicked="#fechar">
-         <image>
-            <Image url="@images/fechar.png" />
-         </image>
-      </ImageView>
       <ImageView layoutX="11.0" layoutY="32.0">
          <image>
             <Image url="@images/informacao.png" />

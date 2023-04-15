@@ -1,4 +1,4 @@
-package controladores.login.utilatarios;
+package controladores.login.utilitarios;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -7,8 +7,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class AlertaInformacao {
-
+public class AlertaSucesso {
+    
     @FXML
     private Label titulo;
 
@@ -23,10 +23,10 @@ public class AlertaInformacao {
 
     public void setTitulo(String valor) {
         titulo.setText(valor);
+        
     }
 
     public void setDescricao(String valor) {
         descricao.setText(valor);
     }
-
 }
