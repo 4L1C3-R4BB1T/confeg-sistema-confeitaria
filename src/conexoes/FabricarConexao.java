@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FabricarConexao {
-    
+
     private Connection conexao;
 
     public FabricarConexao(String url, String usuario, String senha) {

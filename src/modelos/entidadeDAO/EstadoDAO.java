@@ -37,9 +37,7 @@ public class EstadoDAO {
     public List<Estado> buscarTodos() {
         List<Estado> estados = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM estado")) {
-
             ResultSet resultado = ps.executeQuery();
-
             while (resultado.next()) {
                 estados.add(new Estado(
                     resultado.getLong("cod_estado"),
@@ -47,14 +45,11 @@ public class EstadoDAO {
                     resultado.getString("sigla_estado")
                 ));
             }
-
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
-
         return estados;
     }
-
 
     public Connection getConnection() {
         return connection;
@@ -63,4 +58,5 @@ public class EstadoDAO {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
+
 }

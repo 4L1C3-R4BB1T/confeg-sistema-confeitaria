@@ -26,7 +26,7 @@ public class CidadeDAO {
                 return new Cidade (
                     resultado.getLong("cod_cidade"),
                     resultado.getString("nome_cidade"),
-                   estadoDAO.encontrar(resultado.getLong("cod_estado"))
+                    estadoDAO.encontrar(resultado.getLong("cod_estado"))
                 );
             }
         } catch (Exception erro) {
@@ -34,7 +34,6 @@ public class CidadeDAO {
         }
         return null;
     } 
-
 
     public List<Cidade> buscarTodos() {
         List<Cidade> cidades = new ArrayList<>();
@@ -45,17 +44,14 @@ public class CidadeDAO {
                 cidades.add(new Cidade(
                     resultado.getLong("cod_cidade"),
                     resultado.getString("nome_cidade"),
-                   estadoDAO.encontrar(resultado.getLong("cod_estado"))
+                    estadoDAO.encontrar(resultado.getLong("cod_estado"))
                 ));
             }
-
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
-
         return cidades;
     }
-
 
     public Connection getConnection() {
         return connection;
@@ -64,6 +60,5 @@ public class CidadeDAO {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
-
 
 }
