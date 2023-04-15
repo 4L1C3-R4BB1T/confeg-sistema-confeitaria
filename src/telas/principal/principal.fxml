@@ -18,7 +18,7 @@
          <top>
             <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox fx:id="areaBotaoMenu" prefHeight="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" styleClass="ativo" text="PRINCIPAL" />
                         <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirMenuPedidos" prefHeight="50.0" prefWidth="119.0" text="PEDIDOS" />
@@ -86,7 +86,7 @@
                               </FlowPane>
                            </content>
                         </ScrollPane>
-                        <AnchorPane fx:id="menuPedidos" layoutX="125.0" prefHeight="120.0" prefWidth="150.0" styleClass="modal" visible="false" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="menuPedidos" layoutX="112.0" layoutY="-3.0" prefHeight="120.0" prefWidth="150.0" styleClass="modal" visible="false" AnchorPane.topAnchor="0.0">
                            <children>
                               <HBox alignment="CENTER" layoutX="10.0" layoutY="34.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                                  <children>
