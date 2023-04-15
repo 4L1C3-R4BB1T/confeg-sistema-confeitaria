@@ -18,7 +18,6 @@ import modelos.entidadeDAO.TipoFuncionarioDAO;
 import modelos.entidades.Cidade;
 import modelos.entidades.Estado;
 import modelos.entidades.TipoFuncionario;
-import modelos.validacao.Validacao;
 
 // TELA DE LOGIN/CADASTRO
 public class CadastroFuncionarioControlador {
