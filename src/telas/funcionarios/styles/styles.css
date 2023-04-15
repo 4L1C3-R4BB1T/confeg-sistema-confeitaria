@@ -1,0 +1,97 @@
+* {
+    -fx-font-family: "Montreal";
+}
+/* CABEÇALHO */
+
+.funcionarios .cabecalho {
+    -fx-background-color: #000000;
+}
+
+.funcionarios .cabecalho .image-view {
+    -fx-cursor: hand;
+}
+
+/* TITULO */
+
+.funcionarios .titulo {
+    -fx-background-color: rgba(0,0,0,0.79);
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 8px, 0,0,4px);
+}
+
+.funcionarios .titulo .label {
+    -fx-text-fill: #fff;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.funcionarios .adicionar {
+    -fx-background-color: #085D10;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+}
+
+.funcionarios .adicionar:hover {
+    -fx-background-color: #45bb517c;
+    -fx-background-radius: 10px;
+}
+
+.funcionarios .pesquisa {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.13), 5px, 0,0,5px);
+    -fx-background-color: #fff;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-border-width: 1;
+    -fx-border-color: #00000041;
+    -fx-border-radius: 10px;
+}
+
+.funcionarios .pesquisa .text-field {
+    -fx-border-color: none;
+    -fx-border-width: 0;
+    -fx-font-size: 15px;
+    -fx-prompt-text-fill: #000000ba;
+}
+
+
+.funcionarios .exibicao {
+    -fx-background-color: #464040;
+}
+
+.funcionarios ScrollPane {
+    -fx-background-color: none;
+    -fx-border: none;
+    -fx-background-radius: 30px;
+}
+
+
+.funcionarios .exibicao AnchorPane {
+    -fx-background-color: #464040;
+}
+
+.funcionarios .exibicao AnchorPane .button {
+    -fx-text-fill: #fff;
+    -fx-background-color: #0D0F0D;
+    -fx-font-size: 16px;
+    -fx-font-weigth: bold;
+    -fx-cursor: hand;
+    -fx-background-radius: 10px 10px 0px 0;
+}
+
+
+.funcionarios .menu {
+    -fx-background-color: #0D0F0D;
+}
+
+.funcionarios .menu .button {
+    -fx-background-color: #fff;
+    -fx-text-fill: #000;
+    -fx-font-size: 12px;
+    -fx-background-radius: 10px;
+}
+
+.funcionarios .menu .button:hover {
+    -fx-background-color: #00000097;
+    -fx-text-fill: #fff;
+}

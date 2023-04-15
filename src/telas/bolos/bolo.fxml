@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="funcionarios" stylesheets="@../funcionarios/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView layoutX="1158.0" layoutY="9.0" AnchorPane.rightAnchor="9.0">
+               <image>
+                  <Image url="@../funcionarios/images/fechar.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="1109.0" layoutY="7.0" AnchorPane.rightAnchor="49.0">
+               <image>
+                  <Image url="@../funcionarios/images/minimizar.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="50.0" layoutY="23.0" prefHeight="100.0" styleClass="titulo" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+               <children>
+                  <Button contentDisplay="CENTER" layoutX="781.0" layoutY="28.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="298.0" styleClass="adicionar" text="ADICIONAR BOLOS" textAlignment="RIGHT" AnchorPane.rightAnchor="21.0" />
+                  <Label layoutX="28.0" layoutY="37.0" text="GERENCIAR BOLOS" AnchorPane.leftAnchor="28.0" />
+                  <ImageView layoutX="829.0" layoutY="39.0">
+                     <image>
+                        <Image url="@../funcionarios/images/botao-adicionar.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER_LEFT" layoutX="848.0" layoutY="157.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa" AnchorPane.rightAnchor="40.0">
+               <children>
+                  <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" promptText="Pesquisar..." />
+                  <ImageView fitHeight="28.0" fitWidth="28.0" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@../principal/images/lupa.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="50.0" layoutY="247.0" prefHeight="471.0" prefWidth="1100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="247.0">
+               <content>
+                  <FlowPane hgap="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="exibicao" vgap="10.0">
+                     <children>
+                        <AnchorPane prefHeight="239.0" prefWidth="238.0">
+                           <children>
+                              <Button layoutX="19.0" layoutY="170.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefWidth="200.0" text="Bolo 123" AnchorPane.rightAnchor="20.0">
+                                 <graphic>
+                                    <ImageView fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT">
+                                       <image>
+                                          <Image url="@../funcionarios/images/seta_baixo.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <AnchorPane layoutX="19.0" layoutY="211.0" prefHeight="63.0" prefWidth="199.0" styleClass="menu">
+                                 <children>
+                                    <HBox alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="39.0" prefWidth="196.0" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="1.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" prefWidth="100.0" text="EDITAR" />
+                                          <Button mnemonicParsing="false" prefWidth="100.0" text="REMOVER" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                              <ImageView layoutX="19.0">
+                                 <image>
+                                    <Image url="@../../../../../Downloads/pexels-photo-4109998%201.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets left="50.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

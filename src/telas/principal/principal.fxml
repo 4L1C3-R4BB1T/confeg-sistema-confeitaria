@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane prefHeight="800.0" prefWidth="1200.0" styleClass="container" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.PrincipalControlador">
+<BorderPane prefHeight="800.0" prefWidth="1300.0" styleClass="container" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.PrincipalControlador">
    <center>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
          <top>
@@ -86,11 +86,16 @@
                               </FlowPane>
                            </content>
                         </ScrollPane>
-                        <AnchorPane fx:id="menuPedidos" layoutX="125.0" prefHeight="80.0" prefWidth="122.0" styleClass="modal" visible="false" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="menuPedidos" layoutX="125.0" prefHeight="120.0" prefWidth="150.0" styleClass="modal" visible="false" AnchorPane.topAnchor="0.0">
                            <children>
                               <HBox alignment="CENTER" layoutX="10.0" layoutY="34.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Listar" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="61.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.topAnchor="70.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Confirmar" />
                                  </children>
                               </HBox>
                            </children>
@@ -121,12 +126,12 @@
    <top>
       <AnchorPane prefHeight="30.0" prefWidth="200.0" styleClass="area-fechamento" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="1142.0" layoutY="3.0" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="33.0">
+            <ImageView layoutX="1115.0" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="45.0">
                <image>
                   <Image url="@images/minimizar.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="1172.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+            <ImageView layoutX="1161.0" layoutY="3.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="3.0">
                <image>
                   <Image url="@images/fechar.png" />
                </image>
@@ -134,4 +139,11 @@
          </children>
       </AnchorPane>
    </top>
+   <bottom>
+      <AnchorPane prefHeight="40.0" prefWidth="200.0" styleClass="rodape" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="583.0" layoutY="10.0" text="© Todos os direitos reservados" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
 </BorderPane>

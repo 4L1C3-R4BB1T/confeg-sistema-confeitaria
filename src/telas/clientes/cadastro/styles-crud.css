@@ -1,0 +1,87 @@
+
+.container .cabecalho {
+    -fx-background-color: rgba(0,0,0,0.79);
+}
+
+.container .cabecalho .image-view {
+    -fx-cursor: hand;
+}
+
+
+.container .titulo {
+    -fx-background-color: rgba(0,0,0,0.79);
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+    -fx-background-radius: 10px;
+    -fx-padding: 20px;
+}
+
+.container .tipo, .container .tipo .list-cell {
+    -fx-padding: 6px;
+    -fx-background-color: #fff;
+    -fx-border-width: 0;
+    -fx-font-size: 16px;
+}
+
+.container .tipo {
+    -fx-border-width: 1;
+    -fx-border-color: #0000006b;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.container .descricao {
+    -fx-font-size: 18px;
+    -fx-text-fill: #000000ac;
+}
+
+.container TextField {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #000;
+    -fx-background-color: #fff;
+    -fx-prompt-text-fill: #00000080;
+    -fx-font-size: 18px;
+    -fx-padding: 5px;
+}
+
+.container .escolha, .container .escolha .list-cell {
+    -fx-background-color: #fff;
+    -fx-border-width: 0;
+    -fx-border-color: none;
+    -fx-font-size: 16px;
+}
+
+.container .escolha {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #000;
+}
+
+.container .botao {
+    -fx-cursor: hand;
+    -fx-background-radius: 10px;
+    -fx-font-size: 20px;
+    -fx-text-fill: #fff;
+}
+
+.container .confirmar {
+    -fx-background-color: rgba(38, 23, 135, 0.8);
+}
+
+.container .cancelar {
+    -fx-background-color: rgba(168, 2, 2, 0.8);
+}
+
+.container ComboBox {
+    -fx-cursor: hand;
+}
+
+.container ComboBox .arrow {
+    -fx-font-size: 20px;
+}
+
+.container .bloqueado {
+    -fx-background-color: rgba(76, 73, 73, 0.29);
+    -fx-border-width: 0;
+}

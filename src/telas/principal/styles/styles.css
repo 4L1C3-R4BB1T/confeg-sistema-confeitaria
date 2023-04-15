@@ -144,3 +144,16 @@
     -fx-text-fill: #006B1E;
     -fx-font-size: 13px;
 }
+
+
+/* /////////////////////////////// */
+
+.rodape {
+    -fx-background-color: rgba(0, 0, 0, 0.79);
+    -fx-padding: 5px;
+}
+
+.rodape .label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #fff;
+}
