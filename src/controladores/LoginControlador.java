@@ -131,7 +131,6 @@ public class LoginControlador {
         }).start();
     }
 
-
     public void encerrarTelas() {
         if (palcoLogin != null) {
             continuarTrocandoImagem = false;
