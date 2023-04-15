@@ -16,6 +16,7 @@ import modelos.entidadeDAO.EstadoDAO;
 import modelos.entidades.Cidade;
 import modelos.entidades.Estado;
 
+// TELA DE LOGIN/CADASTRO
 public class CadastroFuncionarioControlador {
 
     @FXML
@@ -72,14 +73,20 @@ public class CadastroFuncionarioControlador {
 
     @FXML
     public void initialize() {
-        carregarSelecoes();
+        carregarEstados();
+        estado.getSelectionModel().selectedItemProperty().addListener((observavel, antigoEstado, novoEstado) -> {
+            if (novoEstado != null) {
+                CidadeDAO cidadeDAO = new CidadeDAO(conexao);
+                cidade.setValue(null);
+                cidade.getItems().setAll(cidadeDAO.buscarPorEstado(novoEstado));
+            }
+        });
     }
 
-    public void carregarSelecoes() {
+    public void carregarEstados() {
         EstadoDAO estadoDAO = new EstadoDAO(conexao);
-        CidadeDAO cidadeDAO = new CidadeDAO(conexao);
         estado.getItems().setAll(estadoDAO.buscarTodos());
-        cidade.getItems().setAll(cidadeDAO.buscarTodos());
     }
+
 
 }

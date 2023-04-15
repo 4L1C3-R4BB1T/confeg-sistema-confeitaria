@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
+// TELA PRINCIPAL DA APLICAÇÃO
 public class PrincipalControlador {
 
     @FXML
