@@ -52,7 +52,6 @@ public class EnderecoDAO {
             System.out.println("Erro: " + erro.getMessage());
         }
         return null;
-
     }
 
     public Connection getConnection() {

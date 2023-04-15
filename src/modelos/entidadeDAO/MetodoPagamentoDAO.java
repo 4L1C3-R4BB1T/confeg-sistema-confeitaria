@@ -10,6 +10,10 @@ public class MetodoPagamentoDAO {
 
     private Connection conexao;
 
+    public MetodoPagamentoDAO(Connection conexao) {
+        this.conexao = conexao;
+    }
+
     public MetodoPagamento buscarPorCodigo(Long codigo) {
         String comando = "SELECT * FROM metodo_pagamento WHERE cod_metodo_pagamento = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
@@ -26,5 +30,13 @@ public class MetodoPagamentoDAO {
         }
         return null;
     } 
+
+    public Connection getConnection() {
+        return conexao;
+    }
+
+    public void setConnection(Connection conexao) {
+        this.conexao = conexao;
+    }
     
 }

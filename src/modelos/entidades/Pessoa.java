@@ -5,21 +5,18 @@ public abstract class Pessoa {
     protected Long codigo;
     protected String nome;
     protected String cpf;
-    protected String telefone;
     protected Endereco endereco;
 
-    public Pessoa(String nome, String cpf, String telefone, Endereco endereco) {
+    public Pessoa(String nome, String cpf, Endereco endereco) {
         this.nome = nome;
         this.cpf = cpf;
-        this.telefone = telefone;
         this.endereco = endereco;
     }
 
-    public Pessoa(Long codigo, String nome, String cpf, String telefone, Endereco endereco) {
+    public Pessoa(Long codigo, String nome, String cpf, Endereco endereco) {
         this.codigo = codigo;
         this.nome = nome;
         this.cpf = cpf;
-        this.telefone = telefone;
         this.endereco = endereco;
     }
 
@@ -53,14 +50,6 @@ public abstract class Pessoa {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 
 }
