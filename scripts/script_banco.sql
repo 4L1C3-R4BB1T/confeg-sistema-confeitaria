@@ -82,8 +82,8 @@ CREATE TABLE funcionario (
     telefone_funcionario    CHAR(15)    NOT NULL,
     cod_tipo_funcionario    INTEGER     NOT NULL, 
     cod_endereco            INTEGER     NOT NULL, 
-    email                   VARCHAR(30) NOT NULL,
-    senha                   VARCHAR(15) NOT NULL,
+    email                   VARCHAR(30) NULL,
+    senha                   VARCHAR(15) NULL,
     CONSTRAINT pk_funcionario
         PRIMARY KEY (cod_funcionario),
     CONSTRAINT fk_funcionario_tipo_funcionario

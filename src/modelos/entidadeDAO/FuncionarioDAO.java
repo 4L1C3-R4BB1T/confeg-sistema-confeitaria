@@ -1,0 +1,133 @@
+package modelos.entidadeDAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import modelos.entidades.Funcionario;
+import modelos.entidades.TipoFuncionario;
+
+public class FuncionarioDAO {
+
+    private Connection connection;
+
+    public FuncionarioDAO(Connection connection) {
+        this.connection = connection;
+    }
+    
+    public Long inserir(Funcionario funcionario) {
+        String comando = "INSERT INTO funcionario (nome_funcionario, cpf_funcionario, telefone_funcionario, cod_tipo_funcionario, cod_endereco) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = connection.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, funcionario.getNome());
+            ps.setString(2, funcionario.getCpf());
+            ps.setString(3, funcionario.getTelefone());
+            ps.setLong(4, funcionario.getTipo().getCodigo());
+            ps.setLong(5, funcionario.getEndereco().getCodigo());
+            ps.execute();
+            ResultSet resultado = ps.getGeneratedKeys();
+            if (resultado.next()) {
+                inserirEmaileSenha(resultado.getLong(1));
+                return resultado.getLong(1);
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return null;
+    }
+
+    public boolean alterar(Funcionario funcionario) {
+        String comando = "UPDATE funcionario SET nome_funcionario = ?, cpf_funcionario = ?, telefone_funcionario = ?, cod_tipo_funcionario = ?, cod_endereco = ? WHERE cod_funcionario = ?";
+        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+            ps.setString(1, funcionario.getNome());
+            ps.setString(2, funcionario.getCpf());
+            ps.setString(3, funcionario.getTelefone());
+            ps.setLong(4, funcionario.getTipo().getCodigo());
+            ps.setLong(5, funcionario.getEndereco().getCodigo());
+            ps.setLong(6, funcionario.getCodigo());
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return false;
+    }
+
+    public boolean remover(Funcionario funcionario) {
+        String comando = "DELETE FROM funcionario WHERE cod_funcionario = ?";
+        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+            ps.setLong(1, funcionario.getCodigo());
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return false;
+    }
+
+    public Funcionario encontrar(Long codigo) {
+        String comando = "SELECT * FROM funcionario WHERE cod_funcionario = ?";
+        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+            ps.setLong(1, codigo);
+            ResultSet resultado = ps.executeQuery();
+            TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(connection);
+            EnderecoDAO enderecoDAO = new EnderecoDAO(connection);
+            if (resultado.next()) {
+                return new Funcionario(
+                    resultado.getString("nome_funcionario"), 
+                    resultado.getString("cpf_funcionario"),
+                    resultado.getString("telefone_funcionario"),
+                    tipoDAO.encontrar(resultado.getLong("cod_tipo_funcionario")),
+                    enderecoDAO.encontrar(resultado.getLong("cod_endereco"))
+                );
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return null;
+    }
+
+    public List<Funcionario> buscarTodos() {
+        String comando = "SELECT * FROM funcionario";
+        List<Funcionario> funcionarios = new ArrayList<>();
+        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+            ResultSet resultado = ps.executeQuery();
+            TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(connection);
+            EnderecoDAO enderecoDAO = new EnderecoDAO(connection);
+            while (resultado.next()) {
+                Funcionario funcionario = new Funcionario(
+                    resultado.getString("nome_funcionario"), 
+                    resultado.getString("cpf_funcionario"),
+                    resultado.getString("telefone_funcionario"),
+                    tipoDAO.encontrar(resultado.getLong("cod_tipo_funcionario")),
+                    enderecoDAO.encontrar(resultado.getLong("cod_endereco"))
+                );
+                funcionarios.add(funcionario);
+            }
+            return funcionarios;
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return funcionarios;
+    }
+
+
+    public String gerarEmail(Funcionario funcionario) {
+        return String.format("%s%d@.confeg.com", funcionario.getTipo(), funcionario.getCodigo()); 
+    }
+
+    public boolean inserirEmaileSenha(Long codigo) {
+        String comando = "UPDATE funcionario SET email = ?, senha = ? WHERE cod_funcionario = ?";
+        try (PreparedStatement ps = connection.prepareStatement(comando)) {
+            ps.setString(1, gerarEmail(encontrar(codigo)));
+            ps.setString(2, "confeg123");
+            ps.setLong(3, codigo);
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return false;
+    }
+}
