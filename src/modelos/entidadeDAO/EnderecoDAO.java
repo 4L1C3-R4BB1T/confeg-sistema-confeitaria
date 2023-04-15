@@ -14,20 +14,24 @@ public class EnderecoDAO {
         this.conexao = conexao;
     }
 
-    public boolean inserir(Endereco endereco) {
+    public Long inserir(Endereco endereco) {
         String comando = "INSERT INTO endereco (cep_endereco, cod_estado, cod_cidade, bairro_endereco, rua_endereco, numero_endereco) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+        try (PreparedStatement ps = conexao.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, endereco.getCep());
             ps.setLong(2, endereco.getEstado().getCodigo());
             ps.setLong(3, endereco.getCidade().getCodigo());
             ps.setString(4, endereco.getBairro());
             ps.setString(5, endereco.getRua());
             ps.setInt(6, endereco.getNumero());
-            return ps.execute();
+            ps.execute();
+            ResultSet resultado = ps.getGeneratedKeys();
+            if (resultado.next()) {
+                return resultado.getLong(1);
+            }
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
-        return false;
+        return null;
     }
 
     public Endereco buscarPorCodigo(Long codigo) {

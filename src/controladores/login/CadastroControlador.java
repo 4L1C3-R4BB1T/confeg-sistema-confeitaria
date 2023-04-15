@@ -27,7 +27,6 @@ import modelos.entidades.Funcionario;
 import modelos.entidades.TipoFuncionario;
 import modelos.validacao.ValidaFormulario;
 
-
 // TELA DE LOGIN/CADASTRO
 public class CadastroControlador {
 
@@ -109,9 +108,9 @@ public class CadastroControlador {
             try {
                 EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
                 FuncionarioDAO funcionarioDAO = new FuncionarioDAO(conexao);
-                Endereco endereco = new Endereco(null, getEstado(), getCidade(), getCep(), getBairro(), getRua(), getNumero());
+                Endereco endereco = new Endereco(getEstado(), getCidade(), getCep(), getBairro(), getRua(), getNumero());
+                endereco.setCodigo(enderecoDAO.inserir(endereco));
                 Funcionario funcionario = new Funcionario(getNome(), getCpf(), getTipo(), endereco, getCep(), getBairro());
-                enderecoDAO.inserir(endereco);
                 funcionarioDAO.inserir(funcionario);
                 conexao.commit();
                 salvo = true;
@@ -122,7 +121,6 @@ public class CadastroControlador {
             }
         }
     }
-
 
     @FXML 
     public void fecharTela(MouseEvent event) {

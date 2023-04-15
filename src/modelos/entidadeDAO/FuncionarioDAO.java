@@ -31,6 +31,7 @@ public class FuncionarioDAO {
             }
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     }
