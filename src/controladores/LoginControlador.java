@@ -39,8 +39,14 @@ public class LoginControlador {
 
     private boolean continuarTrocandoImagem = true;
 
+    private boolean clicouBotaoCadastrar = false;
+
     @FXML 
     public void cadastrar(MouseEvent event) throws Exception {
+        if (clicouBotaoCadastrar) {
+            return; /// Não pode clicar no botão cadastrar e exibir a tela várias vezes, impede isso.
+        }
+        clicouBotaoCadastrar = true;
         FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/login/cadastro/cadastro.fxml"));
         Parent raiz = carregar.load();
         CadastroFuncionarioControlador controlador = (CadastroFuncionarioControlador) carregar.getController();
@@ -50,6 +56,7 @@ public class LoginControlador {
         App.adicionarMovimento(palco, cena);
         palco.initStyle(StageStyle.UNDECORATED);
         palco.showAndWait();
+        clicouBotaoCadastrar = false;
     }
 
     @FXML 

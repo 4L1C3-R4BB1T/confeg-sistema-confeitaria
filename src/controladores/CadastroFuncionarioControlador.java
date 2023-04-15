@@ -92,5 +92,36 @@ public class CadastroFuncionarioControlador {
         tipo.getItems().setAll(tipoFuncionarioDAO.obterTodos());
     }
 
+    public TipoFuncionario getTipo() {
+        return tipo.getSelectionModel().getSelectedItem();
+    }
+
+    public String getNome() {
+        return nome.getText();
+    }
+
+    public String getCep() {
+        return cep.getText();
+    }
+
+    public Estado getEstado() {
+        return estado.getSelectionModel().getSelectedItem();
+    }
+
+    public Cidade getCidade() {
+        return cidade.getSelectionModel().getSelectedItem();
+    }
+
+    public String getBairro() {
+        return bairro.getText();
+    }
+
+    public String getRua() {
+        return rua.getText();
+    }
+
+    public Integer getNumero() {
+        return Integer.parseInt(numero.getText());
+    }
 
 }
