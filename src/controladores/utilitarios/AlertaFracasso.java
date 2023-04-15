@@ -1,4 +1,4 @@
-package controladores.utilatarios;
+package controladores.utilitarios;
 
 public class AlertaFracasso {
     
