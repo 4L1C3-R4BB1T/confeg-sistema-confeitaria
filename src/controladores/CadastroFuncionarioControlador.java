@@ -59,7 +59,8 @@ public class CadastroFuncionarioControlador {
 
     @FXML
     public void cancelar(ActionEvent event) {
-
+        Window janela = (Window) ((Node) event.getSource()).getScene().getWindow();
+        ((Stage) janela).close();
     }
 
     @FXML
@@ -91,6 +92,7 @@ public class CadastroFuncionarioControlador {
         estado.getItems().setAll(estadoDAO.buscarTodos());
         tipo.getItems().setAll(tipoFuncionarioDAO.obterTodos());
     }
+    
 
     public TipoFuncionario getTipo() {
         return tipo.getSelectionModel().getSelectedItem();
