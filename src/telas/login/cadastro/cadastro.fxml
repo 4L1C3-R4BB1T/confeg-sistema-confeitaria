@@ -71,7 +71,7 @@
                   <Insets left="5.0" />
                </padding>
             </Label>
-            <Label fx:id="exibirErroNoTipo" layoutX="269.0" layoutY="197.0" prefHeight="18.0" prefWidth="283.0" styleClass="erro">
+            <Label fx:id="exibirErroNoTipo" alignment="CENTER" layoutX="269.0" layoutY="197.0" prefHeight="18.0" prefWidth="283.0" styleClass="erro">
                <padding>
                   <Insets left="5.0" />
                </padding>
