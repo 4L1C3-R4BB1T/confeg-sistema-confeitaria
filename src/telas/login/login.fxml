@@ -13,17 +13,22 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#clicouTeclado" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.LoginControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#clicouTeclado" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.login.LoginControlador">
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <StackPane fx:id="areaDeFoto" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="500.0" styleClass="area-esquerda" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER">
+                  <VBox alignment="CENTER" styleClass="container-1">
                      <children>
                         <Label styleClass="titulo" text="CONFEG" VBox.vgrow="ALWAYS" />
                         <Label styleClass="sub-titulo" text="Sistema de Confeitaria" VBox.vgrow="ALWAYS" />
                      </children>
+                  </VBox>
+                  <VBox fx:id="areaDeAlerta" prefHeight="200.0" prefWidth="100.0">
+                     <StackPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </StackPane.margin>
                   </VBox>
                </children>
             </StackPane>

@@ -1,4 +1,4 @@
-package controladores;
+package controladores.login;
 
 import java.sql.Connection;
 
@@ -19,7 +19,7 @@ import modelos.entidades.Estado;
 import modelos.entidades.TipoFuncionario;
 
 // TELA DE LOGIN/CADASTRO
-public class CadastroFuncionarioControlador {
+public class CadastroControlador {
 
     @FXML
     private ComboBox<TipoFuncionario> tipo;

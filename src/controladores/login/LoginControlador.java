@@ -1,4 +1,4 @@
-package controladores;
+package controladores.login;
 
 import aplicacao.App;
 import javafx.application.Platform;
@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -23,6 +24,9 @@ public class LoginControlador {
 
     @FXML
     private TextField campoSenha;
+
+    @FXML
+    private VBox areaDeAlerta;
 
     @FXML
     private StackPane areaDeFoto;

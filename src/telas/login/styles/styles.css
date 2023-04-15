@@ -20,7 +20,7 @@
     -fx-background-size: cover;
 }
 
-.area-esquerda  VBox {
+.area-esquerda  .container-1 {
     -fx-background-color: rgba(0, 0, 0, 0.60);
 }
 

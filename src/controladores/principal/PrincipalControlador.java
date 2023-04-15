@@ -1,4 +1,4 @@
-package controladores;
+package controladores.principal;
 
 import java.util.ArrayList;
 import java.util.List;
