@@ -36,7 +36,10 @@ public class Cidade {
         this.estado = estado;
     }
     
- 
+    @Override 
+    public String toString() {
+        return nome;
+    }
 
 
     

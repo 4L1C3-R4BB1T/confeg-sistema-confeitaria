@@ -28,6 +28,10 @@
     -fx-font-size: 16px;
 }
 
+.container .tipo, .container .tipo .list-cell {
+    -fx-text-fill: #000;
+}
+
 .container .tipo {
     -fx-border-width: 1;
     -fx-border-color: #0000006b;
@@ -50,10 +54,15 @@
 }
 
 .container .escolha, .container .escolha .list-cell {
-    -fx-background-color: #fff;
     -fx-border-width: 0;
     -fx-border-color: none;
     -fx-font-size: 16px;
+    -fx-text-fill: #000;
+    -fx-background-color: #fff;
+}
+
+.container .escolha, .container .escolha .list-cell:hover {
+    -fx-background-color: #ffffffd3;
 }
 
 .container .escolha {
