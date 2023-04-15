@@ -3,6 +3,7 @@ package modelos.entidadeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import modelos.entidades.Funcionario;
@@ -25,12 +26,11 @@ public class FuncionarioDAO {
             ps.execute();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
-                Long codigo = resultado.getLong(1);
-                inserirEmaileSenha(codigo);
-                return codigo;
+                return resultado.getLong(1);
             }
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     }
@@ -115,13 +115,18 @@ public class FuncionarioDAO {
 
     // GERAR EMAIL AUTOMATICO
     public String gerarEmail(Funcionario funcionario) {
-        return String.format("%s%d@.confeg.com", funcionario.getTipo().getDescricao(), funcionario.getCodigo()); 
+        String email = String.format("%s%d@.confeg.com", removerAcentos(funcionario.getTipo().getDescricao()), funcionario.getCodigo()); 
+        System.out.println(email);
+        return email;
     }
 
     // SETAR O EMAIL GERADO NO FUNCIONARIO
     public boolean inserirEmaileSenha(Long codigo) {
         String comando = "UPDATE funcionario SET email = ?, senha = ? WHERE cod_funcionario = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            
+            System.out.println(gerarEmail(buscarPorCodigo(codigo)));
+            
             ps.setString(1, gerarEmail(buscarPorCodigo(codigo)));
             ps.setString(2, "confeg123");
             ps.setLong(3, codigo);
@@ -129,8 +134,13 @@ public class FuncionarioDAO {
             return true;
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
+    }
+
+    private String removerAcentos(String str) {
+        return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
     }
 
     public Connection getConnection() {
