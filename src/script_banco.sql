@@ -152,11 +152,12 @@ CREATE TABLE pedido (
 );
 
 CREATE TABLE pedido_bolo (
+    cod_pedido_bolo SERIAL  NOT NULL,
     cod_pedido      INTEGER NOT NULL,
     cod_bolo        INTEGER NOT NULL,
     quantidade_bolo INTEGER NOT NULL,
-    CONSTRAINT pk_pedido_item
-        PRIMARY KEY (cod_pedido, cod_bolo),
+    CONSTRAINT pk_pedido_bolo
+        PRIMARY KEY (cod_pedido_bolo),
     CONSTRAINT fk_pedido_bolo_pedido
         FOREIGN KEY (cod_pedido)
         REFERENCES pedido(cod_pedido),
@@ -166,28 +167,29 @@ CREATE TABLE pedido_bolo (
 );
 
 CREATE TABLE pedido_adicional (
-    cod_pedido              INTEGER NOT NULL,
-    cod_bolo                INTEGER NOT NULL,
+    cod_pedido_adicional    SERIAL  NOT NULL,   
+    cod_pedido_bolo         INTEGER NOT NULL,
     cod_adicional           INTEGER NOT NULL,
     quantidade_adicional    INTEGER NOT NULL,
     CONSTRAINT pk_pedido_adicional
-        PRIMARY KEY (cod_pedido, cod_bolo, cod_adicional),
+        PRIMARY KEY (cod_pedido_adicional),
     CONSTRAINT fk_pedido_adicional_pedido_bolo
-        FOREIGN KEY (cod_pedido, cod_bolo)
-        REFERENCES pedido_bolo (cod_pedido, cod_bolo),
+        FOREIGN KEY (cod_pedido_bolo)
+        REFERENCES pedido_bolo(cod_pedido_bolo),
     CONSTRAINT fk_pedido_adicional_adicional
         FOREIGN KEY (cod_adicional)
         REFERENCES adicional(cod_adicional)        
 );
 
 CREATE TABLE confimacao_pedido (
+    cod_confirmacao                 SERIAL      NOT NULL,   
     cod_cliente                     INTEGER     NOT NULL,
     cod_pedido                      INTEGER     NOT NULL,
     data_confirmacao_pedido         DATE        NOT NULL,
     pago_confirmacao_pedido         CHAR(3)     NOT NULL,
     observacao_confirmacao_pedido   VARCHAR(60) NULL,
     CONSTRAINT pk_confirmacao_pedido
-        PRIMARY KEY (cod_cliente, cod_pedido),
+        PRIMARY KEY (cod_confirmacao),
     CONSTRAINT fk_confimacao_pedido_cliente
         FOREIGN KEY (cod_cliente)
         REFERENCES cliente(cod_cliente),
@@ -217,11 +219,12 @@ CREATE TABLE pedido_compra (
 );
 
 CREATE TABLE pedido_compra_ingrediente (
-    cod_pedido_compra       INTEGER NOT NULL,
-    cod_ingrediente         INTEGER NOT NULL,
-    quantidade_ingrediente  INTEGER NOT NULL,
+    cod_pedido_compra_ingrediente   SERIAL  NOT NULL,   
+    cod_pedido_compra               INTEGER NOT NULL,
+    cod_ingrediente                 INTEGER NOT NULL,
+    quantidade_ingrediente          INTEGER NOT NULL,
     CONSTRAINT pk_pedido_compra_ingrediente 
-        PRIMARY KEY (cod_pedido_compra, cod_ingrediente),
+        PRIMARY KEY (cod_pedido_compra_ingrediente),
     CONSTRAINT fk_pedido_compra_ingrediente_pedido_compra
         FOREIGN KEY (cod_pedido_compra)
         REFERENCES pedido_compra(cod_pedido_compra),
@@ -5949,20 +5952,20 @@ INSERT INTO pedido_bolo (cod_pedido, cod_bolo, quantidade_bolo) VALUES
 (15, 3, 1),
 (15, 6, 3);
 
-INSERT INTO pedido_adicional (cod_pedido, cod_bolo, cod_adicional, quantidade_adicional) VALUES
-(10, 2, 2, 10),
-(10, 2, 5, 10),
-(9, 1, 1, 3),
-(9, 1, 2, 2),
-(4, 6, 4, 1),
-(1, 2, 1, 2);
+INSERT INTO pedido_adicional (cod_pedido_bolo, cod_adicional, quantidade_adicional) VALUES
+(18, 2, 10),
+(18, 5, 10),
+(17, 1, 3),
+(17, 2, 2),
+(8, 4, 1),
+(1, 1, 2);
 
-INSERT INTO confimacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido) VALUES
-(1, 1, '2022-01-17'),
-(3, 13, '2023-04-16'),
-(3, 3, '2022-04-18'),
-(6, 6, '2023-01-18'),
-(5, 15, '2023-04-16');
+INSERT INTO confimacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido, pago_confirmacao_pedido, observacao_confirmacao_pedido) VALUES
+(1, 1, '2022-01-17', 'Sim', null),
+(3, 13, '2023-04-16', 'Sim', 'Desconto à vista.'),
+(3, 3, '2022-04-18', 'Não', null),
+(6, 6, '2023-01-18', 'Sim', 'Disse que o bolo estava delicioso.'),
+(5, 15, '2023-04-16', 'Não', 'Vai pagar amanhã.');
 
 INSERT INTO ingrediente (descricao_ingrediente) VALUES
 ('Farinha'),

@@ -4,14 +4,16 @@ import java.sql.Date;
 
 public class ConfirmacaoPedido {
 
+    private Long codigo;
     private Cliente cliente;
     private Pedido pedido;
     private Date dataConfirmacao;
     private String pago;
     private String observacao;
    
-    public ConfirmacaoPedido(Cliente cliente, Pedido pedido, Date dataConfirmacao,
-        String pago, String observacao) {
+    public ConfirmacaoPedido(Long codigo, Cliente cliente, Pedido pedido, Date dataConfirmacao, String pago,
+            String observacao) {
+        this.codigo = codigo;
         this.cliente = cliente;
         this.pedido = pedido;
         this.dataConfirmacao = dataConfirmacao;
@@ -19,11 +21,20 @@ public class ConfirmacaoPedido {
         this.observacao = observacao;
     }
 
-    public ConfirmacaoPedido(Cliente cliente, Pedido pedido, Date dataConfirmacao, String pago) {
+    public ConfirmacaoPedido(Cliente cliente, Pedido pedido, Date dataConfirmacao, String pago, String observacao) {
         this.cliente = cliente;
         this.pedido = pedido;
         this.dataConfirmacao = dataConfirmacao;
         this.pago = pago;
+        this.observacao = observacao;
+    }
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
     }
 
     public Cliente getCliente() {

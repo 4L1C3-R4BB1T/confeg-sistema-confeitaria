@@ -2,22 +2,38 @@ package modelos.entidades;
 
 public class PedidoAdicional {
 
-    private Pedido pedido;
+    private Long codigo;
+    private PedidoBolo pedidoBolo;
     private Adicional adicional;
     private Long quantidade;
-    
-    public PedidoAdicional(Pedido pedido, Adicional adicional, Long quantidade) {
-        this.pedido = pedido;
+
+    public PedidoAdicional(Long codigo, PedidoBolo pedidoBolo, Adicional adicional, Long quantidade) {
+        this.codigo = codigo;
+        this.pedidoBolo = pedidoBolo;
         this.adicional = adicional;
         this.quantidade = quantidade;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public PedidoAdicional(PedidoBolo pedidoBolo, Adicional adicional, Long quantidade) {
+        this.pedidoBolo = pedidoBolo;
+        this.adicional = adicional;
+        this.quantidade = quantidade;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public PedidoBolo getPedidoBolo() {
+        return pedidoBolo;
+    }
+
+    public void setPedidoBolo(PedidoBolo pedidoBolo) {
+        this.pedidoBolo = pedidoBolo;
     }
 
     public Adicional getAdicional() {
@@ -35,5 +51,5 @@ public class PedidoAdicional {
     public void setQuantidade(Long quantidade) {
         this.quantidade = quantidade;
     }
-
+    
 }
