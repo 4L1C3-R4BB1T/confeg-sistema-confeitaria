@@ -77,8 +77,8 @@ public class FuncionarioDAO {
                     resultado.getString("nome_funcionario"), 
                     resultado.getString("cpf_funcionario"),
                     resultado.getString("telefone_funcionario"),
-                    enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
                     tipoDAO.buscarPorCodigo(resultado.getLong("cod_tipo_funcionario")),
+                    enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
                     resultado.getString("email"),
                     resultado.getString("senha")
                 );
@@ -101,8 +101,8 @@ public class FuncionarioDAO {
                         resultado.getString("nome_funcionario"), 
                         resultado.getString("cpf_funcionario"),
                         resultado.getString("telefone_funcionario"),
-                        enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
                         tipoDAO.buscarPorCodigo(resultado.getLong("cod_tipo_funcionario")),
+                        enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
                         resultado.getString("email"),
                         resultado.getString("senha")
                     )
