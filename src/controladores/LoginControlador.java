@@ -10,11 +10,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import modelos.dao.DAO;
-import modelos.entidades.Usuario;
+
 
 public class LoginControlador {
 
@@ -37,10 +37,39 @@ public class LoginControlador {
 
     private Stage palcoLogin;
 
+    private boolean continuarTrocandoImagem = true;
+
+    @FXML 
+    public void cadastrar(MouseEvent event) throws Exception {
+        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/login/cadastro/cadastro.fxml"));
+        Parent raiz = carregar.load();
+        CadastroFuncionarioControlador controlador = (CadastroFuncionarioControlador) carregar.getController();
+        Scene cena = new Scene(raiz);
+        Stage palco = new Stage();
+        palco.setScene(cena);
+        App.adicionarMovimento(palco, cena);
+        palco.initStyle(StageStyle.UNDECORATED);
+        palco.showAndWait();
+    }
+
+    @FXML 
+    public void fecharTela(MouseEvent event) {
+        if (palcoLogin != null) {
+            continuarTrocandoImagem = false;
+            palcoLogin.close();
+        }
+    }
+
+    @FXML 
+    public void minimizarTela(MouseEvent event) {
+        if (palcoLogin != null) {
+            palcoLogin.setIconified(true);
+        }
+    }
+
     @FXML
     public void entrar(ActionEvent event) throws Exception {
         if (podeEntrar()) {
-            System.out.println("sasas");
             carregarTelaPrincipal();
         }
     }
@@ -55,14 +84,8 @@ public class LoginControlador {
     }
 
     public boolean podeEntrar() {
-        if (!campoUsuario.getText().isEmpty() && !campoSenha.getText().isEmpty()) {
-            DAO dao = new DAO();
-            String consulta = String.format("SELECT * FROM usuarios u WHERE u.email = '%s' AND u.senha = '%s'",
-                    campoUsuario.getText(), campoSenha.getText());
-            Usuario usuario = dao.consultar(Usuario.class, consulta);
-            if (usuario != null) {
-                return true;
-            }
+        if (campoUsuario.getText().equals("test") && campoSenha.getText().equals("test")) {
+            return true;
         }
         return false;
     }
@@ -91,13 +114,13 @@ public class LoginControlador {
     @FXML
     public void initialize() {
         new Thread(() -> {
-            while (true) {
+            while (continuarTrocandoImagem) {
                 try {
                     Platform.runLater(() -> {
                         areaDeFoto.setStyle(String.format("-fx-background-image: url('%s') !important;",
                                 fotos[fotoAtual++ % fotos.length]));
                     });
-                    Thread.sleep(5000);
+                    Thread.sleep(4000);
 
                 } catch (Exception erro) {
                 }

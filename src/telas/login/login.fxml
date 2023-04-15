@@ -37,7 +37,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <TextField fx:id="campoUsuario" alignment="CENTER" prefHeight="50.0" prefWidth="400.0" promptText="Usuário" VBox.vgrow="ALWAYS">
+                  <TextField fx:id="campoUsuario" alignment="CENTER" prefHeight="50.0" prefWidth="400.0" promptText="Email" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="30.0" top="20.0" />
                      </VBox.margin>
@@ -55,7 +55,7 @@
                   <HBox alignment="CENTER" prefHeight="18.0" spacing="5.0">
                      <children>
                         <Label styleClass="label-sem-conta" text="Não tem conta?" />
-                        <Label prefHeight="20.0" prefWidth="97.0" styleClass="cadastra-se" text="Cadastre-se">
+                        <Label onMouseClicked="#cadastrar" prefHeight="20.0" prefWidth="97.0" styleClass="cadastra-se" text="Cadastre-se">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Label>
@@ -70,7 +70,25 @@
       </HBox>
    </center>
    <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView onMouseClicked="#minimizarTela">
+               <image>
+                  <Image url="@images/minimizar.png" />
+               </image>
+            </ImageView>
+            <ImageView onMouseClicked="#fecharTela">
+               <image>
+                  <Image url="@images/fechar.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+         <padding>
+            <Insets bottom="5.0" right="5.0" top="2.0" />
+         </padding></HBox>
    </top>
    <stylesheets>
       <URL value="@../../../../layouts/login/styles/styles.css" />
