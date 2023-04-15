@@ -36,7 +36,7 @@ public class ValidaFormulario extends Validacao {
             areaErro.setText("* Preencha o campo cep");
             return false;
         } else if (!this.validarCep(cep)) {
-            areaErro.setText("*- Cep inválido");
+            areaErro.setText("- Cep inválido");
             return false;
         }
         areaErro.setStyle("-fx-text-fill: green;");
@@ -109,7 +109,7 @@ public class ValidaFormulario extends Validacao {
 
     public boolean validarNum(Label areaErro, String numero) {
         areaErro.setStyle("-fx-text-fill: red;");
-        if (!numero.trim().isEmpty()) {
+        if (numero.trim().isEmpty()) {
             areaErro.setText("* Preencha o campo número");
             return false;
         } else if (!this.validarNumero(numero)) {
