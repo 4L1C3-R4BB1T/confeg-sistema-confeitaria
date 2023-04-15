@@ -12,7 +12,6 @@ public class SaborDAO {
 
     private Connection connection;
 
-
     public SaborDAO(Connection connection) {
         this.connection = connection;
     }
@@ -44,17 +43,13 @@ public class SaborDAO {
                sabores.add(new Sabor(
                     resultado.getLong("cod_sabor"),
                     resultado.getString("descricao_sabor")
-                )
-               );
+                ));
             }
-    
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
         return sabores;
     }
-
-
 
     public Connection getConnection() {
         return connection;
@@ -63,7 +58,5 @@ public class SaborDAO {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
-
-
     
 }

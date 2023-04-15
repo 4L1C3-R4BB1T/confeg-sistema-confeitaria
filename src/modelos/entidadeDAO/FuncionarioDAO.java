@@ -28,8 +28,9 @@ public class FuncionarioDAO {
             ps.execute();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
-                inserirEmaileSenha(resultado.getLong(1));
-                return resultado.getLong(1);
+                Long codigo = resultado.getLong(1);
+                inserirEmaileSenha(codigo);
+                return codigo;
             }
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
@@ -96,14 +97,14 @@ public class FuncionarioDAO {
             TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(connection);
             EnderecoDAO enderecoDAO = new EnderecoDAO(connection);
             while (resultado.next()) {
-                Funcionario funcionario = new Funcionario(
-                    resultado.getString("nome_funcionario"), 
-                    resultado.getString("cpf_funcionario"),
-                    resultado.getString("telefone_funcionario"),
-                    tipoDAO.encontrar(resultado.getLong("cod_tipo_funcionario")),
-                    enderecoDAO.encontrar(resultado.getLong("cod_endereco"))
+                funcionarios.add(new Funcionario(
+                        resultado.getString("nome_funcionario"), 
+                        resultado.getString("cpf_funcionario"),
+                        resultado.getString("telefone_funcionario"),
+                        tipoDAO.encontrar(resultado.getLong("cod_tipo_funcionario")),
+                        enderecoDAO.encontrar(resultado.getLong("cod_endereco"))
+                    )
                 );
-                funcionarios.add(funcionario);
             }
             return funcionarios;
         } catch (Exception erro) {
@@ -112,11 +113,12 @@ public class FuncionarioDAO {
         return funcionarios;
     }
 
-
+    // GERAR EMAIL AUTOMATICO
     public String gerarEmail(Funcionario funcionario) {
-        return String.format("%s%d@.confeg.com", funcionario.getTipo(), funcionario.getCodigo()); 
+        return String.format("%s%d@.confeg.com", funcionario.getTipo().getDescricao(), funcionario.getCodigo()); 
     }
 
+    // SETAR O EMAIL GERADO NO FUNCIONARIO
     public boolean inserirEmaileSenha(Long codigo) {
         String comando = "UPDATE funcionario SET email = ?, senha = ? WHERE cod_funcionario = ?";
         try (PreparedStatement ps = connection.prepareStatement(comando)) {
@@ -130,4 +132,13 @@ public class FuncionarioDAO {
         }
         return false;
     }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
 }
