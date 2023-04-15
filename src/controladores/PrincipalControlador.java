@@ -69,13 +69,18 @@ public class PrincipalControlador {
             if (!(elemento instanceof Button)) return;
             Button botao = (Button) elemento;
             botao.setOnMouseClicked( event -> {
-                menuPedidos.setVisible(false);
+                limparJanelasAbertas();
                 menuBotoes.stream().forEach( bt -> bt.getStyleClass().remove("ativo"));
                 botao.getStyleClass().add("ativo");
             });
             menuBotoes.add(botao);
         });
        
+    }
+
+    public void limparJanelasAbertas() {
+        // Por enquanto....
+        menuPedidos.setVisible(false);
     }
 
 }
