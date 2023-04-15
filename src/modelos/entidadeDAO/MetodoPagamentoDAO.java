@@ -31,6 +31,8 @@ public class MetodoPagamentoDAO {
         return null;
     } 
 
+    /* IMPLEMENTAR BUSCAR TODOS PRO SELECT EM REGISTRAR PEDIDO */
+
     public Connection getConnection() {
         return conexao;
     }
