@@ -65,7 +65,7 @@ public class FuncionarioDAO {
         return false;
     }
 
-    public Funcionario encontrar(Long codigo) {
+    public Funcionario buscarPorCodigo(Long codigo) {
         String comando = "SELECT * FROM funcionario WHERE cod_funcionario = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
@@ -77,8 +77,8 @@ public class FuncionarioDAO {
                     resultado.getString("nome_funcionario"), 
                     resultado.getString("cpf_funcionario"),
                     resultado.getString("telefone_funcionario"),
-                    enderecoDAO.encontrar(resultado.getLong("cod_endereco")),
-                    tipoDAO.encontrar(resultado.getLong("cod_tipo_funcionario")),
+                    enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
+                    tipoDAO.buscarPorCodigo(resultado.getLong("cod_tipo_funcionario")),
                     resultado.getString("email"),
                     resultado.getString("senha")
                 );
@@ -101,8 +101,8 @@ public class FuncionarioDAO {
                         resultado.getString("nome_funcionario"), 
                         resultado.getString("cpf_funcionario"),
                         resultado.getString("telefone_funcionario"),
-                        enderecoDAO.encontrar(resultado.getLong("cod_endereco")),
-                        tipoDAO.encontrar(resultado.getLong("cod_tipo_funcionario")),
+                        enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
+                        tipoDAO.buscarPorCodigo(resultado.getLong("cod_tipo_funcionario")),
                         resultado.getString("email"),
                         resultado.getString("senha")
                     )
@@ -124,7 +124,7 @@ public class FuncionarioDAO {
     public boolean inserirEmaileSenha(Long codigo) {
         String comando = "UPDATE funcionario SET email = ?, senha = ? WHERE cod_funcionario = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
-            ps.setString(1, gerarEmail(encontrar(codigo)));
+            ps.setString(1, gerarEmail(buscarPorCodigo(codigo)));
             ps.setString(2, "confeg123");
             ps.setLong(3, codigo);
             ps.execute();

@@ -10,7 +10,7 @@ public class MetodoPagamentoDAO {
 
     private Connection conexao;
 
-    public MetodoPagamento encontrar(Long codigo) {
+    public MetodoPagamento buscarPorCodigo(Long codigo) {
         String comando = "SELECT * FROM metodo_pagamento WHERE cod_metodo_pagamento = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);

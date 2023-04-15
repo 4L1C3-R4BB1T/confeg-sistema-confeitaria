@@ -30,7 +30,7 @@ public class EnderecoDAO {
         return false;
     }
 
-    public Endereco encontrar(Long codigo) {
+    public Endereco buscarPorCodigo(Long codigo) {
         String comando = "SELECT * FROM endereco WHERE cod_endereco = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
@@ -40,7 +40,7 @@ public class EnderecoDAO {
             if (resultado.next()) {
                 return new Endereco(
                     resultado.getLong("cod_endereco"),
-                    estadoDAO.encontrar(resultado.getLong("cod_estado")),
+                    estadoDAO.buscarPorCodigo(resultado.getLong("cod_estado")),
                     cidadeDAO.buscar(resultado.getLong("cod_cidade")),
                     resultado.getString("cep_endereco"),
                     resultado.getString("bairro_endereco"),

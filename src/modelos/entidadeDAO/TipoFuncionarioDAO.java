@@ -16,7 +16,7 @@ public class TipoFuncionarioDAO {
         this.conexao = conexao;
     }
 
-    public TipoFuncionario encontrar(Long codigo) {
+    public TipoFuncionario buscarPorCodigo(Long codigo) {
         String comando = "SELECT * FROM tipo_funcionario WHERE cod_tipo_funcionario = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
@@ -33,7 +33,7 @@ public class TipoFuncionarioDAO {
         return null;
     }
 
-    public List<TipoFuncionario> obterTodos() {
+    public List<TipoFuncionario> buscarTodos() {
         List<TipoFuncionario> tipos = new ArrayList<>();
         String query = "SELECT * FROM tipo_funcionario";
         try (PreparedStatement ps = conexao.prepareStatement(query)) {

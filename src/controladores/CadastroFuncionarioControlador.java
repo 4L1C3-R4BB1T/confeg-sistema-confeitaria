@@ -90,7 +90,7 @@ public class CadastroFuncionarioControlador {
         EstadoDAO estadoDAO = new EstadoDAO(conexao);
         TipoFuncionarioDAO tipoFuncionarioDAO = new TipoFuncionarioDAO(conexao);
         estado.getItems().setAll(estadoDAO.buscarTodos());
-        tipo.getItems().setAll(tipoFuncionarioDAO.obterTodos());
+        tipo.getItems().setAll(tipoFuncionarioDAO.buscarTodos());
     }
     
 

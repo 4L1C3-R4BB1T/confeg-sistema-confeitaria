@@ -17,7 +17,6 @@ public class CidadeDAO {
         this.conexao = conexao;
     }
 
-
     public Cidade buscar(long codigo) {
         String comando = "SELECT * FROM cidade WHERE codigo = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
@@ -28,7 +27,7 @@ public class CidadeDAO {
                 return new Cidade(
                     resultado.getLong("cod_cidade"),
                     resultado.getString("nome_cidade"),
-                    estadoDAO.encontrar(resultado.getLong("cod_estado"))
+                    estadoDAO.buscarPorCodigo(resultado.getLong("cod_estado"))
                 );
             }
         } catch (Exception erro) {
@@ -49,7 +48,7 @@ public class CidadeDAO {
                 cidades.add(new Cidade(
                     resultado.getLong("cod_cidade"),
                     resultado.getString("nome_cidade"),
-                    estadoDAO.encontrar(resultado.getLong("cod_estado"))
+                    estadoDAO.buscarPorCodigo(resultado.getLong("cod_estado"))
                 ));
             }
         } catch (Exception erro) {

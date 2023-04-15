@@ -16,7 +16,7 @@ public class EstadoDAO {
         this.conexao = conexao;
     }
 
-    public Estado encontrar(Long codigo) {
+    public Estado buscarPorCodigo(Long codigo) {
         String comando = "SELECT * FROM estado WHERE cod_estado = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);

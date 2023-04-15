@@ -16,7 +16,7 @@ public class SaborDAO {
         this.conexao = conexao;
     }
 
-    public Sabor encontrar(long codigo) {
+    public Sabor buscarPorCodigo(long codigo) {
         String query = "SELECT * FROM sabor WHERE codigo = ?";
         try (PreparedStatement ps = conexao.prepareStatement(query)) {
             ps.setLong(1, codigo);

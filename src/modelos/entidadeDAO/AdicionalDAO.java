@@ -16,7 +16,7 @@ public class AdicionalDAO {
         this.conexao = conexao;
     }
 
-    public Adicional encontrar(Long codigo) {
+    public Adicional buscarPorCodigo(Long codigo) {
         String comando = "SELECT * FROM adicional WHERE cod_adicional = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
