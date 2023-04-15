@@ -1,6 +1,8 @@
 package modelos.entidadeDAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,29 +16,98 @@ public class ConfirmacaoPedidoDAO {
         this.conexao = conexao;
     }
 
-    /* IMPLEMENTAR */
-    public boolean inserir(ConfirmacaoPedido confirmacao) {
-        return false;
-    }
-
-    /* IMPLEMENTAR */
-    public boolean alterar(ConfirmacaoPedido confirmacao) {
-        return false;
-    }
-
-    /* IMPLEMENTAR */
-    public boolean remover(ConfirmacaoPedido confirmacao) {
-        return false;
-    }
-
-    /* IMPLEMENTAR */
-    public ConfirmacaoPedido buscarPorCodigo(Long codigo) {
+    public Long inserir(ConfirmacaoPedido confirmacao) {
+        String comando = "INSERT INTO confimacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido, pago_confirmacao_pedido, observacao_confirmacao_pedido) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = conexao.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            ps.setLong(1, confirmacao.getCliente().getCodigo());
+            ps.setLong(2, confirmacao.getPedido().getCodigo());
+            ps.setDate(3, confirmacao.getDataConfirmacao());
+            ps.setString(4, confirmacao.getPago());
+            ps.setString(5, confirmacao.getObservacao());
+            ps.execute();
+            ResultSet resultado = ps.getGeneratedKeys();
+            if (resultado.next()) {
+                return resultado.getLong(1);
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
         return null;
     }
 
-    /* IMPLEMENTAR */
+    public boolean alterar(ConfirmacaoPedido confirmacao) {
+        String comando = "UPDATE confimacao_pedido SET cod_cliente = ?, cod_pedido = ?, data_confirmacao_pedido = ?, pago_confirmacao_pedido = ?, observacao_confirmacao_pedido = ? WHERE cod_confirmacao = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, confirmacao.getCliente().getCodigo());
+            ps.setLong(2, confirmacao.getPedido().getCodigo());
+            ps.setDate(3, confirmacao.getDataConfirmacao());
+            ps.setString(4, confirmacao.getPago());
+            ps.setString(5, confirmacao.getObservacao());
+            ps.setLong(6, confirmacao.getCodigo());
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return false;
+    }
+
+    public boolean remover(ConfirmacaoPedido confirmacao) {
+        String comando = "DELETE FROM confimacao_pedido WHERE cod_confirmacao = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, confirmacao.getCodigo());
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return false;
+    }
+
+    public ConfirmacaoPedido buscarPorCodigo(Long codigo) {
+        String comando = "SELECT * FROM confimacao_pedido WHERE cod_confirmacao = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, codigo);
+            ResultSet resultado = ps.executeQuery();
+            ClienteDAO clienteDAO = new ClienteDAO(conexao);
+            PedidoDAO pedidoDAO = new PedidoDAO(conexao);
+            if (resultado.next()) {
+                return new ConfirmacaoPedido(
+                    resultado.getLong("cod_confirmacao"),
+                    clienteDAO.buscarPorCodigo(resultado.getLong("cod_cliente")),
+                    pedidoDAO.buscarPorCodigo(resultado.getLong("cod_pedido")),
+                    resultado.getDate("data_confirmacao_pedido"),
+                    resultado.getString("pago_confirmacao_pedido"),
+                    resultado.getString("observacao_confirmacao_pedido")
+                );
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return null;
+    }
+
     public List<ConfirmacaoPedido> buscarTodos() {
+        String comando = "SELECT * FROM confimacao_pedido WHERE cod_confirmacao = ?";
         List<ConfirmacaoPedido> confirmacoes = new ArrayList<>();
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ResultSet resultado = ps.executeQuery();
+            ClienteDAO clienteDAO = new ClienteDAO(conexao);
+            PedidoDAO pedidoDAO = new PedidoDAO(conexao);
+            while (resultado.next()) {
+                confirmacoes.add(new ConfirmacaoPedido(
+                    resultado.getLong("cod_confirmacao"),
+                    clienteDAO.buscarPorCodigo(resultado.getLong("cod_cliente")),
+                    pedidoDAO.buscarPorCodigo(resultado.getLong("cod_pedido")),
+                    resultado.getDate("data_confirmacao_pedido"),
+                    resultado.getString("pago_confirmacao_pedido"),
+                    resultado.getString("observacao_confirmacao_pedido")
+                ));
+            }
+            return confirmacoes;
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
         return confirmacoes;
     }
 
