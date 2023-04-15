@@ -36,6 +36,7 @@ public class LoginControlador {
     private int fotoAtual = 0;
 
     private Stage palcoLogin;
+    private Stage palcoCadastro;
 
     private boolean continuarTrocandoImagem = true;
 
@@ -52,6 +53,7 @@ public class LoginControlador {
         CadastroFuncionarioControlador controlador = (CadastroFuncionarioControlador) carregar.getController();
         Scene cena = new Scene(raiz);
         Stage palco = new Stage();
+        palcoCadastro = palco;
         palco.setScene(cena);
         App.adicionarMovimento(palco, cena);
         palco.initStyle(StageStyle.UNDECORATED);
@@ -59,10 +61,13 @@ public class LoginControlador {
         clicouBotaoCadastrar = false;
     }
 
-    @FXML 
+    @FXML // Se a tela de cadastro estiver aberta e a tela de login for fechada, será fechado a tela cadastro tambem.
     public void fecharTela(MouseEvent event) {
         if (palcoLogin != null) {
             continuarTrocandoImagem = false;
+            if (palcoCadastro != null) { 
+                palcoCadastro.close();
+            }
             palcoLogin.close();
         }
     }
