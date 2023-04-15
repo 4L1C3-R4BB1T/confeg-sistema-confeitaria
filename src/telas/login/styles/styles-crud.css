@@ -125,3 +125,9 @@ text-area .scroll-bar:vertical {
 ComboBox .arrow {
     -fx-background-color: #000;
 }
+
+
+.erro {
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+}

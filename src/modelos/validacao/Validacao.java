@@ -1,20 +1,22 @@
 package modelos.validacao;
 
-public final class Validacao {
 
-    private Validacao() {}
+public class Validacao {
 
-    public static boolean validarCpf(String valor) {
+    public Validacao() {}
+
+    public boolean validarCpf(String valor) {
         if (valor == null) return false;
         return valor.replaceAll("[.-]", "").matches("^\\d{11}$");
     } 
 
-    public static boolean validarCep(String valor) {
+    public boolean validarCep(String valor) {
         if (valor == null) return false;
         return valor.replaceAll("[-]", "").matches("^\\d{8}$");
     }
 
-    public static boolean validarNumero(String valor) {
+
+    public boolean validarNumero(String valor) {
         try {
             Integer.parseInt(valor);
             return true;
@@ -23,7 +25,7 @@ public final class Validacao {
         }
     }
 
-    public static boolean validarNuloOuVazio(Object obj) {
+    public boolean validarNuloOuVazio(Object obj) {
         if (obj == null) return false;
         if (obj instanceof String) {
             if (((String) obj).trim().isEmpty()) return false;

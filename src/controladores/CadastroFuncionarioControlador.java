@@ -67,7 +67,7 @@ public class CadastroFuncionarioControlador {
 
     @FXML
     public void salvar(ActionEvent event) {
-        System.out.println(checarCamposPreenchidos());
+      
     }
 
     @FXML 
@@ -93,20 +93,6 @@ public class CadastroFuncionarioControlador {
         TipoFuncionarioDAO tipoFuncionarioDAO = new TipoFuncionarioDAO(conexao);
         estado.getItems().setAll(estadoDAO.buscarTodos());
         tipo.getItems().setAll(tipoFuncionarioDAO.buscarTodos());
-    }
-    
-    public boolean checarCamposPreenchidos() {
-        return Stream.of(
-            getTipo(),
-            getNome(),
-            getCep(),
-            getEstado(),
-            getCidade(),
-            getBairro(),
-            getRua(),
-            getNumero(),
-            getCpf()
-        ).filter(Validacao::validarNuloOuVazio).count() == 9;
     }
 
     public TipoFuncionario getTipo() {

@@ -1,12 +1,16 @@
 package controladores.login;
 
 import java.sql.Connection;
+import java.util.Map;
+import java.util.stream.Stream;
 
 import conexoes.FabricarConexao;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -17,6 +21,8 @@ import modelos.entidadeDAO.TipoFuncionarioDAO;
 import modelos.entidades.Cidade;
 import modelos.entidades.Estado;
 import modelos.entidades.TipoFuncionario;
+import modelos.validacao.ValidaFormulario;
+import modelos.validacao.Validacao;
 
 // TELA DE LOGIN/CADASTRO
 public class CadastroControlador {
@@ -48,6 +54,26 @@ public class CadastroControlador {
     @FXML
     private TextField numero;
 
+    /// Labels para inserir mensagem de erro na tela de cadastro da tela login
+    @FXML 
+    private Label exibirErroNoTipo;
+    @FXML 
+    private Label exibirErroNoNome;
+    @FXML 
+    private Label exibirErroNoCpf;
+    @FXML 
+    private Label exibirErroNoCep;
+    @FXML 
+    private Label exibirErroNoEstado;
+    @FXML 
+    private Label exibirErroNoCidade;
+    @FXML 
+    private Label exibirErroNoBairro;
+    @FXML 
+    private Label exibirErroNoRua;
+    @FXML 
+    private Label exibirErroNoNumero;
+
     private static Connection conexao;
 
     static {
@@ -57,6 +83,10 @@ public class CadastroControlador {
         conexao = new FabricarConexao(url, usuario, senha).getConexao();
     }
 
+    private static ValidaFormulario vf = new ValidaFormulario();
+
+    private volatile boolean clicouBotaoPodeCadastrar = false;
+
     @FXML
     public void cancelar(ActionEvent event) {
         Window janela = (Window) ((Node) event.getSource()).getScene().getWindow();
@@ -65,8 +95,12 @@ public class CadastroControlador {
 
     @FXML
     public void salvar(ActionEvent event) {
-        
+        clicouBotaoPodeCadastrar = true;
+        if (podeCadastrar()) {
+            System.out.println("Pode sim");
+        }
     }
+
 
     @FXML 
     public void fecharTela(MouseEvent event) {
@@ -84,6 +118,27 @@ public class CadastroControlador {
                 cidade.getItems().setAll(cidadeDAO.buscarPorEstado(novoEstado));
             }
         });
+
+        new Thread(() -> {
+            while (true) {
+                if (clicouBotaoPodeCadastrar) {
+                    Platform.runLater(() -> {
+                        vf.validarTipo(exibirErroNoTipo, getTipo());
+                        vf.validarCPF(exibirErroNoCpf, getCpf());
+                        vf.validarCep(exibirErroNoCep, getCep());
+                        vf.validarEstado(exibirErroNoEstado, getEstado());
+                        vf.validarCidade(exibirErroNoCidade, getEstado(), getCidade());
+                        vf.validarBairro(exibirErroNoBairro, getBairro());
+                        vf.validarRua(exibirErroNoRua, getRua());
+                        vf.validarNum(exibirErroNoNumero, numero.getText());
+                        vf.validarNome(exibirErroNoNome, getNome());
+                    });
+                    try {
+                        Thread.sleep(200);
+                    } catch (Exception erro) {}
+                }
+            }
+        }).start();
     }
 
     public void carregarDados() {
@@ -92,8 +147,22 @@ public class CadastroControlador {
         estado.getItems().setAll(estadoDAO.buscarTodos());
         tipo.getItems().setAll(tipoFuncionarioDAO.buscarTodos());
     }
-    
 
+    public boolean podeCadastrar() {
+        return Stream.of(
+            vf.validarTipo(exibirErroNoTipo, getTipo()),
+            vf.validarCPF(exibirErroNoCpf, getCpf()),
+            vf.validarCep(exibirErroNoCep, getCep()),
+            vf.validarEstado(exibirErroNoEstado, getEstado()),
+            vf.validarCidade(exibirErroNoCidade, getEstado(), getCidade()),
+            vf.validarBairro(exibirErroNoBairro, getBairro()),
+            vf.validarRua(exibirErroNoRua, getRua()),
+            vf.validarNum(exibirErroNoNumero, numero.getText()),
+            vf.validarNome(exibirErroNoNome, getNome())
+       ).allMatch( valor -> valor == true);
+    }
+
+    
     public TipoFuncionario getTipo() {
         return tipo.getSelectionModel().getSelectedItem();
     }
@@ -124,6 +193,10 @@ public class CadastroControlador {
 
     public Integer getNumero() {
         return Integer.parseInt(numero.getText());
+    }
+
+    public String getCpf() {
+        return cpf.getText();
     }
 
 }
