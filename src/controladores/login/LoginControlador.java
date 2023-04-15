@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -71,9 +70,9 @@ public class LoginControlador {
         controlador.setEncerrarThreadValidacao(true);
         clicouBotaoCadastrar = false; 
         if(controlador.dadosForamSalvos()) {
-            exibirAlertDeSucesso("Dados salvos", "Verifique o banco de dados.");
+            exibirAlertDeSucesso("Cadastro", "Dados salvos com sucesso!");
         } else {
-            exibirAlertDeFracasso("Dados não salvos", "Tente novamente, mais tarde.");
+            exibirAlertDeFracasso("Cadastro", "Erro ao salvar os dados.");
         }
     }
 
