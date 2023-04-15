@@ -63,13 +63,7 @@ public class LoginControlador {
 
     @FXML // Se a tela de cadastro estiver aberta e a tela de login for fechada, será fechado a tela cadastro tambem.
     public void fecharTela(MouseEvent event) {
-        if (palcoLogin != null) {
-            continuarTrocandoImagem = false;
-            if (palcoCadastro != null) { 
-                palcoCadastro.close();
-            }
-            palcoLogin.close();
-        }
+        encerrarTelas();
     }
 
     @FXML 
@@ -109,9 +103,7 @@ public class LoginControlador {
             Stage palco = new Stage();
             palco.initStyle(StageStyle.TRANSPARENT);
             palco.setScene(cena);
-            if (palcoLogin != null) {
-                palcoLogin.close();
-            }
+            encerrarTelas();
             App.adicionarMovimento(palco, cena);
             palco.show();
         } catch (Exception erro) {
@@ -138,6 +130,17 @@ public class LoginControlador {
                 }
             }
         }).start();
+    }
+
+
+    public void encerrarTelas() {
+        if (palcoLogin != null) {
+            continuarTrocandoImagem = false;
+            if (palcoCadastro != null) { 
+                palcoCadastro.close();
+            }
+            palcoLogin.close();
+        }
     }
 
 }
