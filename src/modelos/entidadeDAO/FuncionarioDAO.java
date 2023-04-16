@@ -117,8 +117,8 @@ public class FuncionarioDAO {
     }
 
     public String gerarEmail(Funcionario funcionario) {
-        Function<String, String> padronizar = (String str) -> str.equals("Funcionário") ? "funcionario" : "gerente";
-        return String.format("%s%d@.confeg.com", padronizar.apply(funcionario.getTipo().getDescricao()), funcionario.getCodigo()); 
+        String tipo = funcionario.getTipo().getDescricao().equals("Funcionário") ? "funcionario" : "gerente";
+        return String.format("%s%d@.confeg.com", tipo, funcionario.getCodigo()); 
     }
 
     public Connection getConnection() {
