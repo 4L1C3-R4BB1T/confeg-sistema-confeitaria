@@ -61,7 +61,8 @@ public class FuncionarioDAO {
             ps.setString(5, funcionario.getEmail());
             ps.setString(6, funcionario.getSenha());
             ps.setLong(7, funcionario.getCodigo());
-            return ps.execute();
+            ps.execute();
+            return true;
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
