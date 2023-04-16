@@ -31,7 +31,7 @@ public class PedidoCompraIngredientesDAO {
     }
 
     /* IMPLEMENTAR */
-    public PedidoCompraIngrediente buscarPorCodigoLong(Long codigo) {
+    public PedidoCompraIngrediente buscarPorCodigo(Long codigo) {
         return null;
     }
 
