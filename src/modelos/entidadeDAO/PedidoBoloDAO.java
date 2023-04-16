@@ -26,7 +26,7 @@ public class PedidoBoloDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
         }
         return false;
     }
@@ -37,10 +37,11 @@ public class PedidoBoloDAO {
             ps.setLong(1, pedido.getPedido().getCodigo());
             ps.setLong(2, pedido.getBolo().getCodigo());
             ps.setLong(3, pedido.getQuantidade());
+            ps.setLong(4, pedido.getCodigo());
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
         }
         return false;
     }
@@ -52,7 +53,7 @@ public class PedidoBoloDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
         }
         return false;
     }
@@ -73,7 +74,7 @@ public class PedidoBoloDAO {
                 );
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
         }
         return null;
     }
@@ -86,7 +87,7 @@ public class PedidoBoloDAO {
             ResultSet resultado = ps.executeQuery();
             PedidoDAO pedidoDAO = new PedidoDAO(conexao);
             BoloDAO boloDAO = new BoloDAO(conexao);
-            if (resultado.next()) {
+            while (resultado.next()) {
                 pedidos.add(new PedidoBolo(
                     resultado.getLong("cod_pedido_bolo"),
                     pedidoDAO.buscarPorCodigo(resultado.getLong("cod_pedido")),
@@ -95,7 +96,7 @@ public class PedidoBoloDAO {
                 ));
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
         }
         return pedidos;
     }
@@ -107,7 +108,7 @@ public class PedidoBoloDAO {
             ResultSet resultado = ps.executeQuery();
             PedidoDAO pedidoDAO = new PedidoDAO(conexao);
             BoloDAO boloDAO = new BoloDAO(conexao);
-            if (resultado.next()) {
+            while (resultado.next()) {
                 pedidos.add(new PedidoBolo(
                     resultado.getLong("cod_pedido_bolo"),
                     pedidoDAO.buscarPorCodigo(resultado.getLong("cod_pedido")),
@@ -116,7 +117,7 @@ public class PedidoBoloDAO {
                 ));
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
         }
         return pedidos;
     }
