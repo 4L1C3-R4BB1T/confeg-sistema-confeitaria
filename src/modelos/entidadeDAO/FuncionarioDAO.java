@@ -36,15 +36,16 @@ public class FuncionarioDAO {
     }
 
     public boolean alterar(Funcionario funcionario) {
-        String comando = "UPDATE funcionario SET nome_funcionario = ?, cpf_funcionario = ?, cod_tipo_funcionario = ?, cod_endereco = ? WHERE cod_funcionario = ?";
+        String comando = "UPDATE funcionario SET nome_funcionario = ?, cpf_funcionario = ?, cod_tipo_funcionario = ?, cod_endereco = ?, email = ?, senha = ? WHERE cod_funcionario = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setString(1, funcionario.getNome());
             ps.setString(2, funcionario.getCpf());
             ps.setLong(3, funcionario.getTipo().getCodigo());
             ps.setLong(4, funcionario.getEndereco().getCodigo());
-            ps.setLong(5, funcionario.getCodigo());
-            ps.execute();
-            return true;
+            ps.setString(5, funcionario.getEmail());
+            ps.setString(6, funcionario.getSenha());
+            ps.setLong(7, funcionario.getCodigo());
+            return ps.execute();
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
@@ -116,27 +117,7 @@ public class FuncionarioDAO {
     // GERAR EMAIL AUTOMATICO
     public String gerarEmail(Funcionario funcionario) {
         String email = String.format("%s%d@.confeg.com", removerAcentos(funcionario.getTipo().getDescricao()), funcionario.getCodigo()); 
-        System.out.println(email);
         return email;
-    }
-
-    // SETAR O EMAIL GERADO NO FUNCIONARIO
-    public boolean inserirEmaileSenha(Long codigo) {
-        String comando = "UPDATE funcionario SET email = ?, senha = ? WHERE cod_funcionario = ?";
-        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
-            
-            System.out.println(gerarEmail(buscarPorCodigo(codigo)));
-            
-            ps.setString(1, gerarEmail(buscarPorCodigo(codigo)));
-            ps.setString(2, "confeg123");
-            ps.setLong(3, codigo);
-            ps.execute();
-            return true;
-        } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
-            erro.printStackTrace();
-        }
-        return false;
     }
 
     private String removerAcentos(String str) {

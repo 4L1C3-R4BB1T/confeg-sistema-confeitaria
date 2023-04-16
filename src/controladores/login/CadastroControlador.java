@@ -1,6 +1,7 @@
 package controladores.login;
 
 import java.sql.Connection;
+import java.text.Normalizer;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -111,16 +112,27 @@ public class CadastroControlador {
                 Endereco endereco = new Endereco(getEstado(), getCidade(), getCep(), getBairro(), getRua(), getNumero());
                 endereco.setCodigo(enderecoDAO.inserir(endereco));
                 Funcionario funcionario = new Funcionario(getNome(), getCpf(), getTipo(), endereco, getCep(), getBairro());
-                Long codigoFuncionario = funcionarioDAO.inserir(funcionario);
+                
+                long codigo = funcionarioDAO.inserir(funcionario);
+                funcionario.setCodigo(codigo);
+
+                String email = funcionarioDAO.gerarEmail(funcionario);
+                String senha = "confeg123";
+
+                funcionario.setEmail(email);
+                funcionario.setSenha(senha);
+                funcionarioDAO.alterar(funcionario);
+                
                 conexao.commit();
-                // SETAR EMAIL E SENHA AUTOMATICO NO FUNCIONARIO
-                funcionarioDAO.inserirEmaileSenha(codigoFuncionario); 
                 salvo = true;
                 Window janela = (Window) ((Node) event.getSource()).getScene().getWindow();
                 ((Stage) janela).close();
             } catch (Exception erro) {
                 conexao.rollback();
+                erro.printStackTrace();
             }
+        } else {
+            System.out.println("Não pode");
         }
     }
 
