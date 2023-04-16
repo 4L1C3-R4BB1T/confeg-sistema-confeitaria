@@ -3,15 +3,23 @@ package controladores.principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import aplicacao.App;
+import controladores.principal.bolo.BoloControlador;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
+import modelos.entidadeDAO.BoloDAO;
+import modelos.entidades.Bolo;
 
 // TELA PRINCIPAL DA APLICAÇÃO
 public class PrincipalControlador {
@@ -27,6 +35,11 @@ public class PrincipalControlador {
 
     @FXML
     private HBox areaBotaoMenu;
+
+    @FXML 
+    private FlowPane areaBolo;
+
+    private BoloDAO boloDAO = new BoloDAO(App.conexao);
     
     // São os menus PRINCIPAL, PEDIDOS, BOLOS, ETC.
     private List<Button> menuBotoes = new ArrayList<>();
@@ -76,12 +89,41 @@ public class PrincipalControlador {
             });
             menuBotoes.add(botao);
         });
+        atualizarAreaBolo();
        
     }
 
     public void limparJanelasAbertas() {
         // Por enquanto....
         menuPedidos.setVisible(false);
+    }
+
+    public void atualizarAreaBolo() {
+        areaBolo.getChildren().clear();
+        String telaBolo = "/telas/principal/bolo/bolo.fxml";
+        String baseFotoBolo = getClass().getResource("/telas/principal/bolo/images/").toExternalForm();
+
+        try {
+
+            for(Bolo objeto: boloDAO.buscarTodos()) {
+                FXMLLoader carregar = new FXMLLoader(getClass().getResource(telaBolo));
+                Node node = carregar.load();
+                BoloControlador controlador = carregar.getController();
+    
+                controlador.setImagem(baseFotoBolo + objeto.getSabor().getCodigo() + ".png");
+                areaBolo.getChildren().add(node);
+            }
+
+
+
+           
+            
+        } catch (Exception erro) {
+            System.out.println("Erro linha 111 Class: PrincipalControlador");
+            erro.printStackTrace();
+        }
+
+  
     }
 
 }

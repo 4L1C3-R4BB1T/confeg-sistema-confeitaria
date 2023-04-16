@@ -17,7 +17,7 @@ public class SaborDAO {
     }
 
     public Sabor buscarPorCodigo(Long codigo) {
-        String query = "SELECT * FROM sabor WHERE codigo = ?";
+        String query = "SELECT * FROM sabor WHERE cod_sabor = ?";
         try (PreparedStatement ps = conexao.prepareStatement(query)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();
@@ -28,7 +28,7 @@ public class SaborDAO {
                 ); 
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            System.out.println("Erro classe SaborDAO: " + erro.getMessage());
         }
         return null;
     }

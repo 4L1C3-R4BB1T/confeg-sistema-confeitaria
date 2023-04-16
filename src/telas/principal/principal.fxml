@@ -79,7 +79,7 @@
                         <Label alignment="CENTER" layoutX="484.0" layoutY="102.0" styleClass="area-conteudo-titulo" text="BOLOS EM DESTAQUE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="102.0" />
                         <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="7.0" layoutY="178.0" prefHeight="522.0" prefWidth="1200.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="178.0">
                            <content>
-                              <FlowPane alignment="CENTER_LEFT" hgap="30.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" styleClass="area-exibicao">
+                              <FlowPane fx:id="areaBolo" alignment="CENTER_LEFT" hgap="30.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" styleClass="area-exibicao">
                                  <padding>
                                     <Insets left="30.0" right="30.0" />
                                  </padding>

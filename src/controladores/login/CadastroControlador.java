@@ -1,9 +1,5 @@
 package controladores.login;
 
-<<<<<<< HEAD
-=======
-import java.sql.Connection;
->>>>>>> ee74320e4d0629cc20e42c955376afcccb6b5323
 import java.util.stream.Stream;
 import aplicacao.App;
 import javafx.application.Platform;
