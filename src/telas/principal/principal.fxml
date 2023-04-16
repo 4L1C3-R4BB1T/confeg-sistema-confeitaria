@@ -22,13 +22,13 @@
                      <children>
                         <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" styleClass="ativo" text="PRINCIPAL" />
                         <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirMenuPedidos" prefHeight="50.0" prefWidth="119.0" text="PEDIDOS" />
-                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="44.0" prefWidth="111.0" text="BOLOS" />
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#irTelaBolo" prefHeight="44.0" prefWidth="111.0" text="BOLOS" />
                         <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="45.0" prefWidth="114.0" text="CLIENTES" />
-                        <Button maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="81.0">
+                        <Button fx:id="botaoAdministradorUsuario" maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" onAction="#irParaTelaFuncionarios" prefHeight="50.0" prefWidth="81.0" visible="false">
                            <graphic>
                               <ImageView>
                                  <image>
-                                    <Image url="@images/carrinho.png" />
+                                    <Image url="@images/administrador.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -46,7 +46,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Gabriel" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="areaFuncionario" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Gabriel" HBox.hgrow="ALWAYS" />
                         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirMenuUsuario" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fx:id="menuUsuarioSeta">
@@ -102,15 +102,15 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="menuUsuario" layoutX="1036.0" layoutY="14.0" prefHeight="160.0" prefWidth="160.0" styleClass="modal" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="menuUsuario" layoutX="1036.0" layoutY="14.0" prefHeight="160.0" prefWidth="160.0" styleClass="modal" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label alignment="CENTER" layoutX="15.0" layoutY="33.0" prefHeight="34.0" prefWidth="130.0" styleClass="botao" text="Perfil" />
+                        <Label alignment="CENTER" layoutX="15.0" layoutY="33.0" onMouseClicked="#verPerfil" prefHeight="34.0" prefWidth="130.0" styleClass="botao" text="Perfil" />
                         <ImageView layoutX="28.0" layoutY="40.0">
                            <image>
                               <Image url="@images/user-preto.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="15.0" layoutY="90.0" prefHeight="34.0" prefWidth="130.0" styleClass="botao" text="Perfil" />
+                        <Label alignment="CENTER" layoutX="15.0" layoutY="90.0" onMouseClicked="#deslogar" prefHeight="34.0" prefWidth="130.0" styleClass="botao" text="Sair" />
                         <ImageView layoutX="28.0" layoutY="97.0">
                            <image>
                               <Image url="@images/seta_lado.png" />
@@ -126,12 +126,12 @@
    <top>
       <AnchorPane prefHeight="30.0" prefWidth="200.0" styleClass="area-fechamento" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="1115.0" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="45.0">
+            <ImageView layoutX="1115.0" onMouseClicked="#minimizarTela" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="45.0">
                <image>
                   <Image url="@images/minimizar.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="1161.0" layoutY="3.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="3.0">
+            <ImageView layoutX="1161.0" layoutY="3.0" onMouseClicked="#fecharTela" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="3.0">
                <image>
                   <Image url="@images/fechar.png" />
                </image>

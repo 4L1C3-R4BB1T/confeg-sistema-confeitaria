@@ -2,15 +2,20 @@ package controladores.login;
 
 import java.util.stream.Stream;
 import aplicacao.App;
+import controladores.principal.perfil.PerfilControlador;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import modelos.entidadeDAO.CidadeDAO;
 import modelos.entidadeDAO.EnderecoDAO;
@@ -122,6 +127,7 @@ public class CadastroControlador {
 
                 App.conexao.commit();
                 salvo = true;
+                carregarTelaPerfil(funcionario);
                 Window janela = (Window) ((Node) event.getSource()).getScene().getWindow();
                 ((Stage) janela).close();
             } catch (Exception erro) {
@@ -189,6 +195,25 @@ public class CadastroControlador {
             vf.validarNome(exibirErroNoNome, getNome())
        ).allMatch( valor -> valor == true);
     }
+
+    public void carregarTelaPerfil(Funcionario funcionario) {
+        try {
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/principal/perfil/perfil.fxml"));
+            Parent raiz = carregar.load();
+            PerfilControlador controlador = carregar.getController();
+            controlador.setConectado(funcionario);
+            Scene cena = new Scene(raiz);
+            Stage palco = new Stage();
+            controlador.setTela(palco);
+            palco.setScene(cena);
+            palco.initStyle(StageStyle.UNDECORATED);
+            App.adicionarMovimento(palco, cena);
+            palco.showAndWait();
+        } catch (Exception erro) {
+            System.out.println("Erro linha 140 PrincipalControlador");
+        }
+    }
+
 
     public void setEncerrarThreadValidacao(boolean b) {
         encerrarThreadValidacao = true;

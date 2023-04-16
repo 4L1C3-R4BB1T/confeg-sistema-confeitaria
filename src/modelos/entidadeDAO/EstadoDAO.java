@@ -29,7 +29,7 @@ public class EstadoDAO {
                 );
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            System.out.println("Erro: " + erro.getMessage() + "EstadoDAO");
         }
         return null;
     } 
@@ -46,7 +46,7 @@ public class EstadoDAO {
                 ));
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            System.out.println("Erro: " + erro.getMessage() + " EstadoDAO");
         }
         return estados;
     }

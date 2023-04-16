@@ -18,7 +18,7 @@ public class CidadeDAO {
     }
 
     public Cidade buscar(Long codigo) {
-        String comando = "SELECT * FROM cidade WHERE codigo = ?";
+        String comando = "SELECT * FROM cidade WHERE cod_cidade = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();

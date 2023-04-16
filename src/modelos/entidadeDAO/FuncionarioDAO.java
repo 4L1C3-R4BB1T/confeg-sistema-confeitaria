@@ -16,20 +16,30 @@ public class FuncionarioDAO {
         this.conexao = conexao;
     }
 
-    public boolean autenticar(String email, String senha) {
+    public Funcionario autenticar(String email, String senha) {
         String comando = "SELECT * FROM funcionario WHERE email = ? AND senha = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
-            System.out.println("entrou aqui");
             ps.setString(1, email);
             ps.setString(2, senha);
             ResultSet resultado = ps.executeQuery();
+            TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(conexao);
+            EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             if (resultado.next()) {
-                return true;
+                return new Funcionario(
+                    resultado.getLong("cod_funcionario"),
+                    resultado.getString("nome_funcionario"), 
+                    resultado.getString("cpf_funcionario"),
+                    tipoDAO.buscarPorCodigo(resultado.getLong("cod_tipo_funcionario")),
+                    enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
+                    resultado.getString("email"),
+                    resultado.getString("senha")
+                );
             }
         } catch (Exception erro) {
             erro.printStackTrace();
+            System.out.println("Erro DAO autenticar Funcionario");
         }
-        return false;
+        return null;
     }
     
     public Long inserir(Funcionario funcionario) {

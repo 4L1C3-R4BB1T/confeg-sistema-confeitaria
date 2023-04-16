@@ -71,7 +71,8 @@ public class EnderecoDAO {
                 );
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
+            System.out.println("Erro: " + erro.getMessage() + "EnderecoDAO");
         }
         return null;
     }

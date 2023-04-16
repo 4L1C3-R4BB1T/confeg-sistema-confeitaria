@@ -1,11 +1,15 @@
 package controladores.login;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import aplicacao.App;
 import controladores.login.utilitarios.AlertaFracasso;
 import controladores.login.utilitarios.AlertaInformacao;
 import controladores.login.utilitarios.AlertaSucesso;
+import controladores.principal.PrincipalControlador;
+import controladores.principal.perfil.PerfilControlador;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -23,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import modelos.entidadeDAO.FuncionarioDAO;
+import modelos.entidades.Funcionario;
 
 // TELA DE LOGIN
 public class LoginControlador {
@@ -48,13 +53,16 @@ public class LoginControlador {
     private int fotoAtual = 0;
 
     private Stage palcoLogin;
-    private Stage palcoCadastro;
 
     private boolean continuarTrocandoImagem = true;
 
     private boolean clicouBotaoCadastrar = false;
 
     private FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
+
+    private Funcionario funcionario;
+
+    private List<Stage> telas = new ArrayList<>();
 
     @FXML 
     public void cadastrar(MouseEvent event) throws Exception {
@@ -67,7 +75,7 @@ public class LoginControlador {
         CadastroControlador controlador = carregar.getController();
         Scene cena = new Scene(raiz);
         Stage palco = new Stage();
-        palcoCadastro = palco;
+        telas.add(palco);
         palco.setScene(cena);
         App.adicionarMovimento(palco, cena);
         palco.initStyle(StageStyle.UNDECORATED);
@@ -96,7 +104,7 @@ public class LoginControlador {
     @FXML
     public void entrar(ActionEvent event) throws Exception {
         if (podeEntrar()) {
-            carregarTelaPrincipal();
+            carregarTelaPrincipal(funcionario);
         } else {
             exibirAlertDeInformacao("Login", "Email ou senha inválidos");
         }
@@ -106,7 +114,7 @@ public class LoginControlador {
     public void clicouTeclado(KeyEvent event) throws Exception {
         if (event.getCode() == KeyCode.ENTER) {
             if (podeEntrar()) {
-                carregarTelaPrincipal();
+                carregarTelaPrincipal(funcionario);
             } else {
                 exibirAlertDeInformacao("Login", "Email ou senha inválidos");
             }
@@ -114,22 +122,29 @@ public class LoginControlador {
     }
 
     public boolean podeEntrar() {
-       // return funcionarioDAO.autenticar(campoUsuario.getText(), campoSenha.getText());
-       return true;
+        funcionario = funcionarioDAO.autenticar(campoUsuario.getText(), campoSenha.getText());
+        if (funcionario != null) {
+            return true;
+        }
+       return false;
     }
 
-    public void carregarTelaPrincipal() {
-        try {
-            Parent raiz = FXMLLoader.load(getClass().getResource("/telas/principal/principal.fxml"));
+    public void carregarTelaPrincipal(Funcionario conectado) {
+        try{
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/principal/principal.fxml"));
+            Parent raiz = carregar.load();
+            PrincipalControlador controlador = carregar.getController();
+            controlador.setConectado(conectado);
             Scene cena = new Scene(raiz);
             Stage palco = new Stage();
+            controlador.setTela(palco);
             palco.initStyle(StageStyle.TRANSPARENT);
             palco.setScene(cena);
             encerrarTelas();
             App.adicionarMovimento(palco, cena);
             palco.show();
         } catch (Exception erro) {
-            System.out.println(erro.getMessage());
+            System.out.println("Erro na linha 142 LoginControlador: " + erro.getMessage());
         }
     }
 
@@ -157,9 +172,11 @@ public class LoginControlador {
     public void encerrarTelas() {
         if (palcoLogin != null) {
             continuarTrocandoImagem = false;
-            if (palcoCadastro != null) { 
-                palcoCadastro.close();
-            }
+            telas.forEach( tela -> {
+                if (tela != null) {
+                    tela.close();
+                }
+            });
             palcoLogin.close();
         }
     }
