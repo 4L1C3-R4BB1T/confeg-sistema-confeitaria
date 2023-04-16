@@ -18,7 +18,7 @@ public class Validacao {
 
     public boolean validarNumero(String valor) {
         try {
-            Integer.parseInt(valor);
+            Double.parseDouble(valor);
             return true;
         } catch (Exception erro) {
             return false;

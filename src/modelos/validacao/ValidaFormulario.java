@@ -1,124 +1,98 @@
 package modelos.validacao;
 
 import javafx.scene.control.Label;
-import modelos.entidades.Cidade;
-import modelos.entidades.Estado;
-import modelos.entidades.TipoFuncionario;
 
 public class ValidaFormulario extends Validacao {
     
-    public boolean validarTipo(Label areaErro, TipoFuncionario tipo) {
-        areaErro.setStyle("-fx-text-fill: red;");
-        if (tipo == null) {
-            areaErro.setText("* Por favor, selecione tipo de funcionário.");
+    public boolean validarComboBox(Label area, Object obj, String msg) {
+        area.setStyle("-fx-text-fill: red;");
+        if (obj == null) {
+            if (msg != null) {
+                area.setText("* " + msg);
+            } else {
+                area.setText("* Selecione um opção.");
+            }
             return false;
-        } 
-        areaErro.setStyle("-fx-text-fill: green;");
-        areaErro.setText("✓ Válido");
-        return true;
+        } else {
+            area.setStyle("-fx-text-fill: green;");
+            area.setText("✓ Válido");
+            return true;
+        }
     }
 
-    public boolean validarNome(Label areaErro, String nome) {
-        areaErro.setStyle("-fx-text-fill: red;");
-        if (nome.trim().isEmpty()) {
-            areaErro.setText("* Preencha o campo nome");
+    public boolean validarCampo(Label area, String valor, String msg) {
+        area.setStyle("-fx-text-fill: red;");
+        if (valor.trim().isEmpty()) {
+            if (msg != null) {
+                area.setText("* " + msg);
+            } else {
+                area.setText("* Selecione um opção.");
+            }
+            area.setText("* Preencha este campo");
             return false;
-        } 
-        areaErro.setStyle("-fx-text-fill: green;");
-        areaErro.setText("✓ Válido");
-        return true;
+        } else {
+            area.setStyle("-fx-text-fill: green;");
+            area.setText("✓ Válido");
+            return true;
+        }
     }
-
     
-    public boolean validarCep(Label areaErro, String cep) {
-        areaErro.setStyle("-fx-text-fill: red;");
-        if (cep.trim().isEmpty()) {
-            areaErro.setText("* Preencha o campo cep");
+    public boolean validarCep(Label area, String cep) {
+        if (!validarCampo(area, cep, "Preencha o campo CEP.")) {
             return false;
         } else if (!this.validarCep(cep)) {
-            areaErro.setText("- Cep inválido");
+            area.setStyle("-fx-text-fill: red;");
+            area.setText("- Cep inválido");
             return false;
+        } else {
+            area.setStyle("-fx-text-fill: green;");
+            area.setText("✓ Válido");
+            return true;
         }
-        areaErro.setStyle("-fx-text-fill: green;");
-        areaErro.setText("✓ Válido");
-        return true;
+      
     }
 
-
-    public boolean validarCPF(Label areaErro, String cpf) {
-        areaErro.setStyle("-fx-text-fill: red;");
-        if (cpf.trim().isEmpty()) {
-            areaErro.setText("* Preencha o campo cpf");
+    public boolean validarCPF(Label area, String cpf) {
+        if (!validarCampo(area, cpf, "Preencha o campo CPF")) {
             return false;
         } else if (!this.validarCpf(cpf)) {
-            areaErro.setText("- Não é um cpf válido");
+            area.setStyle("-fx-text-fill: red;");
+            area.setText("- Não é um CPF válido");
             return false;
-        } 
-        areaErro.setStyle("-fx-text-fill: green;");
-        areaErro.setText("✓ Válido");
-        return true;
-    }
-
-    public boolean validarEstado(Label areaErro, Estado estado) {
-        areaErro.setStyle("-fx-text-fill: red;");
-        if (estado == null) {
-            areaErro.setText("* Selecione o estado");
-            return false;
+        } else {
+            area.setStyle("-fx-text-fill: green;");
+            area.setText("✓ Válido");
+            return true;
         }
-        areaErro.setStyle("-fx-text-fill: green;");
-        areaErro.setText("✓ Válido");
-        return true;
     }
 
-    public boolean validarCidade(Label areaErro, Estado estado, Cidade cidade) {
-        areaErro.setStyle("-fx-text-fill: red;");
-        if (estado == null) {
-            areaErro.setText("- Escolha o estado para liberar as cidades");
-            return false;
-        } else if (cidade == null) {
-            areaErro.setText("* Selecione a cidade");
-            return false;
-        } 
-
-        areaErro.setStyle("-fx-text-fill: green;");
-        areaErro.setText("✓ Válido");
-        return true;
-    }
-
-    public boolean validarBairro(Label areaErro, String bairro) {
-        areaErro.setStyle("-fx-text-fill: red;");
-        if (bairro.trim().isEmpty()) {
-            areaErro.setText("* Preencha o campo bairro");
-            return false;
-        } 
-        areaErro.setStyle("-fx-text-fill: green;");
-        areaErro.setText("✓ Válido");
-        return true;
-    }
-
-    public boolean validarRua(Label areaErro, String rua) {
-        areaErro.setStyle("-fx-text-fill: red;");
-        if (rua.trim().isEmpty()) {
-            areaErro.setText("* Preencha o campo rua");
-            return false;
-        } 
-        areaErro.setStyle("-fx-text-fill: green;");
-        areaErro.setText("✓ Válido");
-        return true;
-    }
-
-    public boolean validarNum(Label areaErro, String numero) {
-        areaErro.setStyle("-fx-text-fill: red;");
-        if (numero.trim().isEmpty()) {
-            areaErro.setText("* Preencha o campo número");
+    public boolean validarValorNumerico(Label area, String numero) {
+        if (!this.validarCampo(area, numero, "Preencha o campo número")) {
             return false;
         } else if (!this.validarNumero(numero)) {
-            areaErro.setText("- Número inválido");
+            area.setStyle("-fx-text-fill: red;");
+            area.setText("- Número inválido");
             return false;
-        } 
-
-        areaErro.setStyle("-fx-text-fill: green;");
-        areaErro.setText("✓ Válido");
-        return true;
+        } else {
+            area.setStyle("-fx-text-fill: green;");
+            area.setText("✓ Válido");
+            return true;
+        }
     }
+
+    public boolean validarData(Label area, String data, String msg) {
+        if (!this.validarCampo(area, data, msg)) {
+            return false;
+        } else if (!data.matches("^\\d{2}\\/\\d{2}\\/\\d{4}$")) {
+            area.setStyle("-fx-text-fill: red;");
+            area.setText("- O formato da data é inválido");
+            return false;
+        } else {
+            area.setStyle("-fx-text-fill: green;");
+            area.setText("✓ Válido");
+            return true;
+        }
+    }
+
+  
 }

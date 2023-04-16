@@ -1,16 +1,8 @@
 package controladores.login;
-
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-
 import aplicacao.App;
-import controladores.login.utilitarios.AlertaFracasso;
-import controladores.login.utilitarios.AlertaInformacao;
-import controladores.login.utilitarios.AlertaSucesso;
 import controladores.principal.PrincipalControlador;
-import controladores.principal.perfil.PerfilControlador;
-import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +17,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import modelos.entidadeDAO.FuncionarioDAO;
 import modelos.entidades.Funcionario;
 
@@ -83,9 +74,9 @@ public class LoginControlador {
         controlador.setEncerrarThreadValidacao(true);
         clicouBotaoCadastrar = false; 
         if(controlador.dadosForamSalvos()) {
-            exibirAlertDeSucesso("Cadastro", "Operação realizada com sucesso");
+            App.exibirAlert(areaDeAlerta, "SUCESSO", "CADASTRO", "Operação realizada com sucesso");
         } else {
-            exibirAlertDeFracasso("Cadastro", "Falha ou Cancelamento da solicitação de cadastro.");
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "CADASTRO", "Falha ou Cancelamento da solicitação de cadastro.");
         }
     }
 
@@ -106,7 +97,7 @@ public class LoginControlador {
         if (podeEntrar()) {
             carregarTelaPrincipal(funcionario);
         } else {
-            exibirAlertDeInformacao("Login", "Email ou senha inválidos");
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "LOGIN", "Email ou Senha inválidos.");
         }
     }
 
@@ -116,7 +107,7 @@ public class LoginControlador {
             if (podeEntrar()) {
                 carregarTelaPrincipal(funcionario);
             } else {
-                exibirAlertDeInformacao("Login", "Email ou senha inválidos");
+                App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "LOGIN", "Email ou Senha inválidos.");
             }
         }
     }
@@ -162,9 +153,7 @@ public class LoginControlador {
                                 fotos[fotoAtual++ % fotos.length]));
                     });
                     Thread.sleep(4000);
-
-                } catch (Exception erro) {
-                }
+                } catch (Exception erro) {}
             }
         }).start();
     }
@@ -180,91 +169,4 @@ public class LoginControlador {
             palcoLogin.close();
         }
     }
-
-    public void exibirAlertDeSucesso(String titulo, String descricao) throws Exception {
-        areaDeAlerta.setVisible(false);
-        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/alertas/sucesso.fxml"));
-        Parent raiz = carregar.load();
-        AlertaSucesso controlador = carregar.getController();
-        controlador.setTitulo(titulo);
-        controlador.setDescricao(descricao);
-        limparAreaDeAlerta();
-        areaDeAlerta.getChildren().add(raiz);
-        adicionaEfeitoSuave(areaDeAlerta);
-        new Thread(() -> {
-
-            try {
-                Thread.sleep(1500);
-                Platform.runLater(() -> removerEfeitoSuave(areaDeAlerta));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }).start();
-    }
-
-    public void exibirAlertDeFracasso(String titulo, String descricao) throws Exception {
-        areaDeAlerta.setVisible(false);
-        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/alertas/fracasso.fxml"));
-        Parent raiz = carregar.load();
-        AlertaFracasso controlador = carregar.getController();
-        controlador.setTitulo(titulo);
-        controlador.setDescricao(descricao);
-        limparAreaDeAlerta();
-        areaDeAlerta.getChildren().add(raiz);
-        adicionaEfeitoSuave(areaDeAlerta);
-        new Thread(() -> {
-
-            try {
-                Thread.sleep(1500);
-                Platform.runLater(() -> removerEfeitoSuave(areaDeAlerta));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }).start();
-    }
-
-    public void exibirAlertDeInformacao(String titulo, String descricao) throws Exception {
-        areaDeAlerta.setVisible(false);
-        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/alertas/informacao.fxml"));
-        Parent raiz = carregar.load();
-        AlertaInformacao controlador = carregar.getController();
-        controlador.setTitulo(titulo);
-        controlador.setDescricao(descricao);
-        limparAreaDeAlerta();
-        areaDeAlerta.getChildren().add(raiz);
-        adicionaEfeitoSuave(areaDeAlerta);
-        new Thread(() -> {
-
-            try {
-                Thread.sleep(1500);
-                Platform.runLater(() -> removerEfeitoSuave(areaDeAlerta));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }).start();
-    }
-
-    public void adicionaEfeitoSuave(VBox box) {
-        FadeTransition transicao = new FadeTransition(Duration.millis(500), box);
-        transicao.setFromValue(0);
-        transicao.setToValue(1);
-        transicao.setOnFinished( e -> box.setVisible(true));
-        transicao.play();
-    }
-
-    public void removerEfeitoSuave(VBox box) {
-        FadeTransition transicao = new FadeTransition(Duration.millis(1000), box);
-        transicao.setFromValue(1);
-        transicao.setToValue(0);
-        transicao.setOnFinished( e -> box.setVisible(false));
-        transicao.play();
-    }
-
-    public void limparAreaDeAlerta() {
-        areaDeAlerta.getChildren().clear();
-    }   
-
 }

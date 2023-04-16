@@ -88,4 +88,9 @@ public class Bolo {
         this.vencimento = vencimento;
     }
 
+    @Override 
+    public String toString() {
+        return descricao;
+    }
+
 }

@@ -32,8 +32,6 @@ public class PerfilControlador {
 
     private Stage tela;
 
-    private Funcionario conectado;
-
     @FXML
     public void confirmar(ActionEvent event) {
         if (tela != null) {

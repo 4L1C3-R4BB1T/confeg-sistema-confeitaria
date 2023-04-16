@@ -108,11 +108,11 @@
 
 .area-bolo .titulo {
     -fx-text-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-size: 18px;
 }
 
 .area-bolo .subtitulo {
-    -fx-font-size: 13px;
+    -fx-font-size: 16px;
     -fx-font-style: italic;
     -fx-text-fill: #0000009f;
 }
@@ -132,22 +132,22 @@
 
 .area-bolo .fabricao {
     -fx-text-fill: #557C97;
-    -fx-font-size: 15px;
+    -fx-font-size: 17px;
 }
 
 .area-bolo .validade {
     -fx-text-fill: #DA0000;
-    -fx-font-size: 15px;
+    -fx-font-size: 17px;
 }
 
 .area-bolo .peso {
     -fx-text-fill: #978E0D;
-    -fx-font-size: 15px;
+    -fx-font-size: 17px;
 }
 
 .area-bolo .preco {
     -fx-text-fill: #006B1E;
-    -fx-font-size: 15px;
+    -fx-font-size: 17px;
 }
 
 .scroll-bar:horizontal .thumb {
@@ -165,4 +165,12 @@
 .rodape .label {
     -fx-font-size: 18px;
     -fx-text-fill: #fff;
+}
+
+/* /////////////////////////////// */
+
+.area-alerta {
+    -fx-background-radius: 10px;
+    -fx-background-color: #D9D9D9;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5px, 0, 0, 3px);
 }

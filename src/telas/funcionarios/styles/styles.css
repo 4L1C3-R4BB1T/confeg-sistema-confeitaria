@@ -11,6 +11,10 @@
     -fx-cursor: hand;
 }
 
+.funcionarios .cabecalho .image-view:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
 /* TITULO */
 
 .funcionarios .titulo {
@@ -30,11 +34,19 @@
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-background-radius: 10px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
 }
 
 .funcionarios .adicionar:hover {
     -fx-background-color: #45bb517c;
     -fx-background-radius: 10px;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.funcionarios .titulo .image-view {
+    -fx-cursor: hand;
 }
 
 .funcionarios .pesquisa {
@@ -52,6 +64,8 @@
     -fx-border-width: 0;
     -fx-font-size: 15px;
     -fx-prompt-text-fill: #000000ba;
+    -fx-background-color: none;
+    -fx-border-width: 0;
 }
 
 
@@ -94,4 +108,15 @@
 .funcionarios .menu .button:hover {
     -fx-background-color: #00000097;
     -fx-text-fill: #fff;
+}
+
+.rodape {
+    -fx-background-color: rgba(0, 0, 0, 0.79);
+    -fx-padding: 5px;
+}
+
+.rodape .label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #fff;
+    -fx-alignment: center;
 }

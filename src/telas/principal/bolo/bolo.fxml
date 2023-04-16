@@ -23,10 +23,17 @@
             <Label fx:id="descricao" alignment="CENTER" prefHeight="40.0" prefWidth="265.0" styleClass="subtitulo" text="Esse é um bolo de chocolate, bastante recheado e com flocos de goiabada" textAlignment="CENTER" wrapText="true" />
             <AnchorPane prefHeight="175.0" prefWidth="300.0">
                <children>
-                  <Label fx:id="validade" alignment="CENTER" layoutX="168.0" layoutY="22.0" prefHeight="18.0" prefWidth="117.0" styleClass="validade" text="Val: 10/10/1000" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="20.0" />
-                  <Label fx:id="fabricao" layoutX="14.0" layoutY="21.0" prefHeight="18.0" prefWidth="117.0" styleClass="fabricao" text="Fab: 10/10/1000" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="168.0" AnchorPane.topAnchor="20.0" />
-                  <Label fx:id="preco" alignment="CENTER" layoutX="169.0" layoutY="60.0" prefHeight="18.0" prefWidth="117.0" styleClass="preco" text="Preço: R$ 75.00" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="14.0" />
-                  <Label fx:id="peso" layoutX="15.0" layoutY="60.0" styleClass="peso" text="Peso: 100g" AnchorPane.leftAnchor="15.0" />
+                  <VBox alignment="TOP_CENTER" layoutY="18.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="fabricao" alignment="CENTER" styleClass="fabricao" text="Fab: 10/10/1000" />
+                        <Label fx:id="validade" alignment="CENTER" styleClass="validade" text="Val: 10/10/1000" />
+                        <Label fx:id="preco" alignment="CENTER" styleClass="preco" text="Preço: R$ 75.00" />
+                        <Label fx:id="peso" alignment="CENTER" styleClass="peso" text="Peso: 100g" />
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
                </children>
             </AnchorPane>
          </children>

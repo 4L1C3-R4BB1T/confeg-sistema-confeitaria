@@ -132,11 +132,8 @@ public class CadastroControlador {
                 ((Stage) janela).close();
             } catch (Exception erro) {
                 App.conexao.rollback();
-                erro.printStackTrace();
             }
-        } else {
-            System.out.println("Não pode");
-        }
+        } 
     }
 
     @FXML 
@@ -158,17 +155,7 @@ public class CadastroControlador {
         new Thread(() -> {
             while (!encerrarThreadValidacao) {
                 if (clicouBotaoPodeCadastrar) {
-                    Platform.runLater(() -> {
-                        vf.validarTipo(exibirErroNoTipo, getTipo());
-                        vf.validarCPF(exibirErroNoCpf, getCpf());
-                        vf.validarCep(exibirErroNoCep, getCep());
-                        vf.validarEstado(exibirErroNoEstado, getEstado());
-                        vf.validarCidade(exibirErroNoCidade, getEstado(), getCidade());
-                        vf.validarBairro(exibirErroNoBairro, getBairro());
-                        vf.validarRua(exibirErroNoRua, getRua());
-                        vf.validarNum(exibirErroNoNumero, numero.getText());
-                        vf.validarNome(exibirErroNoNome, getNome());
-                    });
+                    Platform.runLater(() -> podeCadastrar());
                     try {
                         Thread.sleep(200);
                     } catch (Exception erro) {}
@@ -184,16 +171,16 @@ public class CadastroControlador {
 
     public boolean podeCadastrar() {
         return Stream.of(
-            vf.validarTipo(exibirErroNoTipo, getTipo()),
+            vf.validarComboBox(exibirErroNoTipo, getTipo(), "Selecione o Tipo do Funcionário"),
             vf.validarCPF(exibirErroNoCpf, getCpf()),
             vf.validarCep(exibirErroNoCep, getCep()),
-            vf.validarEstado(exibirErroNoEstado, getEstado()),
-            vf.validarCidade(exibirErroNoCidade, getEstado(), getCidade()),
-            vf.validarBairro(exibirErroNoBairro, getBairro()),
-            vf.validarRua(exibirErroNoRua, getRua()),
-            vf.validarNum(exibirErroNoNumero, numero.getText()),
-            vf.validarNome(exibirErroNoNome, getNome())
-       ).allMatch( valor -> valor == true);
+            vf.validarComboBox(exibirErroNoEstado, getEstado(), "Selecione seu Estado"),
+            vf.validarComboBox(exibirErroNoCidade, getCidade(), "Selecione a Cidade"),
+            vf.validarCampo(exibirErroNoBairro, getBairro(), "Preencha o Bairro"),
+            vf.validarCampo(exibirErroNoRua, getRua(), "Preencha a Rua"),
+            vf.validarValorNumerico(exibirErroNoNumero, numero.getText()),
+            vf.validarCampo(exibirErroNoNome, getNome(), "Preencha o Nome")
+        ).allMatch( valor -> valor == true);
     }
 
     public void carregarTelaPerfil(Funcionario funcionario) {
