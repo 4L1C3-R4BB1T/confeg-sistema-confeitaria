@@ -1,5 +1,7 @@
 package controladores.login;
 
+import java.sql.Connection;
+
 import aplicacao.App;
 import controladores.login.utilitarios.AlertaFracasso;
 import controladores.login.utilitarios.AlertaInformacao;
@@ -20,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import modelos.entidadeDAO.FuncionarioDAO;
 
 // TELA DE LOGIN
 public class LoginControlador {
@@ -50,6 +53,8 @@ public class LoginControlador {
     private boolean continuarTrocandoImagem = true;
 
     private boolean clicouBotaoCadastrar = false;
+    
+    private FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
 
     @FXML 
     public void cadastrar(MouseEvent event) throws Exception {
@@ -70,9 +75,9 @@ public class LoginControlador {
         controlador.setEncerrarThreadValidacao(true);
         clicouBotaoCadastrar = false; 
         if(controlador.dadosForamSalvos()) {
-            exibirAlertDeSucesso("Cadastro", "Dados salvos com sucesso!");
+            exibirAlertDeSucesso("Cadastro", "Operação realizada com sucesso");
         } else {
-            exibirAlertDeFracasso("Cadastro", "Erro ao salvar os dados.");
+            exibirAlertDeFracasso("Cadastro", "Falha ou Cancelamento da solicitação de cadastro.");
         }
     }
 
@@ -93,7 +98,7 @@ public class LoginControlador {
         if (podeEntrar()) {
             carregarTelaPrincipal();
         } else {
-            exibirAlertDeInformacao("Informação", "Email ou senha inválidos");
+            exibirAlertDeInformacao("Login", "Email ou senha inválidos");
         }
     }
 
@@ -103,16 +108,13 @@ public class LoginControlador {
             if (podeEntrar()) {
                 carregarTelaPrincipal();
             } else {
-                exibirAlertDeInformacao("Informação", "Email ou senha inválidos");
+                exibirAlertDeInformacao("Login", "Email ou senha inválidos");
             }
         }
     }
 
     public boolean podeEntrar() {
-        if (campoUsuario.getText().equals("test") && campoSenha.getText().equals("test")) {
-            return true;
-        }
-        return false;
+        return funcionarioDAO.autenticar(campoUsuario.getText(), campoSenha.getText());
     }
 
     public void carregarTelaPrincipal() {

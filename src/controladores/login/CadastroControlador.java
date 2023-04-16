@@ -1,11 +1,7 @@
 package controladores.login;
 
-import java.sql.Connection;
-import java.text.Normalizer;
-import java.util.Map;
 import java.util.stream.Stream;
-
-import conexoes.FabricarConexao;
+import aplicacao.App;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -78,15 +74,6 @@ public class CadastroControlador {
     @FXML 
     private Label exibirErroNoNumero;
 
-    private static Connection conexao;
-
-    static {
-        String url = "jdbc:postgresql://localhost:5432/test";
-        String usuario = "postgres";
-        String senha = "admin";
-        conexao = new FabricarConexao(url, usuario, senha).getConexao();
-    }
-
     private static ValidaFormulario vf = new ValidaFormulario();
 
     private volatile boolean clicouBotaoPodeCadastrar = false;
@@ -94,6 +81,14 @@ public class CadastroControlador {
     private volatile boolean encerrarThreadValidacao = false;
 
     private volatile boolean salvo = false;
+
+
+    /// DAOS
+    EnderecoDAO enderecoDAO = new EnderecoDAO(App.conexao);
+    FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
+    CidadeDAO cidadeDAO = new CidadeDAO(App.conexao);
+    EstadoDAO estadoDAO = new EstadoDAO(App.conexao);
+    TipoFuncionarioDAO tipoFuncionarioDAO = new TipoFuncionarioDAO(App.conexao);
 
     @FXML
     public void cancelar(ActionEvent event) {
@@ -105,10 +100,8 @@ public class CadastroControlador {
     public void salvar(ActionEvent event) throws Exception {
         clicouBotaoPodeCadastrar = true;
         if (podeCadastrar()) {
-            conexao.setAutoCommit(false);
+            App.conexao.setAutoCommit(false);
             try {
-                EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
-                FuncionarioDAO funcionarioDAO = new FuncionarioDAO(conexao);
                 Endereco endereco = new Endereco(getEstado(), getCidade(), getCep(), getBairro(), getRua(), getNumero());
                 endereco.setCodigo(enderecoDAO.inserir(endereco));
                 Funcionario funcionario = new Funcionario(getNome(), getCpf(), getTipo(), endereco, getCep(), getBairro());
@@ -122,13 +115,13 @@ public class CadastroControlador {
                 funcionario.setEmail(email);
                 funcionario.setSenha(senha);
                 funcionarioDAO.alterar(funcionario);
-                
-                conexao.commit();
+
+                App.conexao.commit();
                 salvo = true;
                 Window janela = (Window) ((Node) event.getSource()).getScene().getWindow();
                 ((Stage) janela).close();
             } catch (Exception erro) {
-                conexao.rollback();
+                App.conexao.rollback();
                 erro.printStackTrace();
             }
         } else {
@@ -147,7 +140,6 @@ public class CadastroControlador {
         carregarDados();
         estado.getSelectionModel().selectedItemProperty().addListener((observavel, antigoEstado, novoEstado) -> {
             if (novoEstado != null) {
-                CidadeDAO cidadeDAO = new CidadeDAO(conexao);
                 cidade.setValue(null);
                 cidade.getItems().setAll(cidadeDAO.buscarPorEstado(novoEstado));
             }
@@ -176,8 +168,6 @@ public class CadastroControlador {
     }
 
     public void carregarDados() {
-        EstadoDAO estadoDAO = new EstadoDAO(conexao);
-        TipoFuncionarioDAO tipoFuncionarioDAO = new TipoFuncionarioDAO(conexao);
         estado.getItems().setAll(estadoDAO.buscarTodos());
         tipo.getItems().setAll(tipoFuncionarioDAO.buscarTodos());
     }

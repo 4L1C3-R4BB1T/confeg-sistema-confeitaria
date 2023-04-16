@@ -3,10 +3,8 @@ package modelos.entidadeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 import modelos.entidades.Funcionario;
 
@@ -16,6 +14,22 @@ public class FuncionarioDAO {
 
     public FuncionarioDAO(Connection conexao) {
         this.conexao = conexao;
+    }
+
+    public boolean autenticar(String email, String senha) {
+        String comando = "SELECT * FROM funcionario WHERE email = ? AND senha = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            System.out.println("entrou aqui");
+            ps.setString(1, email);
+            ps.setString(2, senha);
+            ResultSet resultado = ps.executeQuery();
+            if (resultado.next()) {
+                return true;
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return false;
     }
     
     public Long inserir(Funcionario funcionario) {
@@ -118,7 +132,7 @@ public class FuncionarioDAO {
 
     public String gerarEmail(Funcionario funcionario) {
         String tipo = funcionario.getTipo().getDescricao().equals("Funcionário") ? "funcionario" : "gerente";
-        return String.format("%s%d@.confeg.com", tipo, funcionario.getCodigo()); 
+        return String.format("%s%d@confeg.com", tipo, funcionario.getCodigo()); 
     }
 
     public Connection getConnection() {

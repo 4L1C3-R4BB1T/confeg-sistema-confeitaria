@@ -1,5 +1,8 @@
 package aplicacao;
 
+import java.sql.Connection;
+
+import conexoes.FabricarConexao;
 import controladores.login.LoginControlador;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +11,16 @@ import javafx.stage.StageStyle;
 import javafx.scene.*;
 
 public class App extends Application {
+
+
+    public static Connection conexao;
+
+    static {
+        String url = "jdbc:postgresql://localhost:5432/test";
+        String usuario = "postgres";
+        String senha = "admin";
+        conexao = new FabricarConexao(url, usuario, senha).getConexao();
+    }
 
     @Override
     public void start(Stage palco) throws Exception {
