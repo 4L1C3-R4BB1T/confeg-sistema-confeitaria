@@ -34,6 +34,24 @@ public class EnderecoDAO {
         return null;
     }
 
+    public boolean alterar(Endereco endereco) {
+        String comando = "UPADTE endereco SET cep_endereco = ?, cod_estado = ?, cod_cidade = ?, bairro_endereco = ?, rua_endereco = ?, numero_endereco = ? WHERE cod_endereco = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, endereco.getCep());
+            ps.setLong(2, endereco.getEstado().getCodigo());
+            ps.setLong(3, endereco.getCidade().getCodigo());
+            ps.setString(4, endereco.getBairro());
+            ps.setString(5, endereco.getRua());
+            ps.setInt(6, endereco.getNumero());
+            ps.setLong(7, endereco.getCodigo());
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return false;
+    }
+
     public Endereco buscarPorCodigo(Long codigo) {
         String comando = "SELECT * FROM endereco WHERE cod_endereco = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {

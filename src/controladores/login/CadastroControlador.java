@@ -1,8 +1,6 @@
 package controladores.login;
 
 import java.sql.Connection;
-import java.text.Normalizer;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import conexoes.FabricarConexao;
@@ -61,20 +59,28 @@ public class CadastroControlador {
     /// Labels para inserir mensagem de erro na tela de cadastro da tela login
     @FXML 
     private Label exibirErroNoTipo;
+
     @FXML 
     private Label exibirErroNoNome;
+
     @FXML 
     private Label exibirErroNoCpf;
+
     @FXML 
     private Label exibirErroNoCep;
+
     @FXML 
     private Label exibirErroNoEstado;
+
     @FXML 
     private Label exibirErroNoCidade;
+
     @FXML 
     private Label exibirErroNoBairro;
+
     @FXML 
     private Label exibirErroNoRua;
+
     @FXML 
     private Label exibirErroNoNumero;
 
@@ -113,14 +119,10 @@ public class CadastroControlador {
                 endereco.setCodigo(enderecoDAO.inserir(endereco));
                 Funcionario funcionario = new Funcionario(getNome(), getCpf(), getTipo(), endereco, getCep(), getBairro());
                 
-                long codigo = funcionarioDAO.inserir(funcionario);
-                funcionario.setCodigo(codigo);
+                funcionario.setCodigo(funcionarioDAO.inserir(funcionario));
 
-                String email = funcionarioDAO.gerarEmail(funcionario);
-                String senha = "confeg123";
-
-                funcionario.setEmail(email);
-                funcionario.setSenha(senha);
+                funcionario.setEmail(funcionarioDAO.gerarEmail(funcionario));
+                funcionario.setSenha("confeg123");
                 funcionarioDAO.alterar(funcionario);
                 
                 conexao.commit();

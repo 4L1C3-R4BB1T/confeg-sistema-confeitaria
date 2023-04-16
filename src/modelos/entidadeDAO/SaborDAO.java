@@ -27,7 +27,6 @@ public class SaborDAO {
                     resultado.getString("descricao_sabor")
                 ); 
             }
-    
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }

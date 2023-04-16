@@ -25,6 +25,7 @@ public class PedidoCompraDAO {
             ps.setDate(2, pedido.getDataPedido());
             ps.setString(3, Status.PENDENTE.getDescricao());
             ps.setString(4, pedido.getObservacao());
+            ps.execute();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
                 return resultado.getLong(1);
@@ -43,6 +44,7 @@ public class PedidoCompraDAO {
             ps.setString(3, Status.PENDENTE.getDescricao());
             ps.setString(4, pedido.getObservacao());
             ps.setLong(5, pedido.getCodigo());
+            ps.execute();
             return true;
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());

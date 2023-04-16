@@ -3,10 +3,8 @@ package modelos.entidadeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 import modelos.entidades.Funcionario;
 
@@ -47,7 +45,8 @@ public class FuncionarioDAO {
             ps.setString(5, funcionario.getEmail());
             ps.setString(6, funcionario.getSenha());
             ps.setLong(7, funcionario.getCodigo());
-            return ps.execute();
+            ps.execute();
+            return true;
         } catch (Exception erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
