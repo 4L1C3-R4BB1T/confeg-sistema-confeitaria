@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+
 import modelos.entidades.Funcionario;
 
 public class FuncionarioDAO {
@@ -115,15 +117,8 @@ public class FuncionarioDAO {
     }
 
     public String gerarEmail(Funcionario funcionario) {
-        String email = String.format("%s%d@.confeg.com", removerAcentos(funcionario.getTipo().getDescricao()), funcionario.getCodigo()); 
-        return email;
-    }
-
-    private String removerAcentos(String str) {
-        if (str.toLowerCase().equals("Funcionário")) {
-            return "funcionario";
-        }
-        return "gerente";
+        Function<String, String> padronizar = (String str) -> str.equals("Funcionário") ? "funcionario" : "gerente";
+        return String.format("%s%d@.confeg.com", padronizar.apply(funcionario.getTipo().getDescricao()), funcionario.getCodigo()); 
     }
 
     public Connection getConnection() {
