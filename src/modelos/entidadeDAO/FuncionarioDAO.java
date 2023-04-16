@@ -114,14 +114,16 @@ public class FuncionarioDAO {
         return funcionarios;
     }
 
-    // GERAR EMAIL AUTOMATICO
     public String gerarEmail(Funcionario funcionario) {
         String email = String.format("%s%d@.confeg.com", removerAcentos(funcionario.getTipo().getDescricao()), funcionario.getCodigo()); 
         return email;
     }
 
     private String removerAcentos(String str) {
-        return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+        if (str.toLowerCase().equals("Funcionário")) {
+            return "funcionario";
+        }
+        return "gerente";
     }
 
     public Connection getConnection() {
