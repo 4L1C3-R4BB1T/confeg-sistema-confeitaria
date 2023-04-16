@@ -2,14 +2,30 @@ package modelos.entidades;
 
 public class PedidoCompraIngrediente {
 
+    private Long codigo;
     private PedidoCompra pedidoCompra;
     private Ingrediente ingrediente;
     private Long quantidade;
     
+    public PedidoCompraIngrediente(Long codigo, PedidoCompra pedidoCompra, Ingrediente ingrediente, Long quantidade) {
+        this.codigo = codigo;
+        this.pedidoCompra = pedidoCompra;
+        this.ingrediente = ingrediente;
+        this.quantidade = quantidade;
+    }
+
     public PedidoCompraIngrediente(PedidoCompra pedidoCompra, Ingrediente ingrediente, Long quantidade) {
         this.pedidoCompra = pedidoCompra;
         this.ingrediente = ingrediente;
         this.quantidade = quantidade;
+    }
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
     }
 
     public PedidoCompra getPedidoCompra() {

@@ -32,7 +32,23 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+<<<<<<< HEAD
             <HBox alignment="CENTER_LEFT" layoutX="860.0" layoutY="171.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa" AnchorPane.rightAnchor="40.0">
+=======
+            <AnchorPane layoutX="50.0" layoutY="23.0" prefHeight="100.0" styleClass="titulo" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+               <children>
+                  <Button contentDisplay="CENTER" layoutX="802.0" layoutY="39.0" mnemonicParsing="false" onAction="#adicionarBolo" prefHeight="50.0" prefWidth="298.0" styleClass="adicionar" text="     ADICIONAR BOLO" textAlignment="RIGHT" AnchorPane.rightAnchor="20.0" />
+                  <Label layoutX="28.0" layoutY="48.0" text="GERENCIAR BOLOS" AnchorPane.leftAnchor="28.0" />
+                  <ImageView layoutX="842.0" layoutY="50.0">
+                     <image>
+                        <Image url="@../funcionarios/images/botao-adicionar.png" />
+                     </image>
+                  </ImageView>
+                  <HBox fx:id="areaDeAlerta" layoutX="-38.0" layoutY="-22.0" prefHeight="150.0" prefWidth="500.0" visible="false" />
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER_LEFT" layoutX="860.0" layoutY="172.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa" AnchorPane.rightAnchor="40.0">
+>>>>>>> 0aed3ed8a39cc0430e92d44f09301d5cd8866527
                <children>
                   <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" promptText="Pesquisar..." />
                   <ImageView fitHeight="28.0" fitWidth="28.0" HBox.hgrow="ALWAYS">
