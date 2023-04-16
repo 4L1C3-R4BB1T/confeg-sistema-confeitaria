@@ -102,8 +102,8 @@
 }
 
 .area-bolo:hover {
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
 }
 
 .area-bolo .titulo {
@@ -150,7 +150,7 @@
     -fx-font-size: 17px;
 }
 
-.scroll-bar:horizontal .thumb {
+.scroll-bar:vertical .thumb {
     -fx-background-color: rgba(0, 0, 0, 0.30);
 }
 

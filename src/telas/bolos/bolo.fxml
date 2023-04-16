@@ -16,7 +16,7 @@
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="1158.0" layoutY="9.0" onMouseClicked="#fechar" AnchorPane.rightAnchor="9.0">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="1157.0" layoutY="8.0" onMouseClicked="#fechar" AnchorPane.rightAnchor="8.0">
                <image>
                   <Image url="@../funcionarios/images/fechar.png" />
                </image>
@@ -32,19 +32,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane layoutX="50.0" layoutY="23.0" prefHeight="100.0" styleClass="titulo" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
-               <children>
-                  <Button contentDisplay="CENTER" layoutX="781.0" layoutY="28.0" mnemonicParsing="false" onAction="#adicionarBolo" prefHeight="50.0" prefWidth="298.0" styleClass="adicionar" text="     ADICIONAR BOLOS" textAlignment="RIGHT" AnchorPane.rightAnchor="21.0" />
-                  <Label layoutX="28.0" layoutY="37.0" text="GERENCIAR BOLOS" AnchorPane.leftAnchor="28.0" />
-                  <ImageView layoutX="841.0" layoutY="39.0">
-                     <image>
-                        <Image url="@../funcionarios/images/botao-adicionar.png" />
-                     </image>
-                  </ImageView>
-                  <HBox fx:id="areaDeAlerta" layoutX="-38.0" layoutY="-22.0" prefHeight="150.0" prefWidth="500.0" visible="false" />
-               </children>
-            </AnchorPane>
-            <HBox alignment="CENTER_LEFT" layoutX="848.0" layoutY="157.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa" AnchorPane.rightAnchor="40.0">
+            <HBox alignment="CENTER_LEFT" layoutX="860.0" layoutY="171.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa" AnchorPane.rightAnchor="40.0">
                <children>
                   <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" promptText="Pesquisar..." />
                   <ImageView fitHeight="28.0" fitWidth="28.0" HBox.hgrow="ALWAYS">
@@ -54,9 +42,21 @@
                   </ImageView>
                </children>
             </HBox>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="50.0" layoutY="247.0" prefHeight="471.0" prefWidth="1100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="247.0">
+            <AnchorPane layoutX="50.0" layoutY="23.0" prefHeight="100.0" styleClass="titulo" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+               <children>
+                  <Button contentDisplay="CENTER" layoutX="781.0" layoutY="28.0" mnemonicParsing="false" onAction="#adicionarBolo" prefHeight="50.0" prefWidth="298.0" styleClass="adicionar" text="     ADICIONAR BOLOS" textAlignment="RIGHT" AnchorPane.rightAnchor="21.0" />
+                  <Label layoutX="28.0" layoutY="37.0" text="GERENCIAR BOLOS" AnchorPane.leftAnchor="28.0" />
+                  <ImageView layoutX="841.0" layoutY="39.0">
+                     <image>
+                        <Image url="@../funcionarios/images/botao-adicionar.png" />
+                     </image>
+                  </ImageView>
+                  <HBox fx:id="areaDeAlerta" layoutX="-16.0" layoutY="-47.0" prefHeight="150.0" prefWidth="500.0" style="-fx-background-color: red;" styleClass="alertar" visible="false" />
+               </children>
+            </AnchorPane>
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="40.0" layoutY="253.0" prefHeight="471.0" prefWidth="1100.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="253.0">
                <content>
-                  <FlowPane hgap="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="exibicao" vgap="10.0">
+                  <FlowPane fx:id="areaDebolos" hgap="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="exibicao" vgap="10.0">
                      <padding>
                         <Insets left="50.0" top="20.0" />
                      </padding>

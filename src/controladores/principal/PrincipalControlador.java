@@ -93,9 +93,7 @@ public class PrincipalControlador {
 
     @FXML
     public void fecharTela(MouseEvent event) {
-        if (tela != null) { // Fechar o palco atual, no caso a tela princpal
-            tela.close();
-        }
+        fecharTodasTelas();
     }
 
     @FXML 
@@ -230,6 +228,7 @@ public class PrincipalControlador {
             clicouBolo = false;
         } catch (Exception erro) {
             System.out.println("Erro linha 146 PrincipalControlador");
+            erro.printStackTrace();
         }
     }
 

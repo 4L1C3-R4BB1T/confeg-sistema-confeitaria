@@ -3,10 +3,6 @@
     -fx-cursor: hand;
 }
 
-AnchorPane {
-    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.5), 3px, 0, 0, 3px);
-}
-
 .alerta-sucesso {
     -fx-background-color: #25AB3F;
     -fx-background-radius: 10px;
@@ -19,6 +15,10 @@ AnchorPane {
 .alerta-sucesso .titulo {
     -fx-font-size: 25px;
     -fx-font-weight: bold;
+    -fx-border-width: 0 !important;
+    -fx-border-color: none !important;
+    -fx-background-color: transparent !important;
+    -fx-effect: none I !important;
 }
 
 .alerta-sucesso .conteudo {
@@ -32,6 +32,10 @@ AnchorPane {
     -fx-text-fill: #fff !important;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
+    -fx-border-width: 0 !important;
+    -fx-border-color: none !important;
+    -fx-background-color: transparent !important;
+    -fx-effect: none I !important;
 }
 
 .alerta-fracasso {
@@ -41,6 +45,10 @@ AnchorPane {
 
 .alerta-fracasso .label {
     -fx-text-fill: #fff;
+    -fx-border-width: 0 !important;
+    -fx-border-color: none !important;
+    -fx-background-color: transparent !important;
+    -fx-effect: none I !important;
 }
 
 .alerta-fracasso .titulo {
@@ -67,6 +75,11 @@ AnchorPane {
 .alerta-informacao .titulo {
     -fx-font-size: 25px;
     -fx-font-weight: bold;
+    -fx-text-fill: #fff;
+    -fx-border-width: 0 !important;
+    -fx-border-color: none !important;
+    -fx-background-color: transparent !important;
+    -fx-effect: none I !important;
 }
 
 .alerta-informacao .conteudo {

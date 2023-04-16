@@ -67,6 +67,7 @@ public class LoginControlador {
         Scene cena = new Scene(raiz);
         Stage palco = new Stage();
         telas.add(palco);
+        controlador.setTela(palco);
         palco.setScene(cena);
         App.adicionarMovimento(palco, cena);
         palco.initStyle(StageStyle.UNDECORATED);
@@ -113,7 +114,12 @@ public class LoginControlador {
     }
 
     public boolean podeEntrar() {
+        if (campoUsuario.getText().isEmpty() &&  campoSenha.getText().isEmpty()) {
+            return false;
+        }
+
         funcionario = funcionarioDAO.autenticar(campoUsuario.getText(), campoSenha.getText());
+
         if (funcionario != null) {
             return true;
         }

@@ -106,12 +106,12 @@
 }
 
 .funcionarios .menu .button:hover {
-    -fx-background-color: #00000097;
+    -fx-background-color: #d2b3b397;
     -fx-text-fill: #fff;
 }
 
 .rodape {
-    -fx-background-color: rgba(0, 0, 0, 0.79);
+    -fx-background-color: rgba(0, 0, 0, 0.500);
     -fx-padding: 5px;
 }
 
@@ -120,3 +120,4 @@
     -fx-text-fill: #fff;
     -fx-alignment: center;
 }
+

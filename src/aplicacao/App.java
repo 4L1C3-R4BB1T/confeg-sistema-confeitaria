@@ -17,7 +17,6 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javafx.scene.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 public class App extends Application {
 

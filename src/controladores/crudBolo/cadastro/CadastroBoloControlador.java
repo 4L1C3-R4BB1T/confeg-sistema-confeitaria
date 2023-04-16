@@ -1,10 +1,7 @@
 package controladores.crudBolo.cadastro;
 
-import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
 import aplicacao.App;
@@ -16,14 +13,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import modelos.entidadeDAO.BoloDAO;
 import modelos.entidadeDAO.SaborDAO;
 import modelos.entidades.Bolo;
 import modelos.entidades.Sabor;
 import modelos.validacao.ValidaFormulario;
 
-public class CadastroBoloController {
+public class CadastroBoloControlador {
 
     @FXML
     private ComboBox<Sabor> sabores;
@@ -60,26 +57,24 @@ public class CadastroBoloController {
 
     private SaborDAO saborDAO = new SaborDAO(App.conexao);
 
+    private BoloDAO boloDAO = new BoloDAO(App.conexao);
+
     private ValidaFormulario vf = new ValidaFormulario();
 
     private volatile boolean threadPodeValidar = false;
 
     private volatile boolean pararThreadValidar = false;
 
+    private boolean cadastrou = false;
+
     @FXML
     public void cancelar(ActionEvent event) {
-        if (tela != null) {
-            pararThreadValidar = true;
-            tela.close();
-        }
+        encerrarTela();
     }
 
     @FXML 
     public void fechar(MouseEvent event) {
-        if (tela != null) {
-            pararThreadValidar = true;
-            tela.close();
-        }
+        encerrarTela();
     }
 
     @FXML
@@ -87,38 +82,24 @@ public class CadastroBoloController {
         threadPodeValidar = true;
         if(!podeCadastrar()) return; // Abortar operação
         App.conexao.setAutoCommit(false);
-
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
-
-            /*
-             * 
-             *   private Long codigo;
-                private Sabor sabor;
-                private String descricao;
-                private Double peso;
-                private Double preco;
-                private Date fabricacao;
-                private Date vencimento;
-             * 
-             * 
-             */
-
             Bolo bolo = new Bolo(
                 getSabor(),
                 getDescricao(),
                 Double.parseDouble(getPeso()),
                 Double.parseDouble(getPreco()),
-                Date.valueOf(getFabricao()),
-                Date.valueOf(getVencimento())
+                new java.sql.Date(sdf.parse(getFabricao()).getTime()),
+                new java.sql.Date(sdf.parse(getVencimento()).getTime())
             );
 
-            System.out.println(bolo.getVencimento());
-
-
-
+            boloDAO.inserir(bolo);
             App.conexao.commit();
+            cadastrou = true;
+            encerrarTela();
         } catch (Exception erro) {
             App.conexao.rollback();
+            erro.printStackTrace();
         }
 
     }
@@ -148,6 +129,17 @@ public class CadastroBoloController {
             vf.validarData(erroVencimento, getVencimento(), "Preencha a data de Vencimento"),
             vf.validarCampo(erroDescricao, getDescricao(), "Preencha a Descrição")
         ).allMatch( bool -> bool != false);
+    }
+
+    public boolean getCadastrou() {
+        return cadastrou;
+    }
+
+    public void encerrarTela() {
+        if (tela != null) {
+            pararThreadValidar = true;
+            tela.close();
+        }
     }
 
     public void setPararThreadValidar(boolean b) {

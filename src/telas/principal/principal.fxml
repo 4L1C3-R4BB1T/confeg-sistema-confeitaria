@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane prefHeight="800.0" prefWidth="1300.0" styleClass="container" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.principal.PrincipalControlador">
+<BorderPane prefHeight="900.0" prefWidth="1300.0" styleClass="container" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.principal.PrincipalControlador">
    <center>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
          <top>
@@ -76,15 +76,18 @@
                               </ImageView>
                            </children>
                         </HBox>
-                        <Label alignment="CENTER" layoutX="484.0" layoutY="102.0" styleClass="area-conteudo-titulo" text="BOLOS EM DESTAQUE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="102.0" />
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="7.0" layoutY="178.0" prefHeight="522.0" prefWidth="1200.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="178.0">
+                        <Label alignment="CENTER" layoutY="90.0" styleClass="area-conteudo-titulo" text="BOLOS EM DESTAQUE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
+                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="7.0" layoutY="127.0" prefHeight="532.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="127.0">
                            <content>
-                              <FlowPane fx:id="areaBolo" alignment="CENTER_LEFT" hgap="30.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" styleClass="area-exibicao">
+                              <FlowPane fx:id="areaBolo" alignment="TOP_CENTER" hgap="30.0" prefHeight="515.0" prefWidth="1298.0" styleClass="area-exibicao" vgap="40.0">
                                  <padding>
                                     <Insets left="30.0" right="30.0" />
                                  </padding>
                               </FlowPane>
                            </content>
+                           <padding>
+                              <Insets bottom="15.0" top="40.0" />
+                           </padding>
                         </ScrollPane>
                         <AnchorPane fx:id="menuPedidos" layoutX="112.0" layoutY="-3.0" prefHeight="120.0" prefWidth="150.0" styleClass="modal" visible="false" AnchorPane.topAnchor="0.0">
                            <children>
@@ -127,12 +130,12 @@
    <top>
       <AnchorPane prefHeight="30.0" prefWidth="200.0" styleClass="area-fechamento" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="1115.0" onMouseClicked="#minimizarTela" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="45.0">
+            <ImageView fitHeight="43.0" fitWidth="44.0" layoutX="1115.0" onMouseClicked="#minimizarTela" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="1.0">
                <image>
                   <Image url="@images/minimizar.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="1161.0" layoutY="3.0" onMouseClicked="#fecharTela" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="3.0">
+            <ImageView layoutX="1260.0" layoutY="5.0" onMouseClicked="#fecharTela" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <image>
                   <Image url="@images/fechar.png" />
                </image>

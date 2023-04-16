@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -16,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 import modelos.entidadeDAO.CidadeDAO;
 import modelos.entidadeDAO.EnderecoDAO;
 import modelos.entidadeDAO.EstadoDAO;
@@ -87,6 +85,8 @@ public class CadastroControlador {
     @FXML 
     private Label exibirErroNoNumero;
 
+    private Stage tela;
+
     private static ValidaFormulario vf = new ValidaFormulario();
 
     private volatile boolean clicouBotaoPodeCadastrar = false;
@@ -105,8 +105,7 @@ public class CadastroControlador {
 
     @FXML
     public void cancelar(ActionEvent event) {
-        Window janela = (Window) ((Node) event.getSource()).getScene().getWindow();
-        ((Stage) janela).close();
+        encerrarTela();
     }
 
     @FXML
@@ -128,8 +127,7 @@ public class CadastroControlador {
                 App.conexao.commit();
                 salvo = true;
                 carregarTelaPerfil(funcionario);
-                Window janela = (Window) ((Node) event.getSource()).getScene().getWindow();
-                ((Stage) janela).close();
+                encerrarTela();
             } catch (Exception erro) {
                 App.conexao.rollback();
             }
@@ -138,8 +136,7 @@ public class CadastroControlador {
 
     @FXML 
     public void fecharTela(MouseEvent event) {
-        Window janela = (Window) ((Node) event.getSource()).getScene().getWindow();
-        ((Stage) janela).close();
+        encerrarTela();
     }
 
     @FXML
@@ -201,6 +198,16 @@ public class CadastroControlador {
         }
     }
 
+    public void encerrarTela() {
+        if (tela != null) {
+            tela.close();
+        }
+    }
+
+
+    public void setTela(Stage tela) {
+        this.tela = tela;
+    }
 
     public void setEncerrarThreadValidacao(boolean b) {
         encerrarThreadValidacao = true;
