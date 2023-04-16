@@ -4,7 +4,7 @@
 /* CABEÇALHO */
 
 .funcionarios .cabecalho {
-    -fx-background-color: #000000;
+    -fx-background-color: rgba(0, 0, 0, 0.79);
 }
 
 .funcionarios .cabecalho .image-view {
@@ -111,7 +111,7 @@
 }
 
 .rodape {
-    -fx-background-color: rgba(0, 0, 0, 0.500);
+    -fx-background-color: rgba(0, 0, 0, 0.80);
     -fx-padding: 5px;
 }
 
