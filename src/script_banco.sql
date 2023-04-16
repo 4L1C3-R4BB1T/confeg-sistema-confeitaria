@@ -5822,7 +5822,8 @@ INSERT INTO endereco (cep_endereco, cod_estado, cod_cidade, bairro_endereco, rua
 ('01234567', 8, 78, 'Jardim Paulista', 'Rua Oscar Freire', 100),
 ('78901234', 8, 78, 'São Francisco', 'Avenida Beira-Mar', 200),
 ('23456790', 8, 78, 'Boa Viagem', 'Rua dos Navegantes', 300),
-('12345678', 8, 77, 'Centro', 'Rua Principal', 123);
+('12345678', 8, 77, 'Centro', 'Rua Principal', 123),
+('31467902', 8, 77, 'Maresias', 'Rua Não sei', 2);
 
 INSERT INTO tipo_funcionario (descricao_tipo_funcionario) VALUES
 ('Funcionário'),
@@ -5845,7 +5846,8 @@ INSERT INTO funcionario (nome_funcionario, cpf_funcionario, cod_tipo_funcionario
 ('Ana Santos', '23456789011', 1, 12, 'funcionario2@confeg.com', 'funcionario123'),
 ('José Pereira', '34567890122', 1, 13, 'funcionario3@confeg.com', 'funcionario123'),
 ('Fernanda Alves', '45678901233', 2, 14, 'gerente1@confeg.com', 'gerente123'),
-('Mariana Rodrigues', '56789012344', 1, 15, 'gerente2@confeg.com', 'gerente123');
+('Mariana Rodrigues', '56789012344', 1, 15, 'gerente2@confeg.com', 'gerente123'),
+('Teste', '64280112502', 1, 15, 'test', 'test');
 
 INSERT INTO sabor (descricao_sabor) VALUES
 ('Chocolate'),
