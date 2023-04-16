@@ -1,8 +1,13 @@
 package modelos.entidadeDAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import modelos.entidades.Pedido;
+import modelos.entidades.PedidoBolo;
 
 public class PedidoBoloDAO {
     
@@ -12,35 +17,107 @@ public class PedidoBoloDAO {
         this.conexao = conexao;
     }
 
-    /* IMPLEMENTAR */
-    public boolean inserir(PedidoBoloDAO pedido) {
+    public boolean inserir(PedidoBolo pedido) {
+        String comando = "INSERT INTO pedido_bolo (cod_pedido, cod_bolo, quantidade_bolo) VALUES (?, ?, ?)";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, pedido.getPedido().getCodigo());
+            ps.setLong(2, pedido.getBolo().getCodigo());
+            ps.setLong(3, pedido.getQuantidade());
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
         return false;
     }
 
-    /* IMPLEMENTAR */
-    public boolean alterar(PedidoBoloDAO pedido) {
+    public boolean alterar(PedidoBolo pedido) {
+        String comando = "UPDATE pedido_bolo SET cod_pedido = ?, cod_bolo = ?, quantidade_bolo = ? WHERE cod_pedido_bolo = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, pedido.getPedido().getCodigo());
+            ps.setLong(2, pedido.getBolo().getCodigo());
+            ps.setLong(3, pedido.getQuantidade());
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
         return false;
     }
 
-    /* IMPLEMENTAR */
-    public boolean remover(PedidoBoloDAO pedido) {
+    public boolean remover(PedidoBolo pedido) {
+        String comando = "DELETE FROM pedido_bolo WHERE cod_pedido_bolo = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, pedido.getCodigo());
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
         return false;
     }
 
-    /* IMPLEMENTAR */
-    public PedidoBoloDAO buscarPorCodigo(Long codigo) {
+    public PedidoBolo buscarPorCodigo(Long codigo) {
+        String comando = "SELECT * FROM pedido_bolo WHERE cod_pedido_bolo = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, codigo);
+            ResultSet resultado = ps.executeQuery();
+            PedidoDAO pedidoDAO = new PedidoDAO(conexao);
+            BoloDAO boloDAO = new BoloDAO(conexao);
+            if (resultado.next()) {
+                return new PedidoBolo(
+                    resultado.getLong("cod_pedido_bolo"),
+                    pedidoDAO.buscarPorCodigo(resultado.getLong("cod_pedido")),
+                    boloDAO.buscarPorCodigo(resultado.getLong("cod_bolo")),
+                    resultado.getLong("quantidade_bolo")
+                );
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
         return null;
     }
 
-    /* IMPLEMENTAR */
-    public List<PedidoBoloDAO> buscarPorPedido(PedidoDAO pedido) {
-        List<PedidoBoloDAO> pedidos = new ArrayList<>();
+    public List<PedidoBolo> buscarPorPedido(Pedido pedido) {
+        String comando = "SELECT * FROM pedido_bolo WHERE cod_pedido = ?";
+        List<PedidoBolo> pedidos = new ArrayList<>();
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, pedido.getCodigo());
+            ResultSet resultado = ps.executeQuery();
+            PedidoDAO pedidoDAO = new PedidoDAO(conexao);
+            BoloDAO boloDAO = new BoloDAO(conexao);
+            if (resultado.next()) {
+                pedidos.add(new PedidoBolo(
+                    resultado.getLong("cod_pedido_bolo"),
+                    pedidoDAO.buscarPorCodigo(resultado.getLong("cod_pedido")),
+                    boloDAO.buscarPorCodigo(resultado.getLong("cod_bolo")),
+                    resultado.getLong("quantidade_bolo")
+                ));
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
         return pedidos;
     }
 
-    /* IMPLEMENTAR */
-    public List<PedidoBoloDAO> buscarTodos() {
-        List<PedidoBoloDAO> pedidos = new ArrayList<>();
+    public List<PedidoBolo> buscarTodos() {
+        String comando = "SELECT * FROM pedido_bolo";
+        List<PedidoBolo> pedidos = new ArrayList<>();
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ResultSet resultado = ps.executeQuery();
+            PedidoDAO pedidoDAO = new PedidoDAO(conexao);
+            BoloDAO boloDAO = new BoloDAO(conexao);
+            if (resultado.next()) {
+                pedidos.add(new PedidoBolo(
+                    resultado.getLong("cod_pedido_bolo"),
+                    pedidoDAO.buscarPorCodigo(resultado.getLong("cod_pedido")),
+                    boloDAO.buscarPorCodigo(resultado.getLong("cod_bolo")),
+                    resultado.getLong("quantidade_bolo")
+                ));
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
         return pedidos;
     }
 
