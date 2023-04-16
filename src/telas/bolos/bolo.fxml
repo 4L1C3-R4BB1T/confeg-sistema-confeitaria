@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" styleClass="funcionarios" stylesheets="@../funcionarios/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudBolo.CrudBoloControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" styleClass="funcionarios" stylesheets="@../funcionarios/styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudBolo.CrudBoloControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
@@ -34,9 +34,9 @@
          <children>
             <AnchorPane layoutX="50.0" layoutY="23.0" prefHeight="100.0" styleClass="titulo" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
                <children>
-                  <Button contentDisplay="CENTER" layoutX="781.0" layoutY="28.0" mnemonicParsing="false" onAction="#adicionarBolo" prefHeight="50.0" prefWidth="298.0" styleClass="adicionar" text="     ADICIONAR BOLOS" textAlignment="RIGHT" AnchorPane.rightAnchor="21.0" />
-                  <Label layoutX="28.0" layoutY="37.0" text="GERENCIAR BOLOS" AnchorPane.leftAnchor="28.0" />
-                  <ImageView layoutX="841.0" layoutY="39.0">
+                  <Button contentDisplay="CENTER" layoutX="802.0" layoutY="39.0" mnemonicParsing="false" onAction="#adicionarBolo" prefHeight="50.0" prefWidth="298.0" styleClass="adicionar" text="     ADICIONAR BOLO" textAlignment="RIGHT" AnchorPane.rightAnchor="20.0" />
+                  <Label layoutX="28.0" layoutY="48.0" text="GERENCIAR BOLOS" AnchorPane.leftAnchor="28.0" />
+                  <ImageView layoutX="842.0" layoutY="50.0">
                      <image>
                         <Image url="@../funcionarios/images/botao-adicionar.png" />
                      </image>
@@ -44,7 +44,7 @@
                   <HBox fx:id="areaDeAlerta" layoutX="-38.0" layoutY="-22.0" prefHeight="150.0" prefWidth="500.0" visible="false" />
                </children>
             </AnchorPane>
-            <HBox alignment="CENTER_LEFT" layoutX="848.0" layoutY="157.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa" AnchorPane.rightAnchor="40.0">
+            <HBox alignment="CENTER_LEFT" layoutX="860.0" layoutY="172.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa" AnchorPane.rightAnchor="40.0">
                <children>
                   <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" promptText="Pesquisar..." />
                   <ImageView fitHeight="28.0" fitWidth="28.0" HBox.hgrow="ALWAYS">
