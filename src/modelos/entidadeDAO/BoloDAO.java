@@ -88,7 +88,7 @@ public class BoloDAO {
     }
 
     public List<Bolo> buscarTodos() {
-        String comando = "SELECT * FROM bolo";
+        String comando = "SELECT * FROM bolo ORDER BY cod_bolo ASC";
         List<Bolo> bolos = new ArrayList<>();
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();

@@ -88,9 +88,10 @@ public class BoloEdicaoControlador {
             App.conexao.setAutoCommit(false);
             try {
                 bolo.setDescricao(getDescricao());
-                bolo.setPeso(Double.parseDouble(getPreco()));
+                bolo.setPeso(Double.parseDouble(getPeso()));
                 bolo.setSabor(getSabor());
                 bolo.setDescricao(getDescricao());
+                bolo.setPreco(Double.parseDouble(getPreco()));
                 boloDAO.alterar(bolo);
                 App.conexao.commit();
                 alterou = true;
