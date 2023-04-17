@@ -1,0 +1,69 @@
+* {
+    -fx-font-family: "Tahoma";
+}
+
+.cabecalho {
+    -fx-background-color: rgba(0,0,0,0.79);
+}
+
+/* Container */
+.container {
+    -fx-background-color: #D9D9D9;
+}
+
+.container .area-titulo {
+    -fx-background-color: rgba(0,0,0,0.79);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10,0,0,2px);
+    -fx-background-radius: 10px;
+}
+
+.container .area-titulo .titulo {
+    -fx-text-fill: #fff;
+    -fx-font-size: 23px;
+}
+
+.container .tabela .column-header {
+    -fx-pref-height: 100px;
+}
+
+.container .tabela .table-column .label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #fff;
+    -fx-alignment: center;
+}
+
+/* Arredondar os cantos da tabela */
+.container .tabela .column-header-background {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-radius: 10px 10px 0px 0px;
+    -fx-padding: 0 0 5px 0;
+}
+
+.container .tabela .column-header,
+.container .tabela .column-header .filler,
+.container .tabela .column-header-background .filler {   
+    -fx-background-color: derive;
+    -fx-stroke: transparent;
+    -fx-size: 50;
+    -fx-alignment: CENTER;    
+    -fx-text-alignment: center;
+}
+
+.container .tabela .table-row-cell:filled:hover {
+    -fx-size: 50;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+}
+
+.container .tabela:row-selection {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-fixed-cell-size: 50;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+}
+
+.container .tabela .table-column {
+    -fx-text-alignment: center;
+    -fx-alignment: CENTER 
+}
