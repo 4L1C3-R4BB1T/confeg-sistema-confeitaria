@@ -89,14 +89,19 @@
                               <Insets bottom="15.0" top="40.0" />
                            </padding>
                         </ScrollPane>
-                        <AnchorPane fx:id="menuPedidos" layoutX="112.0" layoutY="-3.0" prefHeight="120.0" prefWidth="150.0" styleClass="modal" visible="false" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="menuPedidos" layoutX="112.0" layoutY="-3.0" prefHeight="160.0" prefWidth="150.0" styleClass="modal" visible="false" AnchorPane.topAnchor="0.0">
                            <children>
                               <HBox alignment="CENTER" layoutX="10.0" layoutY="34.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Listar" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" layoutX="10.0" layoutY="61.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.topAnchor="70.0">
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="65.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.topAnchor="65.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Pedir" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="108.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Confirmar" />
                                  </children>

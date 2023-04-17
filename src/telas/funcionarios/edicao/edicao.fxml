@@ -26,7 +26,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="conteudo" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="81.0" layoutY="44.0" prefHeight="50.0" prefWidth="600.0" styleClass="titulo" text="CADASTRO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
+            <Label layoutX="81.0" layoutY="44.0" prefHeight="50.0" prefWidth="600.0" styleClass="titulo" text="EDITAR" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
             <ComboBox fx:id="tipo" layoutX="100.0" layoutY="144.0" prefWidth="150.0" promptText="Tipo" styleClass="tipo" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
             <Label layoutX="75.0" layoutY="230.0" styleClass="descricao" text="Nome" AnchorPane.leftAnchor="75.0" />
             <TextField fx:id="nome" layoutX="75.0" layoutY="256.0" prefWidth="280.0" promptText="Ex: Carlos Miranda" AnchorPane.leftAnchor="75.0" />

@@ -87,6 +87,7 @@ public class CrudFuncionarioControlador {
             telas.remove(palco);
             clicouAdicionar = false;
             if (controlador.dadosForamSalvos()) {
+                atualizarAreaDeFuncionarios();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "ADICIONAR", "O Funcionário foi cadastro com sucesso.");
             } else {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "ADICIONAR", "Operação abortada");
