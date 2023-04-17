@@ -69,8 +69,11 @@
 }
 
 .container .escolha, .container .escolha .list-cell {
-    -fx-text-fill: #000;
+    -fx-background-color: #fff !important;
+    -fx-text-fill: #000 !important;
+    -fx-effect: none !important;
 }
+
 
 .container .escolha {
     -fx-border-width: 0 0 1 0;
@@ -82,6 +85,11 @@
     -fx-background-radius: 10px;
     -fx-font-size: 20px;
     -fx-text-fill: #fff;
+}
+
+.container .botao:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
 
 .container .confirmar {

@@ -3,13 +3,21 @@ import java.util.ArrayList;
 import java.util.List;
 import aplicacao.App;
 import controladores.principal.PrincipalControlador;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -17,6 +25,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import modelos.entidadeDAO.FuncionarioDAO;
 import modelos.entidades.Funcionario;
 
@@ -34,6 +43,12 @@ public class LoginControlador {
 
     @FXML
     private StackPane areaDeFoto;
+    
+    @FXML
+    private ImageView areaCarregar;
+
+    @FXML
+    private Button botaoEntrar;
 
     private String[] fotos = {
             getClass().getResource("/telas/login/images/background-1.png").toExternalForm(),
@@ -54,6 +69,8 @@ public class LoginControlador {
     private Funcionario funcionario;
 
     private List<Stage> telas = new ArrayList<>();
+
+    private Timeline timeline;
 
     @FXML 
     public void cadastrar(MouseEvent event) throws Exception {
@@ -96,7 +113,7 @@ public class LoginControlador {
     @FXML
     public void entrar(ActionEvent event) throws Exception {
         if (podeEntrar()) {
-            carregarTelaPrincipal(funcionario);
+            logar();
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "LOGIN", "Email ou Senha inválidos.");
         }
@@ -106,7 +123,7 @@ public class LoginControlador {
     public void clicouTeclado(KeyEvent event) throws Exception {
         if (event.getCode() == KeyCode.ENTER) {
             if (podeEntrar()) {
-                carregarTelaPrincipal(funcionario);
+                logar();
             } else {
                 App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "LOGIN", "Email ou Senha inválidos.");
             }
@@ -162,6 +179,41 @@ public class LoginControlador {
                 } catch (Exception erro) {}
             }
         }).start();
+    }
+
+    public void logar() {
+        new Thread(() -> {
+            Platform.runLater(() -> adicionarEfeitoCarregar());
+            try {
+                Thread.sleep(5000);
+                Platform.runLater(() -> {
+                    if (timeline != null) {
+                        timeline.stop();
+                    }
+                    botaoEntrar.setText("Usuário encontrado!");
+                });
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Platform.runLater(() -> carregarTelaPrincipal(funcionario));
+            
+        }).start();
+    }
+
+    public void adicionarEfeitoCarregar() {
+        Image gif = new Image(getClass().getResource("/telas/login/images/carregando.gif").toExternalForm());
+        areaCarregar.setImage(gif);
+        Timeline tl = new Timeline();
+        tl.setCycleCount(Animation.INDEFINITE);
+        KeyValue keyValue = new KeyValue(areaCarregar.imageProperty(), gif);
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(300), keyValue);
+        tl.getKeyFrames().add(keyFrame);
+        areaCarregar.setFitWidth(32);
+        areaCarregar.setFitWidth(32);
+        botaoEntrar.setText("Buscando...");
+        timeline = tl;
+        tl.play();
     }
 
     public void encerrarTelas() {

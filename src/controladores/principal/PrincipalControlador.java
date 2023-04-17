@@ -2,10 +2,12 @@ package controladores.principal;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import aplicacao.App;
 import controladores.crudBolo.CrudBoloControlador;
+import controladores.crudCliente.CrudClienteControlador;
 import controladores.login.LoginControlador;
 import controladores.principal.bolo.BoloControlador;
 import controladores.principal.perfil.PerfilControlador;
@@ -48,29 +50,45 @@ public class PrincipalControlador {
     @FXML 
     private FlowPane areaBolo;
 
-    @FXML
-    private Button botaoAdministradorUsuario;
-
     @FXML 
     private HBox areaDeAlerta;
+
+    // Botoes do menu
+    @FXML
+    private Button administrador;
+    @FXML 
+    private Button principal;
+    @FXML 
+    private Button pedidos; 
+    @FXML
+    private Button bolos;
+    @FXML 
+    private Button clientes;
+
+    private Button[] botoes;
+
+    @FXML
+    private ImageView areaImagem;
+
 
     private Stage tela;
     
     private List<Stage> telas = new ArrayList<>();
 
     private BoloDAO boloDAO = new BoloDAO(App.conexao);
-    
-    // São os menus PRINCIPAL, PEDIDOS, BOLOS, ETC.
-    private List<Button> menuBotoes = new ArrayList<>();
 
     private Funcionario conectado;
 
     // Verificar se clicou nos botoes para que não haja duplicidade
     private boolean clicouPerfil = false;
     private boolean clicouBolo = false;
+    private boolean clicouCliente = false;
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
+        removerBotaoAtivo();
+        adicionarAtivoNoBotao(pedidos);
+
         if (menuPedidos.isVisible()) {
             App.removerEfeitoSuave(menuPedidos);
         } else {
@@ -112,6 +130,8 @@ public class PrincipalControlador {
 
     @FXML
     public void irTelaBolo(ActionEvent event) throws Exception {
+        removerBotaoAtivo();
+        adicionarAtivoNoBotao(bolos);
        if (!clicouBolo) {
             carregarTelaCrudBolo();
        } else {
@@ -121,7 +141,27 @@ public class PrincipalControlador {
 
     @FXML
     public void irParaTelaFuncionarios(ActionEvent event) {
+        removerBotaoAtivo();
+        adicionarAtivoNoBotao(administrador);
         System.out.println("Ir para tela funcionários");
+    }
+
+    @FXML 
+    public void irParaTelaPrincipal(ActionEvent event) {
+        removerBotaoAtivo();
+        adicionarAtivoNoBotao(principal);
+    }
+
+    @FXML 
+    public void irParaTelaClientes(ActionEvent event) throws Exception {
+        removerBotaoAtivo();
+        adicionarAtivoNoBotao(clientes);
+        if (!clicouCliente) {
+            carregarTelaCrudCliente();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+       }
+
     }
 
     @FXML
@@ -131,23 +171,28 @@ public class PrincipalControlador {
 
     @FXML
     public void initialize() {
-        areaBotaoMenu.getChildren().forEach( elemento -> {
-            if (!(elemento instanceof Button)) return;
-            Button botao = (Button) elemento;
-            botao.setOnMouseClicked( event -> {
-                limparJanelasAbertas();
-                menuBotoes.stream().forEach( bt -> bt.getStyleClass().remove("ativo"));
-                botao.getStyleClass().add("ativo");
-            });
-            menuBotoes.add(botao);
-        });
         atualizarAreaBolo();
+        botoes = new Button[] { administrador, principal, pedidos, bolos, clientes };
     }
 
 
-    public void limparJanelasAbertas() {
-        // Por enquanto....
+    public void limparModalMenuAbertos() {
         menuPedidos.setVisible(false);
+    }
+    
+    public void removerBotaoAtivo() {
+        Arrays.stream(botoes).forEach(botao -> {
+            if (botao != null) {
+                botao.getStyleClass().remove("ativo");
+            }
+        });
+    }
+
+    public void adicionarAtivoNoBotao(Button botao) {
+        if (botao != null) {
+            limparModalMenuAbertos();
+            botao.getStyleClass().add("ativo");
+        }
     }
 
     public void atualizarAreaBolo() {
@@ -226,8 +271,28 @@ public class PrincipalControlador {
             palco.showAndWait();
             telas.remove(palco);
             clicouBolo = false;
+            atualizarAreaBolo();
         } catch (Exception erro) {
-            System.out.println("Erro linha 146 PrincipalControlador");
+            erro.printStackTrace();
+        }
+    }
+
+    public void carregarTelaCrudCliente() {
+        try {
+            clicouCliente = true;
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/clientes/cliente.fxml"));
+            Parent raiz = carregar.load();
+            CrudClienteControlador controlador = carregar.getController();
+            Scene cena = new Scene(raiz);
+            Stage palco = new Stage(StageStyle.UNDECORATED);
+            controlador.setTela(palco);
+            palco.setScene(cena);
+            telas.add(palco);
+            App.adicionarMovimento(palco, cena);
+            palco.showAndWait();
+            telas.remove(palco);
+            clicouCliente = false;
+        } catch (Exception erro) {
             erro.printStackTrace();
         }
     }
@@ -246,7 +311,7 @@ public class PrincipalControlador {
             conectado = funcionario;
             areaFuncionario.setText(conectado.getNome());
             if (funcionario.getTipo().getDescricao().intern() == "Gerente") {
-                botaoAdministradorUsuario.setVisible(true);
+                administrador.setVisible(true);
             }
         } else {
             throw new RuntimeException("O funcionário não foi conectado a tela PrincipalControlador");

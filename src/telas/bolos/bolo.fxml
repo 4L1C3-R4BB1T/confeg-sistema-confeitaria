@@ -51,7 +51,7 @@
                         <Image url="@../funcionarios/images/botao-adicionar.png" />
                      </image>
                   </ImageView>
-                  <HBox fx:id="areaDeAlerta" layoutX="-16.0" layoutY="-47.0" prefHeight="150.0" prefWidth="500.0" style="-fx-background-color: red;" styleClass="alertar" visible="false" />
+                  <HBox fx:id="areaDeAlerta" layoutX="-16.0" layoutY="-47.0" prefHeight="150.0" prefWidth="500.0" styleClass="alertar" visible="false" />
                </children>
             </AnchorPane>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="40.0" layoutY="253.0" prefHeight="471.0" prefWidth="1100.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="253.0">

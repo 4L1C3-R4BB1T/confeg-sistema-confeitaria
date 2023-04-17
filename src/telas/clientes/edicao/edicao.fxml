@@ -14,11 +14,6 @@
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="713.0" layoutY="6.0" AnchorPane.rightAnchor="45.0">
-               <image>
-                  <Image url="@../../funcionarios/cadastro/images/minimizar.png" />
-               </image>
-            </ImageView>
             <ImageView layoutX="762.0" layoutY="8.0" AnchorPane.rightAnchor="5.0">
                <image>
                   <Image url="@../../funcionarios/cadastro/images/fechar.png" />

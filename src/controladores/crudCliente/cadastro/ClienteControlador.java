@@ -1,8 +1,6 @@
-package controladores.crudBolo.cadastro;
-
+package controladores.crudCliente.cadastro;
 
 import aplicacao.App;
-import controladores.crudBolo.edicao.BoloEdicaoControlador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,12 +13,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import modelos.entidadeDAO.BoloDAO;
-import modelos.entidades.Bolo;
+import modelos.entidadeDAO.ClienteDAO;
 import modelos.interfaces.AproveitarFuncao;
 
 // Bolo para editar ou remover
-public class BoloControlador {
+public class ClienteControlador {
 
     @FXML
     private AnchorPane modal;
@@ -32,13 +29,13 @@ public class BoloControlador {
     private Button nome;
 
     private Long codigo;
-    private BoloDAO boloDAO = new BoloDAO(App.conexao);
+    private ClienteDAO clienteDAO = new ClienteDAO(App.conexao);
 
     private boolean clicouEditar = false;
 
     private Node areaDeAlerta;
 
-    private AproveitarFuncao atualizarAreaDeBolos;
+    private AproveitarFuncao atualizarAreaDeClientes;
 
 
     @FXML
@@ -53,7 +50,7 @@ public class BoloControlador {
     @FXML
     public void editar(ActionEvent event) throws Exception {
         if (!clicouEditar) {
-            abrirTelaEditar();
+            
         } else {
             App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Edição já aberta para o bolo.");
         }
@@ -64,10 +61,10 @@ public class BoloControlador {
         if (codigo != null) {
             App.conexao.setAutoCommit(false);
            try {
-                boloDAO.remover(boloDAO.buscarPorCodigo(codigo));
-                atualizarAreaDeBolos.usar();
+                clienteDAO.remover(clienteDAO.buscarPorCodigo(codigo));
+                atualizarAreaDeClientes.usar();
                 App.conexao.commit();
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "O bolo com ID: " + codigo + " foi removido.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "O cliente com ID: " + codigo + " foi removido.");
            } catch (Exception erro) {
                 System.out.println("Erro: " + erro.getMessage());
                 erro.printStackTrace();
@@ -77,27 +74,22 @@ public class BoloControlador {
         }
     }
 
+    /* 
     public void abrirTelaEditar() {
         try {
             clicouEditar = true;
-            FXMLLoader carregar = new  FXMLLoader(getClass().getResource("/telas/bolos/edicao/edicao.fxml"));
+            FXMLLoader carregar = new  FXMLLoader(getClass().getResource("/telas/clientes/edicao/edicao.fxml"));
             Parent raiz = carregar.load();
             BoloEdicaoControlador controlador = carregar.getController();
             Scene cena = new Scene(raiz);
             Stage palco = new Stage(StageStyle.UNDECORATED);
             // Setar os dados para edição
             App.adicionarMovimento(palco, cena);
-            Bolo bolo = boloDAO.buscarPorCodigo(codigo);
 
-            if (bolo != null) {
-                controlador.setSabor(bolo.getSabor());
-                controlador.setPreco(bolo.getPreco());
-                controlador.setPeso(bolo.getPeso());
-                controlador.setFabricacao(bolo.getFabricacao());
-                controlador.setVencimento(bolo.getVencimento());
-                controlador.setDescricao(bolo.getDescricao());
-                controlador.setBolo(bolo);
-            }
+
+            // Logica de editar cliente
+          
+
 
             controlador.setTela(palco);
             palco.setScene(cena);
@@ -116,6 +108,8 @@ public class BoloControlador {
         }
     }
 
+    */
+
     public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
@@ -124,17 +118,12 @@ public class BoloControlador {
         this.nome.setText(nome);
     }
 
-    public void setFoto(long codigo) {
-        String caminho = getClass().getResource("/telas/principal/bolo/images/").toExternalForm() + codigo + ".png";
-        foto.setImage(new Image(caminho));
-    }
-
     public void setAreaDeAlerta(Node areaAlerta) {
         this.areaDeAlerta = areaAlerta;
     }
 
-    public void setAtualizarAreaDeBolos(AproveitarFuncao funcao) {
-       this.atualizarAreaDeBolos = funcao;
+    public void setAtualizarAreaDeClientes(AproveitarFuncao funcao) {
+       this.atualizarAreaDeClientes = funcao;
     }
 
 }

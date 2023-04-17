@@ -10,16 +10,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" styleClass="container" stylesheets="@../../funcionarios/styles/styles-crud.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" styleClass="container" stylesheets="@../../funcionarios/styles/styles-crud.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudCliente.cadastro.ClienteCadastrarControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="713.0" layoutY="6.0" AnchorPane.rightAnchor="45.0">
-               <image>
-                  <Image url="@../../funcionarios/cadastro/images/minimizar.png" />
-               </image>
-            </ImageView>
-            <ImageView layoutX="762.0" layoutY="8.0" AnchorPane.rightAnchor="5.0">
+            <ImageView layoutX="762.0" layoutY="8.0" onMouseClicked="#encerrar2" AnchorPane.rightAnchor="5.0">
                <image>
                   <Image url="@../../funcionarios/cadastro/images/fechar.png" />
                </image>
@@ -32,35 +27,44 @@
          <children>
             <Label layoutX="81.0" layoutY="44.0" prefHeight="50.0" prefWidth="600.0" styleClass="titulo" text="CADASTRO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
             <Label layoutX="135.0" layoutY="143.0" styleClass="descricao" text="Nome" AnchorPane.leftAnchor="135.0" />
-            <TextField layoutX="135.0" layoutY="169.0" prefWidth="280.0" promptText="Ex: Carlos Miranda" AnchorPane.leftAnchor="135.0" />
+            <TextField fx:id="nome" layoutX="135.0" layoutY="169.0" prefWidth="280.0" promptText="Ex: Carlos Miranda" AnchorPane.leftAnchor="135.0" />
             <Label layoutX="135.0" layoutY="242.0" styleClass="descricao" text="CEP" AnchorPane.leftAnchor="135.0" />
-            <TextField layoutX="135.0" layoutY="267.0" prefWidth="280.0" promptText="Ex: 29999-999" AnchorPane.leftAnchor="135.0" />
+            <TextField fx:id="cep" layoutX="135.0" layoutY="267.0" prefWidth="280.0" promptText="Ex: 29999-999" AnchorPane.leftAnchor="135.0" />
             <Label layoutX="505.0" layoutY="145.0" styleClass="descricao" text="CPF" AnchorPane.leftAnchor="505.0" />
-            <TextField layoutX="505.0" layoutY="171.0" prefWidth="280.0" promptText="000.000.000-00" AnchorPane.leftAnchor="505.0" AnchorPane.rightAnchor="75.0" />
-            <ComboBox layoutX="505.0" layoutY="267.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="505.0" AnchorPane.rightAnchor="75.0" />
+            <TextField fx:id="cpf" layoutX="505.0" layoutY="171.0" prefWidth="280.0" promptText="000.000.000-00" AnchorPane.leftAnchor="505.0" AnchorPane.rightAnchor="75.0" />
+            <ComboBox fx:id="estado" layoutX="505.0" layoutY="267.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="505.0" AnchorPane.rightAnchor="75.0" />
             <Label layoutX="505.0" layoutY="240.0" styleClass="descricao" text="Estado" AnchorPane.leftAnchor="505.0" />
-            <ComboBox layoutX="135.0" layoutY="363.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="135.0" />
+            <ComboBox fx:id="cidade" layoutX="135.0" layoutY="363.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="135.0" />
             <Label layoutX="135.0" layoutY="336.0" styleClass="descricao" text="Cidade" AnchorPane.leftAnchor="135.0" />
             <Label layoutX="505.0" layoutY="336.0" styleClass="descricao" text="Bairro" AnchorPane.leftAnchor="505.0" />
-            <TextField layoutX="505.0" layoutY="362.0" prefHeight="35.0" prefWidth="314.0" promptText="Ex: Santo Agosto" AnchorPane.rightAnchor="75.0" />
+            <TextField fx:id="bairro" layoutX="505.0" layoutY="362.0" prefHeight="35.0" prefWidth="314.0" promptText="Ex: Santo Agosto" AnchorPane.rightAnchor="75.0" />
             <Label layoutX="135.0" layoutY="433.0" styleClass="descricao" text="Rua" AnchorPane.leftAnchor="135.0" />
-            <TextField layoutX="135.0" layoutY="459.0" prefWidth="280.0" promptText="Ex: Flores" AnchorPane.leftAnchor="135.0" />
+            <TextField fx:id="rua" layoutX="135.0" layoutY="459.0" prefWidth="280.0" promptText="Ex: Flores" AnchorPane.leftAnchor="135.0" />
             <Label layoutX="505.0" layoutY="433.0" styleClass="descricao" text="Número" AnchorPane.leftAnchor="505.0" />
-            <TextField layoutX="505.0" layoutY="459.0" prefWidth="80.0" promptText="Ex: 999" AnchorPane.leftAnchor="505.0" />
-            <Button layoutX="225.0" layoutY="575.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="Salvar" AnchorPane.rightAnchor="495.0">
+            <TextField fx:id="numero" layoutX="505.0" layoutY="459.0" prefWidth="80.0" promptText="Ex: 999" AnchorPane.leftAnchor="505.0" />
+            <Button layoutX="225.0" layoutY="575.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Salvar" AnchorPane.rightAnchor="495.0">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="confirmar" />
                </styleClass>
             </Button>
-            <Button layoutX="495.0" layoutY="575.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="Cancelar" AnchorPane.rightAnchor="225.0">
+            <Button layoutX="495.0" layoutY="575.0" mnemonicParsing="false" onAction="#fechar" prefHeight="50.0" prefWidth="180.0" text="Cancelar" AnchorPane.rightAnchor="225.0">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="cancelar" />
                </styleClass>
             </Button>
             <Label layoutX="645.0" layoutY="433.0" styleClass="descricao" text="Telefone" />
-            <TextField layoutX="645.0" layoutY="459.0" prefWidth="180.0" promptText="Ex: 999" AnchorPane.rightAnchor="75.0" />
+            <TextField fx:id="telefone" layoutX="645.0" layoutY="459.0" prefWidth="180.0" promptText="Ex: 999" AnchorPane.rightAnchor="75.0" />
+            <Label fx:id="erroNome" layoutX="135.0" layoutY="212.0" prefHeight="18.0" prefWidth="280.0" />
+            <Label fx:id="erroCpf" layoutX="505.0" layoutY="212.0" prefHeight="18.0" prefWidth="319.0" />
+            <Label fx:id="erroCep" layoutX="135.0" layoutY="308.0" prefHeight="18.0" prefWidth="281.0" />
+            <Label fx:id="erroEstado" layoutX="505.0" layoutY="308.0" prefHeight="18.0" prefWidth="317.0" />
+            <Label fx:id="erroBairro" layoutX="510.0" layoutY="404.0" prefHeight="18.0" prefWidth="317.0" />
+            <Label fx:id="erroCidade" layoutX="135.0" layoutY="404.0" prefHeight="18.0" prefWidth="317.0" />
+            <Label fx:id="erroRua" layoutX="135.0" layoutY="501.0" prefHeight="18.0" prefWidth="317.0" />
+            <Label fx:id="erroNumero" alignment="CENTER" layoutX="469.0" layoutY="501.0" prefHeight="18.0" prefWidth="152.0" />
+            <Label fx:id="erroTelefone" layoutX="645.0" layoutY="501.0" prefHeight="18.0" prefWidth="181.0" />
          </children>
       </AnchorPane>
    </center>

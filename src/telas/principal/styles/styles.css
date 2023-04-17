@@ -1,5 +1,5 @@
 * {
-    -fx-font-family: "Montreal";
+    -fx-font-family: "System";
 }
 
 .area-fechamento {
@@ -129,6 +129,11 @@
 .area-bolo .button:hover {
     -fx-background-color: #1d6e119b;
 }
+
+.area-bolo .image-view {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.20), 5, 0, 1px, 2px);
+}
+
 
 .area-bolo .fabricao {
     -fx-text-fill: #557C97;

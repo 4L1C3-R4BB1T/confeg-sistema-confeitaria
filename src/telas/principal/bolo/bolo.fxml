@@ -19,7 +19,10 @@
                   <Insets />
                </VBox.margin>
             </ImageView>
-            <Label styleClass="titulo" text="INFORMAÇÕES" />
+            <Label styleClass="titulo" text="DESCRIÇÃO">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></Label>
             <Label fx:id="descricao" alignment="CENTER" prefHeight="40.0" prefWidth="265.0" styleClass="subtitulo" text="Esse é um bolo de chocolate, bastante recheado e com flocos de goiabada" textAlignment="CENTER" wrapText="true" />
             <AnchorPane prefHeight="175.0" prefWidth="300.0">
                <children>

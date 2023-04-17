@@ -52,10 +52,13 @@
                         <Insets bottom="30.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <Button mnemonicParsing="false" onAction="#entrar" prefHeight="50.0" prefWidth="400.0" text="Entrar">
+                  <Button fx:id="botaoEntrar" mnemonicParsing="false" onAction="#entrar" prefHeight="50.0" prefWidth="400.0" text="Entrar">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fx:id="areaCarregar" fitHeight="30.0" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
                   </Button>
                   <HBox alignment="CENTER" prefHeight="18.0" spacing="5.0">
                      <children>
