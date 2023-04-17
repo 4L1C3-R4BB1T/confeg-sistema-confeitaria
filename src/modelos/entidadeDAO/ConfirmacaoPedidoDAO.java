@@ -22,7 +22,7 @@ public class ConfirmacaoPedidoDAO {
             ps.setLong(1, confirmacao.getCliente().getCodigo());
             ps.setLong(2, confirmacao.getPedido().getCodigo());
             ps.setDate(3, confirmacao.getDataConfirmacao());
-            ps.setString(4, confirmacao.getPago());
+            ps.setBoolean(4, confirmacao.getPago());
             ps.setString(5, confirmacao.getObservacao());
             ps.execute();
             ResultSet resultado = ps.getGeneratedKeys();
@@ -41,7 +41,7 @@ public class ConfirmacaoPedidoDAO {
             ps.setLong(1, confirmacao.getCliente().getCodigo());
             ps.setLong(2, confirmacao.getPedido().getCodigo());
             ps.setDate(3, confirmacao.getDataConfirmacao());
-            ps.setString(4, confirmacao.getPago());
+            ps.setBoolean(4, confirmacao.getPago());
             ps.setString(5, confirmacao.getObservacao());
             ps.setLong(6, confirmacao.getCodigo());
             ps.execute();
@@ -77,7 +77,7 @@ public class ConfirmacaoPedidoDAO {
                     clienteDAO.buscarPorCodigo(resultado.getLong("cod_cliente")),
                     pedidoDAO.buscarPorCodigo(resultado.getLong("cod_pedido")),
                     resultado.getDate("data_confirmacao_pedido"),
-                    resultado.getString("pago_confirmacao_pedido"),
+                    resultado.getBoolean("pago_confirmacao_pedido"),
                     resultado.getString("observacao_confirmacao_pedido")
                 );
             }
@@ -100,7 +100,7 @@ public class ConfirmacaoPedidoDAO {
                     clienteDAO.buscarPorCodigo(resultado.getLong("cod_cliente")),
                     pedidoDAO.buscarPorCodigo(resultado.getLong("cod_pedido")),
                     resultado.getDate("data_confirmacao_pedido"),
-                    resultado.getString("pago_confirmacao_pedido"),
+                    resultado.getBoolean("pago_confirmacao_pedido"),
                     resultado.getString("observacao_confirmacao_pedido")
                 ));
             }
