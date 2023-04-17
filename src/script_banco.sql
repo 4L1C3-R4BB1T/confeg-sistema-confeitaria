@@ -5862,7 +5862,7 @@ INSERT INTO sabor (descricao_sabor) VALUES
 ('Milho');
 
 INSERT INTO bolo (cod_sabor, descricao_bolo, peso_bolo, preco_bolo, data_fabricacao_bolo, data_vencimento_bolo) VALUES
-(1, 'Bolo de Chocolate', 1.0, 30.0, '2023-04-14', '2023-04-16'),
+(1, 'Um delicioso bolo de Chocolate', 1.0, 30.0, '2023-04-14', '2023-04-16'),
 (2, 'Um delicioso bolo de Baunilha', 1.5, 35.0, '2023-04-14', '2023-04-17'),
 (3, 'Um delicioso bolo de Cenoura', 2.0, 40.0, '2023-04-14', '2023-04-18'),
 (4, 'Um delicioso bolo Floresta Negra', 1.0, 30.0, '2023-04-14', '2023-04-16'),
@@ -5871,7 +5871,15 @@ INSERT INTO bolo (cod_sabor, descricao_bolo, peso_bolo, preco_bolo, data_fabrica
 (1, 'Um delicioso bolo de Chocolate', 1.0, 30.0, '2023-04-15', '2023-04-17'),
 (2, 'Um delicioso bolo de Baunilha', 1.5, 35.0, '2023-04-15', '2023-04-18'),
 (3, 'Um delicioso bolo de Cenoura', 2.0, 40.0, '2023-04-15', '2023-04-19'),
-(4, 'Um delicioso bolo Floresta Negra', 1.0, 30.0, '2023-04-15', '2023-04-17');
+(7, 'Um delicioso bolo de Morango', 1.0, 30.0, '2023-04-15', '2023-04-17'),
+(8, 'Um delicioso bolo de Laranja', 1.0, 30.0, '2023-04-15', '2023-04-17'),
+(9, 'Um delicioso bolo de Banana', 1.0, 30.0, '2023-04-15', '2023-04-17'),
+(10, 'Um delicioso bolo de Milho', 1.0, 30.0, '2023-04-15', '2023-04-17'),
+(10, 'Um delicioso bolo de Milho', 1.0, 30.0, '2023-04-15', '2023-04-17'),
+(9, 'Um delicioso bolo de Banana', 1.0, 30.0, '2023-04-15', '2023-04-17'),
+(7, 'Um delicioso bolo de Morango', 1.0, 30.0, '2023-04-15', '2023-04-17'),
+(8, 'Um delicioso bolo de Laranja', 1.0, 30.0, '2023-04-15', '2023-04-17'),
+(8, 'Um delicioso bolo de Laranja', 1.0, 30.0, '2023-04-15', '2023-04-17');
 
 INSERT INTO metodo_pagamento (descricao_metodo_pagamento) VALUES 
 ('Dinheiro'),
