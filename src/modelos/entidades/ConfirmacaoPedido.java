@@ -8,10 +8,10 @@ public class ConfirmacaoPedido {
     private Cliente cliente;
     private Pedido pedido;
     private Date dataConfirmacao;
-    private String pago;
+    private Boolean pago;
     private String observacao;
    
-    public ConfirmacaoPedido(Long codigo, Cliente cliente, Pedido pedido, Date dataConfirmacao, String pago,
+    public ConfirmacaoPedido(Long codigo, Cliente cliente, Pedido pedido, Date dataConfirmacao, Boolean pago,
             String observacao) {
         this.codigo = codigo;
         this.cliente = cliente;
@@ -21,7 +21,7 @@ public class ConfirmacaoPedido {
         this.observacao = observacao;
     }
 
-    public ConfirmacaoPedido(Cliente cliente, Pedido pedido, Date dataConfirmacao, String pago, String observacao) {
+    public ConfirmacaoPedido(Cliente cliente, Pedido pedido, Date dataConfirmacao, Boolean pago, String observacao) {
         this.cliente = cliente;
         this.pedido = pedido;
         this.dataConfirmacao = dataConfirmacao;
@@ -61,11 +61,11 @@ public class ConfirmacaoPedido {
         this.dataConfirmacao = dataConfirmacao;
     }
 
-    public String getPago() {
+    public Boolean getPago() {
         return pago;
     }
 
-    public void setPago(String pago) {
+    public void setPago(Boolean pago) {
         this.pago = pago;
     }
 

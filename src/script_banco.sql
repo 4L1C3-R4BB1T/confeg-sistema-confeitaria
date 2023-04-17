@@ -161,7 +161,7 @@ CREATE TABLE confimacao_pedido (
     cod_cliente                     INTEGER     NOT NULL,
     cod_pedido                      INTEGER     NOT NULL,
     data_confirmacao_pedido         DATE        NOT NULL,
-    pago_confirmacao_pedido         CHAR(3)     NOT NULL,
+    pago_confirmacao_pedido         BOOLEAN     NOT NULL,
     observacao_confirmacao_pedido   VARCHAR(60) NULL,
     CONSTRAINT pk_confirmacao_pedido
         PRIMARY KEY (cod_confirmacao),
@@ -5935,11 +5935,11 @@ INSERT INTO pedido_bolo (cod_pedido, cod_bolo, quantidade_bolo) VALUES
 (15, 6, 3);
 
 INSERT INTO confimacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido, pago_confirmacao_pedido, observacao_confirmacao_pedido) VALUES
-(1, 1, '2022-01-17', 'Sim', null),
-(3, 13, '2023-04-16', 'Sim', 'Desconto à vista.'),
-(3, 3, '2022-04-18', 'Não', null),
-(6, 6, '2023-01-18', 'Sim', 'Disse que o bolo estava delicioso.'),
-(5, 15, '2023-04-16', 'Não', 'Vai pagar amanhã.');
+(1, 1, '2022-01-17', true, null),
+(3, 13, '2023-04-16', true, 'Desconto à vista.'),
+(3, 3, '2022-04-18', false, null),
+(6, 6, '2023-01-18', true, 'Disse que o bolo estava delicioso.'),
+(5, 15, '2023-04-16', false, 'Vai pagar amanhã.');
 
 INSERT INTO ingrediente (descricao_ingrediente) VALUES
 ('Farinha'),
