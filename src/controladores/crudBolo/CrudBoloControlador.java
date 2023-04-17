@@ -110,7 +110,7 @@ public class CrudBoloControlador {
                     controlador.setCodigo(bolo.getCodigo());
                     controlador.setFoto(bolo.getSabor().getCodigo());
                     controlador.setAreaDeAlerta(areaDeAlerta);
-                    controlador.setNome(bolo.getSabor().getDescricao().substring(0, 5) + bolo.getCodigo());
+                    controlador.setNome("COD " + bolo.getCodigo());
                     areaDebolos.getChildren().add(raiz);
                 } catch(Exception erro) {
                     erro.printStackTrace();
