@@ -35,7 +35,7 @@ public class EnderecoDAO {
     }
 
     public boolean alterar(Endereco endereco) {
-        String comando = "UPADTE endereco SET cep_endereco = ?, cod_estado = ?, cod_cidade = ?, bairro_endereco = ?, rua_endereco = ?, numero_endereco = ? WHERE cod_endereco = ?";
+        String comando = "UPDATE endereco SET cep_endereco = ?, cod_estado = ?, cod_cidade = ?, bairro_endereco = ?, rua_endereco = ?, numero_endereco = ? WHERE cod_endereco = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, endereco.getCep());
             ps.setLong(2, endereco.getEstado().getCodigo());

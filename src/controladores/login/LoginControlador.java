@@ -185,7 +185,7 @@ public class LoginControlador {
         new Thread(() -> {
             Platform.runLater(() -> adicionarEfeitoCarregar());
             try {
-                Thread.sleep(5000);
+                Thread.sleep(2000);
                 Platform.runLater(() -> {
                     if (timeline != null) {
                         timeline.stop();
@@ -211,7 +211,7 @@ public class LoginControlador {
         tl.getKeyFrames().add(keyFrame);
         areaCarregar.setFitWidth(32);
         areaCarregar.setFitWidth(32);
-        botaoEntrar.setText("Buscando...");
+        botaoEntrar.setText("Carregando...");
         timeline = tl;
         tl.play();
     }

@@ -84,7 +84,7 @@ public class ClienteDAO {
     }
 
     public List<Cliente> buscarTodos() {
-        String comando = "SELECT * FROM cliente";
+        String comando = "SELECT * FROM cliente ORDER BY cod_cliente ASC";
         List<Cliente> clientes = new ArrayList<>();
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();

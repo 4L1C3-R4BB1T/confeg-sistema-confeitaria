@@ -93,6 +93,28 @@
     -fx-background-radius: 10px 10px 0px 0;
 }
 
+.funcionarios .exibicao AnchorPane .remover:hover, 
+.funcionarios .exibicao AnchorPane .editar:hover {
+    -fx-background-color: #ffffff7a;
+    -fx-text-fill: #000;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.funcionarios .pessoa:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+.funcionarios  AnchorPane .remover {
+    -fx-background-color: rgba(255, 0, 0, 0.467) !important; 
+    -fx-text-fill: #fff !important;
+}
+
+.funcionarios  AnchorPane .editar {
+    -fx-background-color: green !important; 
+    -fx-text-fill: #fff !important;
+}
+
 
 .funcionarios .menu {
     -fx-background-color: #0D0F0D;

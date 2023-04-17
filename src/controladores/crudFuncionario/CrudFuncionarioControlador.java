@@ -1,11 +1,11 @@
-package controladores.crudCliente;
+package controladores.crudFuncionario;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import aplicacao.App;
-import controladores.crudCliente.cadastro.ClienteCadastrarControlador;
 import controladores.crudCliente.cadastro.ClienteControlador;
+import controladores.login.CadastroControlador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,15 +16,15 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import modelos.entidadeDAO.ClienteDAO;
+import modelos.entidadeDAO.FuncionarioDAO;
 
-public class CrudClienteControlador {
+public class CrudFuncionarioControlador {
 
     @FXML 
     public HBox areaDeAlerta;
 
     @FXML
-    public FlowPane areaDeClientes;
+    public FlowPane areaDeFuncionarios;
 
     private Stage tela;
 
@@ -32,10 +32,10 @@ public class CrudClienteControlador {
 
     private boolean clicouAdicionar = false;
 
-    private ClienteDAO clienteDAO = new ClienteDAO(App.conexao);
+    private FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
     
     @FXML
-    public void adicionarCliente(ActionEvent event) throws  Exception {
+    public void adicionarFuncionario(ActionEvent event) throws  Exception {
         if (!clicouAdicionar) {
             carregarCadastro();
         } else {
@@ -68,15 +68,15 @@ public class CrudClienteControlador {
 
     @FXML
     public void initialize() {
-        atualizarAreaDeClientes();
+        atualizarAreaDeFuncionarios();
     }
 
     public void carregarCadastro() {
         try {
             clicouAdicionar = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/clientes/cadastro/cadastro.fxml"));
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/login/cadastro/cadastro.fxml"));
             Parent raiz = carregar.load();
-            ClienteCadastrarControlador controlador = carregar.getController();
+            CadastroControlador controlador = carregar.getController();
             Scene cena = new Scene(raiz);
             Stage palco = new Stage(StageStyle.UNDECORATED);
             App.adicionarMovimento(palco, cena);   
@@ -86,9 +86,8 @@ public class CrudClienteControlador {
             palco.showAndWait();
             telas.remove(palco);
             clicouAdicionar = false;
-            if (controlador.getCadastrou()) {
-                atualizarAreaDeClientes();
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "ADICIONAR", "O Cliente foi cadastro com sucesso.");
+            if (controlador.dadosForamSalvos()) {
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "ADICIONAR", "O Funcionário foi cadastro com sucesso.");
             } else {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "ADICIONAR", "Operação abortada");
             }
@@ -97,24 +96,26 @@ public class CrudClienteControlador {
         }
     }
 
-    public void atualizarAreaDeClientes() {
-        areaDeClientes.getChildren().clear();
-            clienteDAO.buscarTodos()
-                .forEach( cliente -> {
+    public void atualizarAreaDeFuncionarios() {
+       areaDeFuncionarios.getChildren().clear();
+            funcionarioDAO.buscarTodos()
+                .forEach( funcionario -> {
                     try {
-                        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/clientes/subtela/subtela.fxml"));
+                        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/funcionarios/subtela/subtela.fxml"));
                         Parent raiz = carregar.load();
-                        ClienteControlador controlador = carregar.getController();
-                        controlador.setCodigo(cliente.getCodigo());
+                        FuncionarioControlador controlador = carregar.getController();
+                        controlador.setCodigo(funcionario.getCodigo());
                         controlador.setAreaDeAlerta(areaDeAlerta);
-                        controlador.setNome("COD " + cliente.getCodigo());
-                        controlador.setAtualizarAreaDeClientes(this::atualizarAreaDeClientes);
-                        areaDeClientes.getChildren().add(raiz);
+                        controlador.carregarImagem();
+                        controlador.setNome("COD " + funcionario.getCodigo());
+                        controlador.setAtualizarAreaDeFuncionarios((this::atualizarAreaDeFuncionarios));
+                        areaDeFuncionarios.getChildren().add(raiz);
                     } catch(Exception erro) {
                         erro.printStackTrace();
                     }
             });
     }
+
 
 
     public void fecharTelas() {

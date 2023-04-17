@@ -7,20 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="290.0" prefWidth="238.0" styleClass="pessoa" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudBolo.cadastro.BoloControlador">
+<AnchorPane prefHeight="300.0" prefWidth="238.0" styleClass="pessoa" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudFuncionario.FuncionarioControlador">
    <children>
-      <Button fx:id="nome" layoutX="19.0" layoutY="170.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#abrirModal" prefWidth="200.0" text="Bolo 123" AnchorPane.rightAnchor="20.0">
+      <Button fx:id="nome" layoutX="18.0" layoutY="185.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#abrirModal" prefWidth="200.0" text="Cliente" AnchorPane.rightAnchor="20.0">
          <graphic>
             <ImageView fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" translateX="-55.0">
                <image>
-                  <Image url="@../../funcionarios/images/seta_baixo.png" />
+                  <Image url="@../images/seta_baixo.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <AnchorPane fx:id="modal" layoutX="19.0" layoutY="211.0" prefHeight="63.0" prefWidth="199.0" styleClass="menu" visible="false">
+      <AnchorPane fx:id="modal" layoutX="19.0" layoutY="211.0" prefHeight="63.0" prefWidth="199.0" styleClass="menu" visible="false" AnchorPane.topAnchor="230.0">
          <children>
-            <HBox alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="39.0" prefWidth="196.0" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="1.0">
+            <HBox alignment="CENTER" layoutX="2.0" layoutY="4.0" prefHeight="39.0" prefWidth="196.0" spacing="10.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#editar" prefWidth="100.0" styleClass="editar" text="EDITAR" />
                   <Button mnemonicParsing="false" onAction="#remover" prefWidth="100.0" styleClass="remover" text="REMOVER" />
@@ -31,9 +31,9 @@
             </HBox>
          </children>
       </AnchorPane>
-      <ImageView fx:id="foto" fitHeight="146.0" fitWidth="200.0" layoutX="18.0" layoutY="5.0">
+      <ImageView fx:id="foto" fitHeight="169.0" fitWidth="173.0" layoutX="32.0" layoutY="7.0">
          <image>
-            <Image url="@../../../../../../Downloads/pexels-photo-4109998%201.png" />
+            <Image url="@../../clientes/subtela/cliente.png" />
          </image>
       </ImageView>
    </children>

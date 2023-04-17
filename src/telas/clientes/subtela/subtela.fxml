@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="239.0" prefWidth="238.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudCliente.cadastro.ClienteControlador">
+<AnchorPane prefHeight="300.0" prefWidth="240.0" styleClass="pessoa" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudCliente.cadastro.ClienteControlador">
    <children>
       <Button fx:id="nome" layoutX="18.0" layoutY="175.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#abrirModal" prefWidth="200.0" text="Cliente" AnchorPane.rightAnchor="20.0">
          <graphic>
@@ -18,12 +18,12 @@
             </ImageView>
          </graphic>
       </Button>
-      <AnchorPane fx:id="modal" layoutX="19.0" layoutY="211.0" prefHeight="63.0" prefWidth="199.0" styleClass="menu" visible="false">
+      <AnchorPane fx:id="modal" layoutX="19.0" layoutY="211.0" prefHeight="63.0" prefWidth="199.0" styleClass="menu" visible="false" AnchorPane.topAnchor="220.0">
          <children>
             <HBox alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="39.0" prefWidth="196.0" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="1.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#editar" prefWidth="100.0" text="EDITAR" />
-                  <Button mnemonicParsing="false" onAction="#remover" prefWidth="100.0" text="REMOVER" />
+                  <Button mnemonicParsing="false" onAction="#editar" prefWidth="100.0" styleClass="editar" text="EDITAR" />
+                  <Button mnemonicParsing="false" onAction="#remover" prefWidth="100.0" styleClass="remover" text="REMOVER" />
                </children>
                <padding>
                   <Insets left="10.0" right="10.0" top="10.0" />

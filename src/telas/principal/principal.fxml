@@ -109,12 +109,17 @@
                   <AnchorPane fx:id="menuUsuario" layoutX="1036.0" layoutY="14.0" prefHeight="160.0" prefWidth="160.0" styleClass="modal" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label alignment="CENTER" layoutX="15.0" layoutY="33.0" onMouseClicked="#verPerfil" prefHeight="34.0" prefWidth="130.0" styleClass="botao" text="Perfil" />
-                        <ImageView layoutX="28.0" layoutY="40.0">
+                        <ImageView layoutX="25.0" layoutY="38.0">
                            <image>
                               <Image url="@images/user-preto.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" layoutX="15.0" layoutY="90.0" onMouseClicked="#deslogar" prefHeight="34.0" prefWidth="130.0" styleClass="botao" text="Sair" />
+                        <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="24.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/sair-menu.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </children>

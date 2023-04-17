@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -10,16 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" styleClass="container" stylesheets="@../styles/styles-crud.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" styleClass="container" stylesheets="@../../login/styles/styles-crud.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudFuncionario.FuncionarioEditarControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="713.0" layoutY="6.0" AnchorPane.rightAnchor="45.0">
-               <image>
-                  <Image url="@../cadastro/images/minimizar.png" />
-               </image>
-            </ImageView>
-            <ImageView layoutX="762.0" layoutY="8.0" AnchorPane.rightAnchor="5.0">
+            <ImageView layoutX="762.0" layoutY="8.0" onMouseClicked="#fecharTela" AnchorPane.rightAnchor="5.0">
                <image>
                   <Image url="@../cadastro/images/fechar.png" />
                </image>
@@ -30,36 +26,81 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="conteudo" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="81.0" layoutY="44.0" prefHeight="50.0" prefWidth="600.0" styleClass="titulo" text="EDIÇÃO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
-            <ComboBox layoutX="100.0" layoutY="144.0" prefWidth="150.0" promptText="Tipo" styleClass="tipo" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+            <Label layoutX="81.0" layoutY="44.0" prefHeight="50.0" prefWidth="600.0" styleClass="titulo" text="CADASTRO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
+            <ComboBox fx:id="tipo" layoutX="100.0" layoutY="144.0" prefWidth="150.0" promptText="Tipo" styleClass="tipo" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
             <Label layoutX="75.0" layoutY="230.0" styleClass="descricao" text="Nome" AnchorPane.leftAnchor="75.0" />
-            <TextField layoutX="75.0" layoutY="256.0" prefWidth="280.0" promptText="Ex: Carlos Miranda" AnchorPane.leftAnchor="75.0" />
+            <TextField fx:id="nome" layoutX="75.0" layoutY="256.0" prefWidth="280.0" promptText="Ex: Carlos Miranda" AnchorPane.leftAnchor="75.0" />
             <Label layoutX="75.0" layoutY="326.0" styleClass="descricao" text="CEP" AnchorPane.leftAnchor="75.0" />
-            <TextField layoutX="75.0" layoutY="352.0" prefWidth="280.0" promptText="Ex: 29999-999" AnchorPane.leftAnchor="75.0" />
-            <Label layoutX="445.0" layoutY="213.0" styleClass="descricao" text="CPF" AnchorPane.leftAnchor="445.0" />
-            <TextField layoutX="445.0" layoutY="239.0" prefHeight="50.0" prefWidth="280.0" promptText="000.000.000-00" styleClass="bloqueado" AnchorPane.leftAnchor="445.0" />
-            <ComboBox layoutX="445.0" layoutY="352.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="445.0" />
+            <TextField fx:id="cep" layoutX="75.0" layoutY="352.0" prefWidth="280.0" promptText="Ex: 29999-999" AnchorPane.leftAnchor="75.0" />
+            <Label layoutX="445.0" layoutY="221.0" styleClass="descricao" text="CPF" AnchorPane.leftAnchor="445.0" />
+            <TextField fx:id="cpf" layoutX="445.0" layoutY="247.0" prefWidth="280.0" promptText="000.000.000-00" styleClass="bloqueado" AnchorPane.leftAnchor="445.0" />
+            <ComboBox fx:id="estado" layoutX="445.0" layoutY="352.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="445.0" />
             <Label layoutX="445.0" layoutY="325.0" styleClass="descricao" text="Estado" AnchorPane.leftAnchor="445.0" />
-            <ComboBox layoutX="75.0" layoutY="448.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="75.0" />
+            <ComboBox fx:id="cidade" layoutX="75.0" layoutY="448.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="75.0" />
             <Label layoutX="75.0" layoutY="421.0" styleClass="descricao" text="Cidade" AnchorPane.leftAnchor="75.0" />
             <Label layoutX="445.0" layoutY="421.0" styleClass="descricao" text="Bairro" AnchorPane.leftAnchor="445.0" />
-            <TextField layoutX="445.0" layoutY="447.0" prefWidth="280.0" promptText="Ex: Santo Agosto" AnchorPane.leftAnchor="445.0" />
+            <TextField fx:id="bairro" layoutX="445.0" layoutY="447.0" prefWidth="280.0" promptText="Ex: Santo Agosto" AnchorPane.leftAnchor="445.0" />
             <Label layoutX="75.0" layoutY="518.0" styleClass="descricao" text="Rua" AnchorPane.leftAnchor="75.0" />
-            <TextField layoutX="75.0" layoutY="544.0" prefWidth="280.0" promptText="Ex: Flores" AnchorPane.leftAnchor="75.0" />
+            <TextField fx:id="rua" layoutX="75.0" layoutY="544.0" prefWidth="280.0" promptText="Ex: Flores" AnchorPane.leftAnchor="75.0" />
             <Label layoutX="445.0" layoutY="518.0" styleClass="descricao" text="Número" AnchorPane.leftAnchor="445.0" />
-            <TextField layoutX="445.0" layoutY="544.0" prefWidth="280.0" promptText="Ex: 999" AnchorPane.leftAnchor="445.0" />
-            <Button layoutX="200.0" layoutY="625.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="Salvar" AnchorPane.rightAnchor="420.0">
+            <TextField fx:id="numero" layoutX="445.0" layoutY="544.0" prefWidth="280.0" promptText="Ex: 999" AnchorPane.leftAnchor="445.0" />
+            <Button layoutX="200.0" layoutY="625.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Cadastrar" AnchorPane.rightAnchor="420.0">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="confirmar" />
                </styleClass>
             </Button>
-            <Button layoutX="470.0" layoutY="625.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="Cancelar" AnchorPane.rightAnchor="150.0">
+            <Button layoutX="470.0" layoutY="625.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="180.0" text="Cancelar" AnchorPane.rightAnchor="150.0">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="cancelar" />
                </styleClass>
             </Button>
+            <Label fx:id="exibirErroNoCpf" layoutX="445.0" layoutY="299.0" prefHeight="18.0" prefWidth="283.0" styleClass="erro" AnchorPane.rightAnchor="72.0">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="exibirErroNoNumero" layoutX="444.0" layoutY="585.0" prefHeight="18.0" prefWidth="283.0" styleClass="erro">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="exibirErroNoCep" layoutX="74.0" layoutY="395.0" prefHeight="18.0" prefWidth="283.0" styleClass="erro">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="exibirErroNoTipo" alignment="CENTER" layoutX="62.0" layoutY="197.0" prefHeight="18.0" prefWidth="676.0" styleClass="erro">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="exibirErroNoNome" layoutX="74.0" layoutY="299.0" prefHeight="18.0" prefWidth="283.0" styleClass="erro">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="exibirErroNoEstado" layoutX="444.0" layoutY="395.0" prefHeight="18.0" prefWidth="283.0" styleClass="erro">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="exibirErroNoBairro" layoutX="444.0" layoutY="489.0" prefHeight="18.0" prefWidth="283.0" styleClass="erro">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="exibirErroNoCidade" layoutX="74.0" layoutY="489.0" prefHeight="18.0" prefWidth="283.0" styleClass="erro">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="exibirErroNoRua" layoutX="74.0" layoutY="585.0" prefHeight="18.0" prefWidth="283.0" styleClass="erro">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
          </children>
       </AnchorPane>
    </center>

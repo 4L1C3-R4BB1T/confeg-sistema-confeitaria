@@ -8,6 +8,7 @@ import java.util.List;
 import aplicacao.App;
 import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
+import controladores.crudFuncionario.CrudFuncionarioControlador;
 import controladores.login.LoginControlador;
 import controladores.principal.bolo.BoloControlador;
 import controladores.principal.perfil.PerfilControlador;
@@ -83,6 +84,7 @@ public class PrincipalControlador {
     private boolean clicouPerfil = false;
     private boolean clicouBolo = false;
     private boolean clicouCliente = false;
+    private boolean clicouFuncionario = false;
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
@@ -140,10 +142,14 @@ public class PrincipalControlador {
     }
 
     @FXML
-    public void irParaTelaFuncionarios(ActionEvent event) {
+    public void irParaTelaFuncionarios(ActionEvent event) throws Exception {
         removerBotaoAtivo();
         adicionarAtivoNoBotao(administrador);
-        System.out.println("Ir para tela funcionários");
+        if (!clicouFuncionario) {
+            carregarTelaCrudFuncionario();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+        }
     }
 
     @FXML 
@@ -296,6 +302,27 @@ public class PrincipalControlador {
             erro.printStackTrace();
         }
     }
+
+    public void carregarTelaCrudFuncionario() {
+        try {
+            clicouFuncionario = true;
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/funcionarios/funcionarios.fxml"));
+            Parent raiz = carregar.load();
+            CrudFuncionarioControlador controlador = carregar.getController();
+            Scene cena = new Scene(raiz);
+            Stage palco = new Stage(StageStyle.UNDECORATED);
+            controlador.setTela(palco);
+            palco.setScene(cena);
+            telas.add(palco);
+            App.adicionarMovimento(palco, cena);
+            palco.showAndWait();
+            telas.remove(palco);
+            clicouFuncionario = false;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
+
 
     public void fecharTodasTelas() {
         telas.forEach( tela -> {

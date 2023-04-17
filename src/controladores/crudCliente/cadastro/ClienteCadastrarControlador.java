@@ -26,9 +26,6 @@ import modelos.validacao.ValidaFormulario;
 public class ClienteCadastrarControlador {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
     private URL location;
 
     @FXML
@@ -119,13 +116,14 @@ public class ClienteCadastrarControlador {
             try {
                 Endereco _endereco = new Endereco(getEstado(), getCidade(), getCep(), getBairro(), getRua(), Integer.parseInt(getNumero()));
                 _endereco.setCodigo(enderecoDAO.inserir(_endereco));
-                Cliente cliente = new Cliente(getNome(), getCpf(), getBairro(), _endereco);
+                Cliente cliente = new Cliente(getNome(), getCpf(), getTelephone(), _endereco);
                 clienteDAO.inserir(cliente);
                 App.conexao.commit();
                 cadastrou = true;
                 encerrar();
             } catch (Exception erro) {
                 erro.printStackTrace();
+                App.conexao.rollback();
             }
         }
         threadPodeValidar = true;
@@ -221,6 +219,6 @@ public class ClienteCadastrarControlador {
     }
 
     public String getTelephone() {
-        return telefone.getText();
+        return telefone.getText().trim();
     }
 }

@@ -116,7 +116,7 @@ public class FuncionarioDAO {
     }
 
     public List<Funcionario> buscarTodos() {
-        String comando = "SELECT * FROM funcionario";
+        String comando = "SELECT * FROM funcionario ORDER BY cod_funcionario ASC";
         List<Funcionario> funcionarios = new ArrayList<>();
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
