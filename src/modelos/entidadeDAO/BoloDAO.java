@@ -43,6 +43,7 @@ public class BoloDAO {
             ps.setString(2, bolo.getDescricao());
             ps.setDouble(3, bolo.getPeso());
             ps.setDouble(4, bolo.getPreco());
+            ps.setLong(5, bolo.getCodigo());
             ps.execute();
             return true;
         } catch (Exception erro) {

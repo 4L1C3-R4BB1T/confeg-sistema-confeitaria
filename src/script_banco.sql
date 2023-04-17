@@ -150,10 +150,10 @@ CREATE TABLE pedido_bolo (
         PRIMARY KEY (cod_pedido_bolo),
     CONSTRAINT fk_pedido_bolo_pedido
         FOREIGN KEY (cod_pedido)
-        REFERENCES pedido(cod_pedido),
+        REFERENCES pedido(cod_pedido) ON DELETE CASCADE,
     CONSTRAINT fk_pedido_bolo_bolo
         FOREIGN KEY (cod_bolo)
-        REFERENCES bolo(cod_bolo)
+        REFERENCES bolo(cod_bolo) ON DELETE CASCADE
 );
 
 CREATE TABLE confimacao_pedido (
@@ -5855,7 +5855,11 @@ INSERT INTO sabor (descricao_sabor) VALUES
 ('Cenoura'),
 ('Floresta Negra'),
 ('Red Velvet'),
-('4 Leites');
+('4 Leites'),
+('Morango'),
+('Laranja'),
+('Banana'),
+('Milho');
 
 INSERT INTO bolo (cod_sabor, descricao_bolo, peso_bolo, preco_bolo, data_fabricacao_bolo, data_vencimento_bolo) VALUES
 (1, 'Bolo de Chocolate', 1.0, 30.0, '2023-04-14', '2023-04-16'),
