@@ -111,11 +111,11 @@ public class CrudBoloControlador {
                     controlador.setFoto(bolo.getSabor().getCodigo());
                     controlador.setAreaDeAlerta(areaDeAlerta);
                     controlador.setNome("COD " + bolo.getCodigo());
+                    controlador.setAtualizarAreaDeBolos(this::atualizarAreaDeBolos);
                     areaDebolos.getChildren().add(raiz);
                 } catch(Exception erro) {
                     erro.printStackTrace();
                 }
-
         });
     }
 

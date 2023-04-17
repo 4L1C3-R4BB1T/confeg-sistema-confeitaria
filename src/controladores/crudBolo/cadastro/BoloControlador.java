@@ -14,10 +14,12 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.entidadeDAO.BoloDAO;
 import modelos.entidades.Bolo;
+import modelos.interfaces.AproveitarFuncao;
 
 // Bolo para editar ou remover
 public class BoloControlador {
@@ -37,6 +39,8 @@ public class BoloControlador {
     private boolean clicouEditar = false;
 
     private Node areaDeAlerta;
+
+    private AproveitarFuncao atualizarAreaDeBolos;
 
 
     @FXML
@@ -58,9 +62,16 @@ public class BoloControlador {
     }
 
     @FXML
-    public void remover(ActionEvent event) {
+    public void remover(ActionEvent event) throws Exception {
         if (codigo != null) {
-            boloDAO.remover(boloDAO.buscarPorCodigo(codigo));
+            App.conexao.setAutoCommit(false);
+           try {
+                boloDAO.remover(boloDAO.buscarPorCodigo(codigo));
+                atualizarAreaDeBolos.usar();
+           } catch (Exception erro) {
+                System.out.println("Erro: " + erro.getMessage());
+                erro.printStackTrace();
+           }
         }
     }
 
@@ -92,6 +103,7 @@ public class BoloControlador {
             clicouEditar = false;
 
             if (controlador.getAlterou()) {
+                atualizarAreaDeBolos.usar();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "Edição", "Bolo alterado com sucesso.");
             } else {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Erro interno ou Operação Cancelada.");
@@ -117,6 +129,10 @@ public class BoloControlador {
 
     public void setAreaDeAlerta(Node areaAlerta) {
         this.areaDeAlerta = areaAlerta;
+    }
+
+    public void setAtualizarAreaDeBolos(AproveitarFuncao funcao) {
+       this.atualizarAreaDeBolos = funcao;
     }
 
 }
