@@ -64,7 +64,7 @@ CREATE TABLE cliente (
     cod_cliente         SERIAL      NOT NULL,
     nome_cliente        VARCHAR(60) NOT NULL,
     cpf_cliente         CHAR(11)    NOT NULL,
-    telefone_cliente    CHAR(15)    NOT NULL,
+    telefone_cliente    CHAR(11)    NOT NULL,
     cod_endereco        INTEGER     NOT NULL,
     CONSTRAINT pk_cliente
         PRIMARY KEY (cod_cliente),
@@ -5830,16 +5830,16 @@ INSERT INTO tipo_funcionario (descricao_tipo_funcionario) VALUES
 ('Gerente');
 
 INSERT INTO cliente (nome_cliente, cpf_cliente, telefone_cliente, cod_endereco) VALUES 
-('João Silva', '12345678900', '(11) 99999-9999', 1),
-('Maria Santos', '23456789011', '(21) 88888-8888', 2),
-('José Pereira', '34567890122', '(31) 77777-7777', 3),
-('Ana Souza', '45678901233', '(41) 66666-6666', 4),
-('Pedro Alves', '56789012344', '(51) 55555-5555', 5),
-('Luciana Oliveira', '67890123455', '(61) 44444-4444', 6),
-('Felipe Mendes', '78901234566', '(71) 33333-3333', 7),
-('Larissa Costa', '89012345677', '(81) 22222-2222', 8),
-('Ricardo Ferreira', '90123456788', '(91) 11111-1111', 9),
-('Camila Rodrigues', '01234567899', '(32) 99999-8888', 10);
+('João Silva', '12345678900', '11999999999', 1),
+('Maria Santos', '23456789011', '21888888888', 2),
+('José Pereira', '34567890122', '31777777777', 3),
+('Ana Souza', '45678901233', '41666666666', 4),
+('Pedro Alves', '56789012344', '51555555555', 5),
+('Luciana Oliveira', '67890123455', '61444444444', 6),
+('Felipe Mendes', '78901234566', '71333333333', 7),
+('Larissa Costa', '89012345677', '81222222222', 8),
+('Ricardo Ferreira', '90123456788', '91111111111', 9),
+('Camila Rodrigues', '01234567899', '32999998888', 10);
 
 INSERT INTO funcionario (nome_funcionario, cpf_funcionario, cod_tipo_funcionario, cod_endereco, email, senha) VALUES
 ('Pedro Silva', '12345678900', 1, 11, 'funcionario1@confeg.com', 'funcionario123'),
