@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS pedido_compra_ingrediente CASCADE;
 DROP TABLE IF EXISTS pedido_compra CASCADE;
 DROP TABLE IF EXISTS ingrediente CASCADE;
-DROP TABLE IF EXISTS confimacao_pedido CASCADE;
+DROP TABLE IF EXISTS confirmacao_pedido CASCADE;
 DROP TABLE IF EXISTS pedido_bolo CASCADE;
 DROP TABLE IF EXISTS pedido CASCADE;
 DROP TABLE IF EXISTS metodo_pagamento CASCADE;
@@ -156,7 +156,7 @@ CREATE TABLE pedido_bolo (
         REFERENCES bolo(cod_bolo) ON DELETE CASCADE
 );
 
-CREATE TABLE confimacao_pedido (
+CREATE TABLE confirmacao_pedido (
     cod_confirmacao                 SERIAL      NOT NULL,   
     cod_cliente                     INTEGER     NOT NULL,
     cod_pedido                      INTEGER     NOT NULL,
@@ -165,10 +165,10 @@ CREATE TABLE confimacao_pedido (
     observacao_confirmacao_pedido   VARCHAR(60) NULL,
     CONSTRAINT pk_confirmacao_pedido
         PRIMARY KEY (cod_confirmacao),
-    CONSTRAINT fk_confimacao_pedido_cliente
+    CONSTRAINT fk_confirmacao_pedido_cliente
         FOREIGN KEY (cod_cliente)
         REFERENCES cliente(cod_cliente) ON DELETE CASCADE,
-    CONSTRAINT fk_confimacao_pedido_pedido
+    CONSTRAINT fk_confirmacao_pedido_pedido
         FOREIGN KEY (cod_pedido)
         REFERENCES pedido(cod_pedido) ON DELETE CASCADE
 );
@@ -5934,7 +5934,7 @@ INSERT INTO pedido_bolo (cod_pedido, cod_bolo, quantidade_bolo) VALUES
 (15, 3, 1),
 (15, 6, 3);
 
-INSERT INTO confimacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido, pago_confirmacao_pedido, observacao_confirmacao_pedido) VALUES
+INSERT INTO confirmacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido, pago_confirmacao_pedido, observacao_confirmacao_pedido) VALUES
 (1, 1, '2022-01-17', true, null),
 (3, 13, '2023-04-16', true, 'Desconto à vista.'),
 (3, 3, '2022-04-18', false, null),
