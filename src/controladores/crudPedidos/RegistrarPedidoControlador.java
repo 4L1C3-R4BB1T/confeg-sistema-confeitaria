@@ -135,9 +135,7 @@ public class RegistrarPedidoControlador {
     }
 
     @FXML
-    public void adicionarBolo(MouseEvent event) {
-        
-        // Validar tudo
+    public void adicionarBolo(MouseEvent event) throws Exception {
         if (validarAdicaoPedidoBolo()) {
             System.out.println("entrou aqui");
             PedidoBolo pedidoBolo = new PedidoBolo(pedido, getBolo(), Long.parseLong(getQuantidade()));
@@ -164,11 +162,17 @@ public class RegistrarPedidoControlador {
         metodoPagamento.getItems().setAll(metodoPagamentoDAO.buscarTodos());
     }
 
-    public boolean validarAdicaoPedidoBolo() {
+    public boolean validarAdicaoPedidoBolo() throws Exception {
         if (getCliente() == null || getFuncionario() == null || getBolo() == null || 
-            !vf.validarNumero(quantidade.getText()) || Long.parseLong(quantidade.getText()) <= 0) {
+            !vf.validarNumero(quantidade.getText())) {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "ALERTA", "Selecione o Cliente, Funcionario e o Bolo.");
             return false;
-        } 
+        } else if (Long.parseLong(quantidade.getText()) <= 0) {
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "Quantidade", "Quantidade tem quer maior que 0");
+            return false;
+        } else {
+            App.exibirAlert(areaDeAlerta, "SUCESSO", "ALERTA", "Item cadastrado");
+        }
         return true; 
     }
 
