@@ -1,20 +1,15 @@
 package controladores.crudPedidos;
 
-import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 
-import org.omg.CORBA.PERSIST_STORE;
 
 import aplicacao.App;
-import controladores.crudCliente.cadastro.ClienteEditarControlador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -163,10 +158,11 @@ public class RegistrarPedidoControlador {
     }
 
     public boolean validarAdicaoPedidoBolo() throws Exception {
-        if (getCliente() == null || getFuncionario() == null || getBolo() == null || 
-            !vf.validarNumero(quantidade.getText())) {
+        if (getCliente() == null || getFuncionario() == null || getBolo() == null) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "ALERTA", "Selecione o Cliente, Funcionario e o Bolo.");
             return false;
+        } else if (!vf.validarNumero(quantidade.getText())) {
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "ALERTA", "A quantidade não é válida.");
         } else if (Long.parseLong(quantidade.getText()) <= 0) {
             App.exibirAlert(areaDeAlerta, "FRACASSO", "Quantidade", "Quantidade tem quer maior que 0");
             return false;
