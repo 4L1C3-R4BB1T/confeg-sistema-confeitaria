@@ -17,7 +17,7 @@ public class ConfirmacaoPedidoDAO {
     }
 
     public Long inserir(ConfirmacaoPedido confirmacao) {
-        String comando = "INSERT INTO confimacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido, pago_confirmacao_pedido, observacao_confirmacao_pedido) VALUES (?, ?, ?, ?, ?)";
+        String comando = "INSERT INTO confirmacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido, pago_confirmacao_pedido, observacao_confirmacao_pedido) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conexao.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setLong(1, confirmacao.getCliente().getCodigo());
             ps.setLong(2, confirmacao.getPedido().getCodigo());
@@ -36,7 +36,7 @@ public class ConfirmacaoPedidoDAO {
     }
 
     public boolean alterar(ConfirmacaoPedido confirmacao) {
-        String comando = "UPDATE confimacao_pedido SET cod_cliente = ?, cod_pedido = ?, data_confirmacao_pedido = ?, pago_confirmacao_pedido = ?, observacao_confirmacao_pedido = ? WHERE cod_confirmacao = ?";
+        String comando = "UPDATE confirmacao_pedido SET cod_cliente = ?, cod_pedido = ?, data_confirmacao_pedido = ?, pago_confirmacao_pedido = ?, observacao_confirmacao_pedido = ? WHERE cod_confirmacao = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, confirmacao.getCliente().getCodigo());
             ps.setLong(2, confirmacao.getPedido().getCodigo());
@@ -53,7 +53,7 @@ public class ConfirmacaoPedidoDAO {
     }
 
     public boolean remover(ConfirmacaoPedido confirmacao) {
-        String comando = "DELETE FROM confimacao_pedido WHERE cod_confirmacao = ?";
+        String comando = "DELETE FROM confirmacao_pedido WHERE cod_confirmacao = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, confirmacao.getCodigo());
             ps.execute();
@@ -65,7 +65,7 @@ public class ConfirmacaoPedidoDAO {
     }
 
     public ConfirmacaoPedido buscarPorCodigo(Long codigo) {
-        String comando = "SELECT * FROM confimacao_pedido WHERE cod_confirmacao = ?";
+        String comando = "SELECT * FROM confirmacao_pedido WHERE cod_confirmacao = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
             ResultSet resultado = ps.executeQuery();
@@ -88,7 +88,7 @@ public class ConfirmacaoPedidoDAO {
     }
 
     public List<ConfirmacaoPedido> buscarTodos() {
-        String comando = "SELECT * FROM confimacao_pedido WHERE cod_confirmacao = ?";
+        String comando = "SELECT * FROM confirmacao_pedido WHERE cod_confirmacao = ?";
         List<ConfirmacaoPedido> confirmacoes = new ArrayList<>();
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
