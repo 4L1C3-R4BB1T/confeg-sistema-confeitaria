@@ -107,7 +107,7 @@ public class RegistrarPedidoControlador {
                 pedido.setCliente(getCliente());
                 pedido.setFuncionario(getFuncionario());
                 pedido.setMetodo(getMetodoPagamento());
-                pedido.setObservacao(getDataPedido());
+                pedido.setObservacao(getObservacao());
                 pedido.setDataPedido(new Date(sdf.parse(getDataPedido()).getTime()));
                 long codigo = pedidoDAO.inserir(pedido);
                 pedido.setCodigo(codigo);
@@ -219,7 +219,7 @@ public class RegistrarPedidoControlador {
         return metodoPagamento.getSelectionModel().getSelectedItem();
     }
 
-    public String getDescricao() {
+    public String getObservacao() {
         return observacao.getText();
     }
 
