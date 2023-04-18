@@ -6,6 +6,10 @@
     -fx-background-color: rgba(0,0,0,0.79);
 }
 
+.image-view {
+    -fx-cursor: hand;
+}
+
 /* Container */
 .container {
     -fx-background-color: #D9D9D9;

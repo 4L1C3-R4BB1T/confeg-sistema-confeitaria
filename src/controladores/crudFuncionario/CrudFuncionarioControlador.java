@@ -117,8 +117,6 @@ public class CrudFuncionarioControlador {
             });
     }
 
-
-
     public void fecharTelas() {
         telas.forEach(tela -> {
             if (tela != null) {

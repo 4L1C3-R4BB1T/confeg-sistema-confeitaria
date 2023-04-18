@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="30.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="32.0" fitWidth="32.0">
+         <image>
+            <Image url="@imagens/editar.png" />
+         </image>
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0">
+         <image>
+            <Image url="@imagens/remover.png" />
+         </image>
+         <HBox.margin>
+            <Insets right="10.0" top="5.0" />
+         </HBox.margin>
+      </ImageView>
+   </children>
+</HBox>

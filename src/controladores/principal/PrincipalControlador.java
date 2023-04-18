@@ -9,6 +9,7 @@ import aplicacao.App;
 import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
 import controladores.crudFuncionario.CrudFuncionarioControlador;
+import controladores.crudPedidos.ListarPedidosControlador;
 import controladores.login.LoginControlador;
 import controladores.principal.bolo.BoloControlador;
 import controladores.principal.perfil.PerfilControlador;
@@ -85,6 +86,7 @@ public class PrincipalControlador {
     private boolean clicouBolo = false;
     private boolean clicouCliente = false;
     private boolean clicouFuncionario = false;
+    private boolean clicouListarPedido = false;
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
@@ -120,6 +122,8 @@ public class PrincipalControlador {
     public void minimizarTela(MouseEvent event) {
         tela.setIconified(true);
     }
+
+ 
 
     @FXML
     public void verPerfil(MouseEvent event) throws Exception {
@@ -179,6 +183,16 @@ public class PrincipalControlador {
     public void initialize() {
         atualizarAreaBolo();
         botoes = new Button[] { administrador, principal, pedidos, bolos, clientes };
+    }
+
+    // Pedidos menu
+    @FXML 
+    public void listarPedidos(MouseEvent event) throws Exception {
+        if (!clicouListarPedido) {
+            carregarTelaListarPedidos();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+        }
     }
 
 
@@ -322,6 +336,29 @@ public class PrincipalControlador {
             erro.printStackTrace();
         }
     }
+
+    public void carregarTelaListarPedidos() {
+        try {
+            clicouListarPedido = true;
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/pedidos.fxml"));
+            Parent raiz = carregar.load();
+            ListarPedidosControlador controlador = carregar.getController();
+            Scene cena = new Scene(raiz);
+            Stage palco = new Stage(StageStyle.UNDECORATED);
+            controlador.setTela(palco);
+            palco.setScene(cena);
+            telas.add(palco);
+            App.adicionarMovimento(palco, cena);
+            palco.showAndWait();
+            telas.remove(palco);
+            clicouListarPedido = false;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
+
+
+
 
 
     public void fecharTodasTelas() {
