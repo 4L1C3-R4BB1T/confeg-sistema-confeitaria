@@ -39,13 +39,8 @@ public final class ConsultaPersonalizada {
             "INNER JOIN pedido p ON pb.cod_pedido = p.cod_pedido " +
             "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
             "INNER JOIN cliente c ON c.cod_cliente = p.cod_cliente " +
-<<<<<<< HEAD
             "GROUP BY p.data_pedido, p.cod_pedido, c.cod_cliente ORDER BY p.cod_pedido ASC";
 
-=======
-            "GROUP BY p.data_pedido, p.cod_pedido, c.cod_cliente" +
-            "ORDER BY ano, mes";
->>>>>>> b48fe026b3acde4438be3828ecf7c1778de48adf
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             ClienteDAO clienteDAO = new ClienteDAO(conexao);
@@ -77,7 +72,8 @@ public final class ConsultaPersonalizada {
             "INNER JOIN pedido_bolo pb ON pb.cod_pedido = p.cod_pedido " +
             "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
             "WHERE p.status_pedido = 'CONCLUIDO' " +
-            "GROUP BY codigo, ano, mes";
+            "GROUP BY codigo, ano, mes " +
+            "ORDER BY ano, mes";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
