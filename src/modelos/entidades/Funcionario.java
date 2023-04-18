@@ -46,4 +46,9 @@ public class Funcionario extends Pessoa {
         this.senha = senha;
     }
 
+    @Override 
+    public String toString() {
+        return nome;
+    }
+
 }

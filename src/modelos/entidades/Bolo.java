@@ -90,7 +90,7 @@ public class Bolo {
 
     @Override 
     public String toString() {
-        return descricao;
+        return sabor.getDescricao();
     }
 
 }

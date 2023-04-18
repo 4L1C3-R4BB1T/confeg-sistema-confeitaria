@@ -10,6 +10,7 @@ import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
 import controladores.crudFuncionario.CrudFuncionarioControlador;
 import controladores.crudPedidos.ListarPedidosControlador;
+import controladores.crudPedidos.RegistrarPedidoControlador;
 import controladores.login.LoginControlador;
 import controladores.principal.bolo.BoloControlador;
 import controladores.principal.perfil.PerfilControlador;
@@ -87,6 +88,7 @@ public class PrincipalControlador {
     private boolean clicouCliente = false;
     private boolean clicouFuncionario = false;
     private boolean clicouListarPedido = false;
+    private boolean clicouBotaoPedir = false;
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
@@ -195,6 +197,14 @@ public class PrincipalControlador {
         }
     }
 
+    @FXML 
+    public void pedir(MouseEvent event) throws Exception {
+        if(!clicouBotaoPedir) {
+            carregarTelaDePedido();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+        }
+    }
 
     public void limparModalMenuAbertos() {
         menuPedidos.setVisible(false);
@@ -357,9 +367,28 @@ public class PrincipalControlador {
         }
     }
 
-
-
-
+    public void carregarTelaDePedido() {
+        try {
+            clicouBotaoPedir = true;
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/edicao/registrarPedido.fxml"));
+            Parent raiz = carregar.load();
+            RegistrarPedidoControlador controlador = carregar.getController();
+            Scene cena = new Scene(raiz);
+            Stage palco = new Stage(StageStyle.UNDECORATED);
+            palco.setScene(cena);
+            App.adicionarMovimento(palco, cena);
+            controlador.setTela(palco);
+            palco.showAndWait();
+            clicouBotaoPedir = false;
+            if (controlador.getRegistrouPedido()) {
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido registrado com sucesso");
+            } else {
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar o pedido.");
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
 
     public void fecharTodasTelas() {
         telas.forEach( tela -> {

@@ -32,7 +32,7 @@ public final class ConsultaPersonalizada {
             "INNER JOIN pedido p ON pb.cod_pedido = p.cod_pedido " +
             "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
             "INNER JOIN cliente c ON c.cod_cliente = p.cod_cliente " +
-            "GROUP BY p.data_pedido, p.cod_pedido, c.cod_cliente";
+            "GROUP BY p.data_pedido, p.cod_pedido, c.cod_cliente ORDER BY p.cod_pedido ASC";
 
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();

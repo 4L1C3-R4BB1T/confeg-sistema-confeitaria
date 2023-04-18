@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import modelos.consultas.ConsultaPersonalizada;
 import modelos.consultas.entitidades.PedidoConsulta;
 import modelos.entidadeDAO.PedidoDAO;
+import modelos.entidades.Pedido;
 
 
 // Implementar depois
@@ -41,6 +42,8 @@ public class ListarPedidosControlador {
 
     private Stage tela;
 
+    private PedidoDAO pedidoDAO = new PedidoDAO(App.conexao);
+
 
     @FXML
     public void fechar(MouseEvent event) {
@@ -55,7 +58,7 @@ public class ListarPedidosControlador {
         data.setCellValueFactory(new PropertyValueFactory<>("dataPedido"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         areaBotao.setCellValueFactory(new PropertyValueFactory<>("node"));
-    
+
         carregarPedidos();
     }
 
@@ -65,6 +68,9 @@ public class ListarPedidosControlador {
             try {
                 FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/botoes.fxml"));
                 Node botoes = carregar.load();
+                PedidoControlador controlador = carregar.getController();
+                Pedido pedido = pedidoDAO.buscarPorCodigo(pedidoConsulta.getCodigo());
+                controlador.setPedido(pedido);
                 pedidoConsulta.setNode(botoes);
                 areaDePedidos.getItems().add(pedidoConsulta);
             } catch (Exception erro) {

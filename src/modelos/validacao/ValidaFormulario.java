@@ -23,16 +23,20 @@ public class ValidaFormulario extends Validacao {
     public boolean validarCampo(Label area, String valor, String msg) {
         area.setStyle("-fx-text-fill: red;");
         if (valor.trim().isEmpty()) {
-            if (msg != null) {
-                area.setText("* " + msg);
-            } else {
-                area.setText("* Selecione um opção.");
+            if (area != null) {
+                if (msg != null) {
+                    area.setText("* " + msg);
+                } else {
+                    area.setText("* Selecione um opção.");
+                }
+                area.setText("* Preencha este campo");
             }
-            area.setText("* Preencha este campo");
             return false;
         } else {
-            area.setStyle("-fx-text-fill: green;");
-            area.setText("✓ Válido");
+            if (area != null) {
+                area.setStyle("-fx-text-fill: green;");
+                area.setText("✓ Válido");
+            }
             return true;
         }
     }
@@ -84,12 +88,16 @@ public class ValidaFormulario extends Validacao {
         if (!this.validarCampo(area, data, msg)) {
             return false;
         } else if (!data.matches("^\\d{2}\\/\\d{2}\\/\\d{4}$")) {
-            area.setStyle("-fx-text-fill: red;");
-            area.setText("- O formato da data é inválido");
+            if (area != null) {
+                area.setStyle("-fx-text-fill: red;");
+                area.setText("- O formato da data é inválido");
+            }
             return false;
         } else {
-            area.setStyle("-fx-text-fill: green;");
-            area.setText("✓ Válido");
+            if (area != null) {
+                area.setStyle("-fx-text-fill: green;");
+                area.setText("✓ Válido");
+            }
             return true;
         }
     }

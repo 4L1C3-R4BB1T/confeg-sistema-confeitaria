@@ -30,4 +30,9 @@ public class MetodoPagamento {
         this.descricao = descricao;
     }
 
+
+    @Override
+    public String toString() {
+        return descricao;
+    }
 }
