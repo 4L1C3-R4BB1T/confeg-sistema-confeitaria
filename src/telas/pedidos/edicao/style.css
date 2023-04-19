@@ -237,12 +237,14 @@
     -fx-text-fill: #000;
 }
 
-TextArea {
-	-fx-background-color: transparent !important;
+.text-area {
+	-fx-padding: 10px;
 }
 
-TextArea .content {
-	-fx-background-color: transparent;
-	-fx-background-radius: 10px;
+.text-area .content, .text-area .corner, .text-area .scroll-bar {
+	-fx-background-color: #fff;
+	-fx-border-width: 0;
 	-fx-border-radius: 10px;
+	-fx-background-radius: 10px;
 }
+
