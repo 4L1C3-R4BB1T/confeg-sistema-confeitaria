@@ -157,7 +157,7 @@ public class LoginControlador {
             App.adicionarMovimento(palco, cena);
             palco.show();
         } catch (Exception erro) {
-            System.out.println("Erro na linha 142 LoginControlador: " + erro.getMessage());
+            erro.printStackTrace();
         }
     }
 
@@ -189,7 +189,7 @@ public class LoginControlador {
                     if (timeline != null) {
                         timeline.stop();
                     }
-                    botaoEntrar.setText("Usuário encontrado!");
+                    botaoEntrar.setText("Usuário encontrado");
                 });
                 Thread.sleep(500);
             } catch (InterruptedException e) {

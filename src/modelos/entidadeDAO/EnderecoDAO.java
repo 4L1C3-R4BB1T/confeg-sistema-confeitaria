@@ -29,7 +29,7 @@ public class EnderecoDAO {
                 return resultado.getLong(1);
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     }
@@ -47,7 +47,7 @@ public class EnderecoDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -72,7 +72,6 @@ public class EnderecoDAO {
             }
         } catch (Exception erro) {
             erro.printStackTrace();
-            System.out.println("Erro: " + erro.getMessage() + "EnderecoDAO");
         }
         return null;
     }

@@ -77,7 +77,6 @@ public class App extends Application {
 
         if (tipo.equals("INFORMAÇÃO")) {
             localizacao = App.class.getResource("/telas/alertas/informacao.fxml");
-            System.out.println(localizacao);
         } else if (tipo.equals("FRACASSO")) {
             localizacao = App.class.getResource("/telas/alertas/fracasso.fxml");
         } else if (tipo.equals("SUCESSO")) {

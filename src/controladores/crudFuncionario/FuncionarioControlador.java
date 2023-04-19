@@ -1,12 +1,7 @@
 package controladores.crudFuncionario;
 
-import java.util.function.Supplier;
 
 import aplicacao.App;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
-import modelos.entidadeDAO.ClienteDAO;
 import modelos.entidadeDAO.FuncionarioDAO;
-import modelos.entidades.Cliente;
 import modelos.entidades.Funcionario;
 import modelos.interfaces.AproveitarFuncao;
 
@@ -80,7 +72,6 @@ public class FuncionarioControlador {
                 App.conexao.commit();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "O Funcionário com ID: " + codigo + " foi removido.");
            } catch (Exception erro) {
-                System.out.println("Erro: " + erro.getMessage());
                 erro.printStackTrace();
                 App.conexao.rollback();
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "DELEÇÃO", "Não foi possível remover");

@@ -28,7 +28,7 @@ public class SaborDAO {
                 ); 
             }
         } catch (Exception erro) {
-            System.out.println("Erro classe SaborDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     }
@@ -45,7 +45,7 @@ public class SaborDAO {
                 ));
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return sabores;
     }

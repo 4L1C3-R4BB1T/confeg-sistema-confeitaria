@@ -33,7 +33,7 @@ public class PedidoDAO {
                 return resultado.getLong(1);
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     }
@@ -50,7 +50,7 @@ public class PedidoDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -62,7 +62,7 @@ public class PedidoDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -87,7 +87,7 @@ public class PedidoDAO {
                 );
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     }
@@ -114,7 +114,7 @@ public class PedidoDAO {
             }
             return pedidos;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return pedidos;
     }
@@ -140,7 +140,7 @@ public class PedidoDAO {
             }
             return pedidos;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return pedidos;
     }

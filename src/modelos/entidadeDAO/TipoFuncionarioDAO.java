@@ -28,7 +28,7 @@ public class TipoFuncionarioDAO {
                 );
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage() + "TipoFuncionarioDAO");
+            erro.printStackTrace();
         }
         return null;
     }
@@ -46,7 +46,7 @@ public class TipoFuncionarioDAO {
             }
     
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage() + "TipoFuncionarioDAO");
+            erro.printStackTrace();
         }
         return tipos;
     }

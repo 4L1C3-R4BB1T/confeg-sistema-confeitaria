@@ -47,7 +47,6 @@ public class PedidoControlador {
 
             pedidoDAO.remover(pedido);
             App.conexao.commit();
-            System.out.println(areaDeAlerta == null);
             App.exibirAlert(areaDeAlerta, "SUCESSO", "REMOÇÃO", "O Pedido com ID: " + pedido.getCodigo() + " foi deletado.");
             atualizarPedidos.usar();
         } catch (Exception erro) {

@@ -31,7 +31,7 @@ public class BoloDAO {
                 return resultado.getLong(1);
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     }
@@ -47,7 +47,7 @@ public class BoloDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -59,7 +59,7 @@ public class BoloDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -82,7 +82,7 @@ public class BoloDAO {
                 );
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     }
@@ -106,7 +106,7 @@ public class BoloDAO {
             }
             return bolos;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return bolos;
     }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aplicacao.App;
-import controladores.crudCliente.cadastro.ClienteControlador;
 import controladores.login.CadastroControlador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

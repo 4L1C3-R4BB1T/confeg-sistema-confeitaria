@@ -26,7 +26,7 @@ public class PedidoCompraIngredientesDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoCompraIngredientesDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -41,7 +41,7 @@ public class PedidoCompraIngredientesDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoCompraIngredientesDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -53,7 +53,7 @@ public class PedidoCompraIngredientesDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoCompraIngredientesDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -74,7 +74,7 @@ public class PedidoCompraIngredientesDAO {
                 );
             }
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoCompraIngredientesDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     }
@@ -97,7 +97,7 @@ public class PedidoCompraIngredientesDAO {
             }
             return pedidos;
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoCompraIngredientesDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }    
         return pedidos;
     }
@@ -119,7 +119,7 @@ public class PedidoCompraIngredientesDAO {
             }
             return pedidos;
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoCompraIngredientesDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }    
         return pedidos;
     }

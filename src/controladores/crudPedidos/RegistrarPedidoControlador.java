@@ -119,9 +119,7 @@ public class RegistrarPedidoControlador {
                 erro.printStackTrace();
                 App.conexao.rollback();
             }
-        }  else {
-            System.out.println("Não entrou aqui");
-        }
+        }  
     }
 
     @FXML
@@ -132,14 +130,11 @@ public class RegistrarPedidoControlador {
     @FXML
     public void adicionarBolo(MouseEvent event) throws Exception {
         if (validarAdicaoPedidoBolo()) {
-            System.out.println("entrou aqui");
             PedidoBolo pedidoBolo = new PedidoBolo(pedido, getBolo(), Long.parseLong(getQuantidade()));
             pedidoBolos.add(pedidoBolo);
             tabela.getItems().add(pedidoBolo);
             tabela.getSelectionModel().clearSelection();
-        } else {
-            System.out.println("no entrou aqui");
-        }
+        } 
     }
 
     @FXML

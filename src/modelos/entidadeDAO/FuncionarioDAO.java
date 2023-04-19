@@ -37,7 +37,6 @@ public class FuncionarioDAO {
             }
         } catch (Exception erro) {
             erro.printStackTrace();
-            System.out.println("Erro DAO autenticar Funcionario");
         }
         return null;
     }
@@ -55,7 +54,6 @@ public class FuncionarioDAO {
                 return resultado.getLong(1);
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
             erro.printStackTrace();
         }
         return null;
@@ -74,7 +72,7 @@ public class FuncionarioDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -86,7 +84,7 @@ public class FuncionarioDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -110,7 +108,7 @@ public class FuncionarioDAO {
                 );
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     }
@@ -136,7 +134,7 @@ public class FuncionarioDAO {
             }
             return funcionarios;
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return funcionarios;
     }

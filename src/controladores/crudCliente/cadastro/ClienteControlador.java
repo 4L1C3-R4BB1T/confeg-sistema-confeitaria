@@ -8,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -67,7 +66,6 @@ public class ClienteControlador {
                 App.conexao.commit();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "O cliente com ID: " + codigo + " foi removido.");
            } catch (Exception erro) {
-                System.out.println("Erro: " + erro.getMessage());
                 erro.printStackTrace();
                 App.conexao.rollback();
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "DELEÇÃO", "Não foi possível remover");

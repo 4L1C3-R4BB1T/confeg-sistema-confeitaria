@@ -126,9 +126,7 @@ public class EditarPedidoControlador {
                 erro.printStackTrace();
                 App.conexao.rollback();
             }
-        }  else {
-            System.out.println("Não entrou aqui");
-        }
+        } 
     }
 
     @FXML
@@ -143,8 +141,6 @@ public class EditarPedidoControlador {
             pedidoBolos.add(pedidoBolo);
             tabela.getItems().add(pedidoBolo);
             tabela.getSelectionModel().clearSelection();
-        } else {
-            System.out.println("no entrou aqui");
         }
     }
 

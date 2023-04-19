@@ -28,7 +28,7 @@ public class MetodoPagamentoDAO {
                 );
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     } 
@@ -44,7 +44,7 @@ public class MetodoPagamentoDAO {
                 ));
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return metodos;
     }

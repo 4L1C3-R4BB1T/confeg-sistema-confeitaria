@@ -76,7 +76,6 @@ public class CrudBoloControlador {
             clicouAdicionar = true;
             FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/bolos/cadastro/cadastro.fxml"));
             Parent raiz = carregar.load();
-            System.out.println(raiz);
             CadastroBoloControlador controlador = carregar.getController();
             Scene cena = new Scene(raiz);
             Stage palco = new Stage(StageStyle.UNDECORATED);

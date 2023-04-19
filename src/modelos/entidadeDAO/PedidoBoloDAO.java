@@ -26,7 +26,7 @@ public class PedidoBoloDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -41,7 +41,7 @@ public class PedidoBoloDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -53,7 +53,7 @@ public class PedidoBoloDAO {
             ps.execute();
             return true;
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return false;
     }
@@ -74,7 +74,7 @@ public class PedidoBoloDAO {
                 );
             }
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return null;
     }
@@ -96,9 +96,8 @@ public class PedidoBoloDAO {
                 ));
             }
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }
-        System.out.println(pedidos);
         return pedidos;
     }
 
@@ -118,7 +117,7 @@ public class PedidoBoloDAO {
                 ));
             }
         } catch (Exception erro) {
-            System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return pedidos;
     }

@@ -69,7 +69,6 @@ public class BoloControlador {
                 App.conexao.commit();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "O bolo com ID: " + codigo + " foi removido.");
            } catch (Exception erro) {
-                System.out.println("Erro: " + erro.getMessage());
                 erro.printStackTrace();
                 App.conexao.rollback();
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "DELEÇÃO", "Não foi possível remover");

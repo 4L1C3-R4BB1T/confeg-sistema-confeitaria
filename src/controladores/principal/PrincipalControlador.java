@@ -265,7 +265,7 @@ public class PrincipalControlador {
             telas.remove(palco);
             clicouPerfil = false;
         } catch (Exception erro) {
-            System.out.println("Erro linha 140 PrincipalControlador");
+            erro.printStackTrace();
         }
     }
 
@@ -282,7 +282,7 @@ public class PrincipalControlador {
             App.adicionarMovimento(palco, cena);
             palco.show();
         } catch (Exception erro) {
-            System.out.println("Erro linha 117 PrincipalControlador");
+            erro.printStackTrace();;
         }
     }
 

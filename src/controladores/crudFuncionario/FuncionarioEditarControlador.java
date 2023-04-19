@@ -198,7 +198,7 @@ public class FuncionarioEditarControlador {
             App.adicionarMovimento(palco, cena);
             palco.showAndWait();
         } catch (Exception erro) {
-            System.out.println("Erro linha 140 PrincipalControlador");
+            erro.printStackTrace();
         }
     }
 

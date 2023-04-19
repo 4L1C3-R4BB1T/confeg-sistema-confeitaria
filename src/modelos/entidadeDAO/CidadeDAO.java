@@ -31,7 +31,7 @@ public class CidadeDAO {
                 );
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
 
         return null;
@@ -52,7 +52,7 @@ public class CidadeDAO {
                 ));
             }
         } catch (Exception erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            erro.printStackTrace();
         }
         return cidades;
     }
