@@ -188,7 +188,7 @@ public class ClienteEditarControlador {
 
     public void setCliente(Cliente cliente) {
         nome.setText(cliente.getNome());
-        cpf.setText(cliente.getCpf());
+        cpf.setText(vf.formatarCPF(cliente.getCpf())); // Alterado
         cep.setText(cliente.getEndereco().getCep());
         estado.setValue(cliente.getEndereco().getEstado());
         cidade.setValue(cliente.getEndereco().getCidade());

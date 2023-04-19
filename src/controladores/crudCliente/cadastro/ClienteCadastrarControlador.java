@@ -99,6 +99,7 @@ public class ClienteCadastrarControlador {
     private boolean cadastrou = false;
     private boolean erro = false;
 
+
     @FXML
     public void fechar(ActionEvent event) {
         encerrar();
@@ -116,7 +117,7 @@ public class ClienteCadastrarControlador {
             try {
                 Endereco _endereco = new Endereco(getEstado(), getCidade(), getCep(), getBairro(), getRua(), Integer.parseInt(getNumero()));
                 _endereco.setCodigo(enderecoDAO.inserir(_endereco));
-                Cliente cliente = new Cliente(getNome(), getCpf(), getTelephone(), _endereco);
+                Cliente cliente = new Cliente(getNome(), vf.limparCPF(getCpf()), getTelephone(), _endereco);
                 clienteDAO.inserir(cliente);
                 App.conexao.commit();
                 cadastrou = true;

@@ -121,7 +121,7 @@ public class FuncionarioEditarControlador {
                 
                 funcionario.setTipo(getTipo());
                 funcionario.setNome(getNome());
-                
+            
                 endereco.setCep(getCep());
                 endereco.setEstado(getEstado());
                 endereco.setCidade(getCidade());
@@ -208,7 +208,7 @@ public class FuncionarioEditarControlador {
     public void setFuncionario(Funcionario funcionario) {
         tipo.setValue(funcionario.getTipo());
         nome.setText(funcionario.getNome());
-        cpf.setText(funcionario.getCpf());
+        cpf.setText(vf.formatarCPF(funcionario.getCpf()));// Alterado
         cep.setText(funcionario.getEndereco().getCep());
         estado.setValue(funcionario.getEndereco().getEstado());
         cidade.setValue(funcionario.getEndereco().getCidade());

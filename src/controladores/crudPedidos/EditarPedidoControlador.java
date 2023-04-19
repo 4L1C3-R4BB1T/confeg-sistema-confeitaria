@@ -82,6 +82,7 @@ public class EditarPedidoControlador {
 
     private Pedido pedido;
     private List<PedidoBolo> pedidoBolos = new ArrayList<>();
+    private List<PedidoBolo> removidos = new ArrayList<>();
 
     private Stage tela;
 
@@ -110,10 +111,16 @@ public class EditarPedidoControlador {
                 pedido.setDataPedido(Date.valueOf(getDataPedido()));
                 pedidoDAO.alterar(pedido);
 
+                // Adicionar os pedidos que não estavam no banco
                 for (PedidoBolo pb: pedidoBolos) {
                     if (pb.getCodigo() == null) {
                         pedidoBoloDAO.inserir(pb);
                     }
+                }
+
+                // Remover os pedidos que já estavam no banco
+                for (PedidoBolo pb: removidos) {
+                    pedidoBoloDAO.remover(pb);
                 }
 
                 App.conexao.commit();
@@ -148,12 +155,11 @@ public class EditarPedidoControlador {
         if (pedidoBolo != null) {
             App.conexao.setAutoCommit(false);
             try {
-                // Verifica se existe no banco primeiro!
-                if (pedidoBolo.getCodigo() != null) {
-                    pedidoBoloDAO.remover(pedidoBolo);
-                } 
                 pedidoBolos.remove(pedidoBolo);
                 tabela.getItems().remove(pedidoBolo);
+                if (pedidoBolo.getCodigo() != null) { // Significa já existia esse pedido
+                    removidos.add(pedidoBolo);
+                }
                 App.conexao.commit();
             } catch (Exception erro) {
                 erro.printStackTrace();

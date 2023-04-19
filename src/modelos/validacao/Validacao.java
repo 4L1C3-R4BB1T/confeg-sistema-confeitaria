@@ -48,4 +48,15 @@ public class Validacao {
         return String.format("%s.%s.%s-%s", primeiro, segundo, terceiro, ultimo);
     }
 
+    public String limparCPF(String valor) {
+        if (valor == null) {
+            throw new RuntimeException("CPF: valor passado é null.");
+        } else if (!validarCpf(valor)) {
+            throw new RuntimeException("CPF: não é uma sequência válida.");
+        } else {
+            return valor.replaceAll("[.-]", "");
+        }
+        
+    }
+
 }

@@ -117,7 +117,7 @@ public class CadastroControlador {
             try {
                 Endereco endereco = new Endereco(getEstado(), getCidade(), getCep(), getBairro(), getRua(), getNumero());
                 endereco.setCodigo(enderecoDAO.inserir(endereco));
-                Funcionario funcionario = new Funcionario(getNome(), getCpf(), getTipo(), endereco, getCep(), getBairro());
+                Funcionario funcionario = new Funcionario(getNome(), vf.limparCPF(getCpf()), getTipo(), endereco, getCep(), getBairro());
                 
                 funcionario.setCodigo(funcionarioDAO.inserir(funcionario));
 
