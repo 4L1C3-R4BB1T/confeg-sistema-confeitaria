@@ -2,6 +2,10 @@
     -fx-background-color: none;
 }
 
+.container {
+    -fx-background-color: #fff;
+}
+
 .container .cabecalho {
     -fx-background-color: rgba(0,0,0,0.79);
 }
@@ -57,22 +61,26 @@
     -fx-padding: 5px;
 }
 
-.container .escolha, .container .escolha .list-cell {
-    -fx-border-width: 0;
-    -fx-border-color: none;
-    -fx-font-size: 16px;
-    -fx-text-fill: #000;
-    -fx-background-color: #fff;
-}
-
-.container .escolha, .container .escolha .list-cell:hover {
-    -fx-background-color: #ffffffd3;
-}
-
 .container .escolha {
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #000;
+    -fx-background-color: transparent;
 }
+
+.container .escolha .list-cell {
+    -fx-background-color: transparent;
+    -fx-font-size: 16px;
+}
+.container .escolha .list-view {
+    -fx-background-color: #fff;
+}
+
+.container .escolha .list-cell:hover {
+    -fx-text-fill: #fff;
+    -fx-background-color: rgba(0, 0, 0, 0.79);
+}
+
+
 
 .container .botao {
     -fx-cursor: hand;
