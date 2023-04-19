@@ -21,7 +21,7 @@
 }
 
 .area-esquerda  .container-1 {
-    -fx-background-color: rgba(0, 0, 0, 0.60);
+    -fx-background-color: rgba(0, 0, 0, 0.571);
 }
 
 .area-esquerda .titulo {
@@ -40,22 +40,22 @@
 }
 
 .area-esquerda .sub-titulo {
-    -fx-text-fill: #ffffffaf;
+    -fx-text-fill: #ffffffc8;
 }
 
 /* /////////////////////////////////////// */
 
 .area-direita {
-    -fx-background-color: #D9D9D9;
+    -fx-background-color: #d9d9d9ce;
     -fx-border-width: 3;
 }
 
 .area-direita .text-field {
     -fx-background-radius: 10px;
     -fx-border-width: 0;
-    -fx-background-color: #ffffffe6;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.304), 5, 0, 0, 2px);
-    -fx-prompt-text-fill: #000000cb;
+    -fx-background-color: #fff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.400), 5, 0, 0, 2px);
+    -fx-prompt-text-fill: #000000ae;
     -fx-font-size: 18px;
 }
 

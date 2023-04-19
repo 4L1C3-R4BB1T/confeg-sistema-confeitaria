@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import conexoes.FabricarConexao;
 import modelos.consultas.entitidades.PedidoConsulta;
@@ -49,7 +50,7 @@ public final class ConsultaPersonalizada {
                     resultado.getLong("pedido"),
                     clienteDAO.buscarPorCodigo(resultado.getLong("cliente")),
                     resultado.getDouble("total"),
-                    resultado.getDate("data"),
+                    new Date(resultado.getDate("data").getTime()),
                     resultado.getString("status")
                 ));
             }

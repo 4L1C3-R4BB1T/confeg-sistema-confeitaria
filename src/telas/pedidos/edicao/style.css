@@ -2,7 +2,6 @@
 	-fx-border-width: 0;
 	-fx-border-color: none;
 	-fx-background-radius: none;
-	-fx-background-color: none;
 }
 
 .cabecalho {
@@ -80,7 +79,7 @@
 	-fx-text-fill: #000;
 	-fx-border-width: 1;
 	-fx-border-color: #000;
-	-fx-background-color: transparent;
+	-fx-background-color: transparent !important;
 	-fx-prompt-text-fill: #0000008b;
 	-fx-border-radius: 10px;
 }
@@ -188,4 +187,62 @@
 
 .combo-box .list-view .list-cell:hover {
 	-fx-text-fill: #000;
+}
+
+.data {
+	-fx-border-width: 0 0 1 0;
+    -fx-border-color: #000;
+    -fx-background-color: transparent !important;
+    -fx-font-size: 18px;
+    -fx-text-fill: #00000088;
+}
+
+.data-fabricao > .arrow-button {
+    -fx-padding: 5px;
+    -fx-background-color: transparent !important;
+}
+
+.data > .arrow-button {
+    -fx-background-color: #fff;
+}
+
+.data > .arrow-button > .arrow {
+    -fx-background-color: rgba(0, 0, 0, 0.50);
+    -fx-font-size: 25px;
+}
+
+.date {
+    -fx-background-color: rgb(0, 0, 0);
+}
+
+
+.data .text-field {
+    -fx-border-width: 0;
+    -fx-background-color: transparent !important;
+}
+
+
+.date-picker-popup > .content > .month-year-pane > .picker > .picker-content > .calendar > .calendar-grid {
+    -fx-background-color: white;
+    -fx-border-color: black;
+}
+
+.date-picker-popup > .content > .month-year-pane > .picker > .picker-content > .calendar > .calendar-grid > .calendar-row > .arrow-button {
+    -fx-background-color: #fff;
+}
+
+
+.date-picker-popup Button {
+    -fx-background-color: #fff;
+    -fx-text-fill: #000;
+}
+
+TextArea {
+	-fx-background-color: transparent !important;
+}
+
+TextArea .content {
+	-fx-background-color: transparent;
+	-fx-background-radius: 10px;
+	-fx-border-radius: 10px;
 }

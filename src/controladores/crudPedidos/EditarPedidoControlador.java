@@ -1,7 +1,7 @@
 package controladores.crudPedidos;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +11,7 @@ import aplicacao.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -49,7 +50,7 @@ public class EditarPedidoControlador {
     private ComboBox<Bolo> bolos;
 
     @FXML
-    private TextField dataPedido;
+    private DatePicker dataPedido;
 
     @FXML
     private TextArea observacao;
@@ -95,22 +96,18 @@ public class EditarPedidoControlador {
 
     @FXML
     public void confirmar(ActionEvent event) throws Exception {
-        if (pedidoBolos.size() == 0)  {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "É necessário ter no mínimo 1 pedido de bolo.");
-            return;
-        }
-
         if (validarCampos()) {
+            if (pedidoBolos.size() == 0)  {
+                App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "É necessário ter no mínimo 1 pedido de bolo.");
+                return;
+            }
             App.conexao.setAutoCommit(false);
             try {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-
                 pedido.setCliente(getCliente());
                 pedido.setFuncionario(getFuncionario());
                 pedido.setMetodo(getMetodoPagamento());
                 pedido.setObservacao(getObservacao());
-                pedido.setDataPedido(new Date(sdf.parse(getDataPedido()).getTime()));
+                pedido.setDataPedido(Date.valueOf(getDataPedido()));
                 pedidoDAO.alterar(pedido);
 
                 for (PedidoBolo pb: pedidoBolos) {
@@ -195,9 +192,9 @@ public class EditarPedidoControlador {
     }
 
     public boolean validarCampos() throws Exception {
-        Object[] campos = {getCliente(), getFuncionario(), getDataPedido(), getMetodoPagamento()}; 
+        Object[] campos = {getCliente(), getFuncionario(), getMetodoPagamento()}; 
         if(Arrays.stream(campos).allMatch(campo -> vf.validarNuloOuVazio(campo))) {
-            if (vf.validarData(areaErroData, getDataPedido(), "Preencha o campo corratemente dd/mm/yyyy")) {
+            if (vf.validarComboBox(areaErroData, getDataPedido(), "Preencha o campo de data")) {
                 return true;
             }
         } else {
@@ -229,8 +226,8 @@ public class EditarPedidoControlador {
         return bolos.getSelectionModel().getSelectedItem();
     }
 
-    public String getDataPedido() {
-        return dataPedido.getText();
+    public LocalDate getDataPedido() {
+        return dataPedido.getValue();
     }
 
     public MetodoPagamento getMetodoPagamento() {
@@ -267,8 +264,7 @@ public class EditarPedidoControlador {
     }
 
     public void setData(Date data) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        dataPedido.setText(sdf.format(data));
+        dataPedido.setValue(data.toLocalDate());
     }
 
     public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
