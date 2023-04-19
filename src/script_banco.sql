@@ -174,8 +174,9 @@ CREATE TABLE confirmacao_pedido (
 );
 
 CREATE TABLE ingrediente (
-    cod_ingrediente         SERIAL      NOT NULL,
-    descricao_ingrediente   VARCHAR(30) NOT NULL,
+    cod_ingrediente         SERIAL          NOT NULL,
+    descricao_ingrediente   VARCHAR(30)     NOT NULL,
+    preco_ingrediente       NUMERIC(10,2)   NOT NULL,
     CONSTRAINT pk_ingrediente
         PRIMARY KEY (cod_ingrediente)
 );
@@ -5943,15 +5944,15 @@ INSERT INTO confirmacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido
 (5, 15, '2023-04-16', false, 'Vai pagar amanhã.'),
 (5, 5, '2023-04-16', false, 'Desistiu do pedido.');
 
-INSERT INTO ingrediente (descricao_ingrediente) VALUES
-('Farinha'),
-('Ovos'),
-('Leite'),
-('Manteiga'),
-('Açúcar'),
-('Morango'),
-('Banana'),
-('Canela');
+INSERT INTO ingrediente (descricao_ingrediente, preco_ingrediente) VALUES
+('Farinha', 15.0),
+('Ovos', 20.0),
+('Leite', 5.0),
+('Manteiga', 5.0),
+('Açúcar', 10.0),
+('Morango', 12.0),
+('Banana', 10.0),
+('Canela', 3.0);
 
 INSERT INTO pedido_compra (cod_funcionario, data_pedido_compra, status_pedido_compra, observacao_pedido_compra) VALUES
 (1, '2023-02-01', 'PENDENTE', 'Para hoje!'),
