@@ -99,8 +99,8 @@ public class FuncionarioControlador {
             if (controlador.dadosForamSalvos()) {
                 atualizarAreaDeFuncionarios.usar();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "Edição", "Funcionário alterado com sucesso.");
-            } else {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Erro interno ou Operação Cancelada.");
+            } else if (controlador.getErro()) {
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Não foi possível alterar.");
             }
         
 

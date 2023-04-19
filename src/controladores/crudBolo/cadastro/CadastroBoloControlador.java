@@ -69,6 +69,7 @@ public class CadastroBoloControlador {
     private volatile boolean pararThreadValidar = false;
 
     private boolean cadastrou = false;
+    private boolean erro = false;
 
     @FXML
     public void cancelar(ActionEvent event) {
@@ -102,6 +103,8 @@ public class CadastroBoloControlador {
         } catch (Exception erro) {
             App.conexao.rollback();
             erro.printStackTrace();
+            this.erro = true;
+            encerrarTela();
         }
 
     }
@@ -173,5 +176,9 @@ public class CadastroBoloControlador {
 
     public Sabor getSabor() {
         return sabores.getSelectionModel().getSelectedItem();
+    }
+
+    public boolean getErro() {
+        return erro;
     }
 }

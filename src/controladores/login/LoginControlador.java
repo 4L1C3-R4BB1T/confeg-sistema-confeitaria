@@ -91,9 +91,9 @@ public class LoginControlador {
         controlador.setEncerrarThreadValidacao(true);
         clicouBotaoCadastrar = false; 
         if(controlador.dadosForamSalvos()) {
-            App.exibirAlert(areaDeAlerta, "SUCESSO", "CADASTRO", "Operação realizada com sucesso");
-        } else {
-            App.exibirAlert(areaDeAlerta, "FRACASSO", "CADASTRO", "Falha ou Cancelamento da solicitação de cadastro.");
+            App.exibirAlert(areaDeAlerta, "SUCESSO", "CADASTRO", "Operação realizada com sucesso.");
+        } else if (controlador.getErro()) {
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "CADASTRO", "Não foi possível cadastrar.");
         }
     }
 

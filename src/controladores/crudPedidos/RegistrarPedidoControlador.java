@@ -88,6 +88,7 @@ public class RegistrarPedidoControlador {
     private ValidaFormulario vf = new ValidaFormulario();
     
     private boolean registrou = false;
+    private boolean erro = false;
 
     @FXML
     public void cancelar(ActionEvent event) {
@@ -122,6 +123,8 @@ public class RegistrarPedidoControlador {
             } catch (Exception erro) {
                 erro.printStackTrace();
                 App.conexao.rollback();
+                this.erro = true;
+                encerrar();
             }
         }  
     }
@@ -235,6 +238,10 @@ public class RegistrarPedidoControlador {
     
     public boolean getRegistrouPedido() {
         return registrou;
+    }
+
+    public boolean getErro() {
+        return erro;
     }
 
  

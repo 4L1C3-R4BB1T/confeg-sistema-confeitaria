@@ -93,6 +93,7 @@ public class ClienteEditarControlador {
     private volatile boolean threadPodeValidar = false;
 
     private boolean cadastrou = false;
+    private boolean erro = false;
 
     private Cliente cliente;
 
@@ -113,9 +114,7 @@ public class ClienteEditarControlador {
         if (validarCampos()) {
             App.conexao.setAutoCommit(false);
             try {
-                
-
-
+    
                 endereco.setCep(getCep());
                 endereco.setEstado(getEstado());
                 endereco.setCidade(getCidade());
@@ -132,6 +131,8 @@ public class ClienteEditarControlador {
             } catch (Exception erro) {
                 erro.printStackTrace();
                 App.conexao.rollback();
+                this.erro = true;
+                encerrar();
             }
         }
         threadPodeValidar = true;
@@ -243,6 +244,7 @@ public class ClienteEditarControlador {
         return telefone.getText().trim();
     }
 
-
-   
+    public boolean getErro() {
+        return erro;
+    }
 }

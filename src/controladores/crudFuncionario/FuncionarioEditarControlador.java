@@ -93,7 +93,8 @@ public class FuncionarioEditarControlador {
 
     private volatile boolean encerrarThreadValidacao = false;
 
-    private volatile boolean salvo = false;
+    private boolean salvo = false;
+    private boolean erro = false;
 
     private Endereco endereco;
 
@@ -135,6 +136,8 @@ public class FuncionarioEditarControlador {
                 encerrarTela();
             } catch (Exception erro) {
                 App.conexao.rollback();
+                this.erro = true;
+                encerrarTela();
             }
         } 
     }
@@ -269,6 +272,10 @@ public class FuncionarioEditarControlador {
 
     public String getCpf() {
         return cpf.getText();
+    }
+
+    public boolean getErro() {
+        return erro;
     }
 
 }

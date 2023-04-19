@@ -89,7 +89,7 @@ public class CrudClienteControlador {
             if (controlador.getCadastrou()) {
                 atualizarAreaDeClientes();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "ADICIONAR", "O Cliente foi cadastro com sucesso.");
-            } else {
+            } else if (controlador.getErro()){
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "ADICIONAR", "Operação abortada");
             }
         } catch (Exception erro) {

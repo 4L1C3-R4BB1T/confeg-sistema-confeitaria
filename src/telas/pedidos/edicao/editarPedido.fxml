@@ -31,7 +31,7 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="container" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" layoutX="50.0" layoutY="24.0" prefHeight="65.0" prefWidth="700.0" styleClass="titulo" text="EDIÇÃO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-            <ComboBox fx:id="clientes" layoutX="100.0" layoutY="142.0" prefHeight="50.0" prefWidth="300.0" promptText="Escolha o Cliente" styleClass="campoBox" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="400.0" />
+            <ComboBox fx:id="clientes" disable="true" layoutX="100.0" layoutY="142.0" prefHeight="50.0" prefWidth="300.0" promptText="Escolha o Cliente" styleClass="campoBox" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="400.0" />
             <ComboBox fx:id="bolos" layoutX="100.0" layoutY="225.0" prefHeight="50.0" prefWidth="300.0" promptText="Escolha o Bolo" styleClass="campoBox" AnchorPane.leftAnchor="100.0" />
             <Label layoutX="101.0" layoutY="465.0" styleClass="label-data" text="Data do Pedido" />
             <TextArea fx:id="observacao" layoutX="99.0" layoutY="559.0" prefHeight="150.0" prefWidth="200.0" promptText="Observações" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="70.0" />

@@ -88,8 +88,8 @@ public class CrudFuncionarioControlador {
             if (controlador.dadosForamSalvos()) {
                 atualizarAreaDeFuncionarios();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "ADICIONAR", "O Funcionário foi cadastro com sucesso.");
-            } else {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "ADICIONAR", "Operação abortada");
+            } else if (controlador.getErro()){
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "ADICIONAR", "Erro ao cadastrar Funcionário");
             }
         } catch (Exception erro) {
             erro.printStackTrace();

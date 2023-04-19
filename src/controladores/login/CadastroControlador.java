@@ -93,7 +93,8 @@ public class CadastroControlador {
 
     private volatile boolean encerrarThreadValidacao = false;
 
-    private volatile boolean salvo = false;
+    private boolean salvo = false;
+    private boolean erro = false;
 
 
     /// DAOS
@@ -130,6 +131,8 @@ public class CadastroControlador {
                 encerrarTela();
             } catch (Exception erro) {
                 App.conexao.rollback();
+                this.erro = true;
+                encerrarTela();
             }
         } 
     }
@@ -253,4 +256,7 @@ public class CadastroControlador {
         return cpf.getText();
     }
 
+    public boolean getErro() {
+        return erro;
+    }
 }

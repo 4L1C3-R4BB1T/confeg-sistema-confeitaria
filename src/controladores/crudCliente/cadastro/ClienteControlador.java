@@ -93,7 +93,7 @@ public class ClienteControlador {
             if (controlador.getCadastrou()) {
                 atualizarAreaDeClientes.usar();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "Edição", "Bolo alterado com sucesso.");
-            } else {
+            } else if (controlador.getErro()){
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Erro interno ou Operação Cancelada.");
             }
         

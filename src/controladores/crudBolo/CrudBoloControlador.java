@@ -89,9 +89,9 @@ public class CrudBoloControlador {
             if (controlador.getCadastrou()) {
                 atualizarAreaDeBolos();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "ADICIONAR", "O Bolo foi cadastro com sucesso.");
-            } else {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "ADICIONAR", "Operação abortada");
-            }
+            } else if (controlador.getErro()){
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "ADICIONAR", "Ocorreu um erro na operação");
+            } 
         } catch (Exception erro) {
             erro.printStackTrace();
         }

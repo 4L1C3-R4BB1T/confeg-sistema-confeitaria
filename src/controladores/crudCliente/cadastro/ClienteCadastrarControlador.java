@@ -1,7 +1,6 @@
 package controladores.crudCliente.cadastro;
 
 import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
 import aplicacao.App;
@@ -98,6 +97,7 @@ public class ClienteCadastrarControlador {
     private volatile boolean threadPodeValidar = false;
 
     private boolean cadastrou = false;
+    private boolean erro = false;
 
     @FXML
     public void fechar(ActionEvent event) {
@@ -124,6 +124,8 @@ public class ClienteCadastrarControlador {
             } catch (Exception erro) {
                 erro.printStackTrace();
                 App.conexao.rollback();
+                this.erro = true;
+                encerrar();
             }
         }
         threadPodeValidar = true;
@@ -220,5 +222,9 @@ public class ClienteCadastrarControlador {
 
     public String getTelephone() {
         return telefone.getText().trim();
+    }
+
+    public boolean getErro() {
+        return erro;
     }
 }
