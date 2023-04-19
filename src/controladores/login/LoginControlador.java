@@ -14,7 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -185,14 +184,14 @@ public class LoginControlador {
         new Thread(() -> {
             Platform.runLater(() -> adicionarEfeitoCarregar());
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 Platform.runLater(() -> {
                     if (timeline != null) {
                         timeline.stop();
                     }
                     botaoEntrar.setText("Usuário encontrado!");
                 });
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

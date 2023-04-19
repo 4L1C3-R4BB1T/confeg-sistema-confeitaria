@@ -34,7 +34,7 @@ import modelos.entidades.Pedido;
 import modelos.entidades.PedidoBolo;
 import modelos.validacao.ValidaFormulario;
 
-public class RegistrarPedidoControlador {
+public class EditarPedidoControlador {
 
     @FXML 
     private Label areaErroData;
@@ -95,23 +95,30 @@ public class RegistrarPedidoControlador {
 
     @FXML
     public void confirmar(ActionEvent event) throws Exception {
+        if (pedidoBolos.size() == 0)  {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "É necessário ter no mínimo 1 pedido de bolo.");
+            return;
+        }
+
         if (validarCampos()) {
             App.conexao.setAutoCommit(false);
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+
                 pedido.setCliente(getCliente());
                 pedido.setFuncionario(getFuncionario());
                 pedido.setMetodo(getMetodoPagamento());
                 pedido.setObservacao(getObservacao());
                 pedido.setDataPedido(new Date(sdf.parse(getDataPedido()).getTime()));
-                long codigo = pedidoDAO.inserir(pedido);
-                pedido.setCodigo(codigo);
+                pedidoDAO.alterar(pedido);
 
                 for (PedidoBolo pb: pedidoBolos) {
-                    pedidoBoloDAO.inserir(pb);
+                    if (pb.getCodigo() == null) {
+                        pedidoBoloDAO.inserir(pb);
+                    }
                 }
 
-                
                 App.conexao.commit();
                 registrou = true;
                 encerrar();
@@ -132,7 +139,6 @@ public class RegistrarPedidoControlador {
     @FXML
     public void adicionarBolo(MouseEvent event) throws Exception {
         if (validarAdicaoPedidoBolo()) {
-            System.out.println("entrou aqui");
             PedidoBolo pedidoBolo = new PedidoBolo(pedido, getBolo(), Long.parseLong(getQuantidade()));
             pedidoBolos.add(pedidoBolo);
             tabela.getItems().add(pedidoBolo);
@@ -146,8 +152,19 @@ public class RegistrarPedidoControlador {
     public void removerBolo(MouseEvent event) throws Exception {
         PedidoBolo pedidoBolo = tabela.getSelectionModel().getSelectedItem();
         if (pedidoBolo != null) {
-            pedidoBolos.remove(pedidoBolo);
-            tabela.getItems().remove(pedidoBolo);
+            App.conexao.setAutoCommit(false);
+            try {
+                // Verifica se existe no banco primeiro!
+                if (pedidoBolo.getCodigo() != null) {
+                    pedidoBoloDAO.remover(pedidoBolo);
+                } 
+                pedidoBolos.remove(pedidoBolo);
+                tabela.getItems().remove(pedidoBolo);
+                App.conexao.commit();
+            } catch (Exception erro) {
+                erro.printStackTrace();
+                App.conexao.rollback();
+            }
         }
     }
 
@@ -156,7 +173,6 @@ public class RegistrarPedidoControlador {
         colunaBolo.setCellValueFactory(new PropertyValueFactory<>("bolo"));
         colunaQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         carregarClientesFuncionariosBolosPagamento();
-        pedido = new Pedido(null, null, null, null, null, null);
     }
 
 
@@ -168,8 +184,8 @@ public class RegistrarPedidoControlador {
     }
 
     public boolean validarAdicaoPedidoBolo() throws Exception {
-        if (getCliente() == null || getFuncionario() == null || getBolo() == null) {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "ALERTA", "Selecione o Cliente, Funcionario e o Bolo.");
+        if (getCliente() == null || getFuncionario() == null) {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "ALERTA", "Selecione o Cliente e Funcionario");
             return false;
         } else if (!vf.validarNumero(quantidade.getText())) {
             App.exibirAlert(areaDeAlerta, "FRACASSO", "ALERTA", "A quantidade não é válida.");
@@ -183,7 +199,7 @@ public class RegistrarPedidoControlador {
     }
 
     public boolean validarCampos() throws Exception {
-        Object[] campos = {getCliente(), getFuncionario(), getBolo(), getDataPedido(), getMetodoPagamento()}; 
+        Object[] campos = {getCliente(), getFuncionario(), getDataPedido(), getMetodoPagamento()}; 
         if(Arrays.stream(campos).allMatch(campo -> vf.validarNuloOuVazio(campo))) {
             if (vf.validarData(areaErroData, getDataPedido(), "Preencha o campo corratemente dd/mm/yyyy")) {
                 return true;
@@ -237,5 +253,37 @@ public class RegistrarPedidoControlador {
         return registrou;
     }
 
- 
+    public void setCliente(Cliente cliente) {
+        clientes.setValue(cliente);
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        funcionarios.setValue(funcionario);
+    }
+
+    public void setBolo(Bolo bolo) {
+        bolos.setValue(bolo);
+    }
+
+    public void setPedidoBolo(List<PedidoBolo> pedidoBolos) {
+        this.pedidoBolos.addAll(pedidoBolos);
+        tabela.getItems().setAll(pedidoBolos);
+    }
+
+    public void setData(Date data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        dataPedido.setText(sdf.format(data));
+    }
+
+    public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
+        this.metodoPagamento.setValue(metodoPagamento);
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao.setText(observacao);
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
 }

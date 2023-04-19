@@ -383,7 +383,7 @@ public class PrincipalControlador {
             if (controlador.getRegistrouPedido()) {
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido registrado com sucesso");
             } else {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar o pedido.");
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Operação abortada.");
             }
         } catch (Exception erro) {
             erro.printStackTrace();

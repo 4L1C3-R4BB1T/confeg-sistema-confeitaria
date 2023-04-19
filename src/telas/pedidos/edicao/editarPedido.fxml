@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudPedidos.RegistrarPedidoControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudPedidos.EditarPedidoControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +29,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="container" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="50.0" layoutY="24.0" prefHeight="65.0" prefWidth="700.0" styleClass="titulo" text="REGISTRAR PEDIDO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <Label alignment="CENTER" layoutX="50.0" layoutY="24.0" prefHeight="65.0" prefWidth="700.0" styleClass="titulo" text="EDIÇÃO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
             <ComboBox fx:id="clientes" layoutX="100.0" layoutY="142.0" prefHeight="50.0" prefWidth="300.0" promptText="Escolha o Cliente" styleClass="campoBox" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="400.0" />
             <ComboBox fx:id="bolos" layoutX="100.0" layoutY="225.0" prefHeight="50.0" prefWidth="300.0" promptText="Escolha o Bolo" styleClass="campoBox" AnchorPane.leftAnchor="100.0" />
             <TextField fx:id="dataPedido" layoutX="100.0" layoutY="484.0" prefHeight="40.0" prefWidth="240.0" promptText="DD / MM / YYYY" styleClass="campo" />
@@ -55,10 +55,10 @@
             </ImageView>
             <ComboBox fx:id="metodoPagamento" layoutX="409.0" layoutY="479.0" prefHeight="50.0" prefWidth="333.0" promptText="Método de pagamento" styleClass="campoBox" AnchorPane.rightAnchor="58.0" />
             <TableView fx:id="tabela" layoutX="101.0" layoutY="288.0" prefHeight="162.0" prefWidth="635.0" AnchorPane.rightAnchor="70.0">
-              <columns>
-                <TableColumn fx:id="colunaBolo" prefWidth="75.0" text="Bolo" />
-                <TableColumn fx:id="colunaQuantidade" prefWidth="75.0" text="Quantidade" />
-              </columns>
+               <columns>
+                  <TableColumn fx:id="colunaBolo" prefWidth="75.0" text="Bolo" />
+                  <TableColumn fx:id="colunaQuantidade" prefWidth="75.0" text="Quantidade" />
+               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>

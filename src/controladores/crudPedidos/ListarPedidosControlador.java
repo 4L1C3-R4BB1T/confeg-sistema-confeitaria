@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modelos.consultas.ConsultaPersonalizada;
 import modelos.consultas.entitidades.PedidoConsulta;
@@ -44,6 +45,9 @@ public class ListarPedidosControlador {
 
     private PedidoDAO pedidoDAO = new PedidoDAO(App.conexao);
 
+    @FXML
+    private HBox areaDeAlerta;
+
 
     @FXML
     public void fechar(MouseEvent event) {
@@ -70,7 +74,9 @@ public class ListarPedidosControlador {
                 Node botoes = carregar.load();
                 PedidoControlador controlador = carregar.getController();
                 Pedido pedido = pedidoDAO.buscarPorCodigo(pedidoConsulta.getCodigo());
+                controlador.setAreaDeAlerta(areaDeAlerta);
                 controlador.setPedido(pedido);
+                controlador.setFuncaoAtualizarPedidos(this::carregarPedidos);
                 pedidoConsulta.setNode(botoes);
                 areaDePedidos.getItems().add(pedidoConsulta);
             } catch (Exception erro) {

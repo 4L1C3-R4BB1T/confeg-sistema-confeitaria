@@ -52,4 +52,10 @@ public class PedidoBolo {
         this.quantidade = quantidade;
     }
 
+
+    @Override
+    public String toString() {
+        return codigo.toString();
+    }
+
 }

@@ -90,7 +90,7 @@ public class Bolo {
 
     @Override 
     public String toString() {
-        return sabor.getDescricao();
+        return String.format("Cod: %d - %s - R$ %.2f", codigo, sabor.getDescricao(), preco);
     }
 
 }

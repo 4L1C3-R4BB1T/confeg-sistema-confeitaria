@@ -98,6 +98,7 @@ public class PedidoBoloDAO {
         } catch (Exception erro) {
             System.out.println("Erro em PedidoBoloDAO: " + erro.getMessage());
         }
+        System.out.println(pedidos);
         return pedidos;
     }
 
