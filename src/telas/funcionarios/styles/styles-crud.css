@@ -1,6 +1,5 @@
 
 
-
 .container .cabecalho {
     -fx-background-color: rgba(0,0,0,0.79);
 }
@@ -14,6 +13,9 @@
     -fx-scale-y: 1.1;
 }
 
+.conteudo {
+    -fx-background-color: #fff;
+}
 
 .container .titulo {
     -fx-background-color: rgba(0,0,0,0.79);

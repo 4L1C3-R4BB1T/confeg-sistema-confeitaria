@@ -33,7 +33,7 @@
             <Label layoutX="75.0" layoutY="326.0" styleClass="descricao" text="CEP" AnchorPane.leftAnchor="75.0" />
             <TextField fx:id="cep" layoutX="75.0" layoutY="352.0" prefWidth="280.0" promptText="Ex: 29999-999" AnchorPane.leftAnchor="75.0" />
             <Label layoutX="445.0" layoutY="221.0" styleClass="descricao" text="CPF" AnchorPane.leftAnchor="445.0" />
-            <TextField fx:id="cpf" layoutX="445.0" layoutY="247.0" prefWidth="280.0" promptText="000.000.000-00" styleClass="bloqueado" AnchorPane.leftAnchor="445.0" />
+            <TextField fx:id="cpf" disable="true" editable="false" layoutX="445.0" layoutY="247.0" prefWidth="280.0" promptText="000.000.000-00" styleClass="bloqueado" AnchorPane.leftAnchor="445.0" />
             <ComboBox fx:id="estado" layoutX="445.0" layoutY="352.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="445.0" />
             <Label layoutX="445.0" layoutY="325.0" styleClass="descricao" text="Estado" AnchorPane.leftAnchor="445.0" />
             <ComboBox fx:id="cidade" layoutX="75.0" layoutY="448.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="75.0" />
@@ -44,7 +44,7 @@
             <TextField fx:id="rua" layoutX="75.0" layoutY="544.0" prefWidth="280.0" promptText="Ex: Flores" AnchorPane.leftAnchor="75.0" />
             <Label layoutX="445.0" layoutY="518.0" styleClass="descricao" text="Número" AnchorPane.leftAnchor="445.0" />
             <TextField fx:id="numero" layoutX="445.0" layoutY="544.0" prefWidth="280.0" promptText="Ex: 999" AnchorPane.leftAnchor="445.0" />
-            <Button layoutX="200.0" layoutY="625.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Cadastrar" AnchorPane.rightAnchor="420.0">
+            <Button layoutX="200.0" layoutY="625.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Confirmar" AnchorPane.rightAnchor="420.0">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="confirmar" />

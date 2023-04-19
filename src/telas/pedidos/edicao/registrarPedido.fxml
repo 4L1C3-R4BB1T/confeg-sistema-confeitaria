@@ -47,8 +47,8 @@
                   <String fx:value="red" />
                </styleClass>
             </Button>
-            <TextField fx:id="quantidade" alignment="CENTER" layoutX="430.0" layoutY="225.0" prefHeight="50.0" prefWidth="200.0" promptText="Quantidade" styleClass="quantidade" AnchorPane.leftAnchor="430.0" />
-            <ImageView layoutX="636.0" layoutY="231.0" onMouseClicked="#adicionarBolo" AnchorPane.rightAnchor="116.0">
+            <TextField fx:id="quantidade" alignment="CENTER" layoutX="430.0" layoutY="225.0" prefHeight="50.0" prefWidth="190.0" promptText="Quantidade" styleClass="quantidade" AnchorPane.leftAnchor="430.0" />
+            <ImageView layoutX="639.0" layoutY="231.0" onMouseClicked="#adicionarBolo" AnchorPane.rightAnchor="113.0">
                <image>
                   <Image url="@../imagens/add.png" />
                </image>
@@ -66,7 +66,7 @@
             <ComboBox fx:id="funcionarios" layoutX="423.0" layoutY="142.0" prefHeight="50.0" prefWidth="300.0" promptText="Escolha o funcionário" styleClass="campoBox" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="70.0" />
             <Label fx:id="areaErroData" layoutX="101.0" layoutY="533.0" prefHeight="18.0" prefWidth="238.0" />
             <HBox fx:id="areaDeAlerta" layoutX="59.0" layoutY="39.0" prefHeight="150.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="688.0" layoutY="231.0" onMouseClicked="#removerBolo" AnchorPane.rightAnchor="67.0">
+            <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="691.0" layoutY="231.0" onMouseClicked="#removerBolo" AnchorPane.rightAnchor="64.0">
                <image>
                   <Image url="@excluir.png" />
                </image>

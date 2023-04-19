@@ -1,7 +1,5 @@
 package controladores.crudPedidos;
 
-import java.sql.Date;
-
 import aplicacao.App;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -171,8 +171,8 @@ public class RegistrarPedidoControlador {
     }
 
     public boolean validarAdicaoPedidoBolo() throws Exception {
-        if (getCliente() == null || getFuncionario() == null || getBolo() == null) {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "ALERTA", "Selecione o Cliente, Funcionario e o Bolo.");
+        if (getBolo() == null) {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "ALERTA", "Selecione o Bolo.");
             return false;
         } else if (!vf.validarNumero(quantidade.getText())) {
             App.exibirAlert(areaDeAlerta, "FRACASSO", "ALERTA", "A quantidade não é válida.");
