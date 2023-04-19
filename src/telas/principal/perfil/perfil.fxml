@@ -40,7 +40,7 @@
             <Label layoutX="431.0" layoutY="31.0" text="Nome Completo:" />
             <TextField fx:id="nome" editable="false" layoutX="431.0" layoutY="65.0" prefWidth="400.0" />
             <Label layoutX="431.0" layoutY="187.0" />
-            <Button layoutX="431.0" layoutY="713.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="50.0" prefWidth="203.0" text="CONFIRMAR" AnchorPane.leftAnchor="431.0" />
+            <Button layoutX="431.0" layoutY="721.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="50.0" prefWidth="203.0" text="CONFIRMAR" AnchorPane.leftAnchor="431.0" />
             <Label layoutX="431.0" layoutY="126.0" text="Email:" />
             <TextField fx:id="email" editable="false" layoutX="431.0" layoutY="160.0" prefWidth="400.0" />
             <Label layoutX="431.0" layoutY="224.0" text="Senha:" />
