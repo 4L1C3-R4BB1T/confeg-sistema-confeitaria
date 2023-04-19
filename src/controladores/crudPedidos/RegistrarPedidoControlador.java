@@ -141,6 +141,7 @@ public class RegistrarPedidoControlador {
             pedidoBolos.add(pedidoBolo);
             tabela.getItems().add(pedidoBolo);
             tabela.getSelectionModel().clearSelection();
+            limparPedido();
         } 
     }
 
@@ -244,5 +245,9 @@ public class RegistrarPedidoControlador {
         return erro;
     }
 
+    public void limparPedido() {
+        bolos.setValue(null);
+        quantidade.setText("");
+    }
  
 }
