@@ -5847,7 +5847,8 @@ INSERT INTO funcionario (nome_funcionario, cpf_funcionario, cod_tipo_funcionario
 ('José Pereira', '34567890122', 1, 13, 'funcionario3@confeg.com', 'funcionario123'),
 ('Fernanda Alves', '45678901233', 2, 14, 'gerente1@confeg.com', 'gerente123'),
 ('Mariana Rodrigues', '56789012344', 1, 15, 'gerente2@confeg.com', 'gerente123'),
-('Teste', '64280112502', 1, 15, 'test', 'test');
+('Teste', '64280112502', 1, 15, 'test', 'test'),
+('Admin', '64280112502', 2, 15, 'admin', 'admin');
 
 INSERT INTO sabor (descricao_sabor) VALUES
 ('Chocolate'),
