@@ -1,6 +1,5 @@
-* {
-    -fx-background-color: none;
-}
+
+
 
 .container .cabecalho {
     -fx-background-color: rgba(0,0,0,0.79);
@@ -26,15 +25,23 @@
     -fx-padding: 20px;
 }
 
+.container .tipo, .container .tipo {
+    -fx-background-color: #fff;
+}
+
+.container .tipo, .container .tipo .list-cell {
+    -fx-background-color: transparent !important;
+}
+
+.container .tipo .list-view {
+    -fx-background-color: #fff !important;
+}
+
 .container .tipo, .container .tipo .list-cell {
     -fx-padding: 8px;
     -fx-background-color: #fff;
     -fx-border-width: 0;
     -fx-font-size: 17px;
-}
-
-.container .tipo ComboBox {
-    -fx-text-fill: #000;
 }
 
 .container .tipo .list-cell {
@@ -56,10 +63,11 @@
 .container TextField {
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #000;
-    -fx-background-color: #fff;
+    -fx-background-color: transparent;
     -fx-prompt-text-fill: #00000080;
     -fx-font-size: 18px;
     -fx-padding: 5px;
+    -fx-text-fill: #000;
 }
 
 .container .escolha, .container .escolha .list-cell {
@@ -123,10 +131,63 @@
     -fx-prompt-text-fill: #0000008d;
 }
 
-text-area .scroll-bar:vertical {
+
+TextArea .content {
     -fx-background-color: none;
+}
+
+TextArea .scroll-pane {
+    -fx-background-color: none;
+    -fx-border-width: none;
 }
 
 ComboBox .arrow {
     -fx-background-color: #000;
+}
+
+.data-fabricao {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #000;
+    -fx-background-color: transparent !important;
+    -fx-font-size: 18px;
+    -fx-text-fill: #00000088;
+}
+
+.data-fabricao > .arrow-button {
+    -fx-padding: 5px;
+    -fx-background-color: transparent !important;
+}
+
+.data-fabricao > .arrow-button {
+    -fx-background-color: #fff;
+}
+
+.data-fabricao > .arrow-button > .arrow {
+    -fx-background-color: rgba(0, 0, 0, 0.50);
+    -fx-font-size: 25px;
+}
+
+.date-picker-popup {
+    -fx-background-color: rgb(0, 0, 0);
+}
+
+.data-fabricao .text-field {
+    -fx-border-width: 0;
+    -fx-background-color: transparent !important;
+}
+
+
+.date-picker-popup > .content > .month-year-pane > .picker > .picker-content > .calendar > .calendar-grid {
+    -fx-background-color: white;
+    -fx-border-color: black;
+}
+
+.date-picker-popup > .content > .month-year-pane > .picker > .picker-content > .calendar > .calendar-grid > .calendar-row > .arrow-button {
+    -fx-background-color: #fff;
+}
+
+
+.date-picker-popup Button {
+    -fx-background-color: #fff;
+    -fx-text-fill: #000;
 }

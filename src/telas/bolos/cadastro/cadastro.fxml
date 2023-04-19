@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -35,7 +36,7 @@
             <Label layoutX="75.0" layoutY="230.0" styleClass="descricao" text="Preço" AnchorPane.leftAnchor="75.0" />
             <TextField fx:id="preco" layoutX="75.0" layoutY="256.0" prefWidth="280.0" promptText="Ex: 1500.00" AnchorPane.leftAnchor="75.0" />
             <Label layoutX="444.0" layoutY="230.0" styleClass="descricao" text="Peso" AnchorPane.leftAnchor="444.0" />
-            <TextField fx:id="peso" layoutX="444.0" layoutY="256.0" prefWidth="280.0" promptText="Ex: 2.5kg" AnchorPane.leftAnchor="444.0" />
+            <TextField fx:id="peso" layoutX="444.0" layoutY="256.0" prefWidth="280.0" promptText="Ex: 2.5" AnchorPane.leftAnchor="444.0" />
             <Button layoutX="176.0" layoutY="678.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Salvar" AnchorPane.rightAnchor="444.0">
                <styleClass>
                   <String fx:value="botao" />
@@ -49,9 +50,7 @@
                </styleClass>
             </Button>
             <Label layoutX="76.0" layoutY="342.0" styleClass="descricao" text="Data de Fabricação" />
-            <TextField fx:id="fabricao" layoutX="76.0" layoutY="372.0" prefWidth="280.0" promptText="DD/MM/AAAA" />
             <Label layoutX="445.0" layoutY="342.0" styleClass="descricao" text="Data de Vencimento" />
-            <TextField fx:id="vencimento" layoutX="445.0" layoutY="372.0" prefWidth="280.0" promptText="DD/MM/AAAA" AnchorPane.rightAnchor="75.0" />
             <TextArea fx:id="descricao" layoutX="78.0" layoutY="437.0" prefHeight="200.0" prefWidth="645.0" promptText="Descrição..." />
             <Label fx:id="erroPreco" layoutX="75.0" layoutY="296.0" prefHeight="18.0" prefWidth="281.0" />
             <Label fx:id="erroPeso" layoutX="444.0" layoutY="296.0" prefHeight="18.0" prefWidth="281.0" />
@@ -59,6 +58,8 @@
             <Label fx:id="erroFabricao" layoutX="76.0" layoutY="413.0" prefHeight="18.0" prefWidth="281.0" />
             <Label fx:id="erroDescricao" layoutX="79.0" layoutY="647.0" prefHeight="18.0" prefWidth="648.0" />
             <Label fx:id="erroSabor" alignment="CENTER" layoutX="65.0" layoutY="200.0" prefHeight="18.0" prefWidth="672.0" />
+            <DatePicker fx:id="fabricao" layoutX="77.0" layoutY="367.0" prefHeight="26.0" prefWidth="206.0" styleClass="data-fabricao" />
+            <DatePicker fx:id="vencimento" layoutX="446.0" layoutY="367.0" prefHeight="26.0" prefWidth="206.0" styleClass="data-fabricao" />
          </children>
       </AnchorPane>
    </center>

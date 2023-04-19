@@ -10,7 +10,7 @@ public class ValidaFormulario extends Validacao {
             if (msg != null) {
                 area.setText("* " + msg);
             } else {
-                area.setText("* Selecione um opção.");
+                area.setText("* Selecione uma opção.");
             }
             return false;
         } else {
@@ -101,6 +101,5 @@ public class ValidaFormulario extends Validacao {
             return true;
         }
     }
-
   
 }

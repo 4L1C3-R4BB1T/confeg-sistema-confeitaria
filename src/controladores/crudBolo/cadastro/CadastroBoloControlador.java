@@ -1,7 +1,9 @@
 package controladores.crudBolo.cadastro;
 
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.stream.Stream;
 
 import aplicacao.App;
@@ -9,6 +11,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -32,10 +35,10 @@ public class CadastroBoloControlador {
     private TextField peso;
 
     @FXML
-    private TextField fabricao;
+    private DatePicker fabricao;
 
     @FXML
-    private TextField vencimento;
+    private DatePicker vencimento;
 
     @FXML
     private TextArea descricao;
@@ -82,15 +85,14 @@ public class CadastroBoloControlador {
         threadPodeValidar = true;
         if(!podeCadastrar()) return; // Abortar operação
         App.conexao.setAutoCommit(false);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Bolo bolo = new Bolo(
                 getSabor(),
                 getDescricao(),
                 Double.parseDouble(getPeso()),
                 Double.parseDouble(getPreco()),
-                new java.sql.Date(sdf.parse(getFabricao()).getTime()),
-                new java.sql.Date(sdf.parse(getVencimento()).getTime())
+                Date.valueOf(getFabricao()),
+                Date.valueOf(getVencimento())
             );
 
             boloDAO.inserir(bolo);
@@ -125,9 +127,8 @@ public class CadastroBoloControlador {
             vf.validarComboBox(erroSabor, getSabor(), "Selecione o Sabor"),
             vf.validarValorNumerico(erroPreco, getPreco()),
             vf.validarValorNumerico(erroPeso, getPeso()),
-            vf.validarData(erroFabricao, getFabricao(), "Preencha a data de Fabricação"),
-            vf.validarData(erroVencimento, getVencimento(), "Preencha a data de Vencimento"),
-            vf.validarCampo(erroDescricao, getDescricao(), "Preencha a Descrição")
+            vf.validarComboBox(erroFabricao, getFabricao(), "Preencha a data de Fabricação"),
+            vf.validarComboBox(erroVencimento, getVencimento(), "Preencha a data de Vencimento")
         ).allMatch( bool -> bool != false);
     }
 
@@ -158,12 +159,12 @@ public class CadastroBoloControlador {
         return peso.getText();
     }
 
-    public String getFabricao() {
-        return fabricao.getText();
+    public LocalDate getFabricao() {
+        return fabricao.getValue();
     }
 
-    public String getVencimento() {
-        return vencimento.getText();
+    public LocalDate getVencimento() {
+        return vencimento.getValue();
     }
 
     public String getDescricao() {
