@@ -138,6 +138,7 @@ public class EditarPedidoControlador {
             pedidoBolos.add(pedidoBolo);
             tabela.getItems().add(pedidoBolo);
             tabela.getSelectionModel().clearSelection();
+            limparPedido();
         }
     }
 
@@ -277,5 +278,10 @@ public class EditarPedidoControlador {
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
+    }
+
+    public void limparPedido() {
+        bolos.setValue(null);
+        quantidade.setText("");
     }
 }

@@ -186,7 +186,7 @@ public class RegistrarPedidoControlador {
     }
 
     public boolean validarCampos() throws Exception {
-        Object[] campos = {getCliente(), getFuncionario(), getBolo(), getMetodoPagamento()}; 
+        Object[] campos = {getCliente(), getFuncionario(), getMetodoPagamento()}; 
         if(Arrays.stream(campos).allMatch(campo -> vf.validarNuloOuVazio(campo))) {
             if (vf.validarComboBox(areaErroData, getDataPedido(), "Preencha este campo.")) {
                 return true;
