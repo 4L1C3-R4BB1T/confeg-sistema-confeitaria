@@ -17,29 +17,31 @@
 }
 
 .container .area-imagem {
-    -fx-background-color:  rgba(0, 0, 0, 0.22);
+    -fx-background-color: linear-gradient(to top, rgba(211, 185, 185, 0.600), rgba(211, 185, 185, 0.100));
 }
 
-.container .area-info .label {
+.label {
     -fx-text-fill: #fff;
-    -fx-font-size: 16px;
+    -fx-font-size: 20px;
 }
 
-.container .area-info .text-field {
-    -fx-background-color: #e0dddd98;
-    -fx-text-fill: rgb(255, 250, 250);
+.text-field {
+    -fx-text-fill: #ffffffd1;
+    -fx-padding: 10px;
     -fx-font-size: 18px;
+    -fx-background-color: linear-gradient(to bottom, rgba(116, 116, 116, 0.700), rgba(211, 185, 185, 0.300));
+    -fx-border-width: 0;
 }
 
-.container .button {
+.button {
+    -fx-background-color: rgba(0, 0, 0, 0.79);
     -fx-font-size: 18px;
-    -fx-background-color: rgba(0, 0, 0, 1);
     -fx-background-radius: 5px;
     -fx-cursor: hand;
     -fx-text-fill: #fff;
 }
 
-.container .button:hover {
-    -fx-scale-x: 1.1;
-    -fx-scale-y: 1.1;
+.button:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }

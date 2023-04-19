@@ -10,21 +10,23 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" styleClass="container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.principal.perfil.PerfilControlador">
+<BorderPane maxHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="900.0" styleClass="container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.principal.perfil.PerfilControlador">
    <top>
-      <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
+      <AnchorPane styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="860.0" layoutY="7.0" onMouseClicked="#fechar">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="870.0" layoutY="5.0" onMouseClicked="#fechar" AnchorPane.rightAnchor="-5.0">
                <image>
                   <Image url="@images/fechar.png" />
                </image>
             </ImageView>
          </children>
+         <padding>
+            <Insets bottom="5.0" right="10.0" />
+         </padding>
       </AnchorPane>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="area-perfil" BorderPane.alignment="CENTER">
+      <AnchorPane styleClass="area-perfil" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" layoutX="24.0" layoutY="137.0" prefHeight="373.0" prefWidth="345.0" styleClass="area-imagem">
                <children>
@@ -35,48 +37,22 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox layoutX="436.0" layoutY="18.0" prefHeight="600.0" prefWidth="427.0" spacing="10.0" styleClass="area-info" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label text="Nome Completo:">
-                     <VBox.margin>
-                        <Insets bottom="3.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="nome" prefHeight="60.0" prefWidth="400.0" />
-                  <Label text="Email:">
-                     <VBox.margin>
-                        <Insets bottom="3.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="email" prefHeight="60.0" prefWidth="400.0" />
-                  <Label text="Senha:">
-                     <VBox.margin>
-                        <Insets bottom="3.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="senha" prefHeight="60.0" prefWidth="400.0" />
-                  <Label text="CPF:">
-                     <VBox.margin>
-                        <Insets bottom="3.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="cpf" prefHeight="60.0" prefWidth="400.0" />
-                  <Label text="Estado:">
-                     <VBox.margin>
-                        <Insets bottom="3.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="estado" prefHeight="60.0" prefWidth="400.0" />
-                  <Label text="Município:" />
-                  <TextField fx:id="municipio" prefHeight="60.0" prefWidth="400.0" />
-                  <Label text="Bairro:" />
-                  <TextField fx:id="bairro" prefHeight="60.0" prefWidth="400.0" />
-               </children>
-               <padding>
-                  <Insets top="30.0" />
-               </padding>
-            </VBox>
-            <Button layoutX="436.0" layoutY="649.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="50.0" prefWidth="203.0" text="CONFIRMAR" AnchorPane.leftAnchor="436.0" />
+            <Label layoutX="431.0" layoutY="31.0" text="Nome Completo:" />
+            <TextField fx:id="nome" editable="false" layoutX="431.0" layoutY="65.0" prefWidth="400.0" />
+            <Label layoutX="431.0" layoutY="187.0" />
+            <Button layoutX="431.0" layoutY="713.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="50.0" prefWidth="203.0" text="CONFIRMAR" AnchorPane.leftAnchor="431.0" />
+            <Label layoutX="431.0" layoutY="126.0" text="Email:" />
+            <TextField fx:id="email" editable="false" layoutX="431.0" layoutY="160.0" prefWidth="400.0" />
+            <Label layoutX="431.0" layoutY="224.0" text="Senha:" />
+            <TextField fx:id="senha" editable="false" layoutX="431.0" layoutY="258.0" prefWidth="400.0" />
+            <Label layoutX="431.0" layoutY="319.0" text="CPF:" />
+            <TextField fx:id="cpf" editable="false" layoutX="431.0" layoutY="353.0" prefWidth="400.0" />
+            <Label layoutX="431.0" layoutY="413.0" text="Estado:" />
+            <TextField fx:id="estado" editable="false" layoutX="431.0" layoutY="447.0" prefWidth="400.0" />
+            <Label layoutX="431.0" layoutY="509.0" text="Município:" />
+            <TextField fx:id="municipio" editable="false" layoutX="431.0" layoutY="543.0" prefWidth="400.0" />
+            <Label layoutX="431.0" layoutY="601.0" text="Bairro:" />
+            <TextField fx:id="bairro" editable="false" layoutX="431.0" layoutY="635.0" prefWidth="400.0" />
          </children>
       </AnchorPane>
    </center>

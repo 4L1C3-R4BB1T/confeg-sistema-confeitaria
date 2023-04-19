@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import modelos.entidades.Funcionario;
+import modelos.validacao.Validacao;
 
 public class PerfilControlador {
 
@@ -32,6 +33,8 @@ public class PerfilControlador {
 
     private Stage tela;
 
+    private Validacao validacao = new Validacao();
+
     @FXML
     public void confirmar(ActionEvent event) {
         if (tela != null) {
@@ -51,7 +54,7 @@ public class PerfilControlador {
             setNome(funcionario.getNome());
             setEmail(funcionario.getEmail());
             setSenha(funcionario.getSenha());
-            setCpf(funcionario.getCpf());
+            setCpf(validacao.formatarCPF(funcionario.getCpf()));
             setEstado(funcionario.getEndereco().getEstado().getNome());
             setMunicipio(funcionario.getEndereco().getCidade().getNome());
             setBairro(funcionario.getEndereco().getBairro());

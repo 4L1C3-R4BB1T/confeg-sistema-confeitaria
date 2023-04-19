@@ -33,5 +33,19 @@ public class Validacao {
         return true;
     }
 
+    public  String formatarCPF(String valor) {
+        if (valor == null) {
+            throw new RuntimeException("CPF: valor passado é null.");
+        }
+        if (!valor.matches("\\d{11}")) {
+            throw new RuntimeException("CPF: não é uma sequência válida.");
+        }
+
+        String primeiro = valor.substring(0, 3);
+        String segundo = valor.substring(3, 6);
+        String terceiro = valor.substring(6, 9);
+        String ultimo = valor.substring(9);
+        return String.format("%s.%s.%s-%s", primeiro, segundo, terceiro, ultimo);
+    }
 
 }
