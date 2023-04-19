@@ -173,6 +173,7 @@ public class RegistrarPedidoControlador {
             return false;
         } else if (!vf.validarNumero(quantidade.getText())) {
             App.exibirAlert(areaDeAlerta, "FRACASSO", "ALERTA", "A quantidade não é válida.");
+            return false;
         } else if (Long.parseLong(quantidade.getText()) <= 0) {
             App.exibirAlert(areaDeAlerta, "FRACASSO", "Quantidade", "Quantidade tem quer maior que 0");
             return false;

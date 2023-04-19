@@ -78,6 +78,7 @@ public class PedidoControlador {
 
             palco.showAndWait();
             clicouBotaoEditar = false;
+            atualizarPedidos.usar();
         } catch (Exception erro) {
             erro.printStackTrace();
         }
