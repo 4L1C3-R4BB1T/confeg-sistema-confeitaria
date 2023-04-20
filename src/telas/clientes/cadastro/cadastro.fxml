@@ -14,7 +14,7 @@
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="762.0" layoutY="8.0" onMouseClicked="#encerrar2" AnchorPane.rightAnchor="5.0">
+            <ImageView layoutX="762.0" layoutY="8.0" onMouseClicked="#encerrar2" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
                   <Image url="@../../funcionarios/cadastro/images/fechar.png" />
                </image>
@@ -26,36 +26,36 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="conteudo" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="81.0" layoutY="44.0" prefHeight="50.0" prefWidth="600.0" styleClass="titulo" text="CADASTRO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
-            <Label layoutX="135.0" layoutY="143.0" styleClass="descricao" text="Nome" AnchorPane.leftAnchor="135.0" />
-            <TextField fx:id="nome" layoutX="135.0" layoutY="169.0" prefWidth="280.0" promptText="Ex: Carlos Miranda" AnchorPane.leftAnchor="135.0" />
-            <Label layoutX="135.0" layoutY="242.0" styleClass="descricao" text="CEP" AnchorPane.leftAnchor="135.0" />
-            <TextField fx:id="cep" layoutX="135.0" layoutY="267.0" prefWidth="280.0" promptText="Ex: 29999-999" AnchorPane.leftAnchor="135.0" />
-            <Label layoutX="505.0" layoutY="145.0" styleClass="descricao" text="CPF" AnchorPane.leftAnchor="505.0" />
-            <TextField fx:id="cpf" layoutX="505.0" layoutY="171.0" prefWidth="280.0" promptText="000.000.000-00" AnchorPane.leftAnchor="505.0" AnchorPane.rightAnchor="75.0" />
-            <ComboBox fx:id="estado" layoutX="505.0" layoutY="267.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="505.0" AnchorPane.rightAnchor="75.0" />
-            <Label layoutX="505.0" layoutY="240.0" styleClass="descricao" text="Estado" AnchorPane.leftAnchor="505.0" />
-            <ComboBox fx:id="cidade" layoutX="135.0" layoutY="363.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="135.0" />
-            <Label layoutX="135.0" layoutY="336.0" styleClass="descricao" text="Cidade" AnchorPane.leftAnchor="135.0" />
-            <Label layoutX="505.0" layoutY="336.0" styleClass="descricao" text="Bairro" AnchorPane.leftAnchor="505.0" />
-            <TextField fx:id="bairro" layoutX="505.0" layoutY="362.0" prefHeight="35.0" prefWidth="314.0" promptText="Ex: Santo Agosto" AnchorPane.rightAnchor="75.0" />
-            <Label layoutX="135.0" layoutY="433.0" styleClass="descricao" text="Rua" AnchorPane.leftAnchor="135.0" />
-            <TextField fx:id="rua" layoutX="135.0" layoutY="459.0" prefWidth="280.0" promptText="Ex: Flores" AnchorPane.leftAnchor="135.0" />
-            <Label layoutX="505.0" layoutY="433.0" styleClass="descricao" text="Número" AnchorPane.leftAnchor="505.0" />
-            <TextField fx:id="numero" layoutX="505.0" layoutY="459.0" prefWidth="80.0" promptText="Ex: 999" AnchorPane.leftAnchor="505.0" />
-            <Button layoutX="225.0" layoutY="575.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Salvar" AnchorPane.rightAnchor="495.0">
+            <Label layoutX="107.0" layoutY="163.0" styleClass="descricao" text="Nome" AnchorPane.leftAnchor="107.0" />
+            <TextField fx:id="nome" layoutX="107.0" layoutY="189.0" prefWidth="280.0" promptText="Ex: Carlos Miranda" AnchorPane.leftAnchor="107.0" />
+            <Label layoutX="107.0" layoutY="262.0" styleClass="descricao" text="CEP" AnchorPane.leftAnchor="107.0" />
+            <TextField fx:id="cep" layoutX="107.0" layoutY="287.0" prefWidth="280.0" promptText="Ex: 29999-999" AnchorPane.leftAnchor="107.0" />
+            <Label layoutX="477.0" layoutY="165.0" styleClass="descricao" text="CPF" AnchorPane.leftAnchor="477.0" />
+            <TextField fx:id="cpf" layoutX="477.0" layoutY="191.0" prefWidth="280.0" promptText="000.000.000-00" AnchorPane.leftAnchor="477.0" AnchorPane.rightAnchor="103.0" />
+            <ComboBox fx:id="estado" layoutX="477.0" layoutY="287.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="477.0" AnchorPane.rightAnchor="103.0" />
+            <Label layoutX="477.0" layoutY="260.0" styleClass="descricao" text="Estado" AnchorPane.leftAnchor="477.0" />
+            <ComboBox fx:id="cidade" layoutX="107.0" layoutY="383.0" prefHeight="29.0" prefWidth="280.0" promptText="Selecione" styleClass="escolha" AnchorPane.leftAnchor="107.0" />
+            <Label layoutX="107.0" layoutY="356.0" styleClass="descricao" text="Cidade" AnchorPane.leftAnchor="107.0" />
+            <Label layoutX="477.0" layoutY="356.0" styleClass="descricao" text="Bairro" AnchorPane.leftAnchor="477.0" />
+            <TextField fx:id="bairro" layoutX="483.0" layoutY="382.0" prefHeight="35.0" prefWidth="314.0" promptText="Ex: Santo Agosto" AnchorPane.rightAnchor="103.0" />
+            <Label layoutX="107.0" layoutY="453.0" styleClass="descricao" text="Rua" AnchorPane.leftAnchor="107.0" />
+            <TextField fx:id="rua" layoutX="107.0" layoutY="479.0" prefWidth="280.0" promptText="Ex: Flores" AnchorPane.leftAnchor="107.0" />
+            <Label layoutX="477.0" layoutY="453.0" styleClass="descricao" text="Número" AnchorPane.leftAnchor="477.0" />
+            <TextField fx:id="numero" layoutX="477.0" layoutY="479.0" prefWidth="80.0" promptText="Ex: 999" AnchorPane.leftAnchor="477.0" />
+            <Button layoutX="220.0" layoutY="596.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Salvar" AnchorPane.leftAnchor="220.0">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="confirmar" />
                </styleClass>
             </Button>
-            <Button layoutX="495.0" layoutY="575.0" mnemonicParsing="false" onAction="#fechar" prefHeight="50.0" prefWidth="180.0" text="Cancelar" AnchorPane.rightAnchor="225.0">
+            <Button layoutX="500.0" layoutY="596.0" mnemonicParsing="false" onAction="#fechar" prefHeight="50.0" prefWidth="180.0" text="Cancelar" AnchorPane.rightAnchor="220.0">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="cancelar" />
                </styleClass>
             </Button>
-            <Label layoutX="645.0" layoutY="433.0" styleClass="descricao" text="Telefone" />
-            <TextField fx:id="telefone" layoutX="645.0" layoutY="459.0" prefWidth="180.0" promptText="Ex: 999" AnchorPane.rightAnchor="75.0" />
+            <Label layoutX="617.0" layoutY="453.0" styleClass="descricao" text="Telefone" />
+            <TextField fx:id="telefone" layoutX="617.0" layoutY="479.0" prefWidth="180.0" promptText="Ex: 999" AnchorPane.rightAnchor="103.0" />
             <Label fx:id="erroNome" layoutX="135.0" layoutY="212.0" prefHeight="18.0" prefWidth="280.0" />
             <Label fx:id="erroCpf" layoutX="505.0" layoutY="212.0" prefHeight="18.0" prefWidth="319.0" />
             <Label fx:id="erroCep" layoutX="135.0" layoutY="308.0" prefHeight="18.0" prefWidth="281.0" />

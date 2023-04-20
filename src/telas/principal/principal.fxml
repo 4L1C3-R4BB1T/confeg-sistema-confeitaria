@@ -135,12 +135,12 @@
    <top>
       <AnchorPane prefHeight="30.0" prefWidth="200.0" styleClass="area-fechamento" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="43.0" fitWidth="44.0" layoutX="1115.0" onMouseClicked="#minimizarTela" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="1.0">
+            <ImageView fitHeight="43.0" fitWidth="44.0" layoutX="1115.0" onMouseClicked="#minimizarTela" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="3.0">
                <image>
                   <Image url="@images/minimizar.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="1260.0" layoutY="5.0" onMouseClicked="#fecharTela" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <ImageView layoutX="1260.0" layoutY="5.0" onMouseClicked="#fecharTela" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
                   <Image url="@images/fechar.png" />
                </image>

@@ -16,12 +16,12 @@
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="1157.0" layoutY="8.0" onMouseClicked="#fechar" AnchorPane.rightAnchor="8.0">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="1157.0" layoutY="8.0" onMouseClicked="#fechar" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
                   <Image url="@images/fechar.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="1109.0" layoutY="7.0" onMouseClicked="#minimizar" AnchorPane.rightAnchor="49.0">
+            <ImageView fitHeight="37.0" fitWidth="45.0" layoutX="1109.0" layoutY="7.0" onMouseClicked="#minimizar" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="7.0">
                <image>
                   <Image url="@images/minimizar.png" />
                </image>

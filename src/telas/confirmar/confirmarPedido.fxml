@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="800.0" stylesheets="@../pedidos/edicao/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="755.0" layoutY="5.0">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="755.0" layoutY="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
-                  <Image url="@fechar.png" />
+                  <Image url="@../pedidos/edicao/fechar.png" />
                </image>
             </ImageView>
          </children>
@@ -37,13 +37,13 @@
             <Label layoutX="102.0" layoutY="202.0" prefHeight="18.0" prefWidth="598.0" />
             <Label layoutX="102.0" layoutY="304.0" prefHeight="18.0" prefWidth="598.0" />
             <Label layoutX="100.0" layoutY="412.0" prefHeight="18.0" prefWidth="302.0" />
-            <Button layoutX="100.0" layoutY="683.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="Confirmar">
+            <Button layoutX="182.0" layoutY="683.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="Salvar">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="roxo" />
                </styleClass>
             </Button>
-            <Button layoutX="500.0" layoutY="683.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="Cancelar">
+            <Button layoutX="432.0" layoutY="683.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="Cancelar">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="red" />

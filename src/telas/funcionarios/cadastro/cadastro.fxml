@@ -14,7 +14,7 @@
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="758.0" layoutY="8.0" onMouseClicked="#fecharTela" AnchorPane.rightAnchor="9.0">
+            <ImageView layoutX="758.0" layoutY="8.0" onMouseClicked="#fecharTela" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
                   <Image url="@images/fechar.png" />
                </image>
@@ -43,13 +43,13 @@
             <TextField fx:id="rua" layoutX="75.0" layoutY="544.0" prefWidth="280.0" promptText="Ex: Flores" AnchorPane.leftAnchor="75.0" />
             <Label layoutX="445.0" layoutY="518.0" styleClass="descricao" text="Número" AnchorPane.leftAnchor="445.0" />
             <TextField fx:id="numero" layoutX="445.0" layoutY="544.0" prefWidth="280.0" promptText="Ex: 999" AnchorPane.leftAnchor="445.0" />
-            <Button layoutX="200.0" layoutY="625.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Salvar" AnchorPane.rightAnchor="420.0">
+            <Button layoutX="173.0" layoutY="639.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Salvar" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="440.0">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="confirmar" />
                </styleClass>
             </Button>
-            <Button layoutX="470.0" layoutY="625.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="180.0" text="Cancelar" AnchorPane.rightAnchor="150.0">
+            <Button layoutX="470.0" layoutY="639.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="180.0" text="Cancelar" AnchorPane.rightAnchor="180.0">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="cancelar" />

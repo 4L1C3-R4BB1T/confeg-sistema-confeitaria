@@ -15,7 +15,7 @@
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="762.0" layoutY="8.0" onMouseClicked="#fechar" AnchorPane.rightAnchor="5.0">
+            <ImageView layoutX="762.0" layoutY="8.0" onMouseClicked="#fechar" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
                   <Image url="@../../funcionarios/cadastro/images/fechar.png" />
                </image>
@@ -26,29 +26,29 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="conteudo" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="81.0" layoutY="44.0" prefHeight="50.0" prefWidth="600.0" styleClass="titulo" text="EDIÇÃO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
-            <ComboBox fx:id="sabores" layoutX="100.0" layoutY="144.0" prefWidth="150.0" promptText="Escolha o sabor" styleClass="tipo" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
-            <Label layoutX="75.0" layoutY="230.0" styleClass="descricao" text="Preço" AnchorPane.leftAnchor="75.0" />
-            <TextField fx:id="preco" layoutX="75.0" layoutY="256.0" prefWidth="280.0" promptText="Ex: 1500.00" AnchorPane.leftAnchor="75.0" />
-            <Label layoutX="444.0" layoutY="230.0" styleClass="descricao" text="Peso" AnchorPane.leftAnchor="444.0" />
-            <TextField fx:id="peso" layoutX="444.0" layoutY="256.0" prefWidth="280.0" promptText="Ex: 2.5kg" AnchorPane.leftAnchor="444.0" />
-            <Button layoutX="176.0" layoutY="672.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Salvar" AnchorPane.rightAnchor="444.0">
+            <Label layoutX="81.0" layoutY="44.0" prefHeight="50.0" prefWidth="600.0" styleClass="titulo" text="EDITAR" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
+            <ComboBox fx:id="sabores" layoutX="100.0" layoutY="132.0" prefWidth="150.0" promptText="Escolha o sabor" styleClass="tipo" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+            <Label layoutX="75.0" layoutY="218.0" styleClass="descricao" text="Preço" AnchorPane.leftAnchor="75.0" />
+            <TextField fx:id="preco" layoutX="75.0" layoutY="244.0" prefWidth="280.0" promptText="Ex: 1500.00" AnchorPane.leftAnchor="75.0" />
+            <Label layoutX="444.0" layoutY="218.0" styleClass="descricao" text="Peso" AnchorPane.leftAnchor="444.0" />
+            <TextField fx:id="peso" layoutX="444.0" layoutY="244.0" prefWidth="280.0" promptText="Ex: 2.5kg" AnchorPane.leftAnchor="444.0" />
+            <Button layoutX="176.0" layoutY="658.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Salvar" AnchorPane.leftAnchor="180.0">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="confirmar" />
                </styleClass>
             </Button>
-            <Button layoutX="446.0" layoutY="672.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="180.0" text="Cancelar" AnchorPane.rightAnchor="174.0">
+            <Button layoutX="446.0" layoutY="658.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="180.0" text="Cancelar" AnchorPane.rightAnchor="180.0">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="cancelar" />
                </styleClass>
             </Button>
-            <Label layoutX="76.0" layoutY="333.0" styleClass="descricao" text="Data de Fabricação" />
-            <TextField fx:id="fabricacao" disable="true" editable="false" layoutX="76.0" layoutY="359.0" prefHeight="50.0" prefWidth="280.0" promptText="DD/MM/AAAA" styleClass="bloqueado" />
-            <Label layoutX="445.0" layoutY="333.0" styleClass="descricao" text="Data de Vencimento" />
-            <TextField fx:id="vencimento" disable="true" editable="false" layoutX="445.0" layoutY="359.0" prefHeight="50.0" prefWidth="280.0" promptText="DD/MM/AAAA" styleClass="bloqueado" AnchorPane.rightAnchor="75.0" />
-            <TextArea fx:id="descricao" layoutX="78.0" layoutY="437.0" prefHeight="200.0" prefWidth="645.0" promptText="Descrição" />
+            <Label layoutX="76.0" layoutY="321.0" styleClass="descricao" text="Data de Fabricação" />
+            <TextField fx:id="fabricacao" disable="true" editable="false" layoutX="76.0" layoutY="347.0" prefHeight="50.0" prefWidth="280.0" promptText="DD/MM/AAAA" styleClass="bloqueado" />
+            <Label layoutX="445.0" layoutY="321.0" styleClass="descricao" text="Data de Vencimento" />
+            <TextField fx:id="vencimento" disable="true" editable="false" layoutX="445.0" layoutY="347.0" prefHeight="50.0" prefWidth="280.0" promptText="DD/MM/AAAA" styleClass="bloqueado" AnchorPane.rightAnchor="75.0" />
+            <TextArea fx:id="descricao" layoutX="78.0" layoutY="425.0" prefHeight="200.0" prefWidth="650.0" promptText="Descrição" />
             <Label fx:id="erroSabor" alignment="CENTER" layoutX="75.0" layoutY="206.0" prefHeight="18.0" prefWidth="663.0" />
             <Label fx:id="erroPreco" layoutX="75.0" layoutY="300.0" prefHeight="18.0" prefWidth="282.0" />
             <Label fx:id="erroPeso" layoutX="444.0" layoutY="300.0" prefHeight="18.0" prefWidth="282.0" />

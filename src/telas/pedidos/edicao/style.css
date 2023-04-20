@@ -20,7 +20,8 @@
 .titulo {
 	-fx-background-color: rgba(0,0,0,0.79);
 	-fx-text-fill: #fff;
-	-fx-font-size: 25px;
+	-fx-font-weight: bold;
+	-fx-font-size: 20px;
 	-fx-background-radius: 10px;	
 }
 
@@ -100,11 +101,11 @@
 }
 
 .botao.roxo {
-	-fx-background-color: #261787;
+	-fx-background-color: rgba(38, 23, 135, 0.8);
 }
 
 .botao.red {
-	-fx-background-color: #A80202;
+	-fx-background-color: rgba(168, 2, 2, 0.8);
 }
 
 .quantidade {

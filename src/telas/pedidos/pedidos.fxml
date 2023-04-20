@@ -14,7 +14,7 @@
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="1053.0" layoutY="5.0" onMouseClicked="#fechar">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="1053.0" layoutY="5.0" onMouseClicked="#fechar" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
                   <Image url="@imagens/fechar.png" />
                </image>
@@ -40,7 +40,7 @@
             </TableView>
             <AnchorPane layoutX="50.0" layoutY="25.0" prefHeight="80.0" prefWidth="900.0" styleClass="area-titulo" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="25.0">
                <children>
-                  <Label layoutY="-1.0" prefWidth="670.0" styleClass="titulo" text="PEDIDOS" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                  <Label layoutY="-1.0" prefHeight="80.0" prefWidth="1000.0" styleClass="titulo" text="PEDIDOS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <padding>
                         <Insets left="30.0" />
                      </padding>

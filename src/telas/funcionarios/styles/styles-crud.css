@@ -139,7 +139,6 @@
     -fx-prompt-text-fill: #0000008d;
 }
 
-
 TextArea .content {
     -fx-background-color: none;
 }
@@ -183,7 +182,6 @@ ComboBox .arrow {
     -fx-border-width: 0;
     -fx-background-color: transparent !important;
 }
-
 
 .date-picker-popup > .content > .month-year-pane > .picker > .picker-content > .calendar > .calendar-grid {
     -fx-background-color: white;
