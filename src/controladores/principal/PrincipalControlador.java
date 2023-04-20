@@ -412,7 +412,7 @@ public class PrincipalControlador {
         try {
 
             clicouBotaoConfirmarPedido = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/confirmacao/cadastro/confirmar.fxml"));
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/confirmacao/cadastro/confirmarPedido.fxml"));
             Parent raiz = carregar.load();
             CrudConfirmarPedidoControlador controlador = carregar.getController();
             Scene cena = new Scene(raiz);
