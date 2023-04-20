@@ -8,6 +8,7 @@ import java.util.List;
 import aplicacao.App;
 import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
+import controladores.crudConfirmarPedido.CrudConfirmarPedidoControlador;
 import controladores.crudFuncionario.CrudFuncionarioControlador;
 import controladores.crudPedidos.ListarPedidosControlador;
 import controladores.crudPedidos.RegistrarPedidoControlador;
@@ -89,6 +90,7 @@ public class PrincipalControlador {
     private boolean clicouFuncionario = false;
     private boolean clicouListarPedido = false;
     private boolean clicouBotaoPedir = false;
+    private boolean clicouBotaoConfirmarPedido = false;
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
@@ -201,6 +203,15 @@ public class PrincipalControlador {
     public void pedir(MouseEvent event) throws Exception {
         if(!clicouBotaoPedir) {
             carregarTelaDePedido();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+        }
+    }
+
+    @FXML
+    public void abrirTelaConfirmar(MouseEvent event) throws Exception {
+        if (!clicouBotaoConfirmarPedido) {
+            carregarTelaConfirmarPedido();
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
         }
@@ -385,6 +396,34 @@ public class PrincipalControlador {
             } else if (controlador.getErro()) {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar pedido.");
             }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
+
+
+    public void carregarTelaConfirmarPedido() {
+        try {
+
+            clicouBotaoConfirmarPedido = true;
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/confirmar/confirmar.fxml"));
+            Parent raiz = carregar.load();
+            CrudConfirmarPedidoControlador controlador = carregar.getController();
+            Scene cena = new Scene(raiz);
+            Stage palco = new Stage(StageStyle.UNDECORATED);
+            palco.setScene(cena);
+            App.adicionarMovimento(palco, cena);
+            controlador.setTela(palco);
+            palco.showAndWait();
+            clicouBotaoConfirmarPedido = false;
+            /* 
+            if (controlador.getRegistrouPedido()) {
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido registrado com sucesso");
+            } else if (controlador.getErro()) {
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar pedido.");
+            }
+            */
+
         } catch (Exception erro) {
             erro.printStackTrace();
         }

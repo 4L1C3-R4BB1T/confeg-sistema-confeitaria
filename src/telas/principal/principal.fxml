@@ -101,7 +101,7 @@
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Pedir" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" layoutX="10.0" layoutY="108.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao">
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="108.0" onMouseClicked="#abrirTelaConfirmar" prefHeight="32.0" prefWidth="130.0" styleClass="botao">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Confirmar" />
                                  </children>
