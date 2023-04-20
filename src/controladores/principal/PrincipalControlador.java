@@ -96,11 +96,10 @@ public class PrincipalControlador {
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
         removerBotaoAtivo();
-        adicionarAtivoNoBotao(pedidos);
-
         if (menuPedidos.isVisible()) {
             App.removerEfeitoSuave(menuPedidos);
         } else {
+            adicionarAtivoNoBotao(pedidos);
             App.adicionaEfeitoSuave(menuPedidos);
         }
     }
