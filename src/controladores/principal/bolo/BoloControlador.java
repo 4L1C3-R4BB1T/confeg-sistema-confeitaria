@@ -1,13 +1,19 @@
 package controladores.principal.bolo;
 
+import aplicacao.App;
+import controladores.crudPedidos.RegistrarPedidoControlador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelos.entidades.Bolo;
-import modelos.interfaces.AproveitarFuncao;
-import modelos.interfaces.AproveitarFuncaoGenerica;
 
 public class BoloControlador {
 
@@ -30,12 +36,44 @@ public class BoloControlador {
     private Label peso;
 
     private Bolo bolo;
+    
+    private Node areaDeAlerta;
 
-    private AproveitarFuncaoGenerica<Bolo> carregarTelaPedido;
+    private boolean clicouBotaoPedir = false;
 
     @FXML
-    public void pedir(ActionEvent event) {
-        carregarTelaPedido.usar(bolo);
+    public void pedir(ActionEvent event) throws Exception {
+        if (!clicouBotaoPedir) {
+            carregarTelaDePedido(bolo);
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "JANELA", "Já nela aberta.");
+        }
+    }
+
+    public void carregarTelaDePedido(Bolo bolo) {
+        try {
+            clicouBotaoPedir = true;
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/cadastro/registrarPedido.fxml"));
+            Parent raiz = carregar.load();
+            RegistrarPedidoControlador controlador = carregar.getController();
+            Scene cena = new Scene(raiz);
+            Stage palco = new Stage(StageStyle.UNDECORATED);
+            palco.setScene(cena);
+            App.adicionarMovimento(palco, cena);
+            controlador.setTela(palco);
+            if (bolo != null) {
+                controlador.setBolo(bolo);
+            }
+            palco.showAndWait();
+            clicouBotaoPedir = false;
+            if (controlador.getRegistrouPedido()) {
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido registrado com sucesso");
+            } else if (controlador.getErro()) {
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar pedido.");
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
     }
 
 
@@ -67,8 +105,8 @@ public class BoloControlador {
         this.bolo = bolo;
     }
 
-    public void setTelaPedido(AproveitarFuncaoGenerica<Bolo> fnc) {
-        this.carregarTelaPedido = fnc;
+    public void setAreaDeAlerta(Node node) {
+        this.areaDeAlerta = node;
     }
 
 }

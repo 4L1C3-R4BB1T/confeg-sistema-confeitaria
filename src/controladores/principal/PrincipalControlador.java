@@ -203,7 +203,7 @@ public class PrincipalControlador {
     @FXML 
     public void pedir(MouseEvent event) throws Exception {
         if(!clicouBotaoPedir) {
-            carregarTelaDePedido(null);
+            carregarTelaDePedido();
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
         }
@@ -252,7 +252,7 @@ public class PrincipalControlador {
                     controlador.setPreco("Preço: R$ " + bolo.getPreco().toString());
                     controlador.setValidade("Val: " + bolo.getVencimento().toString());
                     controlador.setBolo(bolo);
-                    controlador.setTelaPedido(this::carregarTelaDePedido);
+                    controlador.setAreaDeAlerta(areaDeAlerta);
                     return node;
                 } catch (Exception erro) {
                     return null;
@@ -381,7 +381,7 @@ public class PrincipalControlador {
         }
     }
 
-    public void carregarTelaDePedido(Bolo bolo) {
+    public void carregarTelaDePedido() {
         try {
             clicouBotaoPedir = true;
             FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/cadastro/registrarPedido.fxml"));
@@ -392,9 +392,6 @@ public class PrincipalControlador {
             palco.setScene(cena);
             App.adicionarMovimento(palco, cena);
             controlador.setTela(palco);
-            if (bolo != null) {
-                controlador.setBolo(bolo);
-            }
             palco.showAndWait();
             clicouBotaoPedir = false;
             if (controlador.getRegistrouPedido()) {
