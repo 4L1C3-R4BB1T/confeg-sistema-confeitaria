@@ -9,7 +9,6 @@ import aplicacao.App;
 import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
 import controladores.crudConfirmarPedido.ConfirmarPedidoControlador;
-import controladores.crudConfirmarPedido.CrudConfirmarPedidoControlador;
 import controladores.crudFuncionario.CrudFuncionarioControlador;
 import controladores.crudPedidos.ListarPedidosControlador;
 import controladores.crudPedidos.RegistrarPedidoControlador;

@@ -119,6 +119,33 @@ public class PedidoDAO {
         return pedidos;
     }
 
+    public List<Pedido> buscarPendentesPorCliente(Cliente cliente) {
+        String comando = "SELECT * FROM pedido WHERE cod_cliente = ? AND status_pedido = 'PENDENTE'";
+        List<Pedido> pedidos = new ArrayList<>();
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, cliente.getCodigo());
+            ResultSet resultado = ps.executeQuery(); 
+            ClienteDAO clienteDAO = new ClienteDAO(conexao);
+            FuncionarioDAO funcionarioDAO = new FuncionarioDAO(conexao);
+            MetodoPagamentoDAO metodoPagamentoDAO = new MetodoPagamentoDAO(conexao);
+            while (resultado.next()) {
+                pedidos.add(new Pedido(
+                    resultado.getLong("cod_pedido"),
+                    clienteDAO.buscarPorCodigo(resultado.getLong("cod_cliente")),
+                    funcionarioDAO.buscarPorCodigo(resultado.getLong("cod_funcionario")),
+                    resultado.getDate("data_pedido"),
+                    metodoPagamentoDAO.buscarPorCodigo(resultado.getLong("cod_metodo_pagamento")),
+                    Status.valueOf(resultado.getString("status_pedido")),
+                    resultado.getString("observacao_pedido")
+                ));
+            }
+            return pedidos;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return pedidos;
+    }
+
     public List<Pedido> buscarTodos() {
         String comando = "SELECT * FROM pedido";
         List<Pedido> pedidos = new ArrayList<>();

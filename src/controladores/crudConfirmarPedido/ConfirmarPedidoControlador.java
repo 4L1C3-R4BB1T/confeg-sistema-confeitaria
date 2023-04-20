@@ -77,7 +77,7 @@ public class ConfirmarPedidoControlador {
 
         clientes.getSelectionModel().selectedItemProperty().addListener((obs, antigo, novo) -> {
             if (novo != null) {
-                pedidos.getItems().setAll(pedidoDAO.buscarPorCliente(novo));
+                pedidos.getItems().setAll(pedidoDAO.buscarPendentesPorCliente(novo));
             }
         });
 
