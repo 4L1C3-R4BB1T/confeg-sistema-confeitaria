@@ -4,6 +4,10 @@
 	-fx-background-radius: none;
 }
 
+.container {
+	-fx-background-color: #fff;
+}
+
 .cabecalho {
 	-fx-background-color: rgba(0,0,0,0.79);
 }
@@ -248,4 +252,3 @@
 	-fx-border-radius: 10px;
 	-fx-background-radius: 10px;
 }
-

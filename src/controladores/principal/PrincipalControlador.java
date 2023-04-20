@@ -8,6 +8,7 @@ import java.util.List;
 import aplicacao.App;
 import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
+import controladores.crudConfirmarPedido.ConfirmarPedidoControlador;
 import controladores.crudConfirmarPedido.CrudConfirmarPedidoControlador;
 import controladores.crudFuncionario.CrudFuncionarioControlador;
 import controladores.crudPedidos.ListarPedidosControlador;
@@ -31,7 +32,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.entidadeDAO.BoloDAO;
-import modelos.entidades.Bolo;
 import modelos.entidades.Funcionario;
 
 // TELA PRINCIPAL DA APLICAÇÃO
@@ -410,7 +410,7 @@ public class PrincipalControlador {
             clicouBotaoConfirmarPedido = true;
             FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/confirmacao/cadastro/confirmarPedido.fxml"));
             Parent raiz = carregar.load();
-            CrudConfirmarPedidoControlador controlador = carregar.getController();
+            ConfirmarPedidoControlador controlador = carregar.getController();
             Scene cena = new Scene(raiz);
             Stage palco = new Stage(StageStyle.UNDECORATED);
             palco.setScene(cena);
