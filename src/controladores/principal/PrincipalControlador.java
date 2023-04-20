@@ -203,7 +203,7 @@ public class PrincipalControlador {
     @FXML 
     public void pedir(MouseEvent event) throws Exception {
         if(!clicouBotaoPedir) {
-            carregarTelaDePedido();
+            carregarTelaDePedido(null);
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
         }
