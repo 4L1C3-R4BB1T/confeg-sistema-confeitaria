@@ -49,10 +49,10 @@
             <Label layoutX="445.0" layoutY="321.0" styleClass="descricao" text="Data de Vencimento" />
             <TextField fx:id="vencimento" disable="true" editable="false" layoutX="445.0" layoutY="347.0" prefHeight="50.0" prefWidth="280.0" promptText="DD/MM/AAAA" styleClass="bloqueado" AnchorPane.rightAnchor="75.0" />
             <TextArea fx:id="descricao" layoutX="78.0" layoutY="425.0" prefHeight="200.0" prefWidth="650.0" promptText="Descrição" />
-            <Label fx:id="erroSabor" alignment="CENTER" layoutX="75.0" layoutY="206.0" prefHeight="18.0" prefWidth="663.0" />
-            <Label fx:id="erroPreco" layoutX="75.0" layoutY="300.0" prefHeight="18.0" prefWidth="282.0" />
-            <Label fx:id="erroPeso" layoutX="444.0" layoutY="300.0" prefHeight="18.0" prefWidth="282.0" />
-            <Label fx:id="erroDescricao" layoutX="77.0" layoutY="645.0" prefHeight="20.0" prefWidth="650.0" />
+            <Label fx:id="erroSabor" alignment="CENTER" layoutX="75.0" layoutY="195.0" prefHeight="18.0" prefWidth="663.0" />
+            <Label fx:id="erroPreco" layoutX="75.0" layoutY="284.0" prefHeight="18.0" prefWidth="282.0" />
+            <Label fx:id="erroPeso" layoutX="444.0" layoutY="284.0" prefHeight="18.0" prefWidth="282.0" />
+            <Label fx:id="erroDescricao" layoutX="77.0" layoutY="627.0" prefHeight="20.0" prefWidth="650.0" />
          </children>
       </AnchorPane>
    </center>

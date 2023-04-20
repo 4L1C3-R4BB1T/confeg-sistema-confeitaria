@@ -56,15 +56,15 @@
             </Button>
             <Label layoutX="617.0" layoutY="453.0" styleClass="descricao" text="Telefone" />
             <TextField fx:id="telefone" layoutX="617.0" layoutY="479.0" prefWidth="180.0" promptText="Ex: 999" AnchorPane.rightAnchor="103.0" />
-            <Label fx:id="erroNome" layoutX="135.0" layoutY="212.0" prefHeight="18.0" prefWidth="280.0" />
-            <Label fx:id="erroCpf" layoutX="505.0" layoutY="212.0" prefHeight="18.0" prefWidth="319.0" />
-            <Label fx:id="erroCep" layoutX="135.0" layoutY="308.0" prefHeight="18.0" prefWidth="281.0" />
-            <Label fx:id="erroEstado" layoutX="505.0" layoutY="308.0" prefHeight="18.0" prefWidth="317.0" />
-            <Label fx:id="erroBairro" layoutX="510.0" layoutY="404.0" prefHeight="18.0" prefWidth="317.0" />
-            <Label fx:id="erroCidade" layoutX="135.0" layoutY="404.0" prefHeight="18.0" prefWidth="317.0" />
-            <Label fx:id="erroRua" layoutX="135.0" layoutY="501.0" prefHeight="18.0" prefWidth="317.0" />
-            <Label fx:id="erroNumero" alignment="CENTER" layoutX="469.0" layoutY="501.0" prefHeight="18.0" prefWidth="152.0" />
-            <Label fx:id="erroTelefone" layoutX="645.0" layoutY="501.0" prefHeight="18.0" prefWidth="181.0" />
+            <Label fx:id="erroNome" layoutX="107.0" layoutY="231.0" prefHeight="18.0" prefWidth="280.0" />
+            <Label fx:id="erroCpf" layoutX="478.0" layoutY="232.0" prefHeight="18.0" prefWidth="319.0" />
+            <Label fx:id="erroCep" layoutX="107.0" layoutY="328.0" prefHeight="18.0" prefWidth="281.0" />
+            <Label fx:id="erroEstado" layoutX="479.0" layoutY="328.0" prefHeight="18.0" prefWidth="317.0" />
+            <Label fx:id="erroBairro" layoutX="482.0" layoutY="421.0" prefHeight="18.0" prefWidth="317.0" />
+            <Label fx:id="erroCidade" layoutX="107.0" layoutY="424.0" prefHeight="21.0" prefWidth="317.0" />
+            <Label fx:id="erroRua" layoutX="107.0" layoutY="520.0" prefHeight="18.0" prefWidth="317.0" />
+            <Label fx:id="erroNumero" alignment="CENTER" layoutX="441.0" layoutY="520.0" prefHeight="18.0" prefWidth="152.0" />
+            <Label fx:id="erroTelefone" layoutX="617.0" layoutY="520.0" prefHeight="18.0" prefWidth="181.0" />
          </children>
       </AnchorPane>
    </center>
