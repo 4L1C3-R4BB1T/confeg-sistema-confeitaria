@@ -31,6 +31,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.entidadeDAO.BoloDAO;
+import modelos.entidades.Bolo;
 import modelos.entidades.Funcionario;
 
 // TELA PRINCIPAL DA APLICAÇÃO
@@ -246,10 +247,12 @@ public class PrincipalControlador {
                     BoloControlador controlador = carregar.getController();
                     controlador.setImagem(getClass().getResource("/telas/principal/bolo/images/").toExternalForm() + bolo.getSabor().getCodigo() + ".png");
                     controlador.setDescricao(bolo.getDescricao());
-                    controlador.setFabricao("Fabricação: " + bolo.getFabricacao().toString());
+                    controlador.setFabricao("Fab: " + bolo.getFabricacao().toString());
                     controlador.setPeso("Peso: " + bolo.getPeso().toString() + " kg");
                     controlador.setPreco("Preço: R$ " + bolo.getPreco().toString());
-                    controlador.setValidade("Validade: " + bolo.getVencimento().toString());
+                    controlador.setValidade("Val: " + bolo.getVencimento().toString());
+                    controlador.setBolo(bolo);
+                    controlador.setTelaPedido(this::carregarTelaDePedido);
                     return node;
                 } catch (Exception erro) {
                     return null;
@@ -378,7 +381,7 @@ public class PrincipalControlador {
         }
     }
 
-    public void carregarTelaDePedido() {
+    public void carregarTelaDePedido(Bolo bolo) {
         try {
             clicouBotaoPedir = true;
             FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/cadastro/registrarPedido.fxml"));
@@ -389,6 +392,9 @@ public class PrincipalControlador {
             palco.setScene(cena);
             App.adicionarMovimento(palco, cena);
             controlador.setTela(palco);
+            if (bolo != null) {
+                controlador.setBolo(bolo);
+            }
             palco.showAndWait();
             clicouBotaoPedir = false;
             if (controlador.getRegistrouPedido()) {

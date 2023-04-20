@@ -1,9 +1,13 @@
 package controladores.principal.bolo;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import modelos.entidades.Bolo;
+import modelos.interfaces.AproveitarFuncao;
+import modelos.interfaces.AproveitarFuncaoGenerica;
 
 public class BoloControlador {
 
@@ -24,6 +28,15 @@ public class BoloControlador {
 
     @FXML
     private Label peso;
+
+    private Bolo bolo;
+
+    private AproveitarFuncaoGenerica<Bolo> carregarTelaPedido;
+
+    @FXML
+    public void pedir(ActionEvent event) {
+        carregarTelaPedido.usar(bolo);
+    }
 
 
     public void setImagem(String caminho) {
@@ -49,4 +62,13 @@ public class BoloControlador {
     public void setPeso(String peso) {
         this.peso.setText(peso);
     }
+    
+    public void setBolo(Bolo bolo) {
+        this.bolo = bolo;
+    }
+
+    public void setTelaPedido(AproveitarFuncaoGenerica<Bolo> fnc) {
+        this.carregarTelaPedido = fnc;
+    }
+
 }

@@ -137,22 +137,35 @@
 
 .area-bolo .fabricao {
     -fx-text-fill: #557C97;
-    -fx-font-size: 17px;
+    -fx-font-size: 16px;
 }
 
 .area-bolo .validade {
     -fx-text-fill: #DA0000;
-    -fx-font-size: 17px;
+    -fx-font-size: 16px;
 }
 
 .area-bolo .peso {
-    -fx-text-fill: #978E0D;
+    -fx-text-fill: #a79c05;
     -fx-font-size: 17px;
 }
 
 .area-bolo .preco {
     -fx-text-fill: #006B1E;
-    -fx-font-size: 17px;
+    -fx-font-size: 16px;
+}
+
+.bolo-botao {
+    -fx-background-color: linear-gradient(to bottom, #006B1E, #3ade68d5);
+    -fx-text-fill: #fff;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5px, 0, 0,2px);
+}
+
+.bolo-botao:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-background-color: #006b1e7d;
 }
 
 .scroll-bar:vertical .thumb {

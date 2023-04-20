@@ -249,5 +249,9 @@ public class RegistrarPedidoControlador {
         bolos.setValue(null);
         quantidade.setText("");
     }
+
+    public void setBolo(Bolo bolo) {
+        bolos.setValue(bolo);
+    }
  
 }
