@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="420.0" prefWidth="300.0" style="-fx-background-color: #fff;" styleClass="area-bolo" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.principal.bolo.BoloControlador">
+<AnchorPane prefHeight="450.0" prefWidth="300.0" style="-fx-background-color: #fff;" styleClass="area-bolo" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.principal.bolo.BoloControlador">
    <children>
-      <VBox alignment="TOP_CENTER" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="imagem" fitHeight="160.0" fitWidth="280.0" pickOnBounds="true" smooth="false">
                <image>
@@ -25,15 +25,15 @@
                   <Insets top="10.0" />
                </VBox.margin></Label>
             <Label fx:id="descricao" alignment="CENTER" prefHeight="40.0" prefWidth="265.0" styleClass="subtitulo" text="Esse é um bolo de chocolate, bastante recheado e com flocos de goiabada" textAlignment="CENTER" wrapText="true" />
-            <AnchorPane prefHeight="175.0" prefWidth="300.0">
+            <AnchorPane prefHeight="94.0" prefWidth="300.0">
                <children>
                   <Label fx:id="fabricao" alignment="CENTER" layoutX="20.0" layoutY="17.0" styleClass="fabricao" text="Fab: 10/10/1000" AnchorPane.leftAnchor="20.0" />
                   <Label fx:id="validade" alignment="CENTER" layoutX="183.0" layoutY="17.0" styleClass="validade" text="Val: 10/10/1000" AnchorPane.rightAnchor="20.0" />
                   <Label fx:id="preco" alignment="CENTER" layoutX="20.0" layoutY="55.0" styleClass="preco" text="Preço: R$ 75.00" AnchorPane.leftAnchor="20.0" />
                   <Label fx:id="peso" alignment="CENTER" layoutX="213.0" layoutY="55.0" styleClass="peso" text="Peso: 100g" AnchorPane.rightAnchor="20.0" />
-                  <Button layoutX="50.0" layoutY="105.0" mnemonicParsing="false" onAction="#pedir" prefHeight="40.0" prefWidth="200.0" styleClass="bolo-botao" text="Pedir" />
                </children>
             </AnchorPane>
+            <Button mnemonicParsing="false" onAction="#pedir" prefHeight="40.0" prefWidth="200.0" styleClass="bolo-botao" text="Pedir" />
          </children>
          <padding>
             <Insets top="10.0" />
