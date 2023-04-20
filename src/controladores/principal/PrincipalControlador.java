@@ -418,13 +418,6 @@ public class PrincipalControlador {
             controlador.setTela(palco);
             palco.showAndWait();
             clicouBotaoConfirmarPedido = false;
-            /* 
-            if (controlador.getRegistrouPedido()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido registrado com sucesso");
-            } else if (controlador.getErro()) {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar pedido.");
-            }
-            */
 
         } catch (Exception erro) {
             erro.printStackTrace();
