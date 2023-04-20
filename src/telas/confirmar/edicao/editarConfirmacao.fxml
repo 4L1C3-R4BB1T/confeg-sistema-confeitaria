@@ -27,7 +27,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="50.0" layoutY="24.0" prefHeight="65.0" prefWidth="700.0" styleClass="titulo" text="CONFIRMAR PEDIDO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <Label alignment="CENTER" layoutX="50.0" layoutY="24.0" prefHeight="65.0" prefWidth="700.0" styleClass="titulo" text="EDITAR" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
             <ComboBox layoutX="100.0" layoutY="142.0" prefHeight="50.0" prefWidth="150.0" promptText="Escolha o Cliente" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
             <ComboBox layoutX="100.0" layoutY="244.0" prefHeight="50.0" prefWidth="150.0" promptText="Escolha o Pedido" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
             <TextField layoutX="100.0" layoutY="357.0" prefWidth="300.0" promptText="DD / MM / YYYY" styleClass="campo" />
