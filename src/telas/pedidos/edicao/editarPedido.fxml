@@ -21,7 +21,7 @@
          <children>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="755.0" layoutY="5.0" onMouseClicked="#fecharTelas" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
-                  <Image url="@fechar.png" />
+                  <Image url="@../images/fechar.png" />
                </image>
             </ImageView>
          </children>
@@ -50,7 +50,7 @@
             <TextField fx:id="quantidade" alignment="CENTER" layoutX="430.0" layoutY="225.0" prefHeight="50.0" prefWidth="190.0" promptText="Quantidade" styleClass="quantidade" AnchorPane.leftAnchor="430.0" />
             <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="639.0" layoutY="231.0" onMouseClicked="#adicionarBolo" AnchorPane.rightAnchor="113.0">
                <image>
-                  <Image url="@../imagens/add.png" />
+                  <Image url="@../images/add.png" />
                </image>
             </ImageView>
             <ComboBox fx:id="metodoPagamento" layoutX="409.0" layoutY="479.0" prefHeight="50.0" prefWidth="320.0" promptText="Método de pagamento" styleClass="campoBox" AnchorPane.rightAnchor="70.0" />
@@ -68,7 +68,7 @@
             <HBox fx:id="areaDeAlerta" layoutX="59.0" layoutY="39.0" prefHeight="150.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
             <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="691.0" layoutY="231.0" onMouseClicked="#removerBolo" AnchorPane.rightAnchor="64.0">
                <image>
-                  <Image url="@excluir.png" />
+                  <Image url="@../images/excluir.png" />
                </image>
             </ImageView>
             <DatePicker fx:id="dataPedido" layoutX="101.0" layoutY="489.0" styleClass="data" />

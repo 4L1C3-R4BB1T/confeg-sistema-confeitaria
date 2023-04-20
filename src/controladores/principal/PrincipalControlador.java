@@ -370,7 +370,7 @@ public class PrincipalControlador {
     public void carregarTelaDePedido() {
         try {
             clicouBotaoPedir = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/edicao/registrarPedido.fxml"));
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/cadastro/registrarPedido.fxml"));
             Parent raiz = carregar.load();
             RegistrarPedidoControlador controlador = carregar.getController();
             Scene cena = new Scene(raiz);
