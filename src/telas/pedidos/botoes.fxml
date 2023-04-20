@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="34.0" fitWidth="34.0" onMouseClicked="#editar">
          <image>
-            <Image url="@imagens/editar.png" />
+            <Image url="@images/editar.png" />
          </image>
          <HBox.margin>
             <Insets left="10.0" />
@@ -17,7 +17,7 @@
       </ImageView>
       <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#remover">
          <image>
-            <Image url="@imagens/remover.png" />
+            <Image url="@images/remover.png" />
          </image>
          <HBox.margin>
             <Insets right="10.0" top="5.0" />
