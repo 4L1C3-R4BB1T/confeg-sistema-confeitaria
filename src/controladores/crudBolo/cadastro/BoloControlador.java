@@ -106,8 +106,8 @@ public class BoloControlador {
             if (controlador.getAlterou()) {
                 atualizarAreaDeBolos.usar();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "Edição", "Bolo alterado com sucesso.");
-            } else {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Erro interno ou Operação Cancelada.");
+            } else if (controlador.getErro()){
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Erro interno.");
             }
 
         } catch (Exception erro) {

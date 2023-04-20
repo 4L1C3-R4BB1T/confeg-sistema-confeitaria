@@ -70,6 +70,8 @@ public class BoloEdicaoControlador {
     private volatile boolean encerrarThread = false;
     
     private boolean alterou = false;
+    private boolean erro = false;
+
 
     @FXML
     public void cancelar(ActionEvent event) {
@@ -98,7 +100,7 @@ public class BoloEdicaoControlador {
             } catch (Exception erro) {
                 App.conexao.rollback();
                 erro.printStackTrace();
-                alterou = false;
+                this.erro = true;
             }
             encerrar();
         } 
@@ -212,6 +214,10 @@ public class BoloEdicaoControlador {
 
     public boolean getAlterou() {
         return alterou;
+    }
+
+    public boolean getErro() {
+        return erro;
     }
 
 }
