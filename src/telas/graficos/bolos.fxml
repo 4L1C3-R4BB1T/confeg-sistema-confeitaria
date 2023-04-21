@@ -24,7 +24,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="1100.0" styleClass="container" BorderPane.alignment="CENTER">
          <children>
-            <PieChart fx:id="pieChart" layoutX="27.0" layoutY="149.0" prefHeight="628.0" prefWidth="500.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0" />
+            <PieChart fx:id="pieChart" layoutX="27.0" layoutY="149.0" prefHeight="628.0" prefWidth="500.0" stylesheets="@styles-pie-chart.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0" />
             <AnchorPane layoutX="50.0" layoutY="25.0" prefHeight="80.0" prefWidth="900.0" styleClass="area-titulo" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="25.0">
                <children>
                   <Label layoutY="-1.0" prefHeight="80.0" prefWidth="1000.0" styleClass="titulo" text="BOLOS MAIS PEDIDOS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
