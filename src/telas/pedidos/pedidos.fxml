@@ -27,20 +27,12 @@
          <children>
             <TableView fx:id="areaDePedidos" layoutX="79.0" layoutY="194.0" prefHeight="554.0" prefWidth="1000.0" styleClass="tabela" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0">
               <columns>
-<<<<<<< HEAD
                 <TableColumn fx:id="codigo" prefWidth="75.0" sortable="false" text="CÓDIGO" />
                 <TableColumn fx:id="cliente" prefWidth="78.0" sortable="false" text="CLIENTE" />
                   <TableColumn fx:id="total" prefWidth="78.0" sortable="false" text="TOTAL" />
                   <TableColumn fx:id="data" prefWidth="191.0" sortable="false" text="DATA DO PEDIDO" />
                   <TableColumn fx:id="status" minWidth="0.0" prefWidth="105.0" sortable="false" text="STATUS" />
                   <TableColumn fx:id="desconto" minWidth="0.0" prefWidth="105.0" sortable="false" text="DESCONTO" />
-=======
-                <TableColumn fx:id="codigo" prefWidth="75.0" text="CÓDIGO" />
-                <TableColumn fx:id="cliente" prefWidth="78.0" text="CLIENTE" />
-                  <TableColumn fx:id="total" prefWidth="78.0" text="TOTAL" />
-                  <TableColumn fx:id="data" prefWidth="191.0" text="DATA" />
-                  <TableColumn fx:id="status" minWidth="0.0" prefWidth="105.0" text="STATUS" />
->>>>>>> 24564ac3db6acfd92045d8bd9481812dc950f6bc
                   <TableColumn fx:id="areaBotao" minWidth="0.0" prefWidth="161.0" />
               </columns>
                <columnResizePolicy>

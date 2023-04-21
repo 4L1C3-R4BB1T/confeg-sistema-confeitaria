@@ -30,10 +30,23 @@ public class PedidoControlador {
     private AproveitarFuncao atualizarPedidos;
 
     @FXML
-    public void editar(MouseEvent event) {
-        if (!clicouBotaoEditar) {
+    public void editar(MouseEvent event) throws Exception {
+        if (!verificarStatus()) {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDITAR", "Não é possível editar pedido com esse status");
+        } else if (!clicouBotaoEditar) {
             carregarEditarPedido();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDITAR", "A janela já está aberta.");
         }
+    }
+
+    public boolean verificarStatus() {
+        if (pedido.getStatus().getDescricao().equals("CANCELADO")) {
+            return false;
+        } else if (pedido.getStatus().getDescricao().equals("CONCLUIDO")){
+            return false;
+        }
+        return true;
     }
 
     @FXML
