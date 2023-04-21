@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelos.entidades.Funcionario;
+import modelos.entidades.Pedido;
 
 public class FuncionarioDAO {
 
@@ -93,6 +94,30 @@ public class FuncionarioDAO {
         String comando = "SELECT * FROM funcionario WHERE cod_funcionario = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
+            ResultSet resultado = ps.executeQuery();
+            TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(conexao);
+            EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
+            if (resultado.next()) {
+                return new Funcionario(
+                    resultado.getLong("cod_funcionario"),
+                    resultado.getString("nome_funcionario"), 
+                    resultado.getString("cpf_funcionario"),
+                    tipoDAO.buscarPorCodigo(resultado.getLong("cod_tipo_funcionario")),
+                    enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
+                    resultado.getString("email"),
+                    resultado.getString("senha")
+                );
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return null;
+    }
+
+    public Funcionario buscarPorPedido(Pedido pedido) {
+        String comando = "SELECT * FROM funcionario WHERE cod_funcionario = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, pedido.getFuncionario().getCodigo());
             ResultSet resultado = ps.executeQuery();
             TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(conexao);
             EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);

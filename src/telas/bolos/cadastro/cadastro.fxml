@@ -51,7 +51,7 @@
             </Button>
             <Label layoutX="76.0" layoutY="321.0" styleClass="descricao" text="Data de Fabricação" />
             <Label layoutX="445.0" layoutY="321.0" styleClass="descricao" text="Data de Vencimento" />
-            <TextArea fx:id="descricao" layoutX="78.0" layoutY="425.0" prefHeight="200.0" prefWidth="650.0" promptText="Descrição..." styleClass="data" />
+            <TextArea fx:id="descricao" layoutX="78.0" layoutY="425.0" prefHeight="200.0" prefWidth="650.0" promptText="Descrição..." />
             <Label fx:id="erroPreco" layoutX="75.0" layoutY="285.0" prefHeight="18.0" prefWidth="281.0" />
             <Label fx:id="erroPeso" layoutX="444.0" layoutY="284.0" prefHeight="18.0" prefWidth="281.0" />
             <Label fx:id="erroVencimento" layoutX="444.0" layoutY="389.0" prefHeight="18.0" prefWidth="281.0" />
