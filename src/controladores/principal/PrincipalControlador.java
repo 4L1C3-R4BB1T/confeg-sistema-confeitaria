@@ -457,6 +457,12 @@ public class PrincipalControlador {
             palco.showAndWait();
             clicouBotaoConfirmarPedido = false;
 
+            if (controlador.getSucesso()) {
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Confirmação realizada.");
+            } else if (controlador.getErro()) {
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "ERRO", "Não foi possível confirmar o pedido.");
+            }
+
         } catch (Exception erro) {
             erro.printStackTrace();
         }

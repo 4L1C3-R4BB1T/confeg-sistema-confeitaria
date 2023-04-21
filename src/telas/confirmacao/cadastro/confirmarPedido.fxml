@@ -61,7 +61,7 @@
             <Label fx:id="erroData" layoutX="98.0" layoutY="403.0" prefHeight="18.0" prefWidth="249.0" />
             <HBox fx:id="areaDeAlerta" layoutY="7.0" prefHeight="150.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
             <CheckBox fx:id="pedidoCancelado" alignment="CENTER" contentDisplay="CENTER" layoutX="552.0" layoutY="457.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#clicouCancelado" prefHeight="28.0" prefWidth="148.0" styleClass="check-pago" text="Cancelado" AnchorPane.rightAnchor="100.0" />
-            <TextField fx:id="nomeFuncionario" layoutX="450.0" layoutY="354.0" prefHeight="40.0" prefWidth="250.0" styleClass="exibir-funcionario" text="Gabriel" AnchorPane.rightAnchor="100.0" />
+            <TextField fx:id="nomeFuncionario" disable="true" layoutX="450.0" layoutY="354.0" prefHeight="40.0" prefWidth="250.0" styleClass="exibir-funcionario" AnchorPane.rightAnchor="100.0" />
             <Label layoutX="450.0" layoutY="328.0" styleClass="label-data" text="Funcionário" />
          </children>
       </AnchorPane>

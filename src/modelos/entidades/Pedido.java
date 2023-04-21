@@ -153,7 +153,7 @@ public class Pedido {
         double total = pedidos.stream().map(pedido -> pedido.getBolo().getPreco() * pedido.getQuantidade())
                 .mapToDouble(valor -> valor).sum();
         long quantidade = pedidos.stream().map(pedido -> pedido.getQuantidade()).mapToLong(valor -> valor).sum();
-        return String.format("Cod - %d DATA - %s - QUANTIDADE DE BOLOS - %d TOTAL - R$ %.2f", codigo, sdf.format(dataPedido), quantidade, total);
+        return String.format("Cod - %d - %s - QNT - %d TOTAL - R$ %.2f", codigo, sdf.format(dataPedido), quantidade, total);
     }
 
 }
