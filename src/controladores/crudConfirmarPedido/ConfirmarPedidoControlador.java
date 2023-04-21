@@ -88,12 +88,11 @@ public class ConfirmarPedidoControlador {
     void salvar(ActionEvent event) throws Exception {
 
         //Ao ser confirmada a entrega, o pedido deverá ter seu status alterado para CONCLUIDO
-       // Caso a data da confirmação do pedido seja mesma do pedido, 
-       // o cliente ganhará 2% de desconto sobre o valor total do pedido
+        // Caso a data da confirmação do pedido seja mesma do pedido, 
+        // o cliente ganhará 2% de desconto sobre o valor total do pedido
         if (validarCampos()) {
             App.conexao.setAutoCommit(false);
             try {
-                
                 Pedido pedido = getPedido();
                 ConfirmacaoPedido confirmacaoPedido = new ConfirmacaoPedido(getCliente(), pedido, Date.valueOf(getDataConfirmacao()), null, getDescricao());
 
@@ -107,7 +106,7 @@ public class ConfirmarPedidoControlador {
                     pedido.setStatus(Status.CANCELADO);
                 }
 
-                pedidoDAO.alterar(pedido);
+                pedidoDAO.alterarConfirmaco(pedido);
                 confirmacaoPedido.setPago(getPago());
                 confirmacaoPedidoDAO.inserir(confirmacaoPedido);
                 App.conexao.commit();

@@ -18,7 +18,7 @@ public class Pedido {
     private MetodoPagamento metodo;
     private Status status;
     private String observacao;
-    private Double desconto;
+    private Double desconto = 0D;
     private List<Bolo> bolos = new ArrayList<>();
 
     public Pedido(Cliente cliente, Funcionario funcionario, Date dataPedido, MetodoPagamento metodo, Status status,
@@ -31,17 +31,6 @@ public class Pedido {
         this.observacao = observacao;
     }
 
-    public Pedido(Cliente cliente, Funcionario funcionario, Date dataPedido, MetodoPagamento metodo, Status status,
-            String observacao, Double desconto) {
-        this.cliente = cliente;
-        this.funcionario = funcionario;
-        this.dataPedido = dataPedido;
-        this.metodo = metodo;
-        this.status = status;
-        this.observacao = observacao;
-        this.desconto = desconto;
-    }
-
     public Pedido(Long codigo, Cliente cliente, Funcionario funcionario, Date dataPedido, MetodoPagamento metodo,
             Status status, String observacao) {
         this.codigo = codigo;
@@ -51,18 +40,6 @@ public class Pedido {
         this.metodo = metodo;
         this.status = status;
         this.observacao = observacao;
-    }
-
-    public Pedido(Long codigo, Cliente cliente, Funcionario funcionario, Date dataPedido, MetodoPagamento metodo,
-            Status status, String observacao, Double desconto) {
-        this.codigo = codigo;
-        this.cliente = cliente;
-        this.funcionario = funcionario;
-        this.dataPedido = dataPedido;
-        this.metodo = metodo;
-        this.status = status;
-        this.observacao = observacao;
-        this.desconto = desconto;
     }
 
     public Long getCodigo() {
