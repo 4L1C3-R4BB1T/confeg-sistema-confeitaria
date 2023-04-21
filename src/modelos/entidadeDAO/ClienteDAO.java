@@ -83,6 +83,33 @@ public class ClienteDAO {
         return null;
     }
 
+    public List<Cliente> buscarTodosComPedidosPendentes() {
+        String comando = "SELECT DISTINCT c.* " +
+               "FROM cliente c " +
+               "INNER JOIN pedido p " +
+               "ON c.cod_cliente = p.cod_cliente " +
+               "WHERE p.status_pedido = 'PENDENTE'";
+        List<Cliente> clientes = new ArrayList<>();
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ResultSet resultado = ps.executeQuery();
+            EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
+            while (resultado.next()) {
+                clientes.add(new Cliente(
+                        resultado.getLong("cod_cliente"),
+                        resultado.getString("nome_cliente"), 
+                        resultado.getString("cpf_cliente"),
+                        resultado.getString("telefone_cliente"),
+                        enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco"))
+                    )
+                );
+            }
+            return clientes;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return clientes;
+    }
+
     public List<Cliente> buscarTodos() {
         String comando = "SELECT * FROM cliente ORDER BY cod_cliente ASC";
         List<Cliente> clientes = new ArrayList<>();

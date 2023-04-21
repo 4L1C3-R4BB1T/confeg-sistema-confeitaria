@@ -89,7 +89,7 @@ public class ConfirmarPedidoControlador {
     }
 
     public void carregarClientes() {
-        clientes.getItems().setAll(clienteDAO.buscarTodos());
+        clientes.getItems().setAll(clienteDAO.buscarTodosComPedidosPendentes());
     }
 
     public void setTela(Stage tela) {
