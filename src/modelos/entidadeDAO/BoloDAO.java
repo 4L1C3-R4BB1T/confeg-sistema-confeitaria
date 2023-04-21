@@ -104,7 +104,6 @@ public class BoloDAO {
                     resultado.getDate("data_vencimento_bolo")
                 ));
             }
-            return bolos;
         } catch (Exception erro) {
             erro.printStackTrace();
         }

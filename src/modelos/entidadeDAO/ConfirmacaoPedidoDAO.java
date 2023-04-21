@@ -104,7 +104,6 @@ public class ConfirmacaoPedidoDAO {
                     resultado.getString("observacao_confirmacao_pedido")
                 ));
             }
-            return confirmacoes;
         } catch (Exception erro) {
             erro.printStackTrace();
         }

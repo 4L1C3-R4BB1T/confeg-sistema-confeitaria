@@ -112,7 +112,6 @@ public class PedidoDAO {
                     resultado.getString("observacao_pedido")
                 ));
             }
-            return pedidos;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -139,7 +138,6 @@ public class PedidoDAO {
                     resultado.getString("observacao_pedido")
                 ));
             }
-            return pedidos;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -165,7 +163,6 @@ public class PedidoDAO {
                     resultado.getString("observacao_pedido")
                 ));
             }
-            return pedidos;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
