@@ -82,6 +82,18 @@ public class PrincipalControlador {
 
     private Button[] botoes;
 
+    // BOTÕES DO MENU PEDIDO
+    @FXML
+    private HBox botaoListar;
+
+    @FXML
+    private HBox botaoPedir;
+
+    @FXML
+    private HBox botaoConfirmar;
+
+    private HBox[] botoesPedido;
+
     @FXML
     private ImageView areaImagem;
 
@@ -104,6 +116,7 @@ public class PrincipalControlador {
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
+        removerBotaoPedidoAtivo();
         removerBotaoAtivo();
         if (menuPedidos.isVisible()) {
             fecharModaisPedido();
@@ -116,8 +129,14 @@ public class PrincipalControlador {
 
     // Colocar os modais 
     public void fecharModaisPedido() {
+        removerBotaoPedidoAtivo();
         modalPedir.setVisible(false);
         modalListar.setVisible(false);
+    }
+
+    public void fecharModaisPedidoESub() {
+        fecharModaisPedido();
+        menuPedidos.setVisible(false);
     }
 
     @FXML
@@ -201,15 +220,18 @@ public class PrincipalControlador {
     public void initialize() {
         atualizarAreaBolo();
         botoes = new Button[] { administrador, principal, pedidos, bolos, clientes };
+        botoesPedido = new HBox[] { botaoListar, botaoPedir, botaoConfirmar };
     }
 
     // Listar Modal
     @FXML 
     public void abrirModalListar(MouseEvent event) throws Exception {
+        removerBotaoPedidoAtivo();
         if (modalListar.isVisible()) {
             App.removerEfeitoSuave(modalListar);
         } else {
             fecharModaisPedido();
+            adicionarAtivoNoBotaoPedido(botaoListar);
             App.adicionaEfeitoSuave(modalListar);
         }
         
@@ -218,25 +240,42 @@ public class PrincipalControlador {
     @FXML
     public void abrirListaPedido(MouseEvent event) throws Exception {
         if (!clicouBotaoListarPedido) {
+            fecharModaisPedidoESub();
             carregarTelaListarPedidos();
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
         }
     }
 
+    @FXML
+    public void abrirListaConfirmacao(MouseEvent event) {
+        fecharModaisPedidoESub();
+        System.out.println("Abrir confirmação");
+    }
+
+    @FXML
+    public void abrirListaIngrediente(MouseEvent event) {
+        fecharModaisPedidoESub();
+        System.out.println("Abrir ingredientes");
+    }
+
+
     // Pedir Modal
     @FXML 
     public void abrirModalPedir(MouseEvent event) throws Exception {
+        removerBotaoPedidoAtivo();
         if(modalPedir.isVisible()) {
             App.removerEfeitoSuave(modalPedir);
         } else {
             fecharModaisPedido();
+            adicionarAtivoNoBotaoPedido(botaoPedir);
             App.adicionaEfeitoSuave(modalPedir);
         }
     }
 
     @FXML
     public void abrirPedirBolo(MouseEvent event) throws Exception {
+        fecharModaisPedidoESub();
         if (!clicouBotaoPedirBolo) {
             carregarTelaDePedido();
         } else {
@@ -245,8 +284,17 @@ public class PrincipalControlador {
     }
 
     @FXML
+    public void abrirPedirIngrediente(MouseEvent event) {
+        fecharModaisPedidoESub();
+        System.out.println("Clicou abrir ingrediente");
+    }
+
+    @FXML
     public void abrirTelaConfirmar(MouseEvent event) throws Exception {
+        removerBotaoPedidoAtivo();
         if (!clicouBotaoConfirmarPedido) {
+            fecharModaisPedidoESub();
+            adicionarAtivoNoBotaoPedido(botaoConfirmar);
             carregarTelaConfirmarPedido();
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
@@ -257,6 +305,22 @@ public class PrincipalControlador {
         menuPedidos.setVisible(false);
         
     }
+
+
+    public void removerBotaoPedidoAtivo() {
+        Arrays.stream(botoesPedido).forEach(botao -> {
+            if (botao != null) {
+                botao.getStyleClass().remove("pedido-ativo");
+            }
+        });
+    }
+
+    public void adicionarAtivoNoBotaoPedido(HBox botao) {
+        if (botao != null) {
+            removerBotaoAtivo();
+            botao.getStyleClass().add("pedido-ativo");
+        }
+    } 
     
     public void removerBotaoAtivo() {
         Arrays.stream(botoes).forEach(botao -> {
@@ -444,7 +508,7 @@ public class PrincipalControlador {
 
     public void carregarTelaConfirmarPedido() {
         try {
-
+            limparModalMenuAbertos();
             clicouBotaoConfirmarPedido = true;
             FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/confirmacao/cadastro/confirmarPedido.fxml"));
             Parent raiz = carregar.load();
@@ -457,8 +521,10 @@ public class PrincipalControlador {
             palco.showAndWait();
             clicouBotaoConfirmarPedido = false;
 
-            if (controlador.getSucesso()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Confirmação realizada.");
+            if (controlador.getSucesso() && controlador.getDesconto()) {
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido confirmado e 2% desconto aplicado.");
+            } else if (controlador.getSucesso()) {
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido confirmado.");
             } else if (controlador.getErro()) {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "ERRO", "Não foi possível confirmar o pedido.");
             }

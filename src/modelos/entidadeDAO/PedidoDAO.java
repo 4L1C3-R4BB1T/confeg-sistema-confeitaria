@@ -90,7 +90,7 @@ public class PedidoDAO {
             FuncionarioDAO funcionarioDAO = new FuncionarioDAO(conexao);
             MetodoPagamentoDAO metodoPagamentoDAO = new MetodoPagamentoDAO(conexao); 
             if (resultado.next()) {
-                return new Pedido(
+                Pedido pedido = new Pedido(
                     resultado.getLong("cod_pedido"),
                     clienteDAO.buscarPorCodigo(resultado.getLong("cod_cliente")),
                     funcionarioDAO.buscarPorCodigo(resultado.getLong("cod_funcionario")),
@@ -99,6 +99,8 @@ public class PedidoDAO {
                     Status.valueOf(resultado.getString("status_pedido")),
                     resultado.getString("observacao_pedido")
                 );
+                pedido.setDesconto(resultado.getDouble("desconto_pedido"));
+                return pedido;
             }
         } catch (Exception erro) {
             erro.printStackTrace();

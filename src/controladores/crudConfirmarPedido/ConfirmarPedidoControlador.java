@@ -72,6 +72,7 @@ public class ConfirmarPedidoControlador {
 
     private boolean sucesso = false;
     private boolean erro = false;
+    private boolean desconto = false;
 
     @FXML
     void cancelar(ActionEvent event) {
@@ -100,6 +101,7 @@ public class ConfirmarPedidoControlador {
                     App.exibirAlert(areaDeAlerta, "SUCESSO", "DESCONTO", "Desconto de 2% aplicado.");
                     pedido.setDesconto(2D);
                     pedido.setStatus(Status.CONCLUIDO);
+                    this.desconto = true;
                 } else if (getPago()) {
                     pedido.setStatus(Status.CONCLUIDO);
                 } else {
@@ -219,5 +221,9 @@ public class ConfirmarPedidoControlador {
 
     public boolean getErro() {
         return erro;
+    }
+
+    public boolean getDesconto() {
+        return desconto;
     }
 }

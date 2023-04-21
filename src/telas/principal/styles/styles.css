@@ -197,3 +197,10 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5px, 0, 0, 3px);
 }
 
+.pedido-ativo {
+    -fx-background-color: #261787 !important;
+}
+
+.pedido-ativo .label {
+    -fx-text-fill: #fff !important;
+}

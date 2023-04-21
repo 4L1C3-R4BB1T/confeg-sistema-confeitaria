@@ -35,12 +35,13 @@ public final class ConsultaPersonalizada {
         String comando = "SELECT p.cod_pedido as \"pedido\", " + 
             "c.cod_cliente as \"cliente\", " + 
             "SUM(b.preco_bolo * pb.quantidade_bolo) as \"total\"," +
-            "p.data_pedido as \"data\", p.status_pedido as \"status\" " +
+            "p.data_pedido as \"data\", p.status_pedido as \"status\"," +
+            "p.desconto_pedido as \"desconto\"" +
             "FROM pedido_bolo pb " +
             "INNER JOIN pedido p ON pb.cod_pedido = p.cod_pedido " +
             "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
             "INNER JOIN cliente c ON c.cod_cliente = p.cod_cliente " +
-            "GROUP BY p.data_pedido, p.cod_pedido, c.cod_cliente ORDER BY p.cod_pedido ASC";
+            "GROUP BY p.cod_pedido,  p.data_pedido, c.cod_cliente, p.status_pedido, p.desconto_pedido ORDER BY p.cod_pedido ASC";
 
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
@@ -51,7 +52,8 @@ public final class ConsultaPersonalizada {
                     clienteDAO.buscarPorCodigo(resultado.getLong("cliente")),
                     resultado.getDouble("total"),
                     new Date(resultado.getDate("data").getTime()),
-                    resultado.getString("status")
+                    resultado.getString("status"),
+                    resultado.getDouble("desconto")
                 ));
             }
 

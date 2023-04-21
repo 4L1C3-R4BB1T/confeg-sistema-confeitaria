@@ -4,6 +4,7 @@ import aplicacao.App;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,13 +30,16 @@ public class ListarPedidosControlador {
     private TableColumn<PedidoConsulta, String> cliente;
 
     @FXML
-    private TableColumn<PedidoConsulta, Double> total;
+    private TableColumn<PedidoConsulta, Label> total;
 
     @FXML
     private TableColumn<PedidoConsulta, String> data;
 
     @FXML
-    private TableColumn<PedidoConsulta, String> status;
+    private TableColumn<PedidoConsulta, Label> status;
+
+    @FXML
+    private TableColumn<PedidoConsulta, Label> desconto;
 
     @FXML
     private TableColumn<PedidoConsulta, Node> areaBotao;
@@ -59,6 +63,7 @@ public class ListarPedidosControlador {
         total.setCellValueFactory(new PropertyValueFactory<>("total"));
         data.setCellValueFactory(new PropertyValueFactory<>("dataPedido"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        desconto.setCellValueFactory(new PropertyValueFactory<>("desconto"));
         areaBotao.setCellValueFactory(new PropertyValueFactory<>("node"));
 
         carregarPedidos();
@@ -75,6 +80,10 @@ public class ListarPedidosControlador {
                 controlador.setAreaDeAlerta(areaDeAlerta);
                 controlador.setPedido(pedido);
                 controlador.setFuncaoAtualizarPedidos(this::carregarPedidos);
+                System.out.println(pedido.getDesconto());
+                if(pedido.getDesconto() != 0) {
+                    pedidoConsulta.setTotal(pedidoConsulta.getTotalDouble() * (1 - (pedido.getDesconto() / 100)));
+                }
                 pedidoConsulta.setNode(botoes);
                 areaDePedidos.getItems().add(pedidoConsulta);
             } catch (Exception erro) {
