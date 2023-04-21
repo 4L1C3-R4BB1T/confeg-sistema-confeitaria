@@ -1,5 +1,3 @@
-
-
 .container .cabecalho {
     -fx-background-color: rgba(0,0,0,0.79);
 }
@@ -72,8 +70,6 @@
     -fx-text-fill: #000;
 }
 
-
-
 .container .escolha {
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #000;
@@ -92,9 +88,6 @@
     -fx-text-fill: #fff;
     -fx-background-color: rgba(0, 0, 0, 0.79);
 }
-
-
-
 
 .container .botao {
     -fx-cursor: hand;
@@ -191,7 +184,6 @@ ComboBox .arrow {
 .date-picker-popup > .content > .month-year-pane > .picker > .picker-content > .calendar > .calendar-grid > .calendar-row > .arrow-button {
     -fx-background-color: #fff;
 }
-
 
 .date-picker-popup Button {
     -fx-background-color: #fff;

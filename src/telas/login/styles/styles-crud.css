@@ -80,8 +80,6 @@
     -fx-background-color: rgba(0, 0, 0, 0.79);
 }
 
-
-
 .container .botao {
     -fx-cursor: hand;
     -fx-background-radius: 10px;
@@ -133,7 +131,6 @@ text-area .scroll-bar:vertical {
 ComboBox .arrow {
     -fx-background-color: #000;
 }
-
 
 .erro {
     -fx-text-fill: red;
