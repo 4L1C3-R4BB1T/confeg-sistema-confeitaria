@@ -76,6 +76,12 @@ public class PedidoControlador {
             App.adicionarMovimento(palco, cena);
 
             palco.showAndWait();
+
+            if (controlador.getRegistrouPedido()) {
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDITAR", "O Pedido com ID: " + pedido.getCodigo() + " saiu da edição.");
+            } else if (controlador.getErro()) {
+                App.exibirAlert(areaDeAlerta, "ERRO", "EDITAR", "O Pedido com ID: " + pedido.getCodigo() + " não foi editado.");
+            }
             clicouBotaoEditar = false;
             atualizarPedidos.usar();
         } catch (Exception erro) {

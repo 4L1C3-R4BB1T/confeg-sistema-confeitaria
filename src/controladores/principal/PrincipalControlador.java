@@ -46,6 +46,12 @@ public class PrincipalControlador {
     private ImageView menuUsuarioSeta;
 
     @FXML
+    private AnchorPane modalListar;
+
+    @FXML
+    private AnchorPane modalPedir;
+
+    @FXML
     private HBox areaBotaoMenu;
 
     @FXML 
@@ -88,19 +94,26 @@ public class PrincipalControlador {
     private boolean clicouBolo = false;
     private boolean clicouCliente = false;
     private boolean clicouFuncionario = false;
-    private boolean clicouListarPedido = false;
-    private boolean clicouBotaoPedir = false;
+    private boolean clicouBotaoListarPedido = false;
+    private boolean clicouBotaoPedirBolo = false;
     private boolean clicouBotaoConfirmarPedido = false;
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
         removerBotaoAtivo();
         if (menuPedidos.isVisible()) {
+            fecharModaisPedido();
             App.removerEfeitoSuave(menuPedidos);
         } else {
             adicionarAtivoNoBotao(pedidos);
             App.adicionaEfeitoSuave(menuPedidos);
         }
+    }
+
+    // Colocar os modais 
+    public void fecharModaisPedido() {
+        modalPedir.setVisible(false);
+        modalListar.setVisible(false);
     }
 
     @FXML
@@ -188,24 +201,47 @@ public class PrincipalControlador {
         botoes = new Button[] { administrador, principal, pedidos, bolos, clientes };
     }
 
-    // Pedidos menu
+    // Listar Modal
     @FXML 
-    public void listarPedidos(MouseEvent event) throws Exception {
-        if (!clicouListarPedido) {
+    public void abrirModalListar(MouseEvent event) throws Exception {
+        if (modalListar.isVisible()) {
+            App.removerEfeitoSuave(modalListar);
+        } else {
+            fecharModaisPedido();
+            App.adicionaEfeitoSuave(modalListar);
+        }
+        
+    }
+
+    @FXML
+    public void abrirListaPedido(MouseEvent event) throws Exception {
+        if (!clicouBotaoListarPedido) {
             carregarTelaListarPedidos();
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
         }
     }
 
+    // Pedir Modal
     @FXML 
-    public void pedir(MouseEvent event) throws Exception {
-        if(!clicouBotaoPedir) {
+    public void abrirModalPedir(MouseEvent event) throws Exception {
+        if(modalPedir.isVisible()) {
+            App.removerEfeitoSuave(modalPedir);
+        } else {
+            fecharModaisPedido();
+            App.adicionaEfeitoSuave(modalPedir);
+        }
+    }
+
+    @FXML
+    public void abrirPedirBolo(MouseEvent event) throws Exception {
+        if (!clicouBotaoPedirBolo) {
             carregarTelaDePedido();
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
         }
     }
+
 
     @FXML
     public void abrirTelaConfirmar(MouseEvent event) throws Exception {
@@ -218,6 +254,7 @@ public class PrincipalControlador {
 
     public void limparModalMenuAbertos() {
         menuPedidos.setVisible(false);
+        
     }
     
     public void removerBotaoAtivo() {
@@ -230,6 +267,7 @@ public class PrincipalControlador {
 
     public void adicionarAtivoNoBotao(Button botao) {
         if (botao != null) {
+            fecharModaisPedido();
             limparModalMenuAbertos();
             botao.getStyleClass().add("ativo");
         }
@@ -361,7 +399,7 @@ public class PrincipalControlador {
 
     public void carregarTelaListarPedidos() {
         try {
-            clicouListarPedido = true;
+            clicouBotaoListarPedido = true;
             FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/pedidos.fxml"));
             Parent raiz = carregar.load();
             ListarPedidosControlador controlador = carregar.getController();
@@ -373,7 +411,7 @@ public class PrincipalControlador {
             App.adicionarMovimento(palco, cena);
             palco.showAndWait();
             telas.remove(palco);
-            clicouListarPedido = false;
+            clicouBotaoListarPedido = false;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -381,7 +419,7 @@ public class PrincipalControlador {
 
     public void carregarTelaDePedido() {
         try {
-            clicouBotaoPedir = true;
+            clicouBotaoPedirBolo = true;
             FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/cadastro/registrarPedido.fxml"));
             Parent raiz = carregar.load();
             RegistrarPedidoControlador controlador = carregar.getController();
@@ -391,7 +429,7 @@ public class PrincipalControlador {
             App.adicionarMovimento(palco, cena);
             controlador.setTela(palco);
             palco.showAndWait();
-            clicouBotaoPedir = false;
+            clicouBotaoPedirBolo = false;
             if (controlador.getRegistrouPedido()) {
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido registrado com sucesso");
             } else if (controlador.getErro()) {

@@ -1,7 +1,6 @@
 package controladores.crudConfirmarPedido;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import aplicacao.App;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -64,7 +65,7 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: silver;" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane layoutX="181.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0" styleClass="area-conteudo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="area-conteudo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="879.0" layoutY="57.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa" AnchorPane.rightAnchor="21.0">
                            <children>
@@ -91,12 +92,12 @@
                         </ScrollPane>
                         <AnchorPane fx:id="menuPedidos" layoutX="112.0" layoutY="-3.0" prefHeight="160.0" prefWidth="150.0" styleClass="modal" visible="false" AnchorPane.topAnchor="0.0">
                            <children>
-                              <HBox alignment="CENTER" layoutX="10.0" layoutY="34.0" onMouseClicked="#listarPedidos" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="34.0" onMouseClicked="#abrirModalListar" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Listar" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" layoutX="10.0" layoutY="65.0" onMouseClicked="#pedir" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.topAnchor="65.0">
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="65.0" onMouseClicked="#abrirModalPedir" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.topAnchor="65.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Pedir" />
                                  </children>
@@ -109,6 +110,47 @@
                            </children>
                         </AnchorPane>
                         <HBox fx:id="areaDeAlerta" layoutX="410.0" layoutY="30.0" prefHeight="150.0" prefWidth="500.0" styleClass="area-alerta" visible="false" />
+                        <AnchorPane fx:id="modalPedir" layoutX="264.0" layoutY="20.0" prefHeight="120.0" prefWidth="150.0" visible="false">
+                           <children>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="34.0" onMouseClicked="#abrirPedirBolo" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Bolo" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="65.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.topAnchor="65.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Ingrediente" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="modal" />
+                              <String fx:value="submenu" />
+                           </styleClass>
+                        </AnchorPane>
+                        <AnchorPane fx:id="modalListar" layoutX="270.0" layoutY="20.0" prefHeight="165.0" prefWidth="150.0" visible="false">
+                           <children>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="23.0" onMouseClicked="#abrirListaPedido" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="23.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Pedidos" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="68.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.topAnchor="68.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Confirmações" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="112.0" prefHeight="32.0" prefWidth="130.0" styleClass="botao">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Ingredientes" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="modal" />
+                              <String fx:value="submenu" />
+                           </styleClass>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="menuUsuario" layoutX="1036.0" layoutY="14.0" prefHeight="160.0" prefWidth="160.0" styleClass="modal" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

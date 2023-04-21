@@ -39,6 +39,10 @@
     -fx-font-size: 16px;
 }
 
+.submenu {
+    -fx-background-radius: 10px;
+}
+
 .modal .botao {
     -fx-background-radius: 10px;
     -fx-background-color: #fff;
@@ -192,3 +196,4 @@
     -fx-background-color: #D9D9D9;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5px, 0, 0, 3px);
 }
+

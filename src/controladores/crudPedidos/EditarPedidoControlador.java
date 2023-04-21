@@ -89,6 +89,7 @@ public class EditarPedidoControlador {
     private ValidaFormulario vf = new ValidaFormulario();
     
     private boolean registrou = false;
+    private boolean erro = false;
 
     @FXML
     public void cancelar(ActionEvent event) {
@@ -129,6 +130,7 @@ public class EditarPedidoControlador {
             } catch (Exception erro) {
                 erro.printStackTrace();
                 App.conexao.rollback();
+                this.erro = true;
             }
         } 
     }
@@ -289,5 +291,9 @@ public class EditarPedidoControlador {
     public void limparPedido() {
         bolos.setValue(null);
         quantidade.setText("");
+    }
+
+    public boolean getErro() {
+        return erro;
     }
 }
