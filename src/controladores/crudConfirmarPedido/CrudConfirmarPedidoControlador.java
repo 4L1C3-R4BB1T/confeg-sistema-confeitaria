@@ -1,7 +1,5 @@
 package controladores.crudConfirmarPedido;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -11,11 +9,6 @@ import javafx.stage.Stage;
 
 public class CrudConfirmarPedidoControlador {
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TableView<?> areaDePedidos;

@@ -1,6 +1,7 @@
 package modelos.entidades;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,13 +90,21 @@ public class Pedido {
         this.bolos = bolos;
     }
 
+    public Double getValorTotal() {
+        PedidoBoloDAO pedidoBoloDAO = new PedidoBoloDAO(App.conexao);
+        List<PedidoBolo> pedidos = pedidoBoloDAO.buscarPorPedido(this);
+        double total = pedidos.stream().map( pedido -> pedido.getBolo().getPreco() * pedido.getQuantidade()).mapToDouble(valor -> valor).sum();
+        return total;
+    }
+
     @Override
     public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         PedidoBoloDAO pedidoBoloDAO = new PedidoBoloDAO(App.conexao);
         List<PedidoBolo> pedidos = pedidoBoloDAO.buscarPorPedido(this);
         double total = pedidos.stream().map( pedido -> pedido.getBolo().getPreco() * pedido.getQuantidade()).mapToDouble(valor -> valor).sum();
         long quantidade = pedidos.stream().map(pedido -> pedido.getQuantidade()).mapToLong(valor -> valor).sum();
-        return String.format("Cod - %d DATA - %s - QUANTIDADE DE BOLOS - %d TOTAL - %.2f", codigo, dataPedido.toString(), quantidade, total);
+        return String.format("Cod - %d DATA - %s - QUANTIDADE DE BOLOS - %d TOTAL - R$ %.2f", codigo, sdf.format(dataPedido), quantidade, total);
     }
 
 }

@@ -155,17 +155,10 @@ public class EditarPedidoControlador {
     public void removerBolo(MouseEvent event) throws Exception {
         PedidoBolo pedidoBolo = tabela.getSelectionModel().getSelectedItem();
         if (pedidoBolo != null) {
-            App.conexao.setAutoCommit(false);
-            try {
-                pedidoBolos.remove(pedidoBolo);
-                tabela.getItems().remove(pedidoBolo);
-                if (pedidoBolo.getCodigo() != null) { // Significa já existia esse pedido
-                    removidos.add(pedidoBolo);
-                }
-                App.conexao.commit();
-            } catch (Exception erro) {
-                erro.printStackTrace();
-                App.conexao.rollback();
+            pedidoBolos.remove(pedidoBolo);
+            tabela.getItems().remove(pedidoBolo);
+            if (pedidoBolo.getCodigo() != null) { 
+                removidos.add(pedidoBolo);
             }
         }
     }
@@ -207,7 +200,7 @@ public class EditarPedidoControlador {
                 return true;
             }
         } else {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "CAMPO VAZIO", "Preencha todos os campos");
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "CAMPO VAZIO", "Preencha todos os campos necessários.");
         }
         return false;
     }
