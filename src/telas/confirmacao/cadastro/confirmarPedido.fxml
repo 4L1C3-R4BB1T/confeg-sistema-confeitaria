@@ -7,13 +7,14 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="800.0" stylesheets="@../../pedidos/edicao/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudConfirmarPedido.ConfirmarPedidoControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="800.0" stylesheets="@../../pedidos/edicao/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudConfirmarPedido.ConfirmarPedidoControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
@@ -31,25 +32,25 @@
             <Label alignment="CENTER" layoutX="50.0" layoutY="24.0" prefHeight="65.0" prefWidth="700.0" styleClass="titulo" text="CONFIRMAR PEDIDO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
             <ComboBox fx:id="clientes" layoutX="100.0" layoutY="142.0" prefHeight="50.0" prefWidth="150.0" promptText="Escolha o Cliente" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
             <ComboBox fx:id="pedidos" layoutX="100.0" layoutY="244.0" prefHeight="50.0" prefWidth="150.0" promptText="Escolha o Pedido" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
-            <Label layoutX="102.0" layoutY="331.0" styleClass="label-data" text="Data de Confirmação" />
-            <CheckBox fx:id="pedidoPago" alignment="CENTER" contentDisplay="CENTER" layoutX="550.0" layoutY="322.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#clicouPago" prefHeight="28.0" prefWidth="148.0" styleClass="check-pago" text="Pago" AnchorPane.rightAnchor="130.0" />
-            <TextArea fx:id="observacao" layoutX="100.0" layoutY="448.0" prefHeight="200.0" prefWidth="200.0" promptText="Observações" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+            <Label layoutX="100.0" layoutY="335.0" styleClass="label-data" text="Data de Confirmação" />
+            <CheckBox fx:id="pedidoPago" alignment="CENTER" contentDisplay="CENTER" layoutX="552.0" layoutY="412.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#clicouPago" prefHeight="28.0" prefWidth="148.0" styleClass="check-pago" text="Pago" AnchorPane.rightAnchor="100.0" />
+            <TextArea fx:id="observacao" layoutX="100.0" layoutY="513.0" prefHeight="170.0" prefWidth="593.0" promptText="Observações" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
             <Label layoutX="102.0" layoutY="202.0" prefHeight="18.0" prefWidth="598.0" />
             <Label layoutX="102.0" layoutY="304.0" prefHeight="18.0" prefWidth="598.0" />
-            <Label layoutX="100.0" layoutY="412.0" prefHeight="18.0" prefWidth="302.0" />
-            <Button layoutX="182.0" layoutY="683.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Salvar">
+            <Label layoutX="164.0" layoutY="481.0" prefHeight="18.0" prefWidth="302.0" />
+            <Button layoutX="182.0" layoutY="713.0" mnemonicParsing="false" onAction="#salvar" prefHeight="50.0" prefWidth="180.0" text="Salvar">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="roxo" />
                </styleClass>
             </Button>
-            <Button layoutX="432.0" layoutY="683.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="180.0" text="Cancelar">
+            <Button layoutX="432.0" layoutY="713.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="180.0" text="Cancelar">
                <styleClass>
                   <String fx:value="botao" />
                   <String fx:value="red" />
                </styleClass>
             </Button>
-            <DatePicker fx:id="dataConfirmacao" layoutX="102.0" layoutY="359.0">
+            <DatePicker fx:id="dataConfirmacao" layoutX="100.0" layoutY="361.0">
                <styleClass>
                   <String fx:value="label-data" />
                   <String fx:value="data" />
@@ -57,9 +58,11 @@
             </DatePicker>
             <Label fx:id="erroCliente" layoutX="102.0" layoutY="201.0" prefHeight="18.0" prefWidth="597.0" />
             <Label fx:id="erroPedido" layoutX="102.0" layoutY="304.0" prefHeight="18.0" prefWidth="597.0" />
-            <Label fx:id="erroData" layoutX="100.0" layoutY="402.0" prefHeight="18.0" prefWidth="249.0" />
+            <Label fx:id="erroData" layoutX="98.0" layoutY="403.0" prefHeight="18.0" prefWidth="249.0" />
             <HBox fx:id="areaDeAlerta" layoutY="7.0" prefHeight="150.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-            <CheckBox fx:id="pedidoCancelado" alignment="CENTER" contentDisplay="CENTER" layoutX="550.0" layoutY="373.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#clicouCancelado" prefHeight="28.0" prefWidth="148.0" styleClass="check-pago" text="Cancelado" AnchorPane.rightAnchor="130.0" />
+            <CheckBox fx:id="pedidoCancelado" alignment="CENTER" contentDisplay="CENTER" layoutX="552.0" layoutY="457.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#clicouCancelado" prefHeight="28.0" prefWidth="148.0" styleClass="check-pago" text="Cancelado" AnchorPane.rightAnchor="100.0" />
+            <TextField fx:id="nomeFuncionario" layoutX="450.0" layoutY="354.0" prefHeight="40.0" prefWidth="250.0" styleClass="exibir-funcionario" text="Gabriel" AnchorPane.rightAnchor="100.0" />
+            <Label layoutX="450.0" layoutY="328.0" styleClass="label-data" text="Funcionário" />
          </children>
       </AnchorPane>
    </center>

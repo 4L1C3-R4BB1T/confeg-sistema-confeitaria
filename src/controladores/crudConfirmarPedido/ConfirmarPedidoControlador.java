@@ -11,6 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -55,6 +56,9 @@ public class ConfirmarPedidoControlador {
 
     @FXML
     private TextArea observacao;
+    
+    @FXML 
+    private TextField nomeFuncionario;
 
     private Stage tela;
     
@@ -160,11 +164,6 @@ public class ConfirmarPedidoControlador {
 
         return false;
 
-    }
-
-    public void aplicarDesconto() {
-        Pedido pedido = getPedido();
-     
     }
 
     public void encerrar() {

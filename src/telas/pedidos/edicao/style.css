@@ -252,3 +252,10 @@
 	-fx-border-radius: 10px;
 	-fx-background-radius: 10px;
 }
+
+.exibir-funcionario {
+	-fx-border-width: 0;
+	-fx-background-color: #eee;
+	-fx-font-size: 18px;
+	-fx-text-fill: #080808be;
+}
