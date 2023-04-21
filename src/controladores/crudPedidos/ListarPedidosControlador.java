@@ -15,7 +15,6 @@ import modelos.consultas.entitidades.PedidoConsulta;
 import modelos.entidadeDAO.PedidoDAO;
 import modelos.entidades.Pedido;
 
-
 // Implementar depois
 
 public class ListarPedidosControlador {
@@ -47,7 +46,6 @@ public class ListarPedidosControlador {
 
     @FXML
     private HBox areaDeAlerta;
-
 
     @FXML
     public void fechar(MouseEvent event) {

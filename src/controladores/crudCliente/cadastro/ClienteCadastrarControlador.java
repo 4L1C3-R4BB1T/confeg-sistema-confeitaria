@@ -228,4 +228,5 @@ public class ClienteCadastrarControlador {
     public boolean getErro() {
         return erro;
     }
+    
 }

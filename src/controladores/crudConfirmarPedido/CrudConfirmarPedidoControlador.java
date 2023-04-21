@@ -60,4 +60,5 @@ public class CrudConfirmarPedidoControlador {
     public void setTela(Stage tela) {
         this.tela = tela;
     }
+    
 }

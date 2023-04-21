@@ -96,7 +96,6 @@ public class CadastroControlador {
     private boolean salvo = false;
     private boolean erro = false;
 
-
     /// DAOS
     EnderecoDAO enderecoDAO = new EnderecoDAO(App.conexao);
     FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
@@ -207,7 +206,6 @@ public class CadastroControlador {
         }
     }
 
-
     public void setTela(Stage tela) {
         this.tela = tela;
     }
@@ -259,4 +257,5 @@ public class CadastroControlador {
     public boolean getErro() {
         return erro;
     }
+    
 }

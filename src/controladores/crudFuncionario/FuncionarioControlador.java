@@ -1,6 +1,5 @@
 package controladores.crudFuncionario;
 
-
 import aplicacao.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,7 +42,6 @@ public class FuncionarioControlador {
     private static int geradorImagem = 0;
     private static int quantidadeImagem = 2;
 
-
     @FXML
     public void abrirModal(ActionEvent event) {
         if (modal.isVisible()) {
@@ -78,7 +76,6 @@ public class FuncionarioControlador {
            }
         }
     }
-
 
     public void abrirTelaEditar() {
 
@@ -116,8 +113,6 @@ public class FuncionarioControlador {
         foto.setImage(imagem);
         
     }
-
-
 
     public void setCodigo(Long codigo) {
         this.codigo = codigo;

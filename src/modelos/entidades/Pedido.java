@@ -17,10 +17,33 @@ public class Pedido {
     private MetodoPagamento metodo;
     private Status status;
     private String observacao;
+    private Double desconto;
     private List<Bolo> bolos = new ArrayList<>();
 
     public Pedido(Cliente cliente, Funcionario funcionario, Date dataPedido, MetodoPagamento metodo, Status status,
-        String observacao) {
+            String observacao) {
+        this.cliente = cliente;
+        this.funcionario = funcionario;
+        this.dataPedido = dataPedido;
+        this.metodo = metodo;
+        this.status = status;
+        this.observacao = observacao;
+    }
+
+    public Pedido(Cliente cliente, Funcionario funcionario, Date dataPedido, MetodoPagamento metodo, Status status,
+            String observacao, Double desconto) {
+        this.cliente = cliente;
+        this.funcionario = funcionario;
+        this.dataPedido = dataPedido;
+        this.metodo = metodo;
+        this.status = status;
+        this.observacao = observacao;
+        this.desconto = desconto;
+    }
+
+    public Pedido(Long codigo, Cliente cliente, Funcionario funcionario, Date dataPedido, MetodoPagamento metodo,
+            Status status, String observacao) {
+        this.codigo = codigo;
         this.cliente = cliente;
         this.funcionario = funcionario;
         this.dataPedido = dataPedido;
@@ -30,7 +53,7 @@ public class Pedido {
     }
 
     public Pedido(Long codigo, Cliente cliente, Funcionario funcionario, Date dataPedido, MetodoPagamento metodo,
-    Status status, String observacao) {
+            Status status, String observacao, Double desconto) {
         this.codigo = codigo;
         this.cliente = cliente;
         this.funcionario = funcionario;
@@ -38,64 +61,90 @@ public class Pedido {
         this.metodo = metodo;
         this.status = status;
         this.observacao = observacao;
+        this.desconto = desconto;
     }
-    
+
     public Long getCodigo() {
         return codigo;
     }
+
     public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
+
     public Cliente getCliente() {
         return cliente;
     }
+
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
     public Funcionario getFuncionario() {
         return funcionario;
     }
+
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
+
     public Date getDataPedido() {
         return dataPedido;
     }
+
     public void setDataPedido(Date dataPedido) {
         this.dataPedido = dataPedido;
     }
+
     public MetodoPagamento getMetodo() {
         return metodo;
     }
+
     public void setMetodo(MetodoPagamento metodo) {
         this.metodo = metodo;
     }
+
     public Status getStatus() {
         return status;
     }
+
     public void setStatus(Status status) {
         this.status = status;
     }
+
     public String getObservacao() {
         return observacao;
     }
+
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
+
     public List<Bolo> getBolos() {
         return bolos;
     }
+
     public void setBolos(List<Bolo> bolos) {
         this.bolos = bolos;
+    }
+
+    public Double getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(Double desconto) {
+        this.desconto = desconto;
     }
 
     @Override
     public String toString() {
         PedidoBoloDAO pedidoBoloDAO = new PedidoBoloDAO(App.conexao);
         List<PedidoBolo> pedidos = pedidoBoloDAO.buscarPorPedido(this);
-        double total = pedidos.stream().map( pedido -> pedido.getBolo().getPreco() * pedido.getQuantidade()).mapToDouble(valor -> valor).sum();
+        double total = pedidos.stream().map(pedido -> pedido.getBolo().getPreco() * pedido.getQuantidade())
+                .mapToDouble(valor -> valor).sum();
         long quantidade = pedidos.stream().map(pedido -> pedido.getQuantidade()).mapToLong(valor -> valor).sum();
-        return String.format("Cod - %d DATA - %s - QUANTIDADE DE BOLOS - %d TOTAL - %.2f", codigo, dataPedido.toString(), quantidade, total);
+        return String.format("Cod - %d DATA - %s - QUANTIDADE DE BOLOS - %d TOTAL - %.2f", codigo,
+                dataPedido.toString(), quantidade, total);
     }
 
 }

@@ -78,4 +78,5 @@ public class PedidoConsulta {
     public void setNode(Node node) {
         this.node = node;
     }
+    
 }

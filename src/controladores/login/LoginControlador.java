@@ -1,4 +1,5 @@
 package controladores.login;
+
 import java.util.ArrayList;
 import java.util.List;
 import aplicacao.App;
@@ -226,4 +227,5 @@ public class LoginControlador {
             palcoLogin.close();
         }
     }
+    
 }

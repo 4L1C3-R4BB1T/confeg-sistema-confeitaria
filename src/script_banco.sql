@@ -121,13 +121,14 @@ CREATE TABLE metodo_pagamento (
 );
 
 CREATE TABLE pedido (
-    cod_pedido              SERIAL      NOT NULL,
-    cod_cliente             INTEGER     NOT NULL,
-    cod_funcionario         INTEGER     NOT NULL,
-    data_pedido             DATE        NOT NULL,
-    cod_metodo_pagamento    INTEGER     NOT NULL,
-    status_pedido           VARCHAR(10) NOT NULL,
-    observacao_pedido       VARCHAR(60) NULL,
+    cod_pedido              SERIAL          NOT NULL,
+    cod_cliente             INTEGER         NOT NULL,
+    cod_funcionario         INTEGER         NOT NULL,
+    data_pedido             DATE            NOT NULL,
+    cod_metodo_pagamento    INTEGER         NOT NULL,
+    status_pedido           VARCHAR(10)     NOT NULL,
+    observacao_pedido       VARCHAR(60)     NULL,
+    desconto_pedido         NUMERIC(10,2)   NOT NULL    DEFAULT 0,
     CONSTRAINT pk_pedido
         PRIMARY KEY (cod_pedido),
     CONSTRAINT fk_pedido_cliente
@@ -5941,7 +5942,7 @@ INSERT INTO confirmacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido
 (3, 13, '2023-04-16', true, 'Desconto à vista.'),
 (3, 3, '2022-04-18', false, null),
 (6, 6, '2023-01-18', true, 'Disse que o bolo estava delicioso.'),
-(5, 15, '2023-04-16', false, 'Vai pagar amanhã.'),
+(5, 15, '2023-04-18', false, 'Vai pagar amanhã.'),
 (5, 5, '2023-04-16', false, 'Desistiu do pedido.');
 
 INSERT INTO ingrediente (descricao_ingrediente, preco_ingrediente) VALUES
