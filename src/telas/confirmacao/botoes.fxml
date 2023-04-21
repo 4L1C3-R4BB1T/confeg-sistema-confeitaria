@@ -15,9 +15,9 @@
             <Insets left="10.0" />
          </HBox.margin>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#remover">
+      <ImageView fitHeight="36.0" fitWidth="36.0" onMouseClicked="#remover">
          <image>
-            <Image url="@../_assets/img/remover.png" />
+            <Image url="@../_assets/img/excluir.png" />
          </image>
          <HBox.margin>
             <Insets right="10.0" top="5.0" />
