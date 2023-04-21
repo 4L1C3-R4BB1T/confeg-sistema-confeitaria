@@ -27,7 +27,6 @@ import modelos.entidades.Funcionario;
 import modelos.entidades.TipoFuncionario;
 import modelos.validacao.ValidaFormulario;
 
-
 public class FuncionarioEditarControlador {
 
     @FXML

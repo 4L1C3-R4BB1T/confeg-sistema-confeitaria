@@ -95,7 +95,6 @@ public class PedidoCompraIngredientesDAO {
                     resultado.getLong("quantidade_ingrediente")
                 ));
             }
-            return pedidos;
         } catch (Exception erro) {
             erro.printStackTrace();
         }    
@@ -117,7 +116,6 @@ public class PedidoCompraIngredientesDAO {
                     resultado.getLong("quantidade_ingrediente")
                 ));
             }
-            return pedidos;
         } catch (Exception erro) {
             erro.printStackTrace();
         }    

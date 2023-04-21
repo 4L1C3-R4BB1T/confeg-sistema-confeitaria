@@ -103,7 +103,6 @@ public class ClienteDAO {
                     )
                 );
             }
-            return clientes;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -126,7 +125,6 @@ public class ClienteDAO {
                     )
                 );
             }
-            return clientes;
         } catch (Exception erro) {
             erro.printStackTrace();
         }

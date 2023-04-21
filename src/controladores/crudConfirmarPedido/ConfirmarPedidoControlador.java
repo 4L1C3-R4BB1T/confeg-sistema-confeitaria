@@ -171,6 +171,7 @@ public class ConfirmarPedidoControlador {
     public void setTela(Stage tela) {
         this.tela = tela;
     }
+<<<<<<< HEAD
 
     public Cliente getCliente() {
         return clientes.getSelectionModel().getSelectedItem();
@@ -195,4 +196,7 @@ public class ConfirmarPedidoControlador {
     public String getDescricao() {
         return observacao.getText();
     }
+=======
+    
+>>>>>>> 3351d046bcc681caf8f763abca8471ef30aa18dc
 }

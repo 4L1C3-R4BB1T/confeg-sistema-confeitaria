@@ -67,12 +67,16 @@ public class PrincipalControlador {
     // Botoes do menu
     @FXML
     private Button administrador;
+    
     @FXML 
     private Button principal;
+    
     @FXML 
     private Button pedidos; 
+   
     @FXML
     private Button bolos;
+    
     @FXML 
     private Button clientes;
 
@@ -80,7 +84,6 @@ public class PrincipalControlador {
 
     @FXML
     private ImageView areaImagem;
-
 
     private Stage tela;
     
@@ -139,8 +142,6 @@ public class PrincipalControlador {
     public void minimizarTela(MouseEvent event) {
         tela.setIconified(true);
     }
-
- 
 
     @FXML
     public void verPerfil(MouseEvent event) throws Exception {
@@ -242,7 +243,6 @@ public class PrincipalControlador {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
         }
     }
-
 
     @FXML
     public void abrirTelaConfirmar(MouseEvent event) throws Exception {
@@ -441,7 +441,6 @@ public class PrincipalControlador {
             erro.printStackTrace();
         }
     }
-
 
     public void carregarTelaConfirmarPedido() {
         try {

@@ -1,6 +1,5 @@
 package modelos.validacao;
 
-
 public class Validacao {
 
     public Validacao() {}
@@ -14,7 +13,6 @@ public class Validacao {
         if (valor == null) return false;
         return valor.replaceAll("[-]", "").matches("^\\d{8}$");
     }
-
 
     public boolean validarNumero(String valor) {
         try {

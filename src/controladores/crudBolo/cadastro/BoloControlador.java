@@ -1,6 +1,5 @@
 package controladores.crudBolo.cadastro;
 
-
 import aplicacao.App;
 import controladores.crudBolo.edicao.BoloEdicaoControlador;
 import javafx.event.ActionEvent;
@@ -39,7 +38,6 @@ public class BoloControlador {
     private Node areaDeAlerta;
 
     private AproveitarFuncao atualizarAreaDeBolos;
-
 
     @FXML
     public void abrirModal(ActionEvent event) {

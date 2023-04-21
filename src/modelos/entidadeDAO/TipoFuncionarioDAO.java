@@ -44,7 +44,6 @@ public class TipoFuncionarioDAO {
                     resultado.getString("descricao_tipo_funcionario")
                 ));
             }
-    
         } catch (Exception erro) {
             erro.printStackTrace();
         }

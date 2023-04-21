@@ -1,6 +1,5 @@
 package controladores.crudPedidos;
 
-
 import aplicacao.App;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,10 +40,9 @@ public class PedidoControlador {
     public void remover(MouseEvent event) throws Exception {
         App.conexao.setAutoCommit(false);
         try {
-            for(PedidoBolo pb: pedidoBoloDAO.buscarPorPedido(pedido)) {
+            for (PedidoBolo pb: pedidoBoloDAO.buscarPorPedido(pedido)) {
                 pedidoBoloDAO.remover(pb);
             }
-
             pedidoDAO.remover(pedido);
             App.conexao.commit();
             App.exibirAlert(areaDeAlerta, "SUCESSO", "REMOÇÃO", "O Pedido com ID: " + pedido.getCodigo() + " foi deletado.");
@@ -100,4 +98,5 @@ public class PedidoControlador {
     public void setFuncaoAtualizarPedidos(AproveitarFuncao funcao) {
         atualizarPedidos = funcao;
     }
+    
 }

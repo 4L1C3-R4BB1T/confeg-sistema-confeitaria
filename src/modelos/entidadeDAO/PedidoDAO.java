@@ -55,6 +55,24 @@ public class PedidoDAO {
         return false;
     }
 
+    public boolean alterarAdicionarDesconto(Pedido pedido) {
+        String comando = "UPDATE pedido SET cod_cliente = ?, cod_funcionario = ?, data_pedido = ?, cod_metodo_pagamento = ?, observacao_pedido = ?, desconto_pedido = ? WHERE cod_pedido = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            ps.setLong(1, pedido.getCliente().getCodigo());
+            ps.setLong(2, pedido.getFuncionario().getCodigo());
+            ps.setDate(3, pedido.getDataPedido());
+            ps.setLong(4, pedido.getMetodo().getCodigo());
+            ps.setString(5, pedido.getObservacao());
+            ps.setLong(6, pedido.getCodigo());
+            ps.setDouble(7, pedido.getDesconto());
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return false;
+    }
+
     public boolean remover(Pedido pedido) {
         String comando = "DELETE FROM pedido WHERE cod_pedido = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
@@ -112,7 +130,6 @@ public class PedidoDAO {
                     resultado.getString("observacao_pedido")
                 ));
             }
-            return pedidos;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -139,7 +156,6 @@ public class PedidoDAO {
                     resultado.getString("observacao_pedido")
                 ));
             }
-            return pedidos;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -165,7 +181,6 @@ public class PedidoDAO {
                     resultado.getString("observacao_pedido")
                 ));
             }
-            return pedidos;
         } catch (Exception erro) {
             erro.printStackTrace();
         }

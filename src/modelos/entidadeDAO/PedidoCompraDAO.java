@@ -101,7 +101,6 @@ public class PedidoCompraDAO {
                     resultado.getString("observacao_pedido_compra")
                 ));
             }
-            return pedidos;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -123,7 +122,6 @@ public class PedidoCompraDAO {
                     resultado.getString("observacao_pedido_compra")
                 ));
             }
-            return pedidos;
         } catch (Exception erro) {
             erro.printStackTrace();
         }

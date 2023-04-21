@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 import aplicacao.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -289,4 +288,5 @@ public class EditarPedidoControlador {
     public boolean getErro() {
         return erro;
     }
+    
 }

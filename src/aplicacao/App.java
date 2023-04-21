@@ -20,7 +20,6 @@ import javafx.scene.layout.Pane;
 
 public class App extends Application {
 
-
     public static Connection conexao;
 
     static {

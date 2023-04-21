@@ -1,6 +1,5 @@
 package controladores.crudBolo.cadastro;
 
-
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.stream.Stream;
@@ -44,14 +43,19 @@ public class CadastroBoloControlador {
 
     @FXML 
     private Label erroSabor;
+
     @FXML 
     private Label erroPreco;
+
     @FXML 
     private Label erroPeso;
+    
     @FXML 
     private Label erroFabricao;
+
     @FXML 
     private Label erroVencimento;
+
     @FXML 
     private Label erroDescricao;
 
@@ -94,7 +98,6 @@ public class CadastroBoloControlador {
                 Date.valueOf(getFabricao()),
                 Date.valueOf(getVencimento())
             );
-
             boloDAO.inserir(bolo);
             App.conexao.commit();
             cadastrou = true;
@@ -120,7 +123,6 @@ public class CadastroBoloControlador {
                     } catch (Exception erro) {}
                 } 
             }
-
         }).start();
     }
 
@@ -180,4 +182,5 @@ public class CadastroBoloControlador {
     public boolean getErro() {
         return erro;
     }
+    
 }
