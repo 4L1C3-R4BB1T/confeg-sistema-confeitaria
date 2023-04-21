@@ -110,7 +110,7 @@
                            </children>
                         </AnchorPane>
                         <HBox fx:id="areaDeAlerta" layoutX="410.0" layoutY="30.0" prefHeight="150.0" prefWidth="500.0" styleClass="area-alerta" visible="false" />
-                        <AnchorPane fx:id="modalPedir" layoutX="264.0" layoutY="20.0" prefHeight="120.0" prefWidth="150.0" visible="false">
+                        <AnchorPane fx:id="modalPedir" layoutX="269.0" layoutY="20.0" prefHeight="120.0" prefWidth="150.0" visible="false">
                            <children>
                               <HBox alignment="CENTER" layoutX="10.0" layoutY="34.0" onMouseClicked="#abrirPedirBolo" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                                  <children>

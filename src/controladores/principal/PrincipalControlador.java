@@ -1,6 +1,7 @@
 package controladores.principal;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -278,15 +279,16 @@ public class PrincipalControlador {
         boloDAO.buscarTodos().stream()
             .map( bolo -> {
                 try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/principal/bolo/bolo.fxml"));
                     Node node = carregar.load();
                     BoloControlador controlador = carregar.getController();
                     controlador.setImagem(getClass().getResource("/telas/principal/bolo/images/").toExternalForm() + bolo.getSabor().getCodigo() + ".png");
                     controlador.setDescricao(bolo.getDescricao());
-                    controlador.setFabricao("Fab: " + bolo.getFabricacao().toString());
+                    controlador.setFabricao("Fab: " + sdf.format(bolo.getFabricacao()));
                     controlador.setPeso("Peso: " + bolo.getPeso().toString() + " kg");
                     controlador.setPreco("Preço: R$ " + bolo.getPreco().toString());
-                    controlador.setValidade("Val: " + bolo.getVencimento().toString());
+                    controlador.setValidade("Val: " + sdf.format(bolo.getVencimento()));
                     controlador.setBolo(bolo);
                     controlador.setAreaDeAlerta(areaDeAlerta);
                     return node;
