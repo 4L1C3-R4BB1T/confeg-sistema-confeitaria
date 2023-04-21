@@ -16,7 +16,7 @@
          <children>
             <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="870.0" layoutY="5.0" onMouseClicked="#fechar" AnchorPane.rightAnchor="-5.0">
                <image>
-                  <Image url="@images/fechar.png" />
+                  <Image url="@../../_assets/img/fechar.png" />
                </image>
             </ImageView>
          </children>
@@ -32,7 +32,7 @@
                <children>
                   <ImageView fitHeight="264.0" fitWidth="223.0">
                      <image>
-                        <Image url="@images/foto.png" />
+                        <Image url="@foto.png" />
                      </image>
                   </ImageView>
                </children>

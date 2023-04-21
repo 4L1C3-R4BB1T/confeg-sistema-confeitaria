@@ -11,9 +11,9 @@
    <children>
       <Button fx:id="nome" layoutX="18.0" layoutY="185.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#abrirModal" prefWidth="200.0" text="Cliente" AnchorPane.rightAnchor="20.0">
          <graphic>
-            <ImageView fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" translateX="-55.0">
+            <ImageView fitWidth="20.0" nodeOrientation="RIGHT_TO_LEFT" translateX="-55.0">
                <image>
-                  <Image url="@../images/seta_baixo.png" />
+                  <Image url="@../../_assets/img/seta_baixo.png" />
                </image>
             </ImageView>
          </graphic>

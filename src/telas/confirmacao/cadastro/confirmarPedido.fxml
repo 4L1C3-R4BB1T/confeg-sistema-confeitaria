@@ -19,7 +19,7 @@
          <children>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="755.0" layoutY="5.0" onMouseClicked="#fechar" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
-                  <Image url="@../images/fechar.png" />
+                  <Image url="@../../_assets/img/fechar.png" />
                </image>
             </ImageView>
          </children>

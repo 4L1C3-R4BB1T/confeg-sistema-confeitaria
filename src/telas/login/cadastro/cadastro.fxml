@@ -17,7 +17,7 @@
          <children>
             <ImageView layoutX="762.0" layoutY="8.0" onMouseClicked="#fecharTela" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
-                  <Image url="@../../funcionarios/cadastro/images/fechar.png" />
+                  <Image url="@../../_assets/img/fechar.png" />
                </image>
             </ImageView>
          </children>

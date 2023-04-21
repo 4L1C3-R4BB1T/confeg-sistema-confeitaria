@@ -36,7 +36,7 @@
                <children>
                   <ImageView fitHeight="200.0" fitWidth="200.0" VBox.vgrow="ALWAYS">
                      <image>
-                        <Image url="@images/user.png" />
+                        <Image url="@img/user.png" />
                      </image>
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -82,12 +82,12 @@
          <children>
             <ImageView onMouseClicked="#minimizarTela">
                <image>
-                  <Image url="@images/minimizar.png" />
+                  <Image url="@../_assets/img/minimizar.png" />
                </image>
             </ImageView>
             <ImageView onMouseClicked="#fecharTela">
                <image>
-                  <Image url="@images/fechar.png" />
+                  <Image url="@../_assets/img/fechar.png" />
                </image>
                <HBox.margin>
                   <Insets left="5.0" />

@@ -51,9 +51,9 @@ public class LoginControlador {
     private Button botaoEntrar;
 
     private String[] fotos = {
-            getClass().getResource("/telas/login/images/background-1.png").toExternalForm(),
-            getClass().getResource("/telas/login/images/background-2.png").toExternalForm(),
-            getClass().getResource("/telas/login/images/background-3.png").toExternalForm()
+            getClass().getResource("/telas/login/img/background-1.png").toExternalForm(),
+            getClass().getResource("/telas/login/img/background-2.png").toExternalForm(),
+            getClass().getResource("/telas/login/img/background-3.png").toExternalForm()
     };
 
     private int fotoAtual = 0;
@@ -202,7 +202,7 @@ public class LoginControlador {
     }
 
     public void adicionarEfeitoCarregar() {
-        Image gif = new Image(getClass().getResource("/telas/login/images/carregando.gif").toExternalForm());
+        Image gif = new Image(getClass().getResource("/telas/login/img/carregando.gif").toExternalForm());
         areaCarregar.setImage(gif);
         Timeline tl = new Timeline();
         tl.setCycleCount(Animation.INDEFINITE);
