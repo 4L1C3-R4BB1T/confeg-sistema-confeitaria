@@ -124,11 +124,11 @@ public class PrincipalControlador {
     public void abrirMenuUsuario(ActionEvent event) {
         if (menuUsuario.isVisible()) {
             App.removerEfeitoSuave(menuUsuario);
-            String caminhoSetaBaixo = PrincipalControlador.class.getResource("/telas/principal/images/seta_baixo.png").toExternalForm();
+            String caminhoSetaBaixo = PrincipalControlador.class.getResource("/telas/_assets/img/seta_baixo.png").toExternalForm();
             menuUsuarioSeta.setImage(new Image(caminhoSetaBaixo));
         } else {
             App.adicionaEfeitoSuave(menuUsuario);
-            String caminhoSetaCima = PrincipalControlador.class.getResource("/telas/principal/images/seta_cima.png").toExternalForm();
+            String caminhoSetaCima = PrincipalControlador.class.getResource("/telas/_assets/img/seta_cima.png").toExternalForm();
             menuUsuarioSeta.setImage(new Image(caminhoSetaCima));
         }
     }
@@ -283,7 +283,7 @@ public class PrincipalControlador {
                     FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/principal/bolo/bolo.fxml"));
                     Node node = carregar.load();
                     BoloControlador controlador = carregar.getController();
-                    controlador.setImagem(getClass().getResource("/telas/principal/bolo/images/").toExternalForm() + bolo.getSabor().getCodigo() + ".png");
+                    controlador.setImagem(getClass().getResource("/telas/principal/bolo/img/").toExternalForm() + bolo.getSabor().getCodigo() + ".png");
                     controlador.setDescricao(bolo.getDescricao());
                     controlador.setFabricao("Fab: " + sdf.format(bolo.getFabricacao()));
                     controlador.setPeso("Peso: " + bolo.getPeso().toString() + " kg");

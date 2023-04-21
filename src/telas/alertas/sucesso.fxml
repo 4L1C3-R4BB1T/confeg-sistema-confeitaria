@@ -9,7 +9,7 @@
    <children>
       <ImageView layoutX="14.0" layoutY="44.0">
          <image>
-            <Image url="@images/sucesso.png" />
+            <Image url="@img/sucesso.png" />
          </image>
       </ImageView>
       <Label fx:id="titulo" layoutX="95.0" layoutY="34.0" styleClass="titulo" text="Sucesso!" />

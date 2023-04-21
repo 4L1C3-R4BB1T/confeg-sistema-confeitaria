@@ -11,9 +11,9 @@
    <children>
       <Button fx:id="nome" layoutX="19.0" layoutY="170.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#abrirModal" prefWidth="200.0" text="Bolo 123" AnchorPane.rightAnchor="20.0">
          <graphic>
-            <ImageView fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" translateX="-55.0">
+            <ImageView fitWidth="20.0" nodeOrientation="RIGHT_TO_LEFT" translateX="-55.0">
                <image>
-                  <Image url="@../../funcionarios/images/seta_baixo.png" />
+                  <Image url="@../../_assets/img/seta_baixo.png" />
                </image>
             </ImageView>
          </graphic>
@@ -31,10 +31,6 @@
             </HBox>
          </children>
       </AnchorPane>
-      <ImageView fx:id="foto" fitHeight="146.0" fitWidth="200.0" layoutX="18.0" layoutY="5.0">
-         <image>
-            <Image url="@../../../../../../Downloads/pexels-photo-4109998%201.png" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="foto" fitHeight="146.0" fitWidth="200.0" layoutX="18.0" layoutY="5.0" />
    </children>
 </AnchorPane>

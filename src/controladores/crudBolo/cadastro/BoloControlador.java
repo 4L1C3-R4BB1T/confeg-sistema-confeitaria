@@ -122,7 +122,7 @@ public class BoloControlador {
     }
 
     public void setFoto(long codigo) {
-        String caminho = getClass().getResource("/telas/principal/bolo/images/").toExternalForm() + codigo + ".png";
+        String caminho = getClass().getResource("/telas/principal/bolo/img/").toExternalForm() + codigo + ".png";
         foto.setImage(new Image(caminho));
     }
 

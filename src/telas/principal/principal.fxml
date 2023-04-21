@@ -29,7 +29,7 @@
                            <graphic>
                               <ImageView>
                                  <image>
-                                    <Image url="@images/administrador.png" />
+                                    <Image url="@img/administrador.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -42,7 +42,7 @@
                            <graphic>
                               <ImageView>
                                  <image>
-                                    <Image url="@images/user.png" />
+                                    <Image url="@img/user.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -52,7 +52,7 @@
                            <graphic>
                               <ImageView fx:id="menuUsuarioSeta">
                                  <image>
-                                    <Image url="@images/seta_baixo.png" />
+                                    <Image url="@../_assets/img/seta_baixo.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -72,7 +72,7 @@
                               <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" promptText="Pesquisar..." />
                               <ImageView fitHeight="28.0" fitWidth="28.0" HBox.hgrow="ALWAYS">
                                  <image>
-                                    <Image url="@images/lupa.png" />
+                                    <Image url="@../_assets/img/lupa.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -158,13 +158,13 @@
                         <Label alignment="CENTER" layoutX="15.0" layoutY="33.0" onMouseClicked="#verPerfil" prefHeight="34.0" prefWidth="130.0" styleClass="botao" text="Perfil" />
                         <ImageView layoutX="25.0" layoutY="38.0">
                            <image>
-                              <Image url="@images/user-preto.png" />
+                              <Image url="@img/user-preto.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" layoutX="15.0" layoutY="90.0" onMouseClicked="#deslogar" prefHeight="34.0" prefWidth="130.0" styleClass="botao" text="Sair" />
                         <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="24.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/sair-menu.png" />
+                              <Image url="@img/sair-menu.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -179,12 +179,12 @@
          <children>
             <ImageView fitHeight="43.0" fitWidth="44.0" layoutX="1115.0" onMouseClicked="#minimizarTela" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="3.0">
                <image>
-                  <Image url="@images/minimizar.png" />
+                  <Image url="@../_assets/img/minimizar.png" />
                </image>
             </ImageView>
             <ImageView layoutX="1260.0" layoutY="5.0" onMouseClicked="#fecharTela" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
-                  <Image url="@images/fechar.png" />
+                  <Image url="@../_assets/img/fechar.png" />
                </image>
             </ImageView>
          </children>
