@@ -64,8 +64,8 @@ public class ConfirmarPedidoControlador {
 
     private ValidaFormulario vf = new ValidaFormulario();
 
-    // private boolean sucesso = false;
-    // private boolean erro = false;
+     private boolean sucesso = false;
+     private boolean erro = false;
 
     @FXML
     void cancelar(ActionEvent event) {
