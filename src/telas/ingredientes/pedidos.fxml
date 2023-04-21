@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1100.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudPedidos.ListarPedidosControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1100.0" stylesheets="@../pedidos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudConfirmarPedido.CrudConfirmarPedidoControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
@@ -26,21 +26,21 @@
       <AnchorPane prefHeight="200.0" prefWidth="1100.0" styleClass="container" BorderPane.alignment="CENTER">
          <children>
             <TableView fx:id="areaDePedidos" layoutX="79.0" layoutY="194.0" prefHeight="554.0" prefWidth="1000.0" styleClass="tabela" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0">
-              <columns>
-                <TableColumn fx:id="codigo" prefWidth="75.0" text="CÓDIGO" />
-                <TableColumn fx:id="cliente" prefWidth="78.0" text="CLIENTE" />
-                  <TableColumn fx:id="total" prefWidth="78.0" text="TOTAL" />
-                  <TableColumn fx:id="data" prefWidth="191.0" text="DATA" />
+               <columns>
+                  <TableColumn fx:id="codigo" prefWidth="75.0" text="CÓDIGO" />
+                  <TableColumn fx:id="funcionario" prefWidth="78.0" text="FUNCIONÁRIO" />
+                  <TableColumn fx:id="total" minWidth="0.0" prefWidth="105.0" text="TOTAL" />
+                  <TableColumn fx:id="dataPedido" prefWidth="78.0" text="DATA" />
                   <TableColumn fx:id="status" minWidth="0.0" prefWidth="105.0" text="STATUS" />
                   <TableColumn fx:id="areaBotao" minWidth="0.0" prefWidth="161.0" />
-              </columns>
+               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
             <AnchorPane layoutX="50.0" layoutY="25.0" prefHeight="80.0" prefWidth="900.0" styleClass="area-titulo" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="25.0">
                <children>
-                  <Label layoutY="-1.0" prefHeight="80.0" prefWidth="1000.0" styleClass="titulo" text="PEDIDOS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Label layoutY="-1.0" prefHeight="80.0" prefWidth="1000.0" styleClass="titulo" text="PEDIDOS DE INGREDIENTES" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <padding>
                         <Insets left="30.0" />
                      </padding>

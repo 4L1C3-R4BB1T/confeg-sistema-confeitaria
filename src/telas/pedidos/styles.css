@@ -80,3 +80,10 @@
     -fx-alignment: CENTER 
 }
 
+.imprimir {
+    -fx-background-color: rgba(38, 23, 135, 0.8);
+    -fx-background-radius: 10px;
+    -fx-font-size: 20;
+    -fx-text-fill: #fff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10,0,0,2px);
+}
