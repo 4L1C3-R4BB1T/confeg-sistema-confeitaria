@@ -121,6 +121,15 @@ public class Pedido {
         this.observacao = observacao;
     }
 
+
+    public void setDesconto(Double desconto) {  
+        this.desconto = desconto;
+    }
+
+    public Double getDesconto() {
+        return desconto;
+    }
+
     public List<Bolo> getBolos() {
         return bolos;
     }

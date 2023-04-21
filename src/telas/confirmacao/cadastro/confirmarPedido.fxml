@@ -58,7 +58,7 @@
             <Label fx:id="erroCliente" layoutX="102.0" layoutY="201.0" prefHeight="18.0" prefWidth="597.0" />
             <Label fx:id="erroPedido" layoutX="102.0" layoutY="304.0" prefHeight="18.0" prefWidth="597.0" />
             <Label fx:id="erroData" layoutX="100.0" layoutY="402.0" prefHeight="18.0" prefWidth="249.0" />
-            <HBox fx:id="areaDeAlerta" layoutY="7.0" prefHeight="150.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <HBox fx:id="areaDeAlerta" layoutY="7.0" prefHeight="150.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
             <CheckBox fx:id="pedidoCancelado" alignment="CENTER" contentDisplay="CENTER" layoutX="550.0" layoutY="373.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#clicouCancelado" prefHeight="28.0" prefWidth="148.0" styleClass="check-pago" text="Cancelado" AnchorPane.rightAnchor="130.0" />
          </children>
       </AnchorPane>

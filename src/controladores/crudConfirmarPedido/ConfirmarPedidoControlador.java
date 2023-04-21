@@ -1,4 +1,5 @@
 package controladores.crudConfirmarPedido;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.stream.Stream;
 
@@ -17,6 +18,7 @@ import modelos.entidadeDAO.ClienteDAO;
 import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
 import modelos.entidadeDAO.PedidoDAO;
 import modelos.entidades.Cliente;
+import modelos.entidades.ConfirmacaoPedido;
 import modelos.entidades.Pedido;
 import modelos.entidades.enums.Status;
 import modelos.validacao.ValidaFormulario;
@@ -87,25 +89,29 @@ public class ConfirmarPedidoControlador {
             try {
                 
                 Pedido pedido = getPedido();
+                ConfirmacaoPedido confirmacaoPedido = new ConfirmacaoPedido(getCliente(), pedido, Date.valueOf(getDataConfirmacao()), null, getDescricao());
 
                 if (getPago() && getDataConfirmacao().equals(pedido.getDataPedido().toLocalDate())) {
-                    System.out.println(pedido.getValorTotal() * 0.98);
+                    App.exibirAlert(areaDeAlerta, "SUCESSO", "DESCONTO", "Desconto de 2% aplicado.");
+                    pedido.setDesconto(2D);
+                    pedido.setStatus(Status.CONCLUIDO);
+                } else if (getPago()) {
                     pedido.setStatus(Status.CONCLUIDO);
                 } else {
                     pedido.setStatus(Status.CANCELADO);
                 }
 
-
-                //App.conexao.commit();
+                pedidoDAO.alterar(pedido);
+                confirmacaoPedido.setPago(getPago());
+                confirmacaoPedidoDAO.inserir(confirmacaoPedido);
+                App.conexao.commit();
                 this.sucesso = true;
             } catch (Exception erro) {
                 erro.printStackTrace();
                 App.conexao.rollback();
                 this.erro = true;
             }
-        } else {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Preencha os campos necessários.");
-        }
+        } 
     }
 
     @FXML
@@ -138,17 +144,22 @@ public class ConfirmarPedidoControlador {
         pedidoCancelado.setSelected(false);
     }
 
-    public boolean validarCampos() {
+    public boolean validarCampos() throws Exception {
         boolean estaoOk = Stream.of(
             vf.validarComboBox(erroCliente, getClass(), "Selecione o Cliente"),
             vf.validarComboBox(erroPedido, getPedido(), "Selecione o Pedido"),
             vf.validarComboBox(erroData, getDataConfirmacao(), "Selecione o Data")
         ).noneMatch(campo -> campo == false);
 
-        if (estaoOk && (getPago() || getCancelado()))  {
-            return estaoOk;
+        if (estaoOk)  {
+            if((getPago() || getCancelado())) {
+                return true;
+            } 
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "STATUS", "Selecione o Status");
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Preencha os campos necessários.");
         }
-        
+
         return false;
 
     }
@@ -171,7 +182,6 @@ public class ConfirmarPedidoControlador {
     public void setTela(Stage tela) {
         this.tela = tela;
     }
-<<<<<<< HEAD
 
     public Cliente getCliente() {
         return clientes.getSelectionModel().getSelectedItem();
@@ -196,7 +206,4 @@ public class ConfirmarPedidoControlador {
     public String getDescricao() {
         return observacao.getText();
     }
-=======
-    
->>>>>>> 3351d046bcc681caf8f763abca8471ef30aa18dc
 }
