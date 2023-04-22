@@ -52,6 +52,19 @@ public class PedidoCompraDAO {
         return false;
     }
 
+    public boolean alterarStatus(PedidoCompra pedido) {
+        String comando = "UPDATE pedido_compra SET status_pedido_compra = ? WHERE cod_pedido_compra = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {          
+            ps.setString(1, pedido.getStatus().getDescricao());
+            ps.setLong(2, pedido.getCodigo());
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return false;
+    }
+
     public boolean remover(PedidoCompra pedido) {
         String comando = "DELETE FROM pedido_compra WHERE cod_pedido_compra = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
