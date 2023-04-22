@@ -92,7 +92,7 @@ public class BotoesPedidoIngredienteControlador {
             App.adicionarMovimento(palco, cena);
             palco.showAndWait();
             if (controlador.getSucesso()) {
-                App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "JANELA", "Pedido de Ingrediente editado com sucesso.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "JANELA", "Pedido de Ingrediente editado com sucesso.");
             } else if (controlador.getFracasso()) {
                 App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "JANELA", "Não foi possível editar o pedido de ingrediente.");
             }

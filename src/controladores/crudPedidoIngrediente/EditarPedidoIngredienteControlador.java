@@ -95,9 +95,9 @@ public class EditarPedidoIngredienteControlador {
             // Significa que já existe no banco de dados então vai para os removidos
             if (pedidoCompraIngredientesDAO.buscarPorCodigo(pi.getCodigo()) != null) {
                 removidos.add(pi);
-            } else {
-                carrinho.remove(pi);
-            }
+            } 
+
+            carrinho.remove(pi);
             tabela.getItems().remove(pi);
         }
     }
@@ -126,10 +126,12 @@ public class EditarPedidoIngredienteControlador {
                 pedidoCompraDAO.alterar(pedidoCompra);
                 App.conexao.commit();
                 sucesso = true;
+                encerrar();
             } catch (Exception erro) {
                 erro.printStackTrace();
                 App.conexao.rollback();
                 fracasso = true;
+                encerrar();
             }
         }
     }
@@ -218,6 +220,7 @@ public class EditarPedidoIngredienteControlador {
 
     public void setItemNaTabela(List<PedidoCompraIngrediente> carrinho) {
         tabela.getItems().setAll(carrinho);
+        this.carrinho.addAll(carrinho);
     }
 
     public void setTela(Stage tela) {
