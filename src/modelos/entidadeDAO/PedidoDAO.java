@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelos.entidades.Bolo;
 import modelos.entidades.Cliente;
 import modelos.entidades.Pedido;
 import modelos.entidades.enums.Status;
@@ -90,17 +91,16 @@ public class PedidoDAO {
             FuncionarioDAO funcionarioDAO = new FuncionarioDAO(conexao);
             MetodoPagamentoDAO metodoPagamentoDAO = new MetodoPagamentoDAO(conexao); 
             if (resultado.next()) {
-                Pedido pedido = new Pedido(
+               return new Pedido(
                     resultado.getLong("cod_pedido"),
                     clienteDAO.buscarPorCodigo(resultado.getLong("cod_cliente")),
                     funcionarioDAO.buscarPorCodigo(resultado.getLong("cod_funcionario")),
                     resultado.getDate("data_pedido"),
                     metodoPagamentoDAO.buscarPorCodigo(resultado.getLong("cod_metodo_pagamento")),
                     Status.valueOf(resultado.getString("status_pedido")),
-                    resultado.getString("observacao_pedido")
+                    resultado.getString("observacao_pedido"),
+                    resultado.getDouble("desconto_pedido")
                 );
-                pedido.setDesconto(resultado.getDouble("desconto_pedido"));
-                return pedido;
             }
         } catch (Exception erro) {
             erro.printStackTrace();
@@ -125,7 +125,8 @@ public class PedidoDAO {
                     resultado.getDate("data_pedido"),
                     metodoPagamentoDAO.buscarPorCodigo(resultado.getLong("cod_metodo_pagamento")),
                     Status.valueOf(resultado.getString("status_pedido")),
-                    resultado.getString("observacao_pedido")
+                    resultado.getString("observacao_pedido"),
+                    resultado.getDouble("desconto_pedido")
                 ));
             }
         } catch (Exception erro) {
@@ -151,7 +152,41 @@ public class PedidoDAO {
                     resultado.getDate("data_pedido"),
                     metodoPagamentoDAO.buscarPorCodigo(resultado.getLong("cod_metodo_pagamento")),
                     Status.valueOf(resultado.getString("status_pedido")),
-                    resultado.getString("observacao_pedido")
+                    resultado.getString("observacao_pedido"),
+                    resultado.getDouble("desconto_pedido")
+                ));
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return pedidos;
+    }
+
+    public List<Pedido> buscarPorBolo(Bolo bolo) {
+        String comando = "SELECT p.* " +
+            "FROM pedido p " +
+            "INNER JOIN pedido_bolo pb " +
+            "ON p.cod_pedido = pb.cod_pedido " +
+            "INNER JOIN bolo b " +
+            "ON b.cod_bolo = pb.cod_bolo " +
+            "WHERE pb.cod_bolo = ?";
+        List<Pedido> pedidos = new ArrayList<>();
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, bolo.getCodigo());
+            ResultSet resultado = ps.executeQuery(); 
+            ClienteDAO clienteDAO = new ClienteDAO(conexao);
+            FuncionarioDAO funcionarioDAO = new FuncionarioDAO(conexao);
+            MetodoPagamentoDAO metodoPagamentoDAO = new MetodoPagamentoDAO(conexao);
+            while (resultado.next()) {
+                pedidos.add(new Pedido(
+                    resultado.getLong("cod_pedido"),
+                    clienteDAO.buscarPorCodigo(resultado.getLong("cod_cliente")),
+                    funcionarioDAO.buscarPorCodigo(resultado.getLong("cod_funcionario")),
+                    resultado.getDate("data_pedido"),
+                    metodoPagamentoDAO.buscarPorCodigo(resultado.getLong("cod_metodo_pagamento")),
+                    Status.valueOf(resultado.getString("status_pedido")),
+                    resultado.getString("observacao_pedido"),
+                    resultado.getDouble("desconto_pedido")
                 ));
             }
         } catch (Exception erro) {
@@ -176,7 +211,8 @@ public class PedidoDAO {
                     resultado.getDate("data_pedido"),
                     metodoPagamentoDAO.buscarPorCodigo(resultado.getLong("cod_metodo_pagamento")),
                     Status.valueOf(resultado.getString("status_pedido")),
-                    resultado.getString("observacao_pedido")
+                    resultado.getString("observacao_pedido"),
+                    resultado.getDouble("desconto_pedido")
                 ));
             }
         } catch (Exception erro) {
