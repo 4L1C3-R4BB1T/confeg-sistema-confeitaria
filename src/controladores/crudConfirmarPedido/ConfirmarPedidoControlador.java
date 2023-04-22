@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.stream.Stream;
 
 import aplicacao.App;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -73,6 +74,8 @@ public class ConfirmarPedidoControlador {
     private boolean sucesso = false;
     private boolean erro = false;
     private boolean desconto = false;
+    private volatile boolean threadValidarCampoAtivo = true;
+    private volatile boolean threadPodeValidarCampos = false;
 
     @FXML
     void cancelar(ActionEvent event) {
@@ -92,6 +95,8 @@ public class ConfirmarPedidoControlador {
         // Caso a data da confirmação do pedido seja mesma do pedido, 
         // o cliente ganhará 2% de desconto sobre o valor total do pedido
         if (validarCampos()) {
+            if (!validarStatus()) return;
+            
             App.conexao.setAutoCommit(false);
             try {
                 Pedido pedido = getPedido();
@@ -120,7 +125,11 @@ public class ConfirmarPedidoControlador {
                 this.erro = true;
                 encerrar();
             }
-        } 
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Preencha os campos necessários.");
+        }
+
+        threadPodeValidarCampos = true;
     }
 
     @FXML
@@ -150,6 +159,24 @@ public class ConfirmarPedidoControlador {
                 nomeFuncionario.setText(funcionarioDAO.buscarPorPedido(pedido).getNome());
             }
         });
+
+        new Thread(() -> {
+
+            while (threadValidarCampoAtivo) {
+
+                if (threadPodeValidarCampos) {
+                    try {
+
+                        Platform.runLater(() -> validarCampos());
+                        Thread.sleep(300);
+                    } catch (Exception erro) {
+                        erro.printStackTrace();
+                    }
+                }
+                
+            }
+
+        }).start();
     }
 
     public void limparCheckbox() {
@@ -157,27 +184,39 @@ public class ConfirmarPedidoControlador {
         pedidoCancelado.setSelected(false);
     }
 
-    public boolean validarCampos() throws Exception {
-        boolean estaoOk = Stream.of(
-            vf.validarComboBox(erroCliente, getClass(), "Selecione o Cliente"),
-            vf.validarComboBox(erroPedido, getPedido(), "Selecione o Pedido"),
-            vf.validarComboBox(erroData, getDataConfirmacao(), "Selecione o Data")
+    public boolean validarCampos()  {
+        boolean estaOk = Stream.of(
+            vf.validarComboBox(erroCliente, getCliente(), "Selecione o Cliente"),
+            vf.validarComboBox(erroPedido, getPedido(), "Selecione o Pedido")
         ).noneMatch(campo -> campo == false);
 
-        if (estaoOk)  {
-            if((getPago() || getCancelado())) {
-                return true;
-            } 
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "STATUS", "Selecione o Status");
-        } else {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Preencha os campos necessários.");
+        return estaOk && validarDatas();
+    }
+
+    public boolean validarStatus() {
+        if (!(getPago() || getCancelado())) {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Preencha o status: Pago ou Cancelado");
+            return false;
         }
+        return true;
+    }
 
-        return false;
-
+    public boolean validarDatas() {
+        erroData.setStyle("-fx-text-fill: red");
+        erroData.setText("");
+        if (getDataConfirmacao() == null){
+            erroData.setText("Preencha a Data de Confirmação");
+            return false;
+        } else if (getDataConfirmacao().isBefore(LocalDate.now())) {
+            erroData.setText("Data abaixo da data de hoje");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public void encerrar() {
+        threadValidarCampoAtivo = false;
         if (tela != null) {
             tela.close();
         }

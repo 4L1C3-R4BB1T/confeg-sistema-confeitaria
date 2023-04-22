@@ -71,48 +71,52 @@ public class App extends Application {
         transicao.play();
     }
 
-    public static void exibirAlert(Node area, String tipo, String titulo, String descricao) throws Exception {
-        URL localizacao = null;
+    public static void exibirAlert(Node area, String tipo, String titulo, String descricao) {
+        try {
+            URL localizacao = null;
 
-        if (tipo.equals("INFORMAÇÃO")) {
-            localizacao = App.class.getResource("/telas/alertas/informacao.fxml");
-        } else if (tipo.equals("FRACASSO")) {
-            localizacao = App.class.getResource("/telas/alertas/fracasso.fxml");
-        } else if (tipo.equals("SUCESSO")) {
-            localizacao = App.class.getResource("/telas/alertas/sucesso.fxml");
-        } else {
-            throw new RuntimeException("Adicione o tipo de alerta - INFORMAÇÃO, FRACASSO, SUCESSO.");
-        }
-
-        FXMLLoader carregar = new FXMLLoader(localizacao);
-        Node alerta = carregar.load();
-        Object controlador = carregar.getController();
-
-        if (tipo.equals("INFORMAÇÃO")) {
-            ((AlertaInformacao) controlador).setTitulo(titulo);
-            ((AlertaInformacao) controlador).setDescricao(descricao);
-        } else if (tipo.equals("FRACASSO")) {
-            ((AlertaFracasso) controlador).setTitulo(titulo);
-            ((AlertaFracasso) controlador).setDescricao(descricao);
-        } else {
-            ((AlertaSucesso) controlador).setTitulo(titulo);
-            ((AlertaSucesso) controlador).setDescricao(descricao);
-        }
-
-        Pane pane = ((Pane) area);
-        pane.getChildren().clear();
-        pane.getChildren().add(alerta);
-        adicionaEfeitoSuave(pane);
-        new Thread(() -> {
-
-            try {
-                Thread.sleep(1500);
-                Platform.runLater(() -> removerEfeitoSuave(pane));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (tipo.equals("INFORMAÇÃO")) {
+                localizacao = App.class.getResource("/telas/alertas/informacao.fxml");
+            } else if (tipo.equals("FRACASSO")) {
+                localizacao = App.class.getResource("/telas/alertas/fracasso.fxml");
+            } else if (tipo.equals("SUCESSO")) {
+                localizacao = App.class.getResource("/telas/alertas/sucesso.fxml");
+            } else {
+                throw new RuntimeException("Adicione o tipo de alerta - INFORMAÇÃO, FRACASSO, SUCESSO.");
             }
 
-        }).start();
+            FXMLLoader carregar = new FXMLLoader(localizacao);
+            Node alerta = carregar.load();
+            Object controlador = carregar.getController();
+
+            if (tipo.equals("INFORMAÇÃO")) {
+                ((AlertaInformacao) controlador).setTitulo(titulo);
+                ((AlertaInformacao) controlador).setDescricao(descricao);
+            } else if (tipo.equals("FRACASSO")) {
+                ((AlertaFracasso) controlador).setTitulo(titulo);
+                ((AlertaFracasso) controlador).setDescricao(descricao);
+            } else {
+                ((AlertaSucesso) controlador).setTitulo(titulo);
+                ((AlertaSucesso) controlador).setDescricao(descricao);
+            }
+
+            Pane pane = ((Pane) area);
+            pane.getChildren().clear();
+            pane.getChildren().add(alerta);
+            adicionaEfeitoSuave(pane);
+            new Thread(() -> {
+
+                try {
+                    Thread.sleep(1500);
+                    Platform.runLater(() -> removerEfeitoSuave(pane));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }).start();
+        } catch (Exception erro) {
+            throw new RuntimeException("Não foi possível gerar o alerta.");
+        }
     }
 
     public static void main(String[] args) {

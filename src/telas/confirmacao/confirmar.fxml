@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1100.0" stylesheets="@../pedidos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudConfirmarPedido.CrudConfirmarPedidoControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1100.0" stylesheets="@../pedidos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudPedidoConfirmado.CrudPedidoConfirmadoControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
@@ -25,13 +25,14 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="1100.0" styleClass="container" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="areaDePedidos" layoutX="79.0" layoutY="194.0" prefHeight="554.0" prefWidth="1000.0" styleClass="tabela" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0">
+            <TableView fx:id="areaConfirmados" layoutX="79.0" layoutY="194.0" prefHeight="554.0" prefWidth="1000.0" styleClass="tabela" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0">
                <columns>
-                  <TableColumn fx:id="codigo" prefWidth="75.0" text="CÓDIGO" />
-                  <TableColumn fx:id="funcionario" prefWidth="78.0" text="FUNCIONÁRIO" />
-                  <TableColumn fx:id="dataPedido" prefWidth="78.0" text="DATA DO PEDIDO" />
-                  <TableColumn fx:id="status" minWidth="0.0" prefWidth="105.0" text="STATUS" />
-                  <TableColumn fx:id="areaBotao" minWidth="0.0" prefWidth="161.0" />
+                  <TableColumn fx:id="colunaCodigo" prefWidth="75.0" text="CÓDIGO" />
+                  <TableColumn fx:id="colunaFuncionario" prefWidth="78.0" text="CLIENTE" />
+                  <TableColumn fx:id="colunaPedido" prefWidth="78.0" text="PEDIDO" />
+                  <TableColumn fx:id="colunaData" minWidth="0.0" prefWidth="105.0" text="DATA" />
+                  <TableColumn fx:id="colunaPago" minWidth="0.0" prefWidth="161.0" text="PAGO" />
+                  <TableColumn fx:id="colunaBotoes" minWidth="0.0" prefWidth="161.0" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

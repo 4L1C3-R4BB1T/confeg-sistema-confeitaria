@@ -54,7 +54,7 @@ public class Validacao {
         } else {
             return valor.replaceAll("[.-]", "");
         }
-        
     }
+
 
 }
