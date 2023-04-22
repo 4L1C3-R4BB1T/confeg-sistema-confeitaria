@@ -157,7 +157,7 @@ public class ClienteCadastrarControlador {
     }
 
     public boolean validarCampos() {
-        return Stream.of(
+       return Stream.of(
             vf.validarCampo(erroNome, getNome(), "Preencha o Nome"),
             vf.validarCPF(erroCpf, getCpf()),
             vf.validarCep(erroCep, getCep()),

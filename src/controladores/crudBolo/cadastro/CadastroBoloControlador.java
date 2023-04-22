@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modelos.entidadeDAO.BoloDAO;
 import modelos.entidadeDAO.SaborDAO;
@@ -51,13 +52,16 @@ public class CadastroBoloControlador {
     private Label erroPeso;
     
     @FXML 
-    private Label erroFabricao;
+    private Label erroFabricacao;
 
     @FXML 
     private Label erroVencimento;
 
     @FXML 
     private Label erroDescricao;
+
+    @FXML 
+    private HBox areaDeAlerta;
 
     private Stage tela;
 
@@ -131,9 +135,39 @@ public class CadastroBoloControlador {
             vf.validarComboBox(erroSabor, getSabor(), "Selecione o Sabor"),
             vf.validarValorNumerico(erroPreco, getPreco()),
             vf.validarValorNumerico(erroPeso, getPeso()),
-            vf.validarComboBox(erroFabricao, getFabricao(), "Preencha a data de Fabricação"),
-            vf.validarComboBox(erroVencimento, getVencimento(), "Preencha a data de Vencimento")
+            validarDatas()
         ).allMatch( bool -> bool != false);
+    }
+
+    public boolean validarDatas() {
+        erroFabricacao.setStyle("-fx-text-fill: red;");
+        erroVencimento.setStyle("-fx-text-fill: red;");
+        erroFabricacao.setText("");
+        erroVencimento.setText("");
+        boolean teveErro = false;
+
+        if (getFabricao() == null){
+            erroFabricacao.setText("Preencha a Fabricação.");
+            teveErro = true;
+        }
+
+        if (getVencimento() == null) {
+            erroVencimento.setText("Preencha a Validade.");
+            teveErro = true;
+        } 
+        
+        if (getFabricao() != null && getFabricao().isBefore(LocalDate.now())) {
+            erroFabricacao.setText("Fabricação inferior a data atual");
+            teveErro = true;
+        }
+
+        if (getVencimento() != null && getVencimento().isBefore(LocalDate.now())) {
+            erroVencimento.setText("Vencimento inferior a data atual");
+            teveErro = true;
+        } 
+
+        return !teveErro;
+        
     }
 
     public boolean getCadastrou() {
