@@ -18,9 +18,11 @@ import modelos.consultas.entitidades.PedidosPagamentoConsulta;
 import modelos.consultas.entitidades.PedidosMesAnoConsulta;
 import modelos.consultas.entitidades.PedidosSaborConsulta;
 import modelos.consultas.entitidades.ReceitaMesConsulta;
+import modelos.consultas.entitidades.TotalComprasFuncionario;
 import modelos.entidadeDAO.ClienteDAO;
 import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
 import modelos.entidades.ConfirmacaoPedido;
+import modelos.entidades.Funcionario;
 
 public final class ConsultaPersonalizada {
 
@@ -131,15 +133,15 @@ public final class ConsultaPersonalizada {
     public static List<PedidosSaborConsulta> obterQuantidadeDePedidosPorSabor() {
         List<PedidosSaborConsulta> pedidosSabor = new ArrayList<>();
         String comando = "SELECT s.cod_sabor AS \"codigo\", " +
-                  "s.descricao_sabor AS \"sabor\", " +
-                  "SUM(b.preco_bolo * quantidade_bolo) AS \"total\", " +
-                  "COUNT(s.cod_sabor) AS \"pedidos\" " +
-                  "FROM pedido p " +
-                  "INNER JOIN pedido_bolo pb ON p.cod_pedido = pb.cod_pedido " +
-                  "INNER JOIN bolo b ON b.cod_bolo = pb.cod_bolo " +
-                  "INNER JOIN sabor s ON s.cod_sabor = b.cod_sabor " +
-                  "GROUP BY s.cod_sabor " +
-                  "ORDER BY pedidos DESC, total DESC";
+            "s.descricao_sabor AS \"sabor\", " +
+            "SUM(b.preco_bolo * quantidade_bolo) AS \"total\", " +
+            "COUNT(s.cod_sabor) AS \"pedidos\" " +
+            "FROM pedido p " +
+            "INNER JOIN pedido_bolo pb ON p.cod_pedido = pb.cod_pedido " +
+            "INNER JOIN bolo b ON b.cod_bolo = pb.cod_bolo " +
+            "INNER JOIN sabor s ON s.cod_sabor = b.cod_sabor " +
+            "GROUP BY s.cod_sabor " +
+            "ORDER BY pedidos DESC, total DESC";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
@@ -160,13 +162,13 @@ public final class ConsultaPersonalizada {
     public static List<PedidosBoloConsulta> obterQuantidadeDePedidosPorBolo() {
         List<PedidosBoloConsulta> pedidosBolo = new ArrayList<>();
         String comando = "SELECT s.cod_sabor AS \"codigo\", " +
-                  "s.descricao_sabor AS \"sabor\", " +
-                  "COUNT(s.cod_sabor) AS \"pedidos\" " +
-                  "FROM pedido p " +
-                  "INNER JOIN pedido_bolo pb ON p.cod_pedido = pb.cod_pedido " +
-                  "INNER JOIN bolo b ON b.cod_bolo = pb.cod_bolo " +
-                  "INNER JOIN sabor s ON s.cod_sabor = b.cod_sabor " +
-                  "GROUP BY s.cod_sabor";
+            "s.descricao_sabor AS \"sabor\", " +
+            "COUNT(s.cod_sabor) AS \"pedidos\" " +
+            "FROM pedido p " +
+            "INNER JOIN pedido_bolo pb ON p.cod_pedido = pb.cod_pedido " +
+            "INNER JOIN bolo b ON b.cod_bolo = pb.cod_bolo " +
+            "INNER JOIN sabor s ON s.cod_sabor = b.cod_sabor " +
+            "GROUP BY s.cod_sabor";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
@@ -186,11 +188,12 @@ public final class ConsultaPersonalizada {
     public static List<PedidosPagamentoConsulta> obterQuantidadeDePedidosPorPagamento() {
         List<PedidosPagamentoConsulta> pedidosMetodo = new ArrayList<>();
         String comando = "SELECT mp.cod_metodo_pagamento AS \"codigo\", " +
-                  "mp.descricao_metodo_pagamento AS \"metodo\", " +
-                  "COUNT(p.cod_pedido) AS \"pedidos\" " +
-                  "FROM pedido p " +
-                  "INNER JOIN metodo_pagamento mp ON mp.cod_metodo_pagamento = p.cod_metodo_pagamento " +
-                  "GROUP BY mp.cod_metodo_pagamento";
+            "mp.descricao_metodo_pagamento AS \"metodo\", " +
+            "COUNT(p.cod_pedido) AS \"pedidos\" " +
+            "FROM pedido p " +
+            "INNER JOIN metodo_pagamento mp " + 
+            "ON mp.cod_metodo_pagamento = p.cod_metodo_pagamento " +
+            "GROUP BY mp.cod_metodo_pagamento";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
@@ -210,14 +213,14 @@ public final class ConsultaPersonalizada {
     public static List<PedidosMesAnoConsulta> obterQuantidadeDePedidosPorMesAno() {
         List<PedidosMesAnoConsulta> pedidosMesAno = new ArrayList<>();
         String comando = "SELECT EXTRACT(year FROM cp.data_confirmacao_pedido) AS \"ano\", " +
-                  "EXTRACT(month FROM cp.data_confirmacao_pedido) AS \"mes\", " +
-                  "COUNT(DISTINCT cod_confirmacao) AS \"pedidos\" " +
-                  "FROM confirmacao_pedido cp " +
-                  "INNER JOIN pedido p ON cp.cod_pedido = p.cod_pedido " +
-                  "INNER JOIN pedido_bolo pb ON pb.cod_pedido = p.cod_pedido " +
-                  "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
-                  "WHERE p.status_pedido = 'CONCLUIDO' OR p.status_pedido = 'CANCELADO' " +
-                  "GROUP BY ano, mes";
+            "EXTRACT(month FROM cp.data_confirmacao_pedido) AS \"mes\", " +
+            "COUNT(DISTINCT cod_confirmacao) AS \"pedidos\" " +
+            "FROM confirmacao_pedido cp " +
+            "INNER JOIN pedido p ON cp.cod_pedido = p.cod_pedido " +
+            "INNER JOIN pedido_bolo pb ON pb.cod_pedido = p.cod_pedido " +
+            "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
+            "WHERE p.status_pedido = 'CONCLUIDO' OR p.status_pedido = 'CANCELADO' " +
+            "GROUP BY ano, mes";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
@@ -236,23 +239,16 @@ public final class ConsultaPersonalizada {
 
     public static List<PedidoIngrediente> obterPedidosDeIngrediente() {
         List<PedidoIngrediente> pedidos = new ArrayList<>();
-
-        String comando = "SELECT " +
-                "pc.cod_pedido_compra as codigo, " +
-                "f.nome_funcionario as nome, " +
-                "pc.data_pedido_compra as \"data\", " +
-                "pc.status_pedido_compra as \"status\" " +
-            "FROM " +
-                "pedido_compra as pc, " +
-                "funcionario as f " +
-            "WHERE " +
-                "pc.cod_funcionario = f.cod_funcionario " +
+        String comando = "SELECT pc.cod_pedido_compra as codigo, " +
+            "f.nome_funcionario as nome, " +
+            "pc.data_pedido_compra as \"data\", " +
+            "pc.status_pedido_compra as \"status\" " +
+            "FROM pedido_compra as pc, " +
+            "funcionario as f " +
+            "WHERE pc.cod_funcionario = f.cod_funcionario " +
             "ORDER BY pc.data_pedido_compra DESC;";
-
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
-
             ResultSet resultado = ps.executeQuery();
-
             while (resultado.next()) {
                 pedidos.add(new PedidoIngrediente(
                     resultado.getLong("codigo"),
@@ -261,7 +257,6 @@ public final class ConsultaPersonalizada {
                     resultado.getString("status")
                 ));
             }
-
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -270,9 +265,7 @@ public final class ConsultaPersonalizada {
 
     public static List<PedidoConfirmado> obterPedidosConfirmados() {
         List<PedidoConfirmado> pedidos = new ArrayList<>();
-        
         ConfirmacaoPedidoDAO confirmacaoPedidoDAO = new ConfirmacaoPedidoDAO(conexao);
-
         for (ConfirmacaoPedido cp: confirmacaoPedidoDAO.buscarTodos()) {
             pedidos.add(new PedidoConfirmado(
                 cp.getCodigo(),
@@ -282,8 +275,40 @@ public final class ConsultaPersonalizada {
                 cp.getPago()
             ));
         }
-
         return pedidos;
+    }
+
+    public TotalComprasFuncionario totalComprasFuncionarioMes(int ano, int mes, Funcionario funcionario) {
+        String comando = "SELECT EXTRACT(YEAR FROM pc.data_pedido_compra) AS \"ano\", " +
+            "EXTRACT(MONTH FROM pc.data_pedido_compra) AS \"mes\", " +
+            "pc.cod_funcionario as \"funcionario\", " +
+            "SUM(i.preco_ingrediente * pci.quantidade_ingrediente) AS \"total\" " +
+            "FROM ingrediente i " +
+            "INNER JOIN pedido_compra_ingrediente pci " +
+            "ON pci.cod_ingrediente = i.cod_ingrediente " +
+            "INNER JOIN pedido_compra pc " +
+            "ON pc.cod_pedido_compra = pci.cod_pedido_compra " +
+            "WHERE EXTRACT(YEAR FROM pc.data_pedido_compra) = ? " +
+            "AND EXTRACT(MONTH FROM pc.data_pedido_compra) = ? " +
+            "AND pc.cod_funcionario = ? " +
+            "GROUP BY ano, mes, funcionario";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, ano);
+            ps.setLong(2, mes);
+            ps.setLong(3, funcionario.getCodigo());
+            ResultSet resultado = ps.executeQuery();
+            if (resultado.next()) {
+                return new TotalComprasFuncionario(
+                    resultado.getInt("ano"),
+                    resultado.getInt("mes"),
+                    resultado.getLong("funcionario"),
+                    resultado.getDouble("total")
+                );
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return null;
     }
     
 }
