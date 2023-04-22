@@ -80,17 +80,20 @@
    <top>
       <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView onMouseClicked="#minimizarTela">
+            <ImageView fitHeight="35.0" fitWidth="35.0" onMouseClicked="#minimizarTela">
                <image>
                   <Image url="@../_assets/img/minimizar.png" />
                </image>
+               <HBox.margin>
+                  <Insets bottom="7.0" right="5.0" top="7.0" />
+               </HBox.margin>
             </ImageView>
-            <ImageView onMouseClicked="#fecharTela">
+            <ImageView fitHeight="35.0" fitWidth="35.0" onMouseClicked="#fecharTela">
                <image>
                   <Image url="@../_assets/img/fechar.png" />
                </image>
                <HBox.margin>
-                  <Insets left="5.0" />
+                  <Insets bottom="7.0" left="5.0" right="10.0" top="7.0" />
                </HBox.margin>
             </ImageView>
          </children>
