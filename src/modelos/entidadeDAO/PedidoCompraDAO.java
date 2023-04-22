@@ -165,6 +165,27 @@ public class PedidoCompraDAO {
         return pedidos;
     }
 
+    public List<PedidoCompra> buscarPendentes() {
+        String comando = "SELECT * FROM pedido_compra WHERE status_pedido_compra = 'PENDENTE'";
+        List<PedidoCompra> pedidos = new ArrayList<>();
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ResultSet resultado = ps.executeQuery();
+            FuncionarioDAO funcionarioDAO = new FuncionarioDAO(conexao);
+            while (resultado.next()) {
+                pedidos.add(new PedidoCompra(
+                    resultado.getLong("cod_pedido_compra"),
+                    funcionarioDAO.buscarPorCodigo(resultado.getLong("cod_funcionario")),
+                    resultado.getDate("data_pedido_compra"),
+                    Status.valueOf(resultado.getString("status_pedido_compra")),
+                    resultado.getString("observacao_pedido_compra")
+                ));
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return pedidos;
+    }
+
     public List<PedidoCompra> buscarTodos() {
         String comando = "SELECT * FROM pedido_compra";
         List<PedidoCompra> pedidos = new ArrayList<>();
