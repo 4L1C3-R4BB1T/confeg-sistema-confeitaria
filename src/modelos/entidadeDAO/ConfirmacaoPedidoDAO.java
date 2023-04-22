@@ -88,7 +88,7 @@ public class ConfirmacaoPedidoDAO {
     }
 
     public List<ConfirmacaoPedido> buscarTodos() {
-        String comando = "SELECT * FROM confirmacao_pedido WHERE cod_confirmacao = ?";
+        String comando = "SELECT * FROM confirmacao_pedido";
         List<ConfirmacaoPedido> confirmacoes = new ArrayList<>();
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();

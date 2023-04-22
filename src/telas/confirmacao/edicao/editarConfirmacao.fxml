@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="800.0" stylesheets="@../../pedidos/edicao/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudConfirmarPedido.ConfirmarPedidoControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="800.0" stylesheets="@../../pedidos/edicao/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudPedidoConfirmado.EditarPedidoConfirmadoControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
@@ -30,8 +30,8 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="container" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" layoutX="50.0" layoutY="24.0" prefHeight="65.0" prefWidth="700.0" styleClass="titulo" text="EDITAR" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-            <ComboBox fx:id="clientes" layoutX="100.0" layoutY="142.0" prefHeight="50.0" prefWidth="150.0" promptText="Escolha o Cliente" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
-            <ComboBox fx:id="pedidos" layoutX="100.0" layoutY="244.0" prefHeight="50.0" prefWidth="150.0" promptText="Escolha o Pedido" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+            <ComboBox fx:id="clientes" disable="true" layoutX="100.0" layoutY="142.0" prefHeight="50.0" prefWidth="150.0" promptText="Escolha o Cliente" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+            <ComboBox fx:id="pedidos" disable="true" layoutX="100.0" layoutY="244.0" prefHeight="50.0" prefWidth="150.0" promptText="Escolha o Pedido" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
             <Label layoutX="100.0" layoutY="335.0" styleClass="label-data" text="Data de Confirmação" />
             <CheckBox fx:id="pedidoPago" alignment="CENTER" contentDisplay="CENTER" layoutX="552.0" layoutY="412.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#clicouPago" prefHeight="28.0" prefWidth="148.0" styleClass="check-pago" text="Pago" AnchorPane.rightAnchor="100.0" />
             <TextArea fx:id="observacao" layoutX="100.0" layoutY="513.0" prefHeight="170.0" prefWidth="593.0" promptText="Observações" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />

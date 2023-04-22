@@ -185,10 +185,13 @@
 	-fx-font-size: 16px;
 }
 
+
+
 .combo-box .list-view .list-cell:filled:selected {
     -fx-text-fill: #fff;
 	-fx-background-color: rgba(0, 0, 0, 0.79);
 }
+
 
 .combo-box .list-view .list-cell:hover {
 	-fx-text-fill: #000;
@@ -262,4 +265,10 @@
 
 .exibir-funcionario:disabled {
 	-fx-text-fill: #000000;
+}
+
+.combo-box:disabled, .list-cell:disabled {
+	-fx-text-fill: #000000a8 !important;
+	-fx-prompt-text-fill: #000 !important;
+	-fx-opacity: 1 !important;
 }

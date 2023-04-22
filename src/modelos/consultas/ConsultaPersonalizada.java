@@ -6,11 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import java.util.Date;
 
 import conexoes.FabricarConexao;
+import modelos.consultas.entitidades.PedidoConfirmado;
 import modelos.consultas.entitidades.PedidoConsulta;
 import modelos.consultas.entitidades.PedidoIngrediente;
 import modelos.consultas.entitidades.PedidosBoloConsulta;
@@ -20,6 +19,8 @@ import modelos.consultas.entitidades.PedidosMesAnoConsulta;
 import modelos.consultas.entitidades.PedidosSaborConsulta;
 import modelos.consultas.entitidades.ReceitaMesConsulta;
 import modelos.entidadeDAO.ClienteDAO;
+import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
+import modelos.entidades.ConfirmacaoPedido;
 
 public final class ConsultaPersonalizada {
 
@@ -264,6 +265,24 @@ public final class ConsultaPersonalizada {
         } catch (Exception erro) {
             erro.printStackTrace();
         }
+        return pedidos;
+    }
+
+    public static List<PedidoConfirmado> obterPedidosConfirmados() {
+        List<PedidoConfirmado> pedidos = new ArrayList<>();
+        
+        ConfirmacaoPedidoDAO confirmacaoPedidoDAO = new ConfirmacaoPedidoDAO(conexao);
+
+        for (ConfirmacaoPedido cp: confirmacaoPedidoDAO.buscarTodos()) {
+            pedidos.add(new PedidoConfirmado(
+                cp.getCodigo(),
+                cp.getCliente().getNome(),
+                cp.getPedido().getCodigo(),
+                cp.getDataConfirmacao(),
+                cp.getPago()
+            ));
+        }
+
         return pedidos;
     }
     

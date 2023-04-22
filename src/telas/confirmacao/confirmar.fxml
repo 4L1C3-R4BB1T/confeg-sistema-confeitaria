@@ -28,7 +28,7 @@
             <TableView fx:id="areaConfirmados" layoutX="79.0" layoutY="194.0" prefHeight="554.0" prefWidth="1000.0" styleClass="tabela" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0">
                <columns>
                   <TableColumn fx:id="colunaCodigo" prefWidth="75.0" text="CÓDIGO" />
-                  <TableColumn fx:id="colunaFuncionario" prefWidth="78.0" text="CLIENTE" />
+                  <TableColumn fx:id="colunaCliente" prefWidth="78.0" text="CLIENTE" />
                   <TableColumn fx:id="colunaPedido" prefWidth="78.0" text="PEDIDO" />
                   <TableColumn fx:id="colunaData" minWidth="0.0" prefWidth="105.0" text="DATA" />
                   <TableColumn fx:id="colunaPago" minWidth="0.0" prefWidth="161.0" text="PAGO" />
