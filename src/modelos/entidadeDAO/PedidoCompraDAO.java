@@ -107,6 +107,28 @@ public class PedidoCompraDAO {
         return pedidos;
     }
 
+    public List<PedidoCompra> buscarPendentesPorFuncionario(Funcionario funcionario) {
+        String comando = "SELECT * FROM pedido_compra WHERE cod_funcionario = ? AND status_pedido_compra = 'PENDENTE'";
+        List<PedidoCompra> pedidos = new ArrayList<>();
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, funcionario.getCodigo());
+            ResultSet resultado = ps.executeQuery(); 
+            FuncionarioDAO funcionarioDAO = new FuncionarioDAO(conexao);
+            while (resultado.next()) {
+                pedidos.add(new PedidoCompra(
+                    resultado.getLong("cod_pedido_compra"),
+                    funcionarioDAO.buscarPorCodigo(resultado.getLong("cod_funcionario")),
+                    resultado.getDate("data_pedido_compra"),
+                    Status.valueOf(resultado.getString("status_pedido_compra")),
+                    resultado.getString("observacao_pedido_compra")
+                ));
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return pedidos;
+    }
+
     public List<PedidoCompra> buscarPorFuncionarioMes(Funcionario funcionario, int mes) {
         String comando = "SELECT * FROM pedido_compra WHERE cod_funcionario = ? AND EXTRACT(MONTH FROM data_pedido_compra) = ?";
         List<PedidoCompra> pedidos = new ArrayList<>();
