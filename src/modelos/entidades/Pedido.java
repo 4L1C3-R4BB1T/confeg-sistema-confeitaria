@@ -32,7 +32,7 @@ public class Pedido {
     }
 
     public Pedido(Long codigo, Cliente cliente, Funcionario funcionario, Date dataPedido, MetodoPagamento metodo,
-            Status status, String observacao) {
+            Status status, String observacao, Double desconto) {
         this.codigo = codigo;
         this.cliente = cliente;
         this.funcionario = funcionario;
@@ -40,6 +40,7 @@ public class Pedido {
         this.metodo = metodo;
         this.status = status;
         this.observacao = observacao;
+        this.desconto = desconto;
     }
 
     public Long getCodigo() {

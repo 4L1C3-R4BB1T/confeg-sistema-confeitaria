@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.entidadeDAO.BoloDAO;
+import modelos.entidadeDAO.PedidoDAO;
 import modelos.entidades.Bolo;
 import modelos.interfaces.AproveitarFuncao;
 
@@ -62,9 +63,18 @@ public class BoloControlador {
         if (codigo != null) {
             App.conexao.setAutoCommit(false);
            try {
-                boloDAO.remover(boloDAO.buscarPorCodigo(codigo));
-                atualizarAreaDeBolos.usar();
+                Bolo bolo = boloDAO.buscarPorCodigo(codigo);
+               
+                // remover todos os pedidos que estão associados ao bolo a ser removido
+                PedidoDAO pedidoDAO = new PedidoDAO(App.conexao);
+                pedidoDAO.buscarPorBolo(bolo).forEach(pedido ->
+                    pedidoDAO.remover(pedido)
+                );
+
+                boloDAO.remover(bolo);
+
                 App.conexao.commit();
+                atualizarAreaDeBolos.usar();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "O bolo com ID: " + codigo + " foi removido.");
            } catch (Exception erro) {
                 erro.printStackTrace();

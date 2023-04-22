@@ -72,11 +72,9 @@ public class BoloEdicaoControlador {
     private boolean alterou = false;
     private boolean erro = false;
 
-
     @FXML
     public void cancelar(ActionEvent event) {
         encerrar();
-
     }
 
     @FXML

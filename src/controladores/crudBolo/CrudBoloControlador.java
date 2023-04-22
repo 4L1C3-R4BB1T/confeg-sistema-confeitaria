@@ -118,7 +118,6 @@ public class CrudBoloControlador {
         });
     }
 
-
     public void fecharTelas() {
         telas.forEach(tela -> {
             if (tela != null) {
