@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" stylesheets="@../../pedidos/edicao/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudPedidos.RegistrarPedidoControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" stylesheets="@../../pedidos/edicao/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudPedidoIngrediente.PedirIngredienteControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
@@ -47,12 +47,12 @@
                </styleClass>
             </Button>
             <TextField fx:id="quantidade" alignment="CENTER" layoutX="430.0" layoutY="225.0" prefHeight="50.0" prefWidth="190.0" promptText="Quantidade" styleClass="quantidade" AnchorPane.leftAnchor="430.0" />
-            <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="639.0" layoutY="231.0" onMouseClicked="#adicionarBolo" AnchorPane.rightAnchor="113.0">
+            <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="639.0" layoutY="231.0" onMouseClicked="#adicionarPedido" AnchorPane.rightAnchor="113.0">
                <image>
                   <Image url="@../../_assets/img/add.png" />
                </image>
             </ImageView>
-            <TableView fx:id="tabela" layoutX="101.0" layoutY="298.0" prefHeight="152.0" prefWidth="635.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="70.0">
+            <TableView fx:id="tabelaPedidos" layoutX="101.0" layoutY="298.0" prefHeight="152.0" prefWidth="635.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="70.0">
               <columns>
                 <TableColumn fx:id="colunaIngrediente" prefWidth="75.0" text="Ingrediente" />
                 <TableColumn fx:id="colunaQuantidade" prefWidth="75.0" text="Quantidade" />
@@ -64,7 +64,7 @@
             <ComboBox fx:id="funcionarios" layoutX="106.0" layoutY="142.0" prefHeight="50.0" prefWidth="624.0" promptText="Escolha o funcionário" styleClass="campoBox" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="70.0" />
             <Label fx:id="areaErroData" layoutX="101.0" layoutY="533.0" prefHeight="18.0" prefWidth="238.0" />
             <HBox fx:id="areaDeAlerta" layoutX="59.0" layoutY="39.0" prefHeight="150.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="691.0" layoutY="231.0" onMouseClicked="#removerBolo" AnchorPane.rightAnchor="64.0">
+            <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="691.0" layoutY="231.0" onMouseClicked="#removerPedido" AnchorPane.rightAnchor="64.0">
                <image>
                   <Image url="@../../_assets/img/excluir.png" />
                </image>

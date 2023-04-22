@@ -170,13 +170,16 @@ public class RegistrarPedidoControlador {
 
     public boolean validarAdicaoPedidoBolo() throws Exception {
         if (getBolo() == null) {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "ALERTA", "Selecione o Bolo.");
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "ALERTA", "Selecione o Bolo");
+            return false;
+        } else if (quantidade.getText().equals("")) {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "ALERTA", "Preencha a quantidade.");
             return false;
         } else if (!vf.validarNumero(quantidade.getText())) {
             App.exibirAlert(areaDeAlerta, "FRACASSO", "ALERTA", "A quantidade não é válida.");
             return false;
         } else if (Long.parseLong(quantidade.getText()) <= 0) {
-            App.exibirAlert(areaDeAlerta, "FRACASSO", "Quantidade", "Quantidade tem quer maior que 0");
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "Quantidade", "Quantidade tem quer ser maior que 0");
             return false;
         } else {
             App.exibirAlert(areaDeAlerta, "SUCESSO", "ALERTA", "Item cadastrado");
@@ -186,14 +189,18 @@ public class RegistrarPedidoControlador {
 
     public boolean validarCampos() throws Exception {
         Object[] campos = {getCliente(), getFuncionario(), getMetodoPagamento()}; 
-        if(Arrays.stream(campos).allMatch(campo -> vf.validarNuloOuVazio(campo))) {
-            if (vf.validarComboBox(areaErroData, getDataPedido(), "Preencha este campo.")) {
-                return true;
-            }
+        if(!Arrays.stream(campos).allMatch(campo -> vf.validarNuloOuVazio(campo))) {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Preecha os campos necessários");
+            return false;
+        } else if (getDataPedido() == null) {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Selecione a data do pedido");
+            return false;
+        } else if (getDataPedido().isBefore(LocalDate.now())) {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "A data do pedido não pode ser anterior a data atual");
+            return false;
         } else {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "CAMPO VAZIO", "Preencha todos os campos");
+            return true;
         }
-        return false;
     }
 
     public void encerrar() {

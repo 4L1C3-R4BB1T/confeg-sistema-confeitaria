@@ -5,10 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.naming.spi.DirStateFactory.Result;
+
 import java.util.Date;
 
 import conexoes.FabricarConexao;
 import modelos.consultas.entitidades.PedidoConsulta;
+import modelos.consultas.entitidades.PedidoIngrediente;
 import modelos.consultas.entitidades.PedidosBoloConsulta;
 import modelos.consultas.entitidades.PedidosClienteConsulta;
 import modelos.consultas.entitidades.PedidosPagamentoConsulta;
@@ -227,6 +231,40 @@ public final class ConsultaPersonalizada {
             erro.printStackTrace();
         }
         return pedidosMesAno;
+    }
+
+    public static List<PedidoIngrediente> obterPedidosDeIngrediente() {
+        List<PedidoIngrediente> pedidos = new ArrayList<>();
+
+        String comando = "SELECT " +
+                "pc.cod_pedido_compra as codigo, " +
+                "f.nome_funcionario as nome, " +
+                "pc.data_pedido_compra as \"data\", " +
+                "pc.status_pedido_compra as \"status\" " +
+            "FROM " +
+                "pedido_compra as pc, " +
+                "funcionario as f " +
+            "WHERE " +
+                "pc.cod_funcionario = f.cod_funcionario " +
+            "ORDER BY pc.data_pedido_compra DESC;";
+
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                pedidos.add(new PedidoIngrediente(
+                    rs.getLong("codigo"),
+                    rs.getString("nome"),
+                    rs.getDate("data"),
+                    rs.getString("status")
+                ));
+            }
+
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return pedidos;
     }
     
 }

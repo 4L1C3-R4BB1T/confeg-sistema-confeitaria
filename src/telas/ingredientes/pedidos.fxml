@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1100.0" stylesheets="@../pedidos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudConfirmarPedido.CrudConfirmarPedidoControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1100.0" stylesheets="@../pedidos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudPedidoIngrediente.CrudPedidoIngrediente">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
@@ -29,8 +29,7 @@
                <columns>
                   <TableColumn fx:id="codigo" prefWidth="75.0" text="CÓDIGO" />
                   <TableColumn fx:id="funcionario" prefWidth="78.0" text="FUNCIONÁRIO" />
-                  <TableColumn fx:id="total" minWidth="0.0" prefWidth="105.0" text="TOTAL" />
-                  <TableColumn fx:id="dataPedido" prefWidth="78.0" text="DATA" />
+                  <TableColumn fx:id="dataPedido" prefWidth="78.0" text="DATA DO PEDIDO" />
                   <TableColumn fx:id="status" minWidth="0.0" prefWidth="105.0" text="STATUS" />
                   <TableColumn fx:id="areaBotao" minWidth="0.0" prefWidth="161.0" />
                </columns>

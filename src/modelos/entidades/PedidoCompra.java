@@ -11,6 +11,8 @@ public class PedidoCompra {
     private Date dataPedido;
     private Status status;
     private String observacao;
+
+    public PedidoCompra(){}
     
     public PedidoCompra(Long codigo, Funcionario funcionario, Date dataPedido, 
         Status status, String observacao) {

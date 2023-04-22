@@ -11,6 +11,8 @@ import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
 import controladores.crudConfirmarPedido.ConfirmarPedidoControlador;
 import controladores.crudFuncionario.CrudFuncionarioControlador;
+import controladores.crudPedidoIngrediente.CrudPedidoIngrediente;
+import controladores.crudPedidoIngrediente.PedirIngredienteControlador;
 import controladores.crudPedidos.ListarPedidosControlador;
 import controladores.crudPedidos.RegistrarPedidoControlador;
 import controladores.login.LoginControlador;
@@ -113,6 +115,8 @@ public class PrincipalControlador {
     private boolean clicouBotaoListarPedido = false;
     private boolean clicouBotaoPedirBolo = false;
     private boolean clicouBotaoConfirmarPedido = false;
+    private boolean clicouBotaoListarIngrediente = false;
+    private boolean clicouBotaoPedirIngrediente = false;
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
@@ -253,10 +257,15 @@ public class PrincipalControlador {
         System.out.println("Abrir confirmação");
     }
 
+
     @FXML
-    public void abrirListaIngrediente(MouseEvent event) {
+    public void abrirListaIngrediente(MouseEvent event) throws Exception {
         fecharModaisPedidoESub();
-        System.out.println("Abrir ingredientes");
+        if (!clicouBotaoListarIngrediente) {
+            carregarTelaListarPedidoIngredientes();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+        }
     }
 
 
@@ -284,9 +293,14 @@ public class PrincipalControlador {
     }
 
     @FXML
-    public void abrirPedirIngrediente(MouseEvent event) {
+    public void abrirPedirIngrediente(MouseEvent event) throws Exception {
         fecharModaisPedidoESub();
-        System.out.println("Clicou abrir ingrediente");
+        if (!clicouBotaoPedirIngrediente) {
+            carregarTelaPedirIngredientes();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+        }
+ 
     }
 
     @FXML
@@ -357,10 +371,15 @@ public class PrincipalControlador {
                     controlador.setAreaDeAlerta(areaDeAlerta);
                     return node;
                 } catch (Exception erro) {
+                    erro.printStackTrace();
                     return null;
                 }
             })
-            .forEach( bolo -> areaBolo.getChildren().add(bolo));
+            .forEach( bolo -> {
+                if (bolo != null) {
+                    areaBolo.getChildren().add(bolo);
+                }
+            });
     }
 
     public void carregarTelaPerfil(Funcionario funcionario) {
@@ -418,6 +437,7 @@ public class PrincipalControlador {
             telas.remove(palco);
             clicouBolo = false;
             atualizarAreaBolo();
+            removerBotaoAtivo();
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -438,6 +458,7 @@ public class PrincipalControlador {
             palco.showAndWait();
             telas.remove(palco);
             clicouCliente = false;
+            removerBotaoAtivo();
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -458,6 +479,7 @@ public class PrincipalControlador {
             palco.showAndWait();
             telas.remove(palco);
             clicouFuncionario = false;
+            removerBotaoAtivo();
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -529,6 +551,47 @@ public class PrincipalControlador {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "ERRO", "Não foi possível confirmar o pedido.");
             }
 
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
+
+    public void carregarTelaListarPedidoIngredientes() {
+        try {
+            clicouBotaoListarIngrediente = true;    
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/ingredientes/pedidos.fxml"));
+            Parent conteudo = carregar.load();
+            CrudPedidoIngrediente controlador = carregar.getController();
+            Scene scene = new Scene(conteudo);
+            Stage palco = new Stage(StageStyle.UNDECORATED);
+            palco.setScene(scene);
+            controlador.setTela(palco);
+            App.adicionarMovimento(palco, scene);
+            palco.showAndWait();
+            clicouBotaoListarIngrediente = false;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
+
+    public void carregarTelaPedirIngredientes() {
+        try {
+            clicouBotaoPedirIngrediente = true;
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/ingredientes/cadastro/registrarPedido.fxml"));
+            Parent conteudo = carregar.load();
+            PedirIngredienteControlador controlador = carregar.getController();
+            Scene scene = new Scene(conteudo);
+            Stage palco = new Stage(StageStyle.UNDECORATED);
+            palco.setScene(scene);
+            controlador.setTela(palco);
+            App.adicionarMovimento(palco, scene);
+            palco.showAndWait();
+            if (controlador.getSucesso()) {
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido Ingrediente registrado com sucesso");
+            } else if (controlador.getFracasso()) {
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar Pedido de Ingrediente.");
+            }
+            clicouBotaoPedirIngrediente = false;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
