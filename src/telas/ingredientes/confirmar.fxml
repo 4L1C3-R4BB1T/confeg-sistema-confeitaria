@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -40,7 +41,8 @@
             </Button>
             <ComboBox fx:id="pedidos" disable="true" layoutX="106.0" layoutY="142.0" prefHeight="50.0" prefWidth="624.0" promptText="Escolha o pedido" styleClass="campoBox" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" />
             <HBox fx:id="areaDeAlerta" layoutX="59.0" layoutY="39.0" prefHeight="150.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            <ComboBox fx:id="status" disable="true" layoutX="80.0" layoutY="239.0" prefHeight="50.0" prefWidth="646.0" promptText="Status" styleClass="campoBox" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" />
+            <CheckBox fx:id="clicouConcluido" layoutX="160.0" layoutY="248.0" mnemonicParsing="false" styleClass="check-pago" text="Concluído" AnchorPane.leftAnchor="160.0" />
+            <CheckBox fx:id="clicouCancelado" layoutX="410.0" layoutY="248.0" mnemonicParsing="false" styleClass="check-pago" text="Cancelado" AnchorPane.rightAnchor="160.0" />
          </children>
       </AnchorPane>
    </center>
