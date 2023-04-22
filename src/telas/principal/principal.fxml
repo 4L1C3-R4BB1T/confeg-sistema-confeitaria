@@ -27,7 +27,7 @@
                         <Button fx:id="clientes" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#irParaTelaClientes" prefHeight="45.0" prefWidth="114.0" text="CLIENTES" />
                         <Button fx:id="administrador" maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" onAction="#irParaTelaFuncionarios" prefHeight="50.0" prefWidth="81.0" visible="false">
                            <graphic>
-                              <ImageView>
+                              <ImageView fitHeight="20.0" fitWidth="26.0">
                                  <image>
                                     <Image url="@img/administrador.png" />
                                  </image>
