@@ -56,6 +56,9 @@ public class PrincipalControlador {
     private AnchorPane modalPedir;
 
     @FXML
+    private AnchorPane modalConfirmar;
+
+    @FXML
     private HBox areaBotaoMenu;
 
     @FXML 
@@ -138,6 +141,7 @@ public class PrincipalControlador {
         removerBotaoPedidoAtivo();
         modalPedir.setVisible(false);
         modalListar.setVisible(false);
+        modalConfirmar.setVisible(false);
     }
 
     public void fecharModaisPedidoESub() {
@@ -228,7 +232,7 @@ public class PrincipalControlador {
         botoes = new Button[] { administrador, principal, pedidos, bolos, clientes };
         botoesPedido = new HBox[] { botaoListar, botaoPedir, botaoConfirmar };
     }
-
+    
     // Listar Modal
     @FXML 
     public void abrirModalListar(MouseEvent event) {
@@ -241,6 +245,18 @@ public class PrincipalControlador {
             App.adicionaEfeitoSuave(modalListar);
         }
         
+    }
+    
+    @FXML
+    public void abrirModalConfirmar(MouseEvent event) {
+        removerBotaoPedidoAtivo();
+        if (modalConfirmar.isVisible()) {
+            App.removerEfeitoSuave(modalConfirmar);
+        } else {
+            fecharModaisPedido();
+            adicionarAtivoNoBotaoPedido(botaoConfirmar);
+            App.adicionaEfeitoSuave(modalConfirmar);
+        }
     }
 
     @FXML
@@ -321,6 +337,13 @@ public class PrincipalControlador {
         }
     }
 
+    // Submenu confirmar
+    @FXML
+    public void confirmarCompra(MouseEvent event) {
+        fecharModaisPedidoESub();
+        System.out.println("Clicou aqui");
+    }
+
     public void limparModalMenuAbertos() {
         menuPedidos.setVisible(false);
         
@@ -338,6 +361,7 @@ public class PrincipalControlador {
     public void adicionarAtivoNoBotaoPedido(HBox botao) {
         if (botao != null) {
             removerBotaoAtivo();
+            pedidos.getStyleClass().add("ativo");
             botao.getStyleClass().add("pedido-ativo");
         }
     } 
@@ -506,6 +530,7 @@ public class PrincipalControlador {
             palco.showAndWait();
             telas.remove(palco);
             clicouBotaoListarPedido = false;
+            pedidos.getStyleClass().remove("ativo");
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -529,6 +554,7 @@ public class PrincipalControlador {
             } else if (controlador.getErro()) {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar pedido.");
             }
+            pedidos.getStyleClass().remove("ativo");
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -556,7 +582,7 @@ public class PrincipalControlador {
             } else if (controlador.getErro()) {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "ERRO", "Não foi possível confirmar o pedido.");
             }
-
+            pedidos.getStyleClass().remove("ativo");
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -575,6 +601,7 @@ public class PrincipalControlador {
             App.adicionarMovimento(palco, scene);
             palco.showAndWait();
             clicouBotaoListarIngrediente = false;
+            pedidos.getStyleClass().remove("ativo");
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -597,6 +624,7 @@ public class PrincipalControlador {
             } else if (controlador.getFracasso()) {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar Pedido de Ingrediente.");
             }
+            pedidos.getStyleClass().remove("ativo");
             clicouBotaoPedirIngrediente = false;
         } catch (Exception erro) {
             erro.printStackTrace();
@@ -617,6 +645,7 @@ public class PrincipalControlador {
             App.adicionarMovimento(palco, scene);
             palco.showAndWait();
             clicouBotaoListarConfirmacao = false;
+            pedidos.getStyleClass().remove("ativo");
         } catch (Exception erro) {
             erro.printStackTrace();
         }

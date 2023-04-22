@@ -25,7 +25,25 @@
                         <Button fx:id="pedidos" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirMenuPedidos" prefHeight="50.0" prefWidth="119.0" text="PEDIDOS" />
                         <Button fx:id="bolos" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#irTelaBolo" prefHeight="44.0" prefWidth="111.0" text="BOLOS" />
                         <Button fx:id="clientes" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#irParaTelaClientes" prefHeight="45.0" prefWidth="114.0" text="CLIENTES" />
-                        <Button fx:id="administrador" maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" onAction="#irParaTelaFuncionarios" prefHeight="50.0" prefWidth="81.0" visible="false">
+                        <Button maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="54.0">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="18.0">
+                                 <image>
+                                    <Image url="@img/relatorio.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="57.0">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="18.0">
+                                 <image>
+                                    <Image url="@img/icone%20grafico.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="administrador" maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" onAction="#irParaTelaFuncionarios" prefHeight="50.0" prefWidth="55.0">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="26.0">
                                  <image>
@@ -102,7 +120,7 @@
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Pedir" />
                                  </children>
                               </HBox>
-                              <HBox fx:id="botaoConfirmar" alignment="CENTER" layoutX="10.0" layoutY="108.0" onMouseClicked="#abrirTelaConfirmar" prefHeight="32.0" prefWidth="130.0" styleClass="botao">
+                              <HBox fx:id="botaoConfirmar" alignment="CENTER" layoutX="10.0" layoutY="108.0" onMouseClicked="#abrirModalConfirmar" prefHeight="32.0" prefWidth="130.0" styleClass="botao">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Confirmar" />
                                  </children>
@@ -143,6 +161,24 @@
                               <HBox fx:id="botaoListarIngrediente" alignment="CENTER" layoutX="10.0" layoutY="112.0" onMouseClicked="#abrirListaIngrediente" prefHeight="32.0" prefWidth="130.0" styleClass="botao">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Ingredientes" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="modal" />
+                              <String fx:value="submenu" />
+                           </styleClass>
+                        </AnchorPane>
+                        <AnchorPane fx:id="modalConfirmar" layoutX="270.0" layoutY="38.0" prefHeight="120.0" prefWidth="150.0" visible="false">
+                           <children>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="34.0" onMouseClicked="#confirmarCompra" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Compra" />
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="botaoConfirmar1" alignment="CENTER" layoutX="10.0" layoutY="67.0" onMouseClicked="#abrirTelaConfirmar" prefHeight="32.0" prefWidth="130.0" styleClass="botao">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="130.0" text="Pedido" />
                                  </children>
                               </HBox>
                            </children>
