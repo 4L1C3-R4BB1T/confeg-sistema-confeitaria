@@ -27,7 +27,7 @@
                         <Button fx:id="clientes" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#irParaTelaClientes" prefHeight="45.0" prefWidth="114.0" text="CLIENTES" />
                         <Button fx:id="administrador" maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" onAction="#irParaTelaFuncionarios" prefHeight="50.0" prefWidth="81.0" visible="false">
                            <graphic>
-                              <ImageView>
+                              <ImageView fitHeight="20.0" fitWidth="26.0">
                                  <image>
                                     <Image url="@img/administrador.png" />
                                  </image>
@@ -177,7 +177,7 @@
    <top>
       <AnchorPane prefHeight="30.0" prefWidth="200.0" styleClass="area-fechamento" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="43.0" fitWidth="44.0" layoutX="1115.0" onMouseClicked="#minimizarTela" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="3.0">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="1115.0" onMouseClicked="#minimizarTela" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="7.0">
                <image>
                   <Image url="@../_assets/img/minimizar.png" />
                </image>

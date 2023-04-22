@@ -101,6 +101,13 @@ public class RegistrarPedidoControlador {
                 App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "É necessário ter no mínimo 1 pedido de bolo.");
                 return;
             }
+
+            // Um determinado cliente poderá ter no máximo 3 pedidos em aberto (com o status PENDENTE)
+            if (pedidoDAO.buscarPendentesPorCliente(getCliente()).size() == 3) {
+                App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Um cliente pode ter no máximo 3 pedidos em aberto.");
+                return;
+            }
+
             App.conexao.setAutoCommit(false);
             try {
                 pedido.setCliente(getCliente());
