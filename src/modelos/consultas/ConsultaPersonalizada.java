@@ -240,7 +240,6 @@ public final class ConsultaPersonalizada {
 
     public static List<PedidoIngrediente> obterPedidosDeIngrediente() {
         List<PedidoIngrediente> pedidos = new ArrayList<>();
-<<<<<<< HEAD
         String comando = "SELECT pc.cod_pedido_compra as codigo, " +
             "f.cod_funcionario as funcionario, " +
             "pc.data_pedido_compra as \"data\", " +
@@ -249,16 +248,6 @@ public final class ConsultaPersonalizada {
             "funcionario as f " +
             "WHERE pc.cod_funcionario = f.cod_funcionario " +
             "ORDER BY pc.data_pedido_compra DESC;";
-=======
-        String comando = "SELECT pc.cod_pedido_compra AS \"codigo\", " +
-            "f.nome_funcionario AS \"nome\", " +
-            "pc.data_pedido_compra AS \"data\", " +
-            "pc.status_pedido_compra AS \"status\" " +
-            "FROM pedido_compra pc " +
-            "INNER JOIN funcionario f " +
-            "ON pc.cod_funcionario = f.cod_funcionario " +
-            "ORDER BY data DESC;";
->>>>>>> ceaebc5d9ae763809678e193dfd25d449968c491
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
