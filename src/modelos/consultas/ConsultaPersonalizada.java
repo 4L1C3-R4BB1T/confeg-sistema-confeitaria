@@ -71,8 +71,7 @@ public final class ConsultaPersonalizada {
 
     public static List<ReceitaMesConsulta> obterReceitaMesConsultas() {
         List<ReceitaMesConsulta> receitaMesConsultas = new ArrayList<>();
-        String comando = "SELECT cp.cod_confirmacao AS \"codigo\", " +
-            "EXTRACT(year FROM cp.data_confirmacao_pedido) AS \"ano\", " +
+        String comando = "SELECT EXTRACT(year FROM cp.data_confirmacao_pedido) AS \"ano\", " +
             "EXTRACT(month FROM cp.data_confirmacao_pedido) AS \"mes\", " +
             "COUNT(DISTINCT cod_confirmacao) AS \"pedidos_concluidos\", " +
             "SUM(b.preco_bolo * pb.quantidade_bolo) AS \"receita\" " +
