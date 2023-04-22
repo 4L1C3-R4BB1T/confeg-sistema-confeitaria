@@ -59,6 +59,7 @@ public class PedidoCompraIngredientesDAO {
     }
 
     public PedidoCompraIngrediente buscarPorCodigo(Long codigo) {
+        if (codigo == null) return null;
         String comando = "SELECT * FROM pedido_compra_ingrediente WHERE cod_pedido_compra_ingrediente = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);

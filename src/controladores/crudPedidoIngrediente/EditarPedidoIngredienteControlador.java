@@ -69,6 +69,7 @@ public class EditarPedidoIngredienteControlador {
     
     private List<PedidoCompraIngrediente> carrinho = new ArrayList<>();
     private List<PedidoCompraIngrediente> removidos = new ArrayList<>();
+
     private Funcionario funcionario;
     private ValidaFormulario validaFormulario = new ValidaFormulario();
 
@@ -82,8 +83,8 @@ public class EditarPedidoIngredienteControlador {
             pi.setIngrediente(getIngrediente());
             pi.setQuantidade(getQuantidade());
             pi.setPedidoCompra(pedidoCompra);
-            tabela.getItems().add(pi);
             carrinho.add(pi);
+            tabela.getItems().add(pi);
             limpar();
         }
     }
@@ -91,17 +92,14 @@ public class EditarPedidoIngredienteControlador {
     @FXML
     public void removerIngrediente(MouseEvent event) {
         if (podeRemoverCarrinho()) {
-            System.out.println("Entrodsadad");
-            PedidoCompraIngrediente pi = tabela.getSelectionModel().getSelectedItem();
+            PedidoCompraIngrediente pci = tabela.getSelectionModel().getSelectedItem();
+      
+            if (pedidoCompraIngredientesDAO.buscarPorCodigo(pci.getCodigo()) != null) {
+                removidos.add(pci);
+            }
 
-            // Significa que já existe no banco de dados então vai para os removidos
-            if (pedidoCompraIngredientesDAO.buscarPorCodigo(pi.getCodigo()) != null) {
-                removidos.add(pi);
-            } 
-
-            carrinho.remove(pi);
-            tabela.getItems().remove(pi);
-            tabela.refresh();
+            carrinho.remove(pci);
+            tabela.getItems().remove(pci);
             tabela.getSelectionModel().clearSelection();
         }
     }
@@ -114,18 +112,24 @@ public class EditarPedidoIngredienteControlador {
     @FXML
     public void confirmar(ActionEvent event) throws Exception {
         if (podeSalvar()) {
+            if (carrinho.size() == 0) {
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "É necessário ter 1 item no carrinho.");
+                return;
+            }
             App.conexao.setAutoCommit(false);
             try {
 
                 pedidoCompra.setDataPedido(Date.valueOf(getDataPedido()));
                 pedidoCompra.setObservacao(getObservacao());
 
-                for(PedidoCompraIngrediente pci: removidos) {
-                    pedidoCompraIngredientesDAO.remover(pci);
-                }
-                
                 for (PedidoCompraIngrediente pci: carrinho) {
-                    pedidoCompraIngredientesDAO.inserir(pci);
+                    if (pedidoCompraIngredientesDAO.buscarPorCodigo(pci.getCodigo()) == null) {
+                        pedidoCompraIngredientesDAO.inserir(pci);
+                    }
+                }
+
+                for (PedidoCompraIngrediente pci: removidos) {
+                    pedidoCompraIngredientesDAO.remover(pci);
                 }
 
                 pedidoCompraDAO.alterar(pedidoCompra);
@@ -156,9 +160,6 @@ public class EditarPedidoIngredienteControlador {
 
     public boolean podeSalvar() {
         if (!validarDataPedido()) {
-            return false;
-        } else if (carrinho.size() == 0) {
-            App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "É necessário ter 1 item no carrinho.");
             return false;
         } else {
             return true;
