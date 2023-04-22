@@ -616,13 +616,6 @@ public class PrincipalControlador {
             controlador.setTela(palco);
             App.adicionarMovimento(palco, scene);
             palco.showAndWait();
-            /* 
-            if (controlador.getSucesso()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido Ingrediente registrado com sucesso");
-            } else if (controlador.getFracasso()) {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar Pedido de Ingrediente.");
-            }
-            */
             clicouBotaoListarConfirmacao = false;
         } catch (Exception erro) {
             erro.printStackTrace();

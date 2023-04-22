@@ -41,7 +41,7 @@ public class PedidoConfirmadoControlador {
         if (confirmacaoPedido != null) {
             App.conexao.setAutoCommit(false);
             try {
-                Pedido pedido = pedidoDAO.buscarPorCodigo(confirmacaoPedido.getPedido().getCodigo());
+                Pedido pedido = confirmacaoPedido.getPedido();
                 confirmacaoPedidoDAO.remover(confirmacaoPedido);
                 pedidoDAO.remover(pedido);
                 App.conexao.commit();

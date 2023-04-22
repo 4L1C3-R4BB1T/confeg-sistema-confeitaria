@@ -18,9 +18,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
+import modelos.entidadeDAO.PedidoDAO;
 import modelos.entidades.Cliente;
 import modelos.entidades.ConfirmacaoPedido;
 import modelos.entidades.Pedido;
+import modelos.entidades.enums.Status;
 
 public class EditarPedidoConfirmadoControlador {
 
@@ -58,10 +60,10 @@ public class EditarPedidoConfirmadoControlador {
     @FXML
     private TextField nomeFuncionario;
 
-
+    private PedidoDAO pedidoDAO = new PedidoDAO(App.conexao);
     private ConfirmacaoPedidoDAO confirmacaoPedidoDAO = new ConfirmacaoPedidoDAO(App.conexao);
 
-    private ConfirmacaoPedido pedido;
+    private ConfirmacaoPedido confirmacaoPedido;
 
     private Stage tela;
 
@@ -95,10 +97,25 @@ public class EditarPedidoConfirmadoControlador {
         if (podeSalvar()) {
             App.conexao.setAutoCommit(false);
             try {
-                pedido.setDataConfirmacao(Date.valueOf(getData()));
-                pedido.setPago(getPago());
-                pedido.setObservacao(getObservacao());
-                confirmacaoPedidoDAO.alterar(pedido);
+                confirmacaoPedido.setDataConfirmacao(Date.valueOf(getData()));
+                confirmacaoPedido.setPago(getPago());
+                confirmacaoPedido.setObservacao(getObservacao());
+  
+                Pedido pedido = confirmacaoPedido.getPedido();
+                pedido.setDesconto(0D);
+                Date dataPedido = pedido.getDataPedido();
+
+                // Se tiver pago e a data for igual a data do pedido 2% aplicado
+                if (getPago() && Date.valueOf(getData()).equals(dataPedido)) {
+                    pedido.setDesconto(2D);
+                } else if (getPago()) {
+                    pedido.setStatus(Status.CONCLUIDO);
+                } else {
+                    pedido.setStatus(Status.CANCELADO);
+                }
+
+                pedidoDAO.alterarConfirmaco(pedido);
+                confirmacaoPedidoDAO.alterar(confirmacaoPedido);
                 App.conexao.commit();
                 sucesso = true;
                 encerrar();
@@ -159,7 +176,7 @@ public class EditarPedidoConfirmadoControlador {
     }
 
     public void setPedido(ConfirmacaoPedido pc) {
-        this.pedido = pc;
+        this.confirmacaoPedido = pc;
         clientes.setValue(pc.getCliente());
         pedidos.setValue(pc.getPedido());
         dataConfirmacao.setValue(pc.getDataConfirmacao().toLocalDate());
