@@ -5,24 +5,21 @@ import java.text.SimpleDateFormat;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import modelos.entidades.Funcionario;
 
 public class PedidoIngrediente {
     
     private Long codigo;
+    private Funcionario funcionario;
     private String nome;
     private String data;
     private Label status = new Label();
     private HBox botoes;
 
-    public PedidoIngrediente(String nome, String data, Label status) {
-        this.nome = nome;
-        this.data = data;
-        this.status = status;
-    }
-
-    public PedidoIngrediente(Long codigo, String nome, Date data, String status) {
+    public PedidoIngrediente(Long codigo, Funcionario funcionario, Date data, String status) {
         this.codigo = codigo;
-        this.nome = nome;
+        this.funcionario = funcionario;
+        this.setNome(funcionario.getNome());
         this.setData(data);
         this.setStatus(status);
     }
@@ -75,5 +72,9 @@ public class PedidoIngrediente {
 
     public HBox getBotoes() {
         return botoes;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 }

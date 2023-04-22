@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import aplicacao.App;
+
 import java.util.Date;
 
 import conexoes.FabricarConexao;
@@ -21,6 +23,7 @@ import modelos.consultas.entitidades.ReceitaMesConsulta;
 import modelos.consultas.entitidades.TotalComprasFuncionario;
 import modelos.entidadeDAO.ClienteDAO;
 import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
+import modelos.entidadeDAO.FuncionarioDAO;
 import modelos.entidades.ConfirmacaoPedido;
 import modelos.entidades.Funcionario;
 
@@ -240,7 +243,7 @@ public final class ConsultaPersonalizada {
     public static List<PedidoIngrediente> obterPedidosDeIngrediente() {
         List<PedidoIngrediente> pedidos = new ArrayList<>();
         String comando = "SELECT pc.cod_pedido_compra as codigo, " +
-            "f.nome_funcionario as nome, " +
+            "f.cod_funcionario as funcionario, " +
             "pc.data_pedido_compra as \"data\", " +
             "pc.status_pedido_compra as \"status\" " +
             "FROM pedido_compra as pc, " +
@@ -249,10 +252,11 @@ public final class ConsultaPersonalizada {
             "ORDER BY pc.data_pedido_compra DESC;";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
+            FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
             while (resultado.next()) {
                 pedidos.add(new PedidoIngrediente(
                     resultado.getLong("codigo"),
-                    resultado.getString("nome"),
+                    funcionarioDAO.buscarPorCodigo(resultado.getLong("funcionario")),
                     resultado.getDate("data"),
                     resultado.getString("status")
                 ));
