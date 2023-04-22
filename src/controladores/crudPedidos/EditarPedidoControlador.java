@@ -140,7 +140,7 @@ public class EditarPedidoControlador {
     }
 
     @FXML
-    public void adicionarBolo(MouseEvent event) throws Exception {
+    public void adicionarBolo(MouseEvent event) {
         if (validarAdicaoPedidoBolo()) {
             PedidoBolo pedidoBolo = new PedidoBolo(pedido, getBolo(), Long.parseLong(getQuantidade()));
             pedidoBolos.add(pedidoBolo);
@@ -151,7 +151,7 @@ public class EditarPedidoControlador {
     }
 
     @FXML
-    public void removerBolo(MouseEvent event) throws Exception {
+    public void removerBolo(MouseEvent event) {
         PedidoBolo pedidoBolo = tabela.getSelectionModel().getSelectedItem();
         if (pedidoBolo != null) {
             pedidoBolos.remove(pedidoBolo);
@@ -177,7 +177,7 @@ public class EditarPedidoControlador {
         metodoPagamento.getItems().setAll(metodoPagamentoDAO.buscarTodos());
     }
 
-    public boolean validarAdicaoPedidoBolo() throws Exception {
+    public boolean validarAdicaoPedidoBolo() {
         if (getBolo() == null) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "ALERTA", "Selecione o Bolo");
             return false;
@@ -196,7 +196,7 @@ public class EditarPedidoControlador {
         return true; 
     }
 
-    public boolean validarCampos() throws Exception {
+    public boolean validarCampos()  {
         Object[] campos = {getCliente(), getFuncionario(), getMetodoPagamento()}; 
         if(!Arrays.stream(campos).allMatch(campo -> vf.validarNuloOuVazio(campo))) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Preecha os campos necessários");

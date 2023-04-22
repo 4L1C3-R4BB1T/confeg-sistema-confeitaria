@@ -11,6 +11,7 @@ import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
 import controladores.crudConfirmarPedido.ConfirmarPedidoControlador;
 import controladores.crudFuncionario.CrudFuncionarioControlador;
+import controladores.crudPedidoConfirmado.CrudPedidoConfirmadoControlador;
 import controladores.crudPedidoIngrediente.CrudPedidoIngrediente;
 import controladores.crudPedidoIngrediente.PedirIngredienteControlador;
 import controladores.crudPedidos.ListarPedidosControlador;
@@ -117,6 +118,7 @@ public class PrincipalControlador {
     private boolean clicouBotaoConfirmarPedido = false;
     private boolean clicouBotaoListarIngrediente = false;
     private boolean clicouBotaoPedirIngrediente = false;
+    private boolean clicouBotaoListarConfirmacao = false;
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
@@ -167,7 +169,7 @@ public class PrincipalControlador {
     }
 
     @FXML
-    public void verPerfil(MouseEvent event) throws Exception {
+    public void verPerfil(MouseEvent event) {
         if (!clicouPerfil) {
             carregarTelaPerfil(conectado);
         } else {
@@ -176,7 +178,7 @@ public class PrincipalControlador {
     }
 
     @FXML
-    public void irTelaBolo(ActionEvent event) throws Exception {
+    public void irTelaBolo(ActionEvent event) {
         removerBotaoAtivo();
         adicionarAtivoNoBotao(bolos);
        if (!clicouBolo) {
@@ -187,7 +189,7 @@ public class PrincipalControlador {
     }
 
     @FXML
-    public void irParaTelaFuncionarios(ActionEvent event) throws Exception {
+    public void irParaTelaFuncionarios(ActionEvent event) {
         removerBotaoAtivo();
         adicionarAtivoNoBotao(administrador);
         if (!clicouFuncionario) {
@@ -204,7 +206,7 @@ public class PrincipalControlador {
     }
 
     @FXML 
-    public void irParaTelaClientes(ActionEvent event) throws Exception {
+    public void irParaTelaClientes(ActionEvent event) {
         removerBotaoAtivo();
         adicionarAtivoNoBotao(clientes);
         if (!clicouCliente) {
@@ -229,7 +231,7 @@ public class PrincipalControlador {
 
     // Listar Modal
     @FXML 
-    public void abrirModalListar(MouseEvent event) throws Exception {
+    public void abrirModalListar(MouseEvent event) {
         removerBotaoPedidoAtivo();
         if (modalListar.isVisible()) {
             App.removerEfeitoSuave(modalListar);
@@ -242,7 +244,7 @@ public class PrincipalControlador {
     }
 
     @FXML
-    public void abrirListaPedido(MouseEvent event) throws Exception {
+    public void abrirListaPedido(MouseEvent event)  {
         if (!clicouBotaoListarPedido) {
             fecharModaisPedidoESub();
             carregarTelaListarPedidos();
@@ -254,12 +256,16 @@ public class PrincipalControlador {
     @FXML
     public void abrirListaConfirmacao(MouseEvent event) {
         fecharModaisPedidoESub();
-        System.out.println("Abrir confirmação");
+        if (!clicouBotaoListarConfirmacao) {
+            carregarTelaListarConfirmados();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+        }
     }
 
 
     @FXML
-    public void abrirListaIngrediente(MouseEvent event) throws Exception {
+    public void abrirListaIngrediente(MouseEvent event)  {
         fecharModaisPedidoESub();
         if (!clicouBotaoListarIngrediente) {
             carregarTelaListarPedidoIngredientes();
@@ -271,7 +277,7 @@ public class PrincipalControlador {
 
     // Pedir Modal
     @FXML 
-    public void abrirModalPedir(MouseEvent event) throws Exception {
+    public void abrirModalPedir(MouseEvent event) {
         removerBotaoPedidoAtivo();
         if(modalPedir.isVisible()) {
             App.removerEfeitoSuave(modalPedir);
@@ -283,7 +289,7 @@ public class PrincipalControlador {
     }
 
     @FXML
-    public void abrirPedirBolo(MouseEvent event) throws Exception {
+    public void abrirPedirBolo(MouseEvent event) {
         fecharModaisPedidoESub();
         if (!clicouBotaoPedirBolo) {
             carregarTelaDePedido();
@@ -293,7 +299,7 @@ public class PrincipalControlador {
     }
 
     @FXML
-    public void abrirPedirIngrediente(MouseEvent event) throws Exception {
+    public void abrirPedirIngrediente(MouseEvent event) {
         fecharModaisPedidoESub();
         if (!clicouBotaoPedirIngrediente) {
             carregarTelaPedirIngredientes();
@@ -304,7 +310,7 @@ public class PrincipalControlador {
     }
 
     @FXML
-    public void abrirTelaConfirmar(MouseEvent event) throws Exception {
+    public void abrirTelaConfirmar(MouseEvent event) {
         removerBotaoPedidoAtivo();
         if (!clicouBotaoConfirmarPedido) {
             fecharModaisPedidoESub();
@@ -592,6 +598,32 @@ public class PrincipalControlador {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar Pedido de Ingrediente.");
             }
             clicouBotaoPedirIngrediente = false;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
+
+
+    public void carregarTelaListarConfirmados() {
+        try {
+            clicouBotaoListarConfirmacao = true;
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/confirmacao/confirmar.fxml"));
+            Parent conteudo = carregar.load();
+            CrudPedidoConfirmadoControlador controlador = carregar.getController();
+            Scene scene = new Scene(conteudo);
+            Stage palco = new Stage(StageStyle.UNDECORATED);
+            palco.setScene(scene);
+            controlador.setTela(palco);
+            App.adicionarMovimento(palco, scene);
+            palco.showAndWait();
+            /* 
+            if (controlador.getSucesso()) {
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido Ingrediente registrado com sucesso");
+            } else if (controlador.getFracasso()) {
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar Pedido de Ingrediente.");
+            }
+            */
+            clicouBotaoListarConfirmacao = false;
         } catch (Exception erro) {
             erro.printStackTrace();
         }

@@ -1,13 +1,11 @@
 package controladores.crudPedidoIngrediente;
 
-import java.net.URL;
+
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.stream.Stream;
 
 import aplicacao.App;
 import javafx.event.ActionEvent;
@@ -81,7 +79,7 @@ public class PedirIngredienteControlador {
     private boolean fracasso = false;
 
     @FXML
-    public void adicionarPedido(MouseEvent event) throws Exception {
+    public void adicionarPedido(MouseEvent event) {
         if (podeAdicionar()) {
             PedidoCompraIngrediente compra = new PedidoCompraIngrediente(pedidoCompra, getIngrediente(), getQuantidade());
             carrinho.add(compra);
@@ -91,7 +89,7 @@ public class PedirIngredienteControlador {
     }
 
     @FXML
-    public void removerPedido(MouseEvent event) throws Exception {
+    public void removerPedido(MouseEvent event) {
         if (podeRemover()) {
             carrinho.remove(getPedidoCompraIngrediente());
             tabelaPedidos.getItems().remove(getPedidoCompraIngrediente());
@@ -151,7 +149,7 @@ public class PedirIngredienteControlador {
         ingredientes.setValue(null);
     }
 
-    public boolean podeAdicionar() throws Exception {
+    public boolean podeAdicionar() {
         if (getIngrediente() == null) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Selecione o Ingrediente.");
             return false;
@@ -170,7 +168,7 @@ public class PedirIngredienteControlador {
         return true;
     }
 
-    public boolean podeRemover() throws Exception {
+    public boolean podeRemover() {
         if (getPedidoCompraIngrediente() == null) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Selecione o Pedido.");
             return false;
@@ -179,7 +177,7 @@ public class PedirIngredienteControlador {
         return true;
     }
 
-    public boolean podeSalvar() throws Exception {
+    public boolean podeSalvar() {
         if (getFuncionario() == null || getDataPedido() == null) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Preencha os campos necessários.");
             return false;

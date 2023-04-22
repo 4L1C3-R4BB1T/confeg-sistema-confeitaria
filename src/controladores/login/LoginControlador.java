@@ -111,7 +111,7 @@ public class LoginControlador {
     }
 
     @FXML
-    public void entrar(ActionEvent event) throws Exception {
+    public void entrar(ActionEvent event) {
         if (podeEntrar()) {
             logar();
         } else {
@@ -120,7 +120,7 @@ public class LoginControlador {
     }
 
     @FXML
-    public void clicouTeclado(KeyEvent event) throws Exception {
+    public void clicouTeclado(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             if (podeEntrar()) {
                 logar();

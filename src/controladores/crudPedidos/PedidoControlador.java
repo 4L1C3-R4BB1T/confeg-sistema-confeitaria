@@ -30,7 +30,7 @@ public class PedidoControlador {
     private AproveitarFuncao atualizarPedidos;
 
     @FXML
-    public void editar(MouseEvent event) throws Exception {
+    public void editar(MouseEvent event) {
         if (!verificarStatus()) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDITAR", "Não é possível editar pedido com esse status");
         } else if (!clicouBotaoEditar) {

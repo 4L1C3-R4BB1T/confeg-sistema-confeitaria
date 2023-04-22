@@ -48,7 +48,7 @@ public class ClienteControlador {
     }
 
     @FXML
-    public void editar(ActionEvent event) throws Exception {
+    public void editar(ActionEvent event)  {
         if (!clicouEditar) {
             abrirTelaEditar();
         } else {
