@@ -18,14 +18,9 @@ import modelos.consultas.entitidades.PedidosPagamentoConsulta;
 import modelos.consultas.entitidades.PedidosMesAnoConsulta;
 import modelos.consultas.entitidades.PedidosSaborConsulta;
 import modelos.consultas.entitidades.ReceitaMesConsulta;
-import modelos.consultas.entitidades.TotalComprasFuncionario;
 import modelos.entidadeDAO.ClienteDAO;
-<<<<<<< HEAD
 import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
 import modelos.entidades.ConfirmacaoPedido;
-=======
-import modelos.entidades.Funcionario;
->>>>>>> 3c576f587ed8ca9d5cf5a6b67fa69f3b866cf42e
 
 public final class ConsultaPersonalizada {
 
@@ -273,7 +268,6 @@ public final class ConsultaPersonalizada {
         return pedidos;
     }
 
-<<<<<<< HEAD
     public static List<PedidoConfirmado> obterPedidosConfirmados() {
         List<PedidoConfirmado> pedidos = new ArrayList<>();
         
@@ -290,39 +284,6 @@ public final class ConsultaPersonalizada {
         }
 
         return pedidos;
-=======
-    public TotalComprasFuncionario totalComprasFuncionarioMes(int ano, int mes, Funcionario funcionario) {
-        String comando = "SELECT EXTRACT(YEAR FROM pc.data_pedido_compra) AS \"ano\", " +
-                  "EXTRACT(MONTH FROM pc.data_pedido_compra) AS \"mes\", " +
-                  "pc.cod_funcionario as \"funcionario\", " +
-                  "SUM(i.preco_ingrediente * pci.quantidade_ingrediente) AS \"total\" " +
-                  "FROM ingrediente i " +
-                  "INNER JOIN pedido_compra_ingrediente pci " +
-                  "ON pci.cod_ingrediente = i.cod_ingrediente " +
-                  "INNER JOIN pedido_compra pc " +
-                  "ON pc.cod_pedido_compra = pci.cod_pedido_compra " +
-                  "WHERE EXTRACT(YEAR FROM pc.data_pedido_compra) = ? " +
-                  "AND EXTRACT(MONTH FROM pc.data_pedido_compra) = ? " +
-                  "AND pc.cod_funcionario = ? " +
-                  "GROUP BY ano, mes, funcionario";
-        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
-            ps.setLong(1, ano);
-            ps.setLong(2, mes);
-            ps.setLong(3, funcionario.getCodigo());
-            ResultSet resultado = ps.executeQuery();
-            if (resultado.next()) {
-                return new TotalComprasFuncionario(
-                    resultado.getInt("ano"),
-                    resultado.getInt("mes"),
-                    resultado.getLong("funcionario"),
-                    resultado.getDouble("total")
-                );
-            }
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
-        return null;
->>>>>>> 3c576f587ed8ca9d5cf5a6b67fa69f3b866cf42e
     }
     
 }

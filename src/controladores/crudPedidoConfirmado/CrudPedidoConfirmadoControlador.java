@@ -12,7 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modelos.consultas.ConsultaPersonalizada;
 import modelos.consultas.entitidades.PedidoConfirmado;
-import modelos.interfaces.AproveitarFuncao;
 
 // Crud 
 public class CrudPedidoConfirmadoControlador {

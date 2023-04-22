@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.consultas.entitidades.PedidoConfirmado;
@@ -46,7 +45,8 @@ public class PedidoConfirmadoControlador {
                 confirmacaoPedidoDAO.remover(confirmacaoPedido);
                 pedidoDAO.remover(pedido);
                 App.conexao.commit();
-                App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "REMOÇÃO", "A Confirmação de Pedido foi removido.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "REMOÇÃO", "A Confirmação de Pedido foi removido.");
+                atualizarPedidosConfirmados.usar();
             } catch (Exception erro) {
                 erro.printStackTrace();
                 App.conexao.rollback();

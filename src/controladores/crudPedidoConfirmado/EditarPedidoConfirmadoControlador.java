@@ -3,8 +3,6 @@ package controladores.crudPedidoConfirmado;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ResourceBundle;
 
 import aplicacao.App;
@@ -66,7 +64,7 @@ public class EditarPedidoConfirmadoControlador {
     @FXML
     private TextField nomeFuncionario;
 
-    private PedidoDAO pedidoDAO = new PedidoDAO(App.conexao);
+
     private ConfirmacaoPedidoDAO confirmacaoPedidoDAO = new ConfirmacaoPedidoDAO(App.conexao);
 
     private ConfirmacaoPedido pedido;
