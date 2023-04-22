@@ -84,12 +84,14 @@ public class EditarPedidoIngredienteControlador {
             pi.setPedidoCompra(pedidoCompra);
             tabela.getItems().add(pi);
             carrinho.add(pi);
+            limpar();
         }
     }
 
     @FXML
     public void removerIngrediente(MouseEvent event) {
         if (podeRemoverCarrinho()) {
+            System.out.println("Entrodsadad");
             PedidoCompraIngrediente pi = tabela.getSelectionModel().getSelectedItem();
 
             // Significa que já existe no banco de dados então vai para os removidos
@@ -99,6 +101,8 @@ public class EditarPedidoIngredienteControlador {
 
             carrinho.remove(pi);
             tabela.getItems().remove(pi);
+            tabela.refresh();
+            tabela.getSelectionModel().clearSelection();
         }
     }
 
@@ -114,6 +118,7 @@ public class EditarPedidoIngredienteControlador {
             try {
 
                 pedidoCompra.setDataPedido(Date.valueOf(getDataPedido()));
+                pedidoCompra.setObservacao(getObservacao());
 
                 for(PedidoCompraIngrediente pci: removidos) {
                     pedidoCompraIngredientesDAO.remover(pci);
@@ -167,6 +172,11 @@ public class EditarPedidoIngredienteControlador {
         } else {
             return true;
         }
+    }
+
+    public void limpar() {
+        ingredientes.setValue(null);
+        quantidade.setText("");
     }
 
     public boolean podeAdicionarCarrinho() {
