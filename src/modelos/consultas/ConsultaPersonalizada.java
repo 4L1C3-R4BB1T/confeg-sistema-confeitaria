@@ -247,7 +247,7 @@ public final class ConsultaPersonalizada {
             "FROM pedido_compra as pc, " +
             "funcionario as f " +
             "WHERE pc.cod_funcionario = f.cod_funcionario " +
-            "ORDER BY pc.data_pedido_compra DESC;";
+            "ORDER BY data DESC";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
