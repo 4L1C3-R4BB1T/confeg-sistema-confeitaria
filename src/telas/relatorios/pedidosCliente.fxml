@@ -31,6 +31,7 @@
                 <TableColumn fx:id="cliente" prefWidth="75.0" text="CLIENTE" />
                 <TableColumn fx:id="cpf" prefWidth="78.0" text="CPF" />
                   <TableColumn fx:id="telefone" prefWidth="78.0" text="TELEFONE" />
+                  <TableColumn fx:id="ultimoPedido" prefWidth="78.0" text="ÚLTIMO PEDIDO" />
                   <TableColumn fx:id="pedidos" prefWidth="191.0" text="PEDIDOS" />
               </columns>
                <columnResizePolicy>
