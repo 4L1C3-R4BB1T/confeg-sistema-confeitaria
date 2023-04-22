@@ -80,7 +80,6 @@ public class ListarPedidosControlador {
                 controlador.setAreaDeAlerta(areaDeAlerta);
                 controlador.setPedido(pedido);
                 controlador.setFuncaoAtualizarPedidos(this::carregarPedidos);
-                System.out.println(pedido.getDesconto());
                 if(pedido.getDesconto() != 0) {
                     pedidoConsulta.setTotal(pedidoConsulta.getTotalDouble() * (1 - (pedido.getDesconto() / 100)));
                 }

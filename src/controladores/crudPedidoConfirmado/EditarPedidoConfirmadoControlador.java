@@ -1,9 +1,9 @@
 package controladores.crudPedidoConfirmado;
 
-import java.net.URL;
+
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
+
 
 import aplicacao.App;
 import javafx.event.ActionEvent;
@@ -18,18 +18,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
-import modelos.entidadeDAO.PedidoDAO;
 import modelos.entidades.Cliente;
 import modelos.entidades.ConfirmacaoPedido;
 import modelos.entidades.Pedido;
 
 public class EditarPedidoConfirmadoControlador {
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private ComboBox<Cliente> clientes;

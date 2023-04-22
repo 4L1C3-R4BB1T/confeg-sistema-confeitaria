@@ -67,7 +67,6 @@ public class CrudPedidoConfirmadoControlador {
             .forEach( pedidoConfirmado -> {
                 
                 try {
-                    System.out.println(pedidoConfirmado);
                     FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/confirmacao/botoes.fxml"));
                     Node elemento = carregar.load();
                     PedidoConfirmadoControlador controlador = carregar.getController();
