@@ -48,8 +48,8 @@ public final class ConsultaPersonalizada {
             "INNER JOIN pedido p ON pb.cod_pedido = p.cod_pedido " +
             "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
             "INNER JOIN cliente c ON c.cod_cliente = p.cod_cliente " +
-            "GROUP BY p.cod_pedido,  p.data_pedido, c.cod_cliente, p.status_pedido, p.desconto_pedido ORDER BY p.cod_pedido ASC";
-
+            "GROUP BY pedido, data, cliente, status, desconto " +
+            "ORDER BY pedido ASC";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             ClienteDAO clienteDAO = new ClienteDAO(conexao);
@@ -63,7 +63,6 @@ public final class ConsultaPersonalizada {
                     resultado.getDouble("desconto")
                 ));
             }
-
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -110,7 +109,7 @@ public final class ConsultaPersonalizada {
             "COUNT(p.cod_pedido) AS \"quantidade_pedidos\" " +
             "FROM cliente c " +
             "INNER JOIN pedido p ON p.cod_cliente = c.cod_cliente " +
-            "GROUP BY c.nome_cliente, c.cpf_cliente, c.telefone_cliente " +
+            "GROUP BY nome, cpf, telefone " +
             "ORDER BY quantidade_pedidos DESC, nome";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
@@ -140,7 +139,7 @@ public final class ConsultaPersonalizada {
             "INNER JOIN pedido_bolo pb ON p.cod_pedido = pb.cod_pedido " +
             "INNER JOIN bolo b ON b.cod_bolo = pb.cod_bolo " +
             "INNER JOIN sabor s ON s.cod_sabor = b.cod_sabor " +
-            "GROUP BY s.cod_sabor " +
+            "GROUP BY codigo " +
             "ORDER BY pedidos DESC, total DESC";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
@@ -168,7 +167,7 @@ public final class ConsultaPersonalizada {
             "INNER JOIN pedido_bolo pb ON p.cod_pedido = pb.cod_pedido " +
             "INNER JOIN bolo b ON b.cod_bolo = pb.cod_bolo " +
             "INNER JOIN sabor s ON s.cod_sabor = b.cod_sabor " +
-            "GROUP BY s.cod_sabor";
+            "GROUP BY codigo";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
@@ -193,7 +192,7 @@ public final class ConsultaPersonalizada {
             "FROM pedido p " +
             "INNER JOIN metodo_pagamento mp " + 
             "ON mp.cod_metodo_pagamento = p.cod_metodo_pagamento " +
-            "GROUP BY mp.cod_metodo_pagamento";
+            "GROUP BY metodo";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
@@ -239,14 +238,14 @@ public final class ConsultaPersonalizada {
 
     public static List<PedidoIngrediente> obterPedidosDeIngrediente() {
         List<PedidoIngrediente> pedidos = new ArrayList<>();
-        String comando = "SELECT pc.cod_pedido_compra as codigo, " +
-            "f.nome_funcionario as nome, " +
-            "pc.data_pedido_compra as \"data\", " +
-            "pc.status_pedido_compra as \"status\" " +
-            "FROM pedido_compra as pc, " +
-            "funcionario as f " +
-            "WHERE pc.cod_funcionario = f.cod_funcionario " +
-            "ORDER BY pc.data_pedido_compra DESC;";
+        String comando = "SELECT pc.cod_pedido_compra AS \"codigo\", " +
+            "f.nome_funcionario AS \"nome\", " +
+            "pc.data_pedido_compra AS \"data\", " +
+            "pc.status_pedido_compra AS \"status\" " +
+            "FROM pedido_compra pc " +
+            "INNER JOIN funcionario f " +
+            "ON pc.cod_funcionario = f.cod_funcionario " +
+            "ORDER BY data DESC;";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
