@@ -39,6 +39,9 @@ public class EditarPedidoControlador {
     @FXML 
     private Label areaErroData;
 
+    @FXML 
+    private TextField total;
+
     @FXML
     private ComboBox<Cliente> clientes;
 
@@ -147,6 +150,7 @@ public class EditarPedidoControlador {
             tabela.getItems().add(pedidoBolo);
             tabela.getSelectionModel().clearSelection();
             limparPedido();
+            atualizarAreaTotal();
         }
     }
 
@@ -159,6 +163,7 @@ public class EditarPedidoControlador {
             if (pedidoBolo.getCodigo() != null) { 
                 removidos.add(pedidoBolo);
             }
+            atualizarAreaTotal();
         }
     }
 
@@ -168,6 +173,12 @@ public class EditarPedidoControlador {
         colunaQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         carregarClientesFuncionariosBolosPagamento();
     }
+
+    public void atualizarAreaTotal() {
+        double totalCarrinho = pedidoBolos.stream().map( x -> x.getBolo().getPreco() * x.getQuantidade()).reduce(0D, (x, y) -> x + y);
+        total.setText(String.format("R$ %.2f", totalCarrinho));
+    }
+
 
 
     public void carregarClientesFuncionariosBolosPagamento() {
@@ -271,6 +282,7 @@ public class EditarPedidoControlador {
     public void setPedidoBolo(List<PedidoBolo> pedidoBolos) {
         this.pedidoBolos.addAll(pedidoBolos);
         tabela.getItems().setAll(pedidoBolos);
+        atualizarAreaTotal();
     }
 
     public void setData(Date data) {

@@ -42,6 +42,9 @@ public class RegistrarPedidoControlador {
     @FXML
     private ComboBox<Cliente> clientes;
 
+    @FXML 
+    private TextField total;
+
     @FXML
     private ComboBox<Funcionario> funcionarios;
 
@@ -147,6 +150,7 @@ public class RegistrarPedidoControlador {
             tabela.getItems().add(pedidoBolo);
             tabela.getSelectionModel().clearSelection();
             limparPedido();
+            atualizarAreaTotal();
         } 
     }
 
@@ -156,6 +160,7 @@ public class RegistrarPedidoControlador {
         if (pedidoBolo != null) {
             pedidoBolos.remove(pedidoBolo);
             tabela.getItems().remove(pedidoBolo);
+            atualizarAreaTotal();
         }
     }
 
@@ -165,6 +170,11 @@ public class RegistrarPedidoControlador {
         colunaQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         carregarClientesFuncionariosBolosPagamento();
         pedido = new Pedido(null, null, null, null, null, null);
+    }
+
+    public void atualizarAreaTotal() {
+        double totalCarrinho = pedidoBolos.stream().map( x -> x.getBolo().getPreco() * x.getQuantidade()).reduce(0D, (x, y) -> x + y);
+        total.setText(String.format("R$ %.2f", totalCarrinho));
     }
 
 

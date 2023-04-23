@@ -162,8 +162,6 @@ public class EditarPedidoIngredienteControlador {
         colunaIngrediente.setCellValueFactory(new PropertyValueFactory<>("ingrediente"));
         colunaQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         carregarIngredientes();
-
-        atualizarAreaTotal();
     }
 
 
@@ -247,6 +245,7 @@ public class EditarPedidoIngredienteControlador {
     public void setItemNaTabela(List<PedidoCompraIngrediente> carrinho) {
         tabela.getItems().setAll(carrinho);
         this.carrinho.addAll(carrinho);
+        atualizarAreaTotal();
     }
 
     public void setTela(Stage tela) {
