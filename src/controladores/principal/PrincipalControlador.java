@@ -12,6 +12,7 @@ import controladores.crudCliente.CrudClienteControlador;
 import controladores.crudConfirmarPedido.ConfirmarPedidoControlador;
 import controladores.crudFuncionario.CrudFuncionarioControlador;
 import controladores.crudPedidoConfirmado.CrudPedidoConfirmadoControlador;
+import controladores.crudPedidoIngrediente.ConfirmarPedidoIngredienteControlador;
 import controladores.crudPedidoIngrediente.CrudPedidoIngrediente;
 import controladores.crudPedidoIngrediente.PedirIngredienteControlador;
 import controladores.crudPedidos.ListarPedidosControlador;
@@ -122,6 +123,7 @@ public class PrincipalControlador {
     private boolean clicouBotaoListarIngrediente = false;
     private boolean clicouBotaoPedirIngrediente = false;
     private boolean clicouBotaoListarConfirmacao = false;
+    private boolean clicouBotaoConfirmarCompra = false;
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {
@@ -341,12 +343,16 @@ public class PrincipalControlador {
     @FXML
     public void confirmarCompra(MouseEvent event) {
         fecharModaisPedidoESub();
-        System.out.println("Clicou aqui");
+        if (!clicouBotaoConfirmarCompra) {
+            carregarTelaConfirmarCompra();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+        }
     }
 
+   
     public void limparModalMenuAbertos() {
         menuPedidos.setVisible(false);
-        
     }
 
 
@@ -645,6 +651,31 @@ public class PrincipalControlador {
             App.adicionarMovimento(palco, scene);
             palco.showAndWait();
             clicouBotaoListarConfirmacao = false;
+            pedidos.getStyleClass().remove("ativo");
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
+
+    public void carregarTelaConfirmarCompra() {
+        try {
+            clicouBotaoConfirmarCompra = true;
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/ingredientes/confirmar.fxml"));
+            Parent elemento = carregar.load();
+            ConfirmarPedidoIngredienteControlador controlador = carregar.getController();
+            Scene cena = new Scene(elemento);
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+            stage.setScene(cena);
+            App.adicionarMovimento(stage, cena);
+            controlador.setTela(stage);
+            stage.showAndWait();
+            if (controlador.getConcluido()) {
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "CONFIRMAÇÃO", "Confirmação efetuada.");
+            } else if (controlador.getFracasso()) {
+                App.exibirAlert(areaDeAlerta, "ERRO", "CONFIRMAÇÃO", "Não foi possível confirmar a compra.");
+            }
+
+            clicouBotaoConfirmarCompra = false;
             pedidos.getStyleClass().remove("ativo");
         } catch (Exception erro) {
             erro.printStackTrace();

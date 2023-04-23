@@ -34,6 +34,10 @@ public class BotoesPedidoIngredienteControlador {
     
     @FXML
     public void editar(MouseEvent event) {
+        if (pedidoCompra.getStatus().getDescricao() == "CONCLUIDO" || pedidoCompra.getStatus().getDescricao() == "CANCELADO"){
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "EDIÇÃO", "Não é possível editar esse Pedido.");
+            return;
+        }
         if (!clicouBotaoEditar) {
             carregarTelaEditar();
         } else {
