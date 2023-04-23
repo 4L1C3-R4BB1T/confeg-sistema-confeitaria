@@ -65,6 +65,9 @@ public class PedirIngredienteControlador {
     @FXML
     private DatePicker dataPedido;
 
+    @FXML
+    private TextField total;
+
     private Stage tela;
 
     private FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
@@ -87,6 +90,7 @@ public class PedirIngredienteControlador {
             carrinho.add(compra);
             tabelaPedidos.getItems().add(compra);
             limparPedido();
+            atualizarAreaTotal();
         }
     }
 
@@ -95,6 +99,7 @@ public class PedirIngredienteControlador {
         if (podeRemover()) {
             carrinho.remove(getPedidoCompraIngrediente());
             tabelaPedidos.getItems().remove(getPedidoCompraIngrediente());
+            atualizarAreaTotal();
         }
     }
 
@@ -211,6 +216,11 @@ public class PedirIngredienteControlador {
 
         return true;
 
+    }
+
+    public void atualizarAreaTotal() {
+        double totalCarrinho = carrinho.stream().map( x -> x.getIngrediente().getPreco() * x.getQuantidade()).reduce(0D, (x, y) -> x + y);
+        total.setText(String.format("R$ %.2f", totalCarrinho));
     }
 
     public boolean validarRegraNegocio() {

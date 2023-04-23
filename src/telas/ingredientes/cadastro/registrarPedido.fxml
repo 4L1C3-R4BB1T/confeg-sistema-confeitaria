@@ -70,7 +70,7 @@
                </image>
             </ImageView>
             <DatePicker fx:id="dataPedido" layoutX="101.0" layoutY="489.0" styleClass="data" AnchorPane.bottomAnchor="321.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="434.0" AnchorPane.topAnchor="489.0" />
-            <TextField fx:id="total" editable="false" layoutX="490.0" layoutY="494.0" styleClass="exibir-total" AnchorPane.bottomAnchor="321.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="489.0" />
+            <TextField fx:id="total" editable="false" layoutX="490.0" layoutY="494.0" styleClass="exibir-total" text="R$ 0.00" AnchorPane.bottomAnchor="321.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="489.0" />
             <Label layoutX="508.0" layoutY="468.0" styleClass="label-data" text="Total" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="465.0" />
          </children>
       </AnchorPane>

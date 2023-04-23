@@ -53,7 +53,7 @@
                   <Image url="@../../_assets/img/add.png" />
                </image>
             </ImageView>
-            <ComboBox fx:id="metodoPagamento" layoutX="409.0" layoutY="479.0" prefHeight="50.0" prefWidth="320.0" promptText="Método de pagamento" styleClass="campoBox" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="70.0" />
+            <ComboBox fx:id="metodoPagamento" layoutX="430.0" layoutY="471.0" prefHeight="50.0" prefWidth="320.0" promptText="Método de pagamento" styleClass="campoBox" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="70.0" />
             <TableView fx:id="tabela" layoutX="101.0" layoutY="298.0" prefHeight="152.0" prefWidth="635.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="70.0">
                <columns>
                   <TableColumn fx:id="colunaBolo" prefWidth="75.0" text="Bolo" />
