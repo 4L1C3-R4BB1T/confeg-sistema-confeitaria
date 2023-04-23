@@ -42,7 +42,7 @@ public class Ingrediente {
 
     @Override 
     public String toString() {
-        return descricao;
+        return String.format("%s - R$ %.2f", descricao, preco);
     }
     
 }
