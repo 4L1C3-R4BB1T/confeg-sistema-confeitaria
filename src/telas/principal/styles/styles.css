@@ -124,7 +124,7 @@
 
 .area-bolo .button {
     -fx-background-radius: 10px;
-    -fx-background-color: #1E6E11;
+    -fx-background-color: linear-gradient(to top, #187308, #49943d5b);
     -fx-text-fill: #fff;
     -fx-text-weight: bold;
     -fx-cursor: hand;
