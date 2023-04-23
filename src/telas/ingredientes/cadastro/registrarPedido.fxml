@@ -19,7 +19,7 @@
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="755.0" layoutY="5.0" onMouseClicked="#fecharTelas" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="755.0" layoutY="5.0" onMouseClicked="#fecharTelas" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
                   <Image url="@../../_assets/img/fechar.png" />
                </image>
