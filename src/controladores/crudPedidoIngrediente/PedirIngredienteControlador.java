@@ -21,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import modelos.consultas.ConsultaPersonalizada;
 import modelos.entidadeDAO.FuncionarioDAO;
 import modelos.entidadeDAO.IngredienteDAO;
 import modelos.entidadeDAO.PedidoCompraDAO;
@@ -178,8 +179,28 @@ public class PedirIngredienteControlador {
     }
 
     public boolean podeSalvar() {
-        if (getFuncionario() == null || getDataPedido() == null) {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Preencha os campos necessários.");
+
+        if (getFuncionario() == null) {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Selecione o Funcionário.");
+            return false;
+        }
+        
+        if (pedidoCompraDAO.buscarPendentesPorFuncionario(getFuncionario()).size() >= 2) {
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "REGRA", "O Funcionário só pode ter 2 pedidos abertos.");
+            return false;
+        }
+
+        LocalDate localDate = LocalDate.now();
+        int mes = localDate.getMonth().getValue();
+        int ano = localDate.getYear();
+
+        if (ConsultaPersonalizada.totalComprasFuncionarioMes(ano, mes, getFuncionario()).getTotal() > 500) {
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "REGRA", "Crédito de 500 reais mensal ultrapassado.");
+            return false;
+        }
+
+        if (getDataPedido() == null) {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Insira a Data do Pedido.");
             return false;
         } 
 
@@ -187,7 +208,7 @@ public class PedirIngredienteControlador {
         String formatado = dataDeHoje.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         if (getDataPedido().isBefore(dataDeHoje)) {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "A data é menor que a data atual: " + formatado);
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "A data é menor que a data hoje: " + formatado);
             return false;
         }
 

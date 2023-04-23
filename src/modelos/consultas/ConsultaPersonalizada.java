@@ -280,7 +280,7 @@ public final class ConsultaPersonalizada {
         return pedidos;
     }
 
-    public TotalComprasFuncionario totalComprasFuncionarioMes(int ano, int mes, Funcionario funcionario) {
+    public static TotalComprasFuncionario totalComprasFuncionarioMes(int ano, int mes, Funcionario funcionario) {
         String comando = "SELECT EXTRACT(YEAR FROM pc.data_pedido_compra) AS \"ano\", " +
             "EXTRACT(MONTH FROM pc.data_pedido_compra) AS \"mes\", " +
             "pc.cod_funcionario as \"funcionario\", " +
