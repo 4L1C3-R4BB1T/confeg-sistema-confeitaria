@@ -83,7 +83,7 @@ public final class ConsultaPersonalizada {
             "INNER JOIN pedido_bolo pb ON pb.cod_pedido = p.cod_pedido " +
             "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
             "WHERE p.status_pedido = 'CONCLUIDO' " +
-            "GROUP BY codigo, ano, mes " +
+            "GROUP BY ano, mes " +
             "ORDER BY ano, mes";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
