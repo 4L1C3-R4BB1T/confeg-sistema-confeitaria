@@ -1,5 +1,6 @@
 package controladores.relatorios;
 
+import aplicacao.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -10,6 +11,12 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modelos.consultas.ConsultaPersonalizada;
 import modelos.consultas.entitidades.PedidosSaborConsulta;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class TotalPedidoSaborBoloControlador {
 
@@ -39,8 +46,11 @@ public class TotalPedidoSaborBoloControlador {
     }
 
     @FXML
-    public void imprimir(ActionEvent event) {
-        System.out.println("Clicou em imprimir");
+    public void imprimir(ActionEvent event) throws JRException {
+        JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/relatorios/pedidosBolo.jasper"));
+        JasperPrint jp = JasperFillManager.fillReport(jr, null, App.conexao);
+        JasperViewer jv = new JasperViewer(jp, false);
+        jv.setVisible(true);
     }
 
     @FXML
