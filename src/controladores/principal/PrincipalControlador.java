@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.Action;
 
 import aplicacao.App;
 import controladores.crudBolo.CrudBoloControlador;
@@ -19,6 +18,7 @@ import controladores.crudPedidoIngrediente.CrudPedidoIngrediente;
 import controladores.crudPedidoIngrediente.PedirIngredienteControlador;
 import controladores.crudPedidos.ListarPedidosControlador;
 import controladores.crudPedidos.RegistrarPedidoControlador;
+import controladores.graficos.TelaSelecaoGraficoControlador;
 import controladores.login.LoginControlador;
 import controladores.principal.bolo.BoloControlador;
 import controladores.principal.perfil.PerfilControlador;
@@ -90,6 +90,12 @@ public class PrincipalControlador {
     @FXML 
     private Button clientes;
 
+    @FXML
+    private Button relatorios;
+
+    @FXML
+    private Button graficos;
+
     private Button[] botoes;
 
     // BOTÕES DO MENU PEDIDO
@@ -128,9 +134,41 @@ public class PrincipalControlador {
     private boolean clicouBotaoListarConfirmacao = false;
     private boolean clicouBotaoConfirmarCompra = false;
     private boolean clicouBotaoRelatorio = false;
+    private boolean clicouBotaoGrafico = false;
+
+    @FXML 
+    public void irParaTelaGraficos(ActionEvent  event) {
+        removerBotaoAtivo();
+        adicionarAtivoNoBotao(graficos);
+        if(!clicouBotaoGrafico) {
+            carregarTelaGraficos();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A Tela já está sendo exibida.");
+        }
+    }
+
+    public void carregarTelaGraficos() {
+        try {
+            
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/graficos/graficos.fxml"));
+            Parent elemento = carregar.load();
+            TelaSelecaoGraficoControlador controlador = carregar.getController();
+            Scene cena = new Scene(elemento);
+            Stage palco = new Stage(StageStyle.UNDECORATED);
+            palco.setScene(cena);
+            App.adicionarMovimento(palco, cena);
+            controlador.setTela(palco);
+            palco.showAndWait();
+            removerBotaoAtivo();
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
 
     @FXML
     public void irParaTelaRelatorios(ActionEvent event) {
+        removerBotaoAtivo();
+        adicionarAtivoNoBotao(relatorios);
         if(!clicouBotaoRelatorio) {
             carregarTelaRelatorios();
         } else {
@@ -151,6 +189,7 @@ public class PrincipalControlador {
             palco.setScene(cena);
             palco.showAndWait();
             clicouBotaoRelatorio = false;
+            removerBotaoAtivo();
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -262,7 +301,7 @@ public class PrincipalControlador {
     @FXML
     public void initialize() {
         atualizarAreaBolo();
-        botoes = new Button[] { administrador, principal, pedidos, bolos, clientes };
+        botoes = new Button[] { administrador, principal, pedidos, bolos, clientes, relatorios, graficos };
         botoesPedido = new HBox[] { botaoListar, botaoPedir, botaoConfirmar };
     }
     

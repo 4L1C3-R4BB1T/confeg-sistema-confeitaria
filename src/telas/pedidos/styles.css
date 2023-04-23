@@ -94,3 +94,6 @@
     -fx-scale-y: 1.05;
 }
 
+.chart-pie-label {
+    -fx-font-size: 20px;
+}
