@@ -43,7 +43,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="administrador" maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" onAction="#irParaTelaFuncionarios" prefHeight="50.0" prefWidth="55.0">
+                        <Button fx:id="administrador" maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" onAction="#irParaTelaFuncionarios" prefHeight="50.0" prefWidth="55.0" visible="false">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="26.0">
                                  <image>

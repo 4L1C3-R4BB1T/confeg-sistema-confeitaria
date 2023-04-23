@@ -669,7 +669,7 @@ public class PrincipalControlador {
             App.adicionarMovimento(stage, cena);
             controlador.setTela(stage);
             stage.showAndWait();
-            if (controlador.getConcluido()) {
+            if (controlador.getSucesso()) {
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "CONFIRMAÇÃO", "Confirmação efetuada.");
             } else if (controlador.getFracasso()) {
                 App.exibirAlert(areaDeAlerta, "ERRO", "CONFIRMAÇÃO", "Não foi possível confirmar a compra.");
