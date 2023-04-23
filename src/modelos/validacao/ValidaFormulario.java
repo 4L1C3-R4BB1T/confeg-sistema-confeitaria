@@ -84,6 +84,21 @@ public class ValidaFormulario extends Validacao {
         }
     }
 
+    public boolean validarTelefone(Label area, String valor) {
+        area.setStyle("-fx-text-fill: red !important;");
+        if (valor == null) {
+            area.setText("Preencha o Telefone");
+            return false;
+        } else if (!valor.matches("(\\(\\d{2}\\))?\\d{5}-\\d{4}|\\d{11}")) {
+            area.setText("Telefone inválido.");
+            return false;
+        } else {
+            area.setStyle("-fx-text-fill: green;");
+            area.setText("✓ Válido");
+            return true;
+        }
+    }
+
     public boolean validarData(Label area, String data, String msg) {
         if (!this.validarCampo(area, data, msg)) {
             return false;
@@ -101,5 +116,4 @@ public class ValidaFormulario extends Validacao {
             return true;
         }
     }
-  
 }

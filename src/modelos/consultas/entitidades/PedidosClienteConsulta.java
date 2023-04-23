@@ -3,6 +3,8 @@ package modelos.consultas.entitidades;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
+import modelos.validacao.ValidaFormulario;
+
 public class PedidosClienteConsulta {
 
     private String nome;
@@ -28,7 +30,8 @@ public class PedidosClienteConsulta {
     }
 
     public String getCpf() {
-        return cpf;
+        ValidaFormulario vf = new ValidaFormulario();
+        return vf.formatarCPF(cpf);
     }
 
     public void setCpf(String cpf) {
@@ -36,7 +39,8 @@ public class PedidosClienteConsulta {
     }
 
     public String getTelefone() {
-        return telefone;
+        ValidaFormulario vf = new ValidaFormulario();
+        return vf.formatarTelofone(telefone);
     }
 
     public void setTelefone(String telefone) {

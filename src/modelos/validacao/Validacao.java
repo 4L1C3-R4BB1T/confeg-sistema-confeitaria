@@ -56,5 +56,22 @@ public class Validacao {
         }
     }
 
+    public String formatarTelofone(String valor) {
+        if (valor == null) {
+            throw new RuntimeException("Telefone: valor passado é null.");
+        } else if (!valor.matches("\\d{11}")) {
+            throw new RuntimeException("Telefone: não é uma sequência válida.");
+        } else {
+            return valor.replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1)$2-$3");
+        }
+    }
+
+    public String limparTelefone(String valor) {
+        if (valor != null) {
+            return valor.replaceAll("\\D", "");
+        }
+        throw new RuntimeException("Telefone: valor passado é null.");
+    }
+
 
 }

@@ -117,7 +117,7 @@ public class ClienteCadastrarControlador {
             try {
                 Endereco _endereco = new Endereco(getEstado(), getCidade(), getCep(), getBairro(), getRua(), Integer.parseInt(getNumero()));
                 _endereco.setCodigo(enderecoDAO.inserir(_endereco));
-                Cliente cliente = new Cliente(getNome(), vf.limparCPF(getCpf()), getTelephone(), _endereco);
+                Cliente cliente = new Cliente(getNome(), vf.limparCPF(getCpf()), vf.limparTelefone(getTelephone()), _endereco);
                 clienteDAO.inserir(cliente);
                 App.conexao.commit();
                 cadastrou = true;
@@ -166,7 +166,7 @@ public class ClienteCadastrarControlador {
             vf.validarCampo(erroBairro, getBairro(), "Preencha o Bairro"),
             vf.validarCampo(erroRua, getRua(), "Preencha o Rua"),
             vf.validarValorNumerico(erroNumero, getNumero()),
-            vf.validarValorNumerico(erroTelefone, getTelephone())
+            vf.validarTelefone(erroTelefone, getTelephone())
         ).allMatch(valor -> valor == true);
     }
 

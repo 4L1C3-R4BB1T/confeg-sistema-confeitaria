@@ -122,7 +122,7 @@ public class ClienteEditarControlador {
                 endereco.setRua(getRua());
                 endereco.setNumero(Integer.parseInt(getNumero()));
                 cliente.setNome(getNome());
-                cliente.setTelefone(getTelephone());
+                cliente.setTelefone(vf.limparTelefone(getTelephone()));
                 clienteDAO.alterar(cliente);
                 enderecoDAO.alterar(endereco);
                 App.conexao.commit();
@@ -171,7 +171,7 @@ public class ClienteEditarControlador {
             vf.validarCampo(erroBairro, getBairro(), "Preencha o Bairro"),
             vf.validarCampo(erroRua, getRua(), "Preencha o Rua"),
             vf.validarValorNumerico(erroNumero, getNumero()),
-            vf.validarValorNumerico(erroTelefone, getTelephone())
+            vf.validarTelefone(erroTelefone, getTelephone())
         ).allMatch(valor -> valor == true);
     }
 
@@ -195,7 +195,7 @@ public class ClienteEditarControlador {
         bairro.setText(cliente.getEndereco().getBairro());
         rua.setText(cliente.getEndereco().getRua());
         numero.setText(String.valueOf(cliente.getEndereco().getNumero()));
-        telefone.setText(cliente.getTelefone().trim());
+        telefone.setText(vf.formatarTelofone(cliente.getTelefone().trim()));
         this.cliente = cliente;
         this.endereco = cliente.getEndereco();
     }
