@@ -1,10 +1,13 @@
 package controladores.graficos;
 
+import aplicacao.App;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import modelos.entidadeDAO.PedidoDAO;
 
 public class BoloMaisPedidoControlador {
 
@@ -16,6 +19,8 @@ public class BoloMaisPedidoControlador {
 
     private Stage tela;
 
+    private PedidoDAO pedidoDAO = new PedidoDAO(App.conexao);
+
     @FXML
     public void fechar(MouseEvent event) {
         encerrar();
@@ -23,8 +28,23 @@ public class BoloMaisPedidoControlador {
 
     @FXML
     public void initialize() {
-       
+        pieChart.setLegendSide(Side.RIGHT);
+        carregar();
+    }
 
+    public void carregar() {
+        pieChart.getData().clear();
+
+        pedidoDAO
+            .obterQuantidadeDePedidosPorBolo()
+            .forEach((bolo, pedido) -> {
+                pieChart.getData().add(new PieChart.Data(bolo, pedido));
+            });
+
+        for (final PieChart.Data data : pieChart.getData()) {
+            String porcentagem = String.format("%.0f%%", (data.getPieValue() / pieChart.getData().stream().mapToDouble(PieChart.Data::getPieValue).sum()) * 100);
+            data.setName(data.getName() + " " + porcentagem);
+        }
     }
 
     public void encerrar() {
@@ -36,4 +56,5 @@ public class BoloMaisPedidoControlador {
     public void setTela(Stage tela) {
         this.tela = tela;
     }
+    
 }

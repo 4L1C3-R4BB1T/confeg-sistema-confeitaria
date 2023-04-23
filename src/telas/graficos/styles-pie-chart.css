@@ -1,6 +1,4 @@
 .chart {
-    -fx-padding: 30px 70px 30px 0;
-    -fx-pie-label-visible: false;
     -fx-background-color: #D9D9D9;
 }
 
@@ -59,7 +57,7 @@
 }
 
 .chart-legend {
-    -fx-font-size: 22px;
+    -fx-font-size: 20px;
     -fx-text-fill: #000;
     -fx-padding: 20px 30px;
     -fx-background-radius: 10px;

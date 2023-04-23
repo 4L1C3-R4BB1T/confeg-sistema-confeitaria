@@ -28,21 +28,18 @@ public class MetodoPagamentoUtilizadoControlador {
 
     @FXML
     public void initialize() {
-        pieChart.setStyle("-fx-pie-label-visible: true;");
         pieChart.setLegendSide(Side.RIGHT);
-        pieChart.setLegendVisible(false);
         carregar();
     }
 
     public void carregar() {
         pieChart.getData().clear();
+        
         pedidoDAO
             .obterQuantidadeDePedidosPorPagamento()
             .forEach((metodo, pedido) -> {
                 pieChart.getData().add(new PieChart.Data(metodo, pedido));
             });
-
-        pieChart.setLabelLineLength(20);
 
         for (final PieChart.Data data : pieChart.getData()) {
             String porcentagem = String.format("%.0f%%", (data.getPieValue() / pieChart.getData().stream().mapToDouble(PieChart.Data::getPieValue).sum()) * 100);
@@ -59,4 +56,5 @@ public class MetodoPagamentoUtilizadoControlador {
     public void setTela(Stage tela) {
         this.tela = tela;
     }
+
 }
