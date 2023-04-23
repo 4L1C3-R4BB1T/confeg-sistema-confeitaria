@@ -86,5 +86,11 @@
     -fx-font-size: 20;
     -fx-text-fill: #fff;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10,0,0,2px);
+    -fx-cursor: hand;
+}
+
+.imprimir:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
 

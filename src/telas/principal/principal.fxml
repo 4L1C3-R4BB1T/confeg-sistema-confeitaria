@@ -25,7 +25,7 @@
                         <Button fx:id="pedidos" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirMenuPedidos" prefHeight="50.0" prefWidth="119.0" text="PEDIDOS" />
                         <Button fx:id="bolos" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#irTelaBolo" prefHeight="44.0" prefWidth="111.0" text="BOLOS" />
                         <Button fx:id="clientes" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#irParaTelaClientes" prefHeight="45.0" prefWidth="114.0" text="CLIENTES" />
-                        <Button maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="54.0">
+                        <Button maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" onAction="#irParaTelaRelatorios" prefHeight="50.0" prefWidth="54.0">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="18.0">
                                  <image>

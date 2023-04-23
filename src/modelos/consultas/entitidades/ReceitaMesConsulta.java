@@ -10,7 +10,7 @@ public class ReceitaMesConsulta {
     public ReceitaMesConsulta(Integer ano, Integer mes, Long concluidos, Double receita) {
         this.ano = ano;
         this.mes = mes;
-        this.concluidos = concluidos;
+        this.concluidos = concluidos; 
         this.receita = receita;
     }
 

@@ -281,3 +281,25 @@
 	-fx-font-size: 20px;
 	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.226), 5px, 0, 0px, 5px);
 }
+
+.carregando {
+	-fx-border-width: 0;
+	-fx-background-color: transparent;
+	-fx-border-color: none;
+}
+
+.carregando > .bar {
+	-fx-background-color: rgba(47, 177, 47, 0.801);
+	-fx-background-radius: 10px;
+	
+}
+
+.carregando-porcentagem {
+	-fx-font-size: 18px;
+	-fx-text-fill: #020202b0;
+	-fx-effect: dropshadow();
+}
+
+.botao-prosseguir {
+	-fx-background-color: rgba(0, 0, 0, 0.79) !important;
+}

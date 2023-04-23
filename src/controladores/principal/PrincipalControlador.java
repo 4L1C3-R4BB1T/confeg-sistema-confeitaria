@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.Action;
+
 import aplicacao.App;
 import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
@@ -20,6 +22,7 @@ import controladores.crudPedidos.RegistrarPedidoControlador;
 import controladores.login.LoginControlador;
 import controladores.principal.bolo.BoloControlador;
 import controladores.principal.perfil.PerfilControlador;
+import controladores.relatorios.TelaSelecaoRelatorioControlador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -124,6 +127,34 @@ public class PrincipalControlador {
     private boolean clicouBotaoPedirIngrediente = false;
     private boolean clicouBotaoListarConfirmacao = false;
     private boolean clicouBotaoConfirmarCompra = false;
+    private boolean clicouBotaoRelatorio = false;
+
+    @FXML
+    public void irParaTelaRelatorios(ActionEvent event) {
+        if(!clicouBotaoRelatorio) {
+            carregarTelaRelatorios();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+        }
+    }
+
+    public void carregarTelaRelatorios() {
+        try {
+            clicouBotaoRelatorio = true;
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/relatorios/relatorios.fxml"));
+            Parent elemento = carregar.load();
+            TelaSelecaoRelatorioControlador controlador = carregar.getController();
+            Scene cena = new Scene(elemento);
+            Stage palco = new Stage(StageStyle.UNDECORATED);
+            App.adicionarMovimento(palco, cena);
+            controlador.setTela(palco);
+            palco.setScene(cena);
+            palco.showAndWait();
+            clicouBotaoRelatorio = false;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
 
     @FXML
     public void abrirMenuPedidos(ActionEvent event) {

@@ -44,11 +44,11 @@ public class ReceitaMesControlador {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() { 
         ano.setCellValueFactory(new PropertyValueFactory<>("ano"));
         mes.setCellValueFactory(new PropertyValueFactory<>("mes"));
-        pedidos.setCellValueFactory(new PropertyValueFactory<>("pedidos"));
-        receita.setCellValueFactory(new PropertyValueFactory<>("pedidos"));
+        pedidos.setCellValueFactory(new PropertyValueFactory<>("concluidos"));
+        receita.setCellValueFactory(new PropertyValueFactory<>("receita"));
         carregarReceitaPorMes();
     }
 
