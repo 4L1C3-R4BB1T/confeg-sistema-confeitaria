@@ -19,7 +19,7 @@
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="755.0" layoutY="5.0" onMouseClicked="#fecharTelas" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="755.0" layoutY="5.0" onMouseClicked="#fecharTelas" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
                <image>
                   <Image url="@../../_assets/img/fechar.png" />
                </image>
@@ -32,7 +32,7 @@
          <children>
             <Label alignment="CENTER" layoutX="50.0" layoutY="24.0" prefHeight="65.0" prefWidth="700.0" styleClass="titulo" text="EDITAR" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
             <ComboBox fx:id="ingredientes" layoutX="100.0" layoutY="225.0" prefHeight="50.0" prefWidth="300.0" promptText="Escolha o Ingrediente" styleClass="campoBox" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="400.0" />
-            <Label layoutX="101.0" layoutY="465.0" styleClass="label-data" text="Data do Pedido" />
+            <Label layoutX="101.0" layoutY="465.0" styleClass="label-data" text="Data do Pedido" AnchorPane.leftAnchor="80.0" />
             <TextArea fx:id="observacao" layoutX="99.0" layoutY="559.0" prefHeight="150.0" prefWidth="200.0" promptText="Observações" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="70.0" />
             <Button layoutX="185.0" layoutY="755.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="50.0" prefWidth="180.0" text="Salvar" AnchorPane.leftAnchor="180.0">
                <styleClass>
@@ -69,7 +69,9 @@
                   <Image url="@../../_assets/img/excluir.png" />
                </image>
             </ImageView>
-            <DatePicker fx:id="dataPedido" layoutX="101.0" layoutY="489.0" styleClass="data" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="440.0" />
+            <DatePicker fx:id="dataPedido" layoutX="101.0" layoutY="489.0" styleClass="data" AnchorPane.bottomAnchor="321.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="434.0" AnchorPane.topAnchor="489.0" />
+            <TextField fx:id="total" editable="false" layoutX="437.0" layoutY="494.0" styleClass="exibir-total" text="R$ 0.00" AnchorPane.bottomAnchor="321.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="489.0" />
+            <Label layoutX="450.0" layoutY="468.0" styleClass="label-data" text="Total" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="465.0" />
          </children>
       </AnchorPane>
    </center>

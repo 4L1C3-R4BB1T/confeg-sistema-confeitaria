@@ -60,6 +60,9 @@ public class EditarPedidoIngredienteControlador {
     @FXML
     private DatePicker dataPedido;
 
+    @FXML
+    private TextField total;
+
     private Stage tela;
 
     private PedidoCompra pedidoCompra;
@@ -86,6 +89,8 @@ public class EditarPedidoIngredienteControlador {
             carrinho.add(pi);
             tabela.getItems().add(pi);
             limpar();
+
+            atualizarAreaTotal();
         }
     }
 
@@ -101,6 +106,8 @@ public class EditarPedidoIngredienteControlador {
             carrinho.remove(pci);
             tabela.getItems().remove(pci);
             tabela.getSelectionModel().clearSelection();
+
+            atualizarAreaTotal();
         }
     }
 
@@ -155,6 +162,8 @@ public class EditarPedidoIngredienteControlador {
         colunaIngrediente.setCellValueFactory(new PropertyValueFactory<>("ingrediente"));
         colunaQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         carregarIngredientes();
+
+        atualizarAreaTotal();
     }
 
 
@@ -174,6 +183,12 @@ public class EditarPedidoIngredienteControlador {
             return true;
         }
     }
+
+    public void atualizarAreaTotal() {
+        double totalCarrinho = carrinho.stream().map( x -> x.getIngrediente().getPreco() * x.getQuantidade()).reduce(0D, (x, y) -> x + y);
+        total.setText(String.format("R$ %.2f", totalCarrinho));
+    }
+
 
     public void limpar() {
         ingredientes.setValue(null);
