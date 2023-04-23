@@ -4,14 +4,16 @@ public class Ingrediente {
 
     private Long codigo;
     private String descricao;
+    private Double preco;
 
     public Ingrediente(String descricao) {
         this.descricao = descricao;
     }
 
-    public Ingrediente(Long codigo, String descricao) {
+    public Ingrediente(Long codigo, String descricao, Double preco) {
         this.codigo = codigo;
         this.descricao = descricao;
+        this.preco = preco;
     }
 
     public Long getCodigo() {
@@ -28,6 +30,14 @@ public class Ingrediente {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public Double getPreco() {
+        return preco;
     }
 
     @Override 

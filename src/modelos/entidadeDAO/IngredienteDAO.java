@@ -24,7 +24,8 @@ public class IngredienteDAO {
             if (resultado.next()) {
                 return new Ingrediente(
                     resultado.getLong("cod_ingrediente"),
-                    resultado.getString("descricao_ingrediente")
+                    resultado.getString("descricao_ingrediente"),
+                    resultado.getDouble("preco_ingrediente")
                 );
             }
         } catch (Exception erro) {
@@ -40,7 +41,8 @@ public class IngredienteDAO {
             while (resultado.next()) {
                 ingredientes.add(new Ingrediente(
                     resultado.getLong("cod_ingrediente"),
-                    resultado.getString("descricao_ingrediente")
+                    resultado.getString("descricao_ingrediente"),
+                    resultado.getDouble("preco_ingrediente")
                 ));
             }
         } catch (Exception erro) {

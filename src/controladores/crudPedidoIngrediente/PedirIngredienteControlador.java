@@ -22,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modelos.consultas.ConsultaPersonalizada;
+import modelos.consultas.entitidades.TotalComprasFuncionario;
 import modelos.entidadeDAO.FuncionarioDAO;
 import modelos.entidadeDAO.IngredienteDAO;
 import modelos.entidadeDAO.PedidoCompraDAO;
@@ -190,11 +191,7 @@ public class PedirIngredienteControlador {
             return false;
         }
 
-        LocalDate localDate = LocalDate.now();
-        int mes = localDate.getMonth().getValue();
-        int ano = localDate.getYear();
-
-        if (ConsultaPersonalizada.totalComprasFuncionarioMes(ano, mes, getFuncionario()).getTotal() > 500) {
+        if (!validarRegraNegocio()) {
             App.exibirAlert(areaDeAlerta, "FRACASSO", "REGRA", "Crédito de 500 reais mensal ultrapassado.");
             return false;
         }
@@ -214,6 +211,16 @@ public class PedirIngredienteControlador {
 
         return true;
 
+    }
+
+    public boolean validarRegraNegocio() {
+        final double LIMITE_MES = 500;
+        LocalDate localDate = LocalDate.now();
+        int mes = localDate.getMonth().getValue();
+        int ano = localDate.getYear();
+        TotalComprasFuncionario tcf = ConsultaPersonalizada.totalComprasFuncionarioMes(ano, mes, getFuncionario());
+        double totalCarrinho = carrinho.stream().map( x -> x.getIngrediente().getPreco() * x.getQuantidade()).reduce(0D, (x, y) -> x + y);
+        return ((tcf == null ? 0 : tcf.getTotal()) + totalCarrinho) <= LIMITE_MES;
     }
 
     public void carregarElementos() {
