@@ -104,7 +104,7 @@ public class ConfirmarPedidoControlador {
 
                 if (getPago() && getDataConfirmacao().equals(pedido.getDataPedido().toLocalDate())) {
                     App.exibirAlert(areaDeAlerta, "SUCESSO", "DESCONTO", "Desconto de 2% aplicado.");
-                    pedido.setDesconto(2D);
+                    pedido.setDesconto(20D);
                     pedido.setStatus(Status.CONCLUIDO);
                     this.desconto = true;
                 } else if (getPago()) {

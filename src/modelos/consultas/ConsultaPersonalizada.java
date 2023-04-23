@@ -199,7 +199,7 @@ public final class ConsultaPersonalizada {
     public static TotalComprasFuncionario totalComprasFuncionarioMes(int ano, int mes, Funcionario funcionario) {
         String comando = "SELECT EXTRACT(YEAR FROM pc.data_pedido_compra) AS \"ano\", " +
             "EXTRACT(MONTH FROM pc.data_pedido_compra) AS \"mes\", " +
-            "pc.cod_funcionario as \"funcionario\", " +
+            "pc.cod_funcionario AS \"funcionario\", " +
             "SUM(i.preco_ingrediente * pci.quantidade_ingrediente) AS \"total\" " +
             "FROM ingrediente i " +
             "INNER JOIN pedido_compra_ingrediente pci " +

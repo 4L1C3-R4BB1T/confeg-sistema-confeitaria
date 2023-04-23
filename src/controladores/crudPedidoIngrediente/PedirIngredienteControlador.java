@@ -107,7 +107,7 @@ public class PedirIngredienteControlador {
     public void confirmar(ActionEvent event) throws Exception {
         if (podeSalvar()) {
             if (carrinho.size() <= 0) {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "ERRO", "É necessário ter no mínimo 1 pedido.");
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "ERRO", "É necessário ter no mínimo 1 ingrediente.");
                 return;
             }
             
@@ -172,10 +172,10 @@ public class PedirIngredienteControlador {
 
     public boolean podeRemover() {
         if (getPedidoCompraIngrediente() == null) {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Selecione o Pedido.");
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Selecione o Ingrediente.");
             return false;
         }
-        App.exibirAlert(areaDeAlerta, "SUCESSO", "INFORMAÇÃO", "Pedido removido.");
+        App.exibirAlert(areaDeAlerta, "SUCESSO", "INFORMAÇÃO", "Ingrediente removido.");
         return true;
     }
 
@@ -187,7 +187,7 @@ public class PedirIngredienteControlador {
         }
         
         if (pedidoCompraDAO.buscarPendentesPorFuncionario(getFuncionario()).size() >= 2) {
-            App.exibirAlert(areaDeAlerta, "FRACASSO", "REGRA", "O Funcionário só pode ter 2 pedidos abertos.");
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "REGRA", "Um funcionário pode ter no máximo 2 pedidos em aberto.");
             return false;
         }
 

@@ -107,7 +107,7 @@ public class EditarPedidoConfirmadoControlador {
 
                 // Se tiver pago e a data for igual a data do pedido 2% aplicado
                 if (getPago() && Date.valueOf(getData()).equals(dataPedido)) {
-                    pedido.setDesconto(2D);
+                    pedido.setDesconto(20D);
                 } else if (getPago()) {
                     pedido.setStatus(Status.CONCLUIDO);
                 } else {
