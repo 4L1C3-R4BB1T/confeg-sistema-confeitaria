@@ -1,20 +1,21 @@
 package modelos.consultas.entitidades;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class PedidosClienteConsulta {
 
     private String nome;
     private String cpf;
     private String telefone;
-    private Date ultimoPedido;
+    private String ultimoPedido;
     private Long pedidos;
     
     public PedidosClienteConsulta(String nome, String cpf, String telefone, Date ultimoPedido, Long pedidos) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.ultimoPedido = ultimoPedido;
+        this.setUltimoPedido(ultimoPedido);
         this.pedidos = pedidos;
     }
 
@@ -42,12 +43,13 @@ public class PedidosClienteConsulta {
         this.telefone = telefone;
     }
 
-    public Date getUltimoPedido() {
+    public String getUltimoPedido() {
         return ultimoPedido;
     }
 
     public void setUltimoPedido(Date ultimoPedido) {
-        this.ultimoPedido = ultimoPedido;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        this.ultimoPedido = sdf.format(ultimoPedido);
     }
 
     public Long getPedidos() {

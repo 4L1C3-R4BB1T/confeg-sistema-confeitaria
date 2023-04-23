@@ -11,7 +11,7 @@ public class PedidosSaborConsulta {
         this.codigo = codigo;
         this.sabor = sabor;
         this.total = total;
-        this.pedidos = pedidos;
+        this.pedidos = pedidos; 
     }
 
     public Long getCodigo() {

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1100.0" stylesheets="@../pedidos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudPedidos.ListarPedidosControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1100.0" stylesheets="@../pedidos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.relatorios.ReceitaMesControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
@@ -29,8 +29,8 @@
             <TableView fx:id="areaDePedidos" layoutX="79.0" layoutY="194.0" prefHeight="541.0" prefWidth="1000.0" styleClass="tabela" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0">
               <columns>
                 <TableColumn fx:id="ano" prefWidth="75.0" text="ANO" />
-                <TableColumn fx:id="mes" prefWidth="78.0" text="MÊS" />
-                  <TableColumn fx:id="pedidos" prefWidth="78.0" text="PEDIDOS CONCLUÍDOS" />
+                <TableColumn fx:id="mes" prefWidth="91.0" text="MÊS" />
+                  <TableColumn fx:id="pedidos" prefWidth="408.0" text="PEDIDOS CONCLUÍDOS" />
                   <TableColumn fx:id="receita" prefWidth="191.0" text="RECEITA" />
               </columns>
                <columnResizePolicy>
@@ -47,7 +47,7 @@
                </children>
             </AnchorPane>
             <HBox fx:id="areaDeAlerta" prefHeight="150.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-10.0" />
-            <Button fx:id="imprimir" layoutX="850.0" layoutY="725.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="imprimir" text="IMPRIMIR" />
+            <Button layoutX="850.0" layoutY="725.0" mnemonicParsing="false" onAction="#imprimir" prefHeight="50.0" prefWidth="200.0" styleClass="imprimir" text="IMPRIMIR" />
          </children>
       </AnchorPane>
    </center>
