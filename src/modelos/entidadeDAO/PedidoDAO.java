@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import modelos.entidades.Bolo;
 import modelos.entidades.Cliente;
@@ -219,6 +221,78 @@ public class PedidoDAO {
             erro.printStackTrace();
         }
         return pedidos;
+    }
+
+    public Map<String, Integer> obterQuantidadeDePedidosPorBolo() {
+        Map<String, Integer> pedidosBolo = new HashMap<>();
+        String comando = "SELECT s.cod_sabor AS \"codigo\", " +
+            "s.descricao_sabor AS \"sabor\", " +
+            "COUNT(s.cod_sabor) AS \"pedidos\" " +
+            "FROM pedido p " +
+            "INNER JOIN pedido_bolo pb ON p.cod_pedido = pb.cod_pedido " +
+            "INNER JOIN bolo b ON b.cod_bolo = pb.cod_bolo " +
+            "INNER JOIN sabor s ON s.cod_sabor = b.cod_sabor " +
+            "GROUP BY codigo";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ResultSet resultado = ps.executeQuery();
+            while (resultado.next()) {
+                pedidosBolo.put(resultado.getString("sabor"), resultado.getInt("pedidos"));
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return pedidosBolo;
+    }
+
+    public Map<String, Integer> obterQuantidadeDePedidosPorPagamento() {
+        Map<String, Integer> pedidosMetodo = new HashMap<>();
+        String comando = "SELECT mp.cod_metodo_pagamento AS \"codigo\", " +
+            "mp.descricao_metodo_pagamento AS \"metodo\", " +
+            "COUNT(p.cod_pedido) AS \"pedidos\" " +
+            "FROM pedido p " +
+            "INNER JOIN metodo_pagamento mp " + 
+            "ON mp.cod_metodo_pagamento = p.cod_metodo_pagamento " +
+            "GROUP BY codigo";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ResultSet resultado = ps.executeQuery();
+            while (resultado.next()) {
+                pedidosMetodo.put(resultado.getString("metodo"), resultado.getInt("pedidos"));
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return pedidosMetodo;
+    }
+
+    public Map<Integer, ArrayList<Integer>> obterQuantidadeDePedidosPorMesAno() {
+        Map<Integer, ArrayList<Integer>> pedidosMesAno = new HashMap<>();
+        String comando = "SELECT EXTRACT(year FROM cp.data_confirmacao_pedido) AS \"ano\", " +
+            "EXTRACT(month FROM cp.data_confirmacao_pedido) AS \"mes\", " +
+            "COUNT(DISTINCT cod_confirmacao) AS \"pedidos\" " +
+            "FROM confirmacao_pedido cp " +
+            "INNER JOIN pedido p ON cp.cod_pedido = p.cod_pedido " +
+            "INNER JOIN pedido_bolo pb ON pb.cod_pedido = p.cod_pedido " +
+            "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
+            "WHERE p.status_pedido = 'CONCLUIDO' OR p.status_pedido = 'CANCELADO' " +
+            "GROUP BY ano, mes";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ResultSet resultado = ps.executeQuery();
+            while (resultado.next()) {
+                ArrayList<Integer> linha = new ArrayList<>();
+                if (!pedidosMesAno.containsKey(resultado.getInt("ano"))) {
+                    linha.add(resultado.getInt("mes"));
+                    linha.add(resultado.getInt("pedidos"));
+                    pedidosMesAno.put(resultado.getInt("ano"), linha);
+                } else {
+                    ArrayList<Integer> linhaNova = pedidosMesAno.get(resultado.getInt("ano"));
+                    linhaNova.add(resultado.getInt("mes"));
+                    linhaNova.add(resultado.getInt("pedidos"));
+                }
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return pedidosMesAno;
     }
 
     public Connection getConnection() {

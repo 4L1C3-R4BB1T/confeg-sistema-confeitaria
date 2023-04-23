@@ -14,10 +14,7 @@ import conexoes.FabricarConexao;
 import modelos.consultas.entitidades.PedidoConfirmado;
 import modelos.consultas.entitidades.PedidoConsulta;
 import modelos.consultas.entitidades.PedidoIngrediente;
-import modelos.consultas.entitidades.PedidosBoloConsulta;
 import modelos.consultas.entitidades.PedidosClienteConsulta;
-import modelos.consultas.entitidades.PedidosPagamentoConsulta;
-import modelos.consultas.entitidades.PedidosMesAnoConsulta;
 import modelos.consultas.entitidades.PedidosSaborConsulta;
 import modelos.consultas.entitidades.ReceitaMesConsulta;
 import modelos.consultas.entitidades.TotalComprasFuncionario;
@@ -83,7 +80,7 @@ public final class ConsultaPersonalizada {
             "INNER JOIN pedido_bolo pb ON pb.cod_pedido = p.cod_pedido " +
             "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
             "WHERE p.status_pedido = 'CONCLUIDO' " +
-            "GROUP BY codigo, ano, mes " +
+            "GROUP BY ano, mes " +
             "ORDER BY ano, mes";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
@@ -95,7 +92,6 @@ public final class ConsultaPersonalizada {
                     resultado.getDouble("receita")
                 ));
             }
-            return receitaMesConsultas;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -124,7 +120,6 @@ public final class ConsultaPersonalizada {
                     resultado.getLong("quantidade_pedidos")
                 ));
             }
-            return pedidosCliente;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -153,89 +148,10 @@ public final class ConsultaPersonalizada {
                     resultado.getLong("pedidos")
                 ));
             }
-            return pedidosSabor;
         } catch (Exception erro) {
             erro.printStackTrace();
         }
         return pedidosSabor;
-    }
-
-    public static List<PedidosBoloConsulta> obterQuantidadeDePedidosPorBolo() {
-        List<PedidosBoloConsulta> pedidosBolo = new ArrayList<>();
-        String comando = "SELECT s.cod_sabor AS \"codigo\", " +
-            "s.descricao_sabor AS \"sabor\", " +
-            "COUNT(s.cod_sabor) AS \"pedidos\" " +
-            "FROM pedido p " +
-            "INNER JOIN pedido_bolo pb ON p.cod_pedido = pb.cod_pedido " +
-            "INNER JOIN bolo b ON b.cod_bolo = pb.cod_bolo " +
-            "INNER JOIN sabor s ON s.cod_sabor = b.cod_sabor " +
-            "GROUP BY codigo";
-        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
-            ResultSet resultado = ps.executeQuery();
-            while (resultado.next()) {
-                pedidosBolo.add(new PedidosBoloConsulta(
-                    resultado.getLong("codigo"),
-                    resultado.getString("sabor"),
-                    resultado.getLong("pedidos")
-                ));
-            }
-            return pedidosBolo;
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
-        return pedidosBolo;
-    }
-
-    public static List<PedidosPagamentoConsulta> obterQuantidadeDePedidosPorPagamento() {
-        List<PedidosPagamentoConsulta> pedidosMetodo = new ArrayList<>();
-        String comando = "SELECT mp.cod_metodo_pagamento AS \"codigo\", " +
-            "mp.descricao_metodo_pagamento AS \"metodo\", " +
-            "COUNT(p.cod_pedido) AS \"pedidos\" " +
-            "FROM pedido p " +
-            "INNER JOIN metodo_pagamento mp " + 
-            "ON mp.cod_metodo_pagamento = p.cod_metodo_pagamento " +
-            "GROUP BY metodo";
-        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
-            ResultSet resultado = ps.executeQuery();
-            while (resultado.next()) {
-                pedidosMetodo.add(new PedidosPagamentoConsulta(
-                    resultado.getLong("codigo"),
-                    resultado.getString("metodo"),
-                    resultado.getLong("pedidos")
-                ));
-            }
-            return pedidosMetodo;
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
-        return pedidosMetodo;
-    }
-
-    public static List<PedidosMesAnoConsulta> obterQuantidadeDePedidosPorMesAno() {
-        List<PedidosMesAnoConsulta> pedidosMesAno = new ArrayList<>();
-        String comando = "SELECT EXTRACT(year FROM cp.data_confirmacao_pedido) AS \"ano\", " +
-            "EXTRACT(month FROM cp.data_confirmacao_pedido) AS \"mes\", " +
-            "COUNT(DISTINCT cod_confirmacao) AS \"pedidos\" " +
-            "FROM confirmacao_pedido cp " +
-            "INNER JOIN pedido p ON cp.cod_pedido = p.cod_pedido " +
-            "INNER JOIN pedido_bolo pb ON pb.cod_pedido = p.cod_pedido " +
-            "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
-            "WHERE p.status_pedido = 'CONCLUIDO' OR p.status_pedido = 'CANCELADO' " +
-            "GROUP BY ano, mes";
-        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
-            ResultSet resultado = ps.executeQuery();
-            while (resultado.next()) {
-                pedidosMesAno.add(new PedidosMesAnoConsulta(
-                    resultado.getInt("ano"),
-                    resultado.getInt("mes"),
-                    resultado.getLong("pedidos")
-                ));
-            }
-            return pedidosMesAno;
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
-        return pedidosMesAno;
     }
 
     public static List<PedidoIngrediente> obterPedidosDeIngrediente() {
