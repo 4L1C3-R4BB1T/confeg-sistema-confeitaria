@@ -22,6 +22,7 @@ import controladores.login.LoginControlador;
 import controladores.principal.bolo.BoloControlador;
 import controladores.principal.perfil.PerfilControlador;
 import controladores.relatorios.TelaSelecaoRelatorioControlador;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -140,7 +141,8 @@ public class PrincipalControlador {
     private boolean clicouBotaoListarConfirmacao = false;
     private boolean clicouBotaoConfirmarCompra = false;
     private boolean clicouBotaoRelatorio = false;
-    private boolean clicouBotaoGrafico = false;;
+    private boolean clicouBotaoGrafico = false;
+    private volatile boolean threadMonitorarPesquisa = true;
 
     @FXML
     public void pesquisar(MouseEvent event) {
@@ -321,6 +323,21 @@ public class PrincipalControlador {
         atualizarAreaBolo();
         botoes = new Button[] { administrador, principal, pedidos, bolos, clientes, relatorios, graficos };
         botoesPedido = new HBox[] { botaoListar, botaoPedir, botaoConfirmar };
+
+        new Thread(() -> {
+
+            while(threadMonitorarPesquisa) {
+
+                Platform.runLater(() -> carregarPesquisa());
+
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }).start();
     }
     
     // Listar Modal
@@ -824,6 +841,7 @@ public class PrincipalControlador {
 
 
     public void fecharTodasTelas() {
+        threadMonitorarPesquisa = false;
         telas.forEach( tela -> {
             if (tela != null) {
                 tela.hide();
