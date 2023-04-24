@@ -204,7 +204,7 @@
 }
 
 .pedido-ativo {
-    -fx-background-color: #261787 !important;
+    -fx-background-color: rgba(38, 23, 135, 0.8) !important;
 }
 
 .pedido-ativo .label {
