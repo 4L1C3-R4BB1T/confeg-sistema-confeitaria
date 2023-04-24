@@ -204,3 +204,11 @@
 .pedido-ativo .label {
     -fx-text-fill: #fff !important;
 }
+
+/* //////////////////////// */
+
+
+.conteudo-vazio {
+    -fx-font-size: 22px;
+    -fx-text-fill: linear-gradient(to bottom, #000000f1, #00000058);
+}

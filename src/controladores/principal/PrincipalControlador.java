@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 import aplicacao.App;
 import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
@@ -30,8 +29,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -39,6 +41,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.entidadeDAO.BoloDAO;
+import modelos.entidades.Bolo;
 import modelos.entidades.Funcionario;
 
 // TELA PRINCIPAL DA APLICAÇÃO
@@ -113,6 +116,9 @@ public class PrincipalControlador {
     @FXML
     private ImageView areaImagem;
 
+    @FXML 
+    private TextField digitado;
+
     private Stage tela;
     
     private List<Stage> telas = new ArrayList<>();
@@ -134,7 +140,19 @@ public class PrincipalControlador {
     private boolean clicouBotaoListarConfirmacao = false;
     private boolean clicouBotaoConfirmarCompra = false;
     private boolean clicouBotaoRelatorio = false;
-    private boolean clicouBotaoGrafico = false;
+    private boolean clicouBotaoGrafico = false;;
+
+    @FXML
+    public void pesquisar(MouseEvent event) {
+        carregarPesquisa();
+    } 
+
+    @FXML
+    public void pesquisarEnter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            carregarPesquisa();
+        }
+    }
 
     @FXML 
     public void irParaTelaGraficos(ActionEvent  event) {
@@ -460,7 +478,15 @@ public class PrincipalControlador {
 
     public void atualizarAreaBolo() {
         areaBolo.getChildren().clear();
-        boloDAO.buscarTodos().stream()
+        List<Bolo> bolos = boloDAO.buscarTodos();
+
+        if (bolos.size() == 0) {
+            Node vazio = App.obterTelaVazia();
+            areaBolo.getChildren().add(vazio);
+            return;
+        }
+
+        bolos.stream()
             .map( bolo -> {
                 try {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -751,6 +777,51 @@ public class PrincipalControlador {
             erro.printStackTrace();
         }
     }
+
+    
+    public void carregarPesquisa() {
+        areaBolo.getChildren().clear();
+        String valor = digitado.getText().trim();
+        if (valor.intern() == "") {
+            atualizarAreaBolo();
+            return;
+        }
+
+        List<Bolo> bolos = boloDAO.pesquisar(valor);
+
+        if (bolos.size() == 0) {
+            areaBolo.getChildren().add(App.obterTelaVazia());
+            return;
+        }
+
+        bolos.stream()
+        .map( bolo -> {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/principal/bolo/bolo.fxml"));
+                Node node = carregar.load();
+                BoloControlador controlador = carregar.getController();
+                controlador.setImagem(getClass().getResource("/telas/principal/bolo/img/").toExternalForm() + bolo.getSabor().getCodigo() + ".png");
+                controlador.setDescricao(bolo.getDescricao());
+                controlador.setFabricao("Fab: " + sdf.format(bolo.getFabricacao()));
+                controlador.setPeso("Peso: " + bolo.getPeso().toString() + " kg");
+                controlador.setPreco("Preço: R$ " + bolo.getPreco().toString());
+                controlador.setValidade("Val: " + sdf.format(bolo.getVencimento()));
+                controlador.setBolo(bolo);
+                controlador.setAreaDeAlerta(areaDeAlerta);
+                return node;
+            } catch (Exception erro) {
+                erro.printStackTrace();
+                return null;
+            }
+        })
+        .forEach( bolo -> {
+            if (bolo != null) {
+                areaBolo.getChildren().add(bolo);
+            }
+        });
+    }
+
 
     public void fecharTodasTelas() {
         telas.forEach( tela -> {

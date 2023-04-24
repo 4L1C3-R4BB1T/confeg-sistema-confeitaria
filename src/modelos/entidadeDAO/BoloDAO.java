@@ -3,6 +3,7 @@ package modelos.entidadeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,6 +107,35 @@ public class BoloDAO {
             }
         } catch (Exception erro) {
             erro.printStackTrace();
+        }
+        return bolos;
+    }
+
+    public List<Bolo> pesquisar(String conteudo) {
+        List<Bolo> bolos = new ArrayList<>();
+        String comando = "SELECT b.* " +
+               "FROM bolo b " +
+               "INNER JOIN sabor s " +
+               "ON s.cod_sabor = b.cod_sabor " +
+               "WHERE LOWER(b.descricao_bolo) LIKE LOWER('%" + conteudo + "%') " +
+               "OR LOWER(s.descricao_sabor) LIKE LOWER('%" + conteudo + "%')";
+        try  {
+            SaborDAO saborDAO = new SaborDAO(conexao);
+            Statement ps = conexao.createStatement();
+            ResultSet rs = ps.executeQuery(comando);
+            while (rs.next()) {
+                bolos.add(new Bolo(
+                    rs.getLong("cod_bolo"),
+                    saborDAO.buscarPorCodigo(rs.getLong("cod_sabor")),
+                    rs.getString("descricao_bolo"), 
+                    rs.getDouble("peso_bolo"),
+                    rs.getDouble("preco_bolo"),
+                    rs.getDate("data_fabricacao_bolo"),
+                    rs.getDate("data_vencimento_bolo")
+                ));
+            }
+        } catch (Exception erro) {
+           erro.printStackTrace();
         }
         return bolos;
     }

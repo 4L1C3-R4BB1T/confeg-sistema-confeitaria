@@ -119,6 +119,17 @@ public class App extends Application {
         }
     }
 
+    public static Node obterTelaVazia() {
+        try {
+            FXMLLoader carregar = new FXMLLoader(App.class.getResource("/telas/principal/bolo/vazio.fxml"));
+            Node raiz = carregar.load();
+            return raiz;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

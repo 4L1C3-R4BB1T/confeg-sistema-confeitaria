@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.entidadeDAO.BoloDAO;
+import modelos.entidades.Bolo;
 
 public class CrudBoloControlador {
 
@@ -100,8 +101,8 @@ public class CrudBoloControlador {
 
     public void atualizarAreaDeBolos() {
         areaDebolos.getChildren().clear();
-        boloDAO.buscarTodos()
-            .forEach( bolo -> {
+        List<Bolo> bolos = boloDAO.buscarTodos();
+        bolos.forEach( bolo -> {
                 try {
                     FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/bolos/subbolo/subbolo.fxml"));
                     Parent raiz = carregar.load();
