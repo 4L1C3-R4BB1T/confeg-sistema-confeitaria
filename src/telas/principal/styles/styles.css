@@ -103,6 +103,7 @@
 
 .area-bolo {
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5px, 0, 0, 8px);
+    -fx-background-radius: 5px;
 }
 
 .area-bolo:hover {
@@ -141,26 +142,31 @@
 
 .area-bolo .fabricao {
     -fx-text-fill: #557C97;
-    -fx-font-size: 16px;
+    -fx-font-size: 15px;
 }
 
 .area-bolo .validade {
     -fx-text-fill: #DA0000;
-    -fx-font-size: 16px;
+    -fx-font-size: 15px;
 }
 
 .area-bolo .peso {
     -fx-text-fill: #a79c05;
-    -fx-font-size: 17px;
+    -fx-font-size: 15px;
 }
 
 .area-bolo .preco {
     -fx-text-fill: #006B1E;
+    -fx-font-size: 15px;
+}
+
+.label-bolo {
     -fx-font-size: 16px;
+    -fx-text-fill: #000000d1;
 }
 
 .bolo-botao {
-    -fx-background-color: linear-gradient(to bottom, #006B1E, #3ade68d5);
+    -fx-background-color: rgba(38, 23, 135, 0.8) !important;
     -fx-text-fill: #fff;
     -fx-background-radius: 10px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5px, 0, 0,2px);
