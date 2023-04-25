@@ -94,6 +94,41 @@
     -fx-scale-y: 1.05;
 }
 
-.chart-pie-label {
-    -fx-font-size: 20px;
+.label-ano {
+	-fx-font-size: 17px;
+	-fx-text-fill: #000000d2;
+	-fx-prompt-text-fill: #0000008b;
+}
+
+.combo-box .arrow {
+	-fx-font-size: 25px;
+	-fx-background-color: rgba(0,0,0,0.79);
+}
+
+.combo-box {
+	-fx-border-width: 1;
+	-fx-border-color: rgba(0, 0, 0, 0.704);
+	-fx-background-color: #fff;
+	-fx-border-radius: 10px;
+	-fx-background-radius: 10px;
+}
+
+.combo-box .list-view {
+	-fx-border-radius: 10px;
+	-fx-background-radius: 10px;
+	-fx-background-color: #fff;
+}
+
+.combo-box .list-cell {
+	-fx-background-color: transparent;
+	-fx-font-size: 16px;
+}
+
+.combo-box .list-view .list-cell:filled:selected {
+    -fx-text-fill: #fff;
+	-fx-background-color: rgba(0, 0, 0, 0.79);
+}
+
+.combo-box .list-view .list-cell:hover {
+	-fx-text-fill: #000;
 }

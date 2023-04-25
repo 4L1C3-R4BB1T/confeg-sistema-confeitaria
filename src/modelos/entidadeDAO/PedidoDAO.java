@@ -264,35 +264,40 @@ public class PedidoDAO {
         return pedidosMetodo;
     }
 
-    public Map<Integer, ArrayList<Integer>> obterQuantidadeDePedidosPorMesAno() {
-        Map<Integer, ArrayList<Integer>> pedidosMesAno = new HashMap<>();
-        String comando = "SELECT EXTRACT(year FROM cp.data_confirmacao_pedido) AS \"ano\", " +
-            "EXTRACT(month FROM cp.data_confirmacao_pedido) AS \"mes\", " +
-            "COUNT(DISTINCT cod_confirmacao) AS \"pedidos\" " +
-            "FROM confirmacao_pedido cp " +
-            "INNER JOIN pedido p ON cp.cod_pedido = p.cod_pedido " +
-            "INNER JOIN pedido_bolo pb ON pb.cod_pedido = p.cod_pedido " +
-            "INNER JOIN bolo b ON pb.cod_bolo = b.cod_bolo " +
-            "WHERE p.status_pedido = 'CONCLUIDO' OR p.status_pedido = 'CANCELADO' " +
-            "GROUP BY ano, mes";
-        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+    public List<Integer> obterAnosQuePossuemConfirmacoes() {
+        List<Integer> anos = new ArrayList<>();
+        String comando = "SELECT DISTINCT EXTRACT(YEAR from data_confirmacao_pedido) AS ano " +
+            "FROM confirmacao_pedido GROUP BY ano ORDER BY ano";
+        try (PreparedStatement ps = conexao.prepareStatement(comando);) {           
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
-                ArrayList<Integer> linha = new ArrayList<>();
-                if (!pedidosMesAno.containsKey(resultado.getInt("ano"))) {
-                    linha.add(resultado.getInt("mes"));
-                    linha.add(resultado.getInt("pedidos"));
-                    pedidosMesAno.put(resultado.getInt("ano"), linha);
-                } else {
-                    ArrayList<Integer> linhaNova = pedidosMesAno.get(resultado.getInt("ano"));
-                    linhaNova.add(resultado.getInt("mes"));
-                    linhaNova.add(resultado.getInt("pedidos"));
-                }
+                anos.add(resultado.getInt("ano"));
             }
         } catch (Exception erro) {
             erro.printStackTrace();
         }
-        return pedidosMesAno;
+        return anos;
+    }
+
+    public Map<Integer, Integer> obterQuantidadeDePedidosPorMesAno(int ano) {
+        Map<Integer, Integer> pedidosMes = new HashMap<>();
+        String comando = "SELECT EXTRACT(MONTH FROM cp.data_confirmacao_pedido) AS \"mes\", " +
+            "COUNT(DISTINCT cod_confirmacao) AS \"pedidos\" " +
+            "FROM confirmacao_pedido cp " +
+            "INNER JOIN pedido p ON cp.cod_pedido = p.cod_pedido " +
+            "WHERE p.status_pedido = 'CONCLUIDO' " +
+            "AND EXTRACT(YEAR FROM cp.data_confirmacao_pedido) = ? " +
+            "GROUP BY mes";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, ano);
+            ResultSet resultado = ps.executeQuery();
+            while (resultado.next()) {
+                pedidosMes.put(resultado.getInt("mes"), resultado.getInt("pedidos"));
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return pedidosMes;
     }
 
     public Connection getConnection() {
