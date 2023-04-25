@@ -14,6 +14,8 @@ DROP TABLE IF EXISTS tipo_funcionario CASCADE;
 DROP TABLE IF EXISTS cidade CASCADE;
 DROP TABLE IF EXISTS estado CASCADE;
 
+CREATE EXTENSION unaccent;
+
 /*--------------------------------------------------------------*/
 
 CREATE TABLE estado (
