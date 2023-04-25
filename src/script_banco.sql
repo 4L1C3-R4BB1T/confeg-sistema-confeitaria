@@ -14,6 +14,8 @@ DROP TABLE IF EXISTS tipo_funcionario CASCADE;
 DROP TABLE IF EXISTS cidade CASCADE;
 DROP TABLE IF EXISTS estado CASCADE;
 
+CREATE EXTENSION unaccent;
+
 /*--------------------------------------------------------------*/
 
 CREATE TABLE estado (
@@ -5895,7 +5897,7 @@ INSERT INTO pedido (cod_cliente, cod_funcionario, data_pedido, cod_metodo_pagame
 (2, 2, '2022-01-14', 2, 'PENDENTE', 'Com cobertura extra.'),
 (3, 1, '2022-04-14', 1, 'CONCLUIDO', 'Sem chantilly.'),
 (4, 5, '2022-06-14', 3, 'PENDENTE', 'Sabor Floresta Negra.'),
-(5, 4, '2022-09-14', 2, 'CANCELADO', 'Peso de 2kg.'),
+(5, 4, '2022-09-14', 2, 'CONCLUIDO', 'Peso de 2kg.'),
 (6, 3, '2023-01-15', 1, 'CONCLUIDO', 'Com cobertura de chocolate.'),
 (7, 2, '2023-01-15', 2, 'PENDENTE', 'Sem açúcar.'),
 (8, 1, '2023-02-15', 1, 'CONCLUIDO', 'Sabor Red Velvet.'),
@@ -5939,11 +5941,12 @@ INSERT INTO pedido_bolo (cod_pedido, cod_bolo, quantidade_bolo) VALUES
 
 INSERT INTO confirmacao_pedido (cod_cliente, cod_pedido, data_confirmacao_pedido, pago_confirmacao_pedido, observacao_confirmacao_pedido) VALUES
 (1, 1, '2022-01-17', true, null),
-(3, 13, '2023-04-16', true, 'Desconto à vista.'),
 (3, 3, '2022-04-18', false, null),
+(5, 5, '2023-04-16', false, 'Desistiu do pedido.'),
 (6, 6, '2023-01-18', true, 'Disse que o bolo estava delicioso.'),
-(5, 15, '2023-04-18', false, 'Vai pagar amanhã.'),
-(5, 5, '2023-04-16', false, 'Desistiu do pedido.');
+(6, 8, '2023-02-18', true, 'Disse que o bolo estava delicioso.'),
+(3, 13, '2023-04-16', true, 'Desconto à vista.'),
+(5, 15, '2023-04-18', false, 'Vai pagar amanhã.');
 
 INSERT INTO ingrediente (descricao_ingrediente, preco_ingrediente) VALUES
 ('Farinha', 15.0),
@@ -5956,12 +5959,12 @@ INSERT INTO ingrediente (descricao_ingrediente, preco_ingrediente) VALUES
 ('Canela', 3.0);
 
 INSERT INTO pedido_compra (cod_funcionario, data_pedido_compra, status_pedido_compra, observacao_pedido_compra) VALUES
-(1, '2023-02-01', 'PENDENTE', 'Para hoje!'),
-(2, '2023-02-02', 'PENDENTE', 'Não tenho pressa.'),
+(1, '2022-02-01', 'PENDENTE', 'Para hoje!'),
+(2, '2022-04-02', 'PENDENTE', 'Não tenho pressa.'),
 (3, '2023-02-03', 'CONCLUIDO', null),
 (4, '2023-02-04', 'CANCELADO', null),
-(5, '2023-02-05', 'PENDENTE', null),
-(1, '2023-02-06', 'CONCLUIDO', 'Compre da marca X.');
+(5, '2023-06-05', 'PENDENTE', null),
+(1, '2023-07-06', 'CONCLUIDO', 'Compre da marca X.');
 
 INSERT INTO pedido_compra_ingrediente (cod_pedido_compra, cod_ingrediente, quantidade_ingrediente) VALUES
 (1, 1, 3),

@@ -24,13 +24,13 @@
             <AnchorPane prefHeight="108.0" prefWidth="300.0">
                <children>
                   <Label fx:id="fabricao" layoutX="25.0" layoutY="26.0" prefHeight="21.0" prefWidth="95.0" styleClass="fabricao" text="10/10/1000" AnchorPane.leftAnchor="35.0" />
-                  <Label fx:id="validade" layoutX="195.0" layoutY="26.0" prefHeight="21.0" prefWidth="87.0" styleClass="validade" text="10/10/1000" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="18.0" />
+                  <Label fx:id="validade" layoutX="206.0" layoutY="26.0" prefHeight="21.0" prefWidth="87.0" styleClass="validade" text="10/10/1000" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="12.0" />
                   <Label fx:id="preco" layoutX="25.0" layoutY="77.0" prefHeight="21.0" prefWidth="95.0" styleClass="preco" text="R$ 75.00" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="77.0" />
-                  <Label fx:id="peso" layoutX="185.0" layoutY="77.0" prefHeight="21.0" prefWidth="87.0" styleClass="peso" text="100g" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="77.0" />
+                  <Label fx:id="peso" layoutX="185.0" layoutY="77.0" prefHeight="21.0" prefWidth="87.0" styleClass="peso" text="100g" AnchorPane.leftAnchor="206.0" AnchorPane.topAnchor="77.0" />
                   <Label layoutX="25.0" layoutY="6.0" prefHeight="18.0" styleClass="label-bolo" text="Fabricação" AnchorPane.leftAnchor="35.0" />
-                  <Label layoutX="195.0" layoutY="6.0" prefHeight="21.0" prefWidth="71.0" styleClass="label-bolo" text="Validade" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="34.0" />
+                  <Label layoutX="207.0" layoutY="6.0" prefHeight="21.0" prefWidth="71.0" styleClass="label-bolo" text="Validade" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="27.0" />
                   <Label layoutX="25.0" layoutY="56.0" prefHeight="18.0" styleClass="label-bolo" text="Preço" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="56.0" />
-                  <Label layoutX="186.0" layoutY="56.0" prefHeight="21.0" prefWidth="48.0" styleClass="label-bolo" text="Peso" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="57.0" AnchorPane.topAnchor="56.0" />
+                  <Label layoutX="186.0" layoutY="56.0" prefHeight="21.0" prefWidth="48.0" styleClass="label-bolo" text="Peso" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="57.0" AnchorPane.topAnchor="56.0" />
                </children>
             </AnchorPane>
             <Button mnemonicParsing="false" onAction="#pedir" prefHeight="40.0" prefWidth="200.0" styleClass="bolo-botao" text="PEDIR">

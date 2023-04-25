@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -26,7 +27,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="1100.0" styleClass="container" BorderPane.alignment="CENTER">
          <children>
-            <BarChart fx:id="barChart" layoutX="257.0" layoutY="165.0" stylesheets="@styles-bar-chart.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0">
+            <BarChart fx:id="barChart" layoutX="257.0" layoutY="208.0" prefHeight="532.0" prefWidth="1000.0" stylesheets="@styles-bar-chart.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="208.0">
               <xAxis>
                 <CategoryAxis fx:id="meses" side="BOTTOM" />
               </xAxis>
@@ -44,6 +45,8 @@
                </children>
             </AnchorPane>
             <HBox fx:id="areaDeAlerta" prefHeight="150.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-10.0" />
+            <ComboBox fx:id="ano" layoutX="152.0" layoutY="141.0" prefHeight="50.0" prefWidth="230.0" promptText="Selecione o ano" />
+            <Label layoutX="100.0" layoutY="155.0" styleClass="label-ano" text="Ano" />
          </children>
       </AnchorPane>
    </center>

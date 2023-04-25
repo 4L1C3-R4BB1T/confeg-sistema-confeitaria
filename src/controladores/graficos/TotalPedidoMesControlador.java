@@ -1,6 +1,5 @@
 package controladores.graficos;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -12,12 +11,16 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modelos.entidadeDAO.PedidoDAO;
 
 public class TotalPedidoMesControlador {
+
+    @FXML
+    private ComboBox<Integer> ano;
 
     @FXML
     private BarChart<String, Integer> barChart;
@@ -35,7 +38,12 @@ public class TotalPedidoMesControlador {
 
     private PedidoDAO pedidoDAO = new PedidoDAO(App.conexao);
 
-    private ObservableList<String> observableListMeses = FXCollections.observableArrayList();
+    private String[] arrayMeses = {
+        "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+    };
+
+    private ObservableList<String> observableListMeses = FXCollections.observableArrayList(Arrays.asList(arrayMeses));
+    private ObservableList<Integer> observableListAnos = FXCollections.observableArrayList();
 
     @FXML
     public void fechar(MouseEvent event) {
@@ -44,33 +52,42 @@ public class TotalPedidoMesControlador {
 
     @FXML
     public void initialize() {
-        carregar();
+        carregarComboBox();
+        meses.setCategories(observableListMeses);      
+        pedidos.setTickUnit(1); 
+        pedidos.setAutoRanging(false);    
+        pedidos.setUpperBound(5);  
     }
 
-    public void carregar() {
+    public void carregarComboBox() {
+        observableListAnos = FXCollections.observableArrayList(pedidoDAO.obterAnosQuePossuemConfirmacoes());
+        ano.setItems(observableListAnos);
+        ano.getSelectionModel().selectedItemProperty().addListener(
+            (observable, oldValue, newValue) -> carregarGrafico(newValue));
+    }
+
+    public void carregarGrafico(int ano) {
         barChart.getData().clear();
         
-        String[] arrayMeses = {
-            "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", 
-            "Jul", "Ago", "Set", "Out", "Nov", "Dez"
-        };
+        Map<Integer, Integer> dados = pedidoDAO.obterQuantidadeDePedidosPorMesAno(ano);
         
-        observableListMeses.addAll(Arrays.asList(arrayMeses));
-        meses.setCategories(observableListMeses);
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        series.setName(String.valueOf(ano));
         
-        Map<Integer, ArrayList<Integer>> dados = pedidoDAO.obterQuantidadeDePedidosPorMesAno();
-        
-        for (Map.Entry<Integer, ArrayList<Integer>> item : dados.entrySet()) {
-            XYChart.Series<String, Integer> series = new XYChart.Series<>();
-            series.setName(item.getKey().toString());
-            for (int i = 0; i < item.getValue().size(); i = i + 2) {
-                String mes = arrayMeses[((int) item.getValue().get(i)) - 1];
-                Integer quantidade = (Integer) item.getValue().get(i + 1);
-                series.getData().add(new XYChart.Data<>(mes, quantidade));
-            }
-            barChart.getData().add(series);
+        int maxValue = 0;
+
+        for(Map.Entry<Integer, Integer> item : dados.entrySet()){
+            String mes = arrayMeses[((int) item.getKey()) - 1];
+            Integer pedidos = item.getValue();
+            series.getData().add(new XYChart.Data<>(mes, pedidos));
+
+            if (pedidos > maxValue) maxValue = pedidos;
         }
-       
+        
+        barChart.getData().add(series);
+
+        // personalizar intervalo do eixo y
+        pedidos.setUpperBound(maxValue + 2);
     }
 
     public void encerrar() {
