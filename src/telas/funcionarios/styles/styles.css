@@ -1,8 +1,8 @@
 * {
     -fx-font-family: "Montreal";
 }
-/* CABEÇALHO */
 
+/* CABEÇALHO */
 .funcionarios .cabecalho {
     -fx-background-color: rgba(0, 0, 0, 0.79);
 }
@@ -15,8 +15,8 @@
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
 }
-/* TITULO */
 
+/* TITULO */
 .funcionarios .titulo {
     -fx-background-color: rgba(0,0,0,0.79);
     -fx-background-radius: 10px;
@@ -68,7 +68,6 @@
     -fx-border-width: 0;
 }
 
-
 .funcionarios .exibicao {
     -fx-background-color: #464040;
 }
@@ -78,7 +77,6 @@
     -fx-border: none;
     -fx-background-radius: 30px;
 }
-
 
 .funcionarios .exibicao AnchorPane {
     -fx-background-color: #464040;

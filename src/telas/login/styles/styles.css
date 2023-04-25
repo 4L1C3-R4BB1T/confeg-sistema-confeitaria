@@ -57,7 +57,6 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.400), 5, 0, 0, 2px);
     -fx-prompt-text-fill: #000000d5;
     -fx-font-size: 18px;
-
 }
 
 .area-direita .button {
@@ -92,4 +91,3 @@
 
 
 /* /////////////////////////// */
-

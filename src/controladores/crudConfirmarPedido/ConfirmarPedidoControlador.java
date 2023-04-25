@@ -103,7 +103,7 @@ public class ConfirmarPedidoControlador {
                 ConfirmacaoPedido confirmacaoPedido = new ConfirmacaoPedido(getCliente(), pedido, Date.valueOf(getDataConfirmacao()), null, getDescricao());
 
                 if (getPago() && getDataConfirmacao().equals(pedido.getDataPedido().toLocalDate())) {
-                    App.exibirAlert(areaDeAlerta, "SUCESSO", "DESCONTO", "Desconto de 2% aplicado.");
+                    App.exibirAlert(areaDeAlerta, "SUCESSO", "DESCONTO", "Desconto de 20% aplicado.");
                     pedido.setDesconto(20D);
                     pedido.setStatus(Status.CONCLUIDO);
                     this.desconto = true;

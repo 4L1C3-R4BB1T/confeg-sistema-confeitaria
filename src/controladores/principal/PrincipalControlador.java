@@ -700,7 +700,7 @@ public class PrincipalControlador {
             clicouBotaoConfirmarPedido = false;
 
             if (controlador.getSucesso() && controlador.getDesconto()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido confirmado e 2% desconto aplicado.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido confirmado e 20% desconto aplicado.");
             } else if (controlador.getSucesso()) {
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido confirmado.");
             } else if (controlador.getErro()) {

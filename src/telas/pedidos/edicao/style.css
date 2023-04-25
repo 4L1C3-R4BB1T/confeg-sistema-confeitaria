@@ -88,6 +88,7 @@
 	-fx-prompt-text-fill: #0000008b;
 	-fx-border-radius: 10px;
 }
+
 .scroll-pane {
 	-fx-background-color: none;
 }
@@ -128,7 +129,6 @@
 	-fx-border-color: #00000089;
 	-fx-background-color: #fff;
 }
-
 
 .table-view .table-column {
 	-fx-background-color: rgba(0, 0, 0, 0.79);
@@ -185,8 +185,6 @@
 	-fx-font-size: 16px;
 }
 
-
-
 .combo-box .list-view .list-cell:filled:selected {
     -fx-text-fill: #fff;
 	-fx-background-color: rgba(0, 0, 0, 0.79);
@@ -223,12 +221,10 @@
     -fx-background-color: rgb(0, 0, 0);
 }
 
-
 .data .text-field {
     -fx-border-width: 0;
     -fx-background-color: transparent !important;
 }
-
 
 .date-picker-popup > .content > .month-year-pane > .picker > .picker-content > .calendar > .calendar-grid {
     -fx-background-color: white;
@@ -238,7 +234,6 @@
 .date-picker-popup > .content > .month-year-pane > .picker > .picker-content > .calendar > .calendar-grid > .calendar-row > .arrow-button {
     -fx-background-color: #fff;
 }
-
 
 .date-picker-popup Button {
     -fx-background-color: #fff;
@@ -291,7 +286,6 @@
 .carregando > .bar {
 	-fx-background-color: rgba(47, 177, 47, 0.801);
 	-fx-background-radius: 10px;
-	
 }
 
 .carregando-porcentagem {

@@ -144,14 +144,11 @@
     -fx-background-color: transparent !important;
     -fx-background-radius: 0 10px 10px 0;
     -fx-border-radius: 0 10px 10px 0;
-    
 }
 
 .ano .arrow {
     -fx-font-size: 19px;
     -fx-background-color: #fff;
-    
-  
 }
 
 .ano .list-cell {
@@ -163,7 +160,6 @@
     -fx-text-fill: #ffffff;
 }
 
-
 .ano .list-view {
     -fx-background-color: rgba(0, 0, 0, 0.50);
 }
@@ -172,4 +168,3 @@
     -fx-text-fill: #fff;
     -fx-background-color: rgba(0, 0, 0, 0.79);
 }
-
