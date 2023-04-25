@@ -166,7 +166,7 @@ public class FuncionarioDAO {
     }
 
     public List<Funcionario> filtar(String valor) {
-        String comando = "SELECT * FROM funcionario WHERE LOWER(nome_funcionario) LIKE LOWER('%" + valor + "%')";
+        String comando = "SELECT * FROM funcionario WHERE unaccent(LOWER(nome_funcionario)) LIKE unaccent(LOWER('%"+ valor +"%'))";
         List<Funcionario> funcionarios = new ArrayList<>();
         try {
             Statement stm = conexao.createStatement();

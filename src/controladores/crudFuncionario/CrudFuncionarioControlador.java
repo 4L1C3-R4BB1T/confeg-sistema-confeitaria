@@ -5,6 +5,7 @@ import java.util.List;
 
 import aplicacao.App;
 import controladores.login.CadastroControlador;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -90,38 +91,40 @@ public class CrudFuncionarioControlador {
     }
 
     public void pesquisar() {
-        areaDeFuncionarios.getChildren().clear();
-        String valor = textFieldPesquisa.getText();
+       Platform.runLater(() -> {
+            areaDeFuncionarios.getChildren().clear();
+            String valor = textFieldPesquisa.getText();
 
-        if (valor.intern() == "") {
-           atualizarAreaDeFuncionarios();
-            return;
-        }
+            if (valor.intern() == "") {
+            atualizarAreaDeFuncionarios();
+                return;
+            }
 
-        List<Funcionario> funcionarios = funcionarioDAO.filtar(valor);
+            List<Funcionario> funcionarios = funcionarioDAO.filtar(valor);
 
-        if (funcionarios.size() == 0) {
-            areaDeFuncionarios.getChildren().add(App.obterTelaVaziaCrud());
-            return;
-        }
+            if (funcionarios.size() == 0) {
+                areaDeFuncionarios.getChildren().add(App.obterTelaVaziaCrud());
+                return;
+            }
 
-        funcionarios
-            .stream()
-                .forEach( funcionario -> {
-                    try {
-                        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/funcionarios/subtela/subtela.fxml"));
-                        Parent raiz = carregar.load();
-                        FuncionarioControlador controlador = carregar.getController();
-                        controlador.setCodigo(funcionario.getCodigo());
-                        controlador.setAreaDeAlerta(areaDeAlerta);
-                        controlador.carregarImagem();
-                        controlador.setNome("COD " + funcionario.getCodigo());
-                        controlador.setAtualizarAreaDeFuncionarios((this::atualizarAreaDeFuncionarios));
-                        areaDeFuncionarios.getChildren().add(raiz);
-                    } catch(Exception erro) {
-                        erro.printStackTrace();
-                    }
-            });
+            funcionarios
+                .stream()
+                    .forEach( funcionario -> {
+                        try {
+                            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/funcionarios/subtela/subtela.fxml"));
+                            Parent raiz = carregar.load();
+                            FuncionarioControlador controlador = carregar.getController();
+                            controlador.setCodigo(funcionario.getCodigo());
+                            controlador.setAreaDeAlerta(areaDeAlerta);
+                            controlador.carregarImagem();
+                            controlador.setNome("COD " + funcionario.getCodigo());
+                            controlador.setAtualizarAreaDeFuncionarios((this::atualizarAreaDeFuncionarios));
+                            areaDeFuncionarios.getChildren().add(raiz);
+                        } catch(Exception erro) {
+                            erro.printStackTrace();
+                        }
+                });
+        });
     }
 
 

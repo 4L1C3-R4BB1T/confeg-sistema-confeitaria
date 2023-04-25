@@ -7,6 +7,7 @@ import java.util.List;
 import aplicacao.App;
 import controladores.crudCliente.cadastro.ClienteCadastrarControlador;
 import controladores.crudCliente.cadastro.ClienteControlador;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -94,6 +95,7 @@ public class CrudClienteControlador {
 
 
     public void pesquisar() {
+      Platform.runLater(() ->{
         areaDeClientes.getChildren().clear();
         String valor = textFieldPesquisa.getText();
 
@@ -125,6 +127,9 @@ public class CrudClienteControlador {
                 }
         });
 
+
+
+      });
     }
 
     @FXML

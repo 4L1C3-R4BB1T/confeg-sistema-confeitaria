@@ -145,13 +145,13 @@ public class PrincipalControlador {
 
     @FXML
     public void pesquisar(MouseEvent event) {
-        carregarPesquisa();
+        Platform.runLater(() -> carregarPesquisa());
     } 
 
     @FXML
     public void pesquisarEnter(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            carregarPesquisa();
+            Platform.runLater(() -> carregarPesquisa());
         }
     }
 
@@ -796,7 +796,7 @@ public class PrincipalControlador {
 
     @FXML 
     public void monitorarPesquisa(KeyEvent event){
-        carregarPesquisa();
+        Platform.runLater(() -> carregarPesquisa());
     }
     
     public void carregarPesquisa() {
@@ -840,6 +840,7 @@ public class PrincipalControlador {
                 areaBolo.getChildren().add(bolo);
             }
         });
+    
     }
 
 

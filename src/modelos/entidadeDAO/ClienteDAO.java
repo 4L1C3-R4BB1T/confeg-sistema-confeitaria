@@ -85,7 +85,8 @@ public class ClienteDAO {
     }
 
     public List<Cliente> filtrar(String nome) {
-        String comando = "SELECT * FROM cliente WHERE LOWER(nome_cliente) LIKE LOWER('%" + nome + "%')";
+        String comando = "SELECT * FROM cliente WHERE unaccent(LOWER(nome_cliente)) LIKE unaccent(LOWER('%"+ nome +"%'))";
+
         List<Cliente> clientes = new ArrayList<Cliente>();
         try {
             Statement stm = conexao.createStatement();
