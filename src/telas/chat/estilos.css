@@ -1,0 +1,70 @@
+* {
+	-fx-font-family: "Arial";
+}
+
+
+.cabecalho {
+	-fx-background-color: rgba(0, 0, 0, 0.79);
+}
+
+.image-view {
+	-fx-cursor: hand;
+}
+
+.lateral {
+	-fx-background-color: #fff;
+}
+
+
+.scroll-pane {
+	-fx-background-color: none;
+}
+
+.area-conexao .label {
+	-fx-font-size: 18px;
+	-fx-text-fill: rgba(38, 23, 135, 0.8);
+	-fx-font-weight: bold;
+}
+
+.area-conexao .conexao{ 
+	-fx-font-size: 20px;
+}
+
+.conectado {
+	-fx-background-color: rgba(38, 23, 135, 0.1);
+	-fx-background-radius: 10px;
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.031),2px, 1, 0px, 6px);
+}
+
+.conectado .titulo {
+	-fx-font-size: 18px;
+	-fx-text-fill: rgba(38, 23, 135, 1);
+	-fx-font-weight: bold;
+}
+
+.conectado .nome {
+	-fx-font-size: 16px;
+	-fx-font-style: italic;
+	-fx-text-fill: #000000b7;
+}
+
+.area-escrita .botao {
+	-fx-background-color: rgba(38, 23, 135, 0.8);
+	-fx-cursor: hand;
+}
+
+.area-escrita .text-field {
+	-fx-font-size: 20px;
+	-fx-prompt-text-fill: #000000a9;
+	-fx-padding: 10px;
+}
+
+.area-comentario {
+	-fx-border-width: 0;
+	-fx-background-color: rgba(38, 23, 135, 0.2);
+	-fx-font-size: 18px;
+	-fx-text-fill: rgba(38, 23, 135, 1);	
+}
+.area-comentario .content {
+	-fx-background-color: rgba(38, 23, 135, 0.2);
+}

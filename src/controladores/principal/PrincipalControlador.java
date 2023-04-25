@@ -120,6 +120,9 @@ public class PrincipalControlador {
     @FXML 
     private TextField digitado;
 
+    @FXML 
+    public Button botaoChat;
+
     private Stage tela;
     
     private List<Stage> telas = new ArrayList<>();
@@ -333,7 +336,7 @@ public class PrincipalControlador {
     @FXML
     public void initialize() {
         atualizarAreaBolo();
-        botoes = new Button[] { administrador, principal, pedidos, bolos, clientes, relatorios, graficos };
+        botoes = new Button[] { administrador, principal, pedidos, bolos, clientes, relatorios, graficos, botaoChat };
         botoesPedido = new HBox[] { botaoListar, botaoPedir, botaoConfirmar };
     
     }
@@ -453,6 +456,10 @@ public class PrincipalControlador {
         }
     }
 
+    @FXML 
+    public void irParaChat(MouseEvent event) {
+        System.out.println("Ir para o chat");
+    }
    
     public void limparModalMenuAbertos() {
         menuPedidos.setVisible(false);
