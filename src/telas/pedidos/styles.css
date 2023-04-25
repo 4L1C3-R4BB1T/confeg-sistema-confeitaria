@@ -107,7 +107,7 @@
 
 .combo-box {
 	-fx-border-width: 1;
-	-fx-border-color: rgba(0, 0, 0, 0.704);
+	-fx-border-color: rgba(0, 0, 0, 0.538);
 	-fx-background-color: #fff;
 	-fx-border-radius: 10px;
 	-fx-background-radius: 10px;
@@ -132,3 +132,44 @@
 .combo-box .list-view .list-cell:hover {
 	-fx-text-fill: #000;
 }
+
+.ano { 
+    -fx-background-color: rgba(0, 0, 0, 0.70) !important;
+    -fx-border-width: 0;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.ano .arrow-button {
+    -fx-background-color: transparent !important;
+    -fx-background-radius: 0 10px 10px 0;
+    -fx-border-radius: 0 10px 10px 0;
+    
+}
+
+.ano .arrow {
+    -fx-font-size: 19px;
+    -fx-background-color: #fff;
+    
+  
+}
+
+.ano .list-cell {
+    -fx-alignment: center;
+    -fx-border-width: 0 !important;
+    -fx-background-color: transparent !important;
+    -fx-background-radius: 10px 0 0 10px;
+    -fx-border-radius: 10px 0 0 10px;
+    -fx-text-fill: #ffffff;
+}
+
+
+.ano .list-view {
+    -fx-background-color: rgba(0, 0, 0, 0.50);
+}
+
+.ano .list-view .list-cell:filled:hover {
+    -fx-text-fill: #fff;
+    -fx-background-color: rgba(0, 0, 0, 0.79);
+}
+
