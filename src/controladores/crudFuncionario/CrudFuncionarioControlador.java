@@ -10,12 +10,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.entidadeDAO.FuncionarioDAO;
+import modelos.entidades.Funcionario;
 
 public class CrudFuncionarioControlador {
 
@@ -24,6 +28,9 @@ public class CrudFuncionarioControlador {
 
     @FXML
     public FlowPane areaDeFuncionarios;
+
+    @FXML
+    public TextField textFieldPesquisa;
 
     private Stage tela;
 
@@ -64,6 +71,60 @@ public class CrudFuncionarioControlador {
             tela.setIconified(true);
         }
     }
+
+    @FXML
+    public void atualizarPesquisa(KeyEvent event) {
+        pesquisar();
+    }
+
+    @FXML 
+    public void apertouEnter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            pesquisar();
+        }
+    }
+
+    @FXML 
+    public void apertouPesquisar(MouseEvent event) {
+        pesquisar();
+    }
+
+    public void pesquisar() {
+        areaDeFuncionarios.getChildren().clear();
+        String valor = textFieldPesquisa.getText();
+
+        if (valor.intern() == "") {
+           atualizarAreaDeFuncionarios();
+            return;
+        }
+
+        List<Funcionario> funcionarios = funcionarioDAO.filtar(valor);
+
+        if (funcionarios.size() == 0) {
+            areaDeFuncionarios.getChildren().add(App.obterTelaVaziaCrud());
+            return;
+        }
+
+        funcionarios
+            .stream()
+                .forEach( funcionario -> {
+                    try {
+                        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/funcionarios/subtela/subtela.fxml"));
+                        Parent raiz = carregar.load();
+                        FuncionarioControlador controlador = carregar.getController();
+                        controlador.setCodigo(funcionario.getCodigo());
+                        controlador.setAreaDeAlerta(areaDeAlerta);
+                        controlador.carregarImagem();
+                        controlador.setNome("COD " + funcionario.getCodigo());
+                        controlador.setAtualizarAreaDeFuncionarios((this::atualizarAreaDeFuncionarios));
+                        areaDeFuncionarios.getChildren().add(raiz);
+                    } catch(Exception erro) {
+                        erro.printStackTrace();
+                    }
+            });
+    }
+
+
 
     @FXML
     public void initialize() {

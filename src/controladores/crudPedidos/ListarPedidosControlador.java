@@ -71,7 +71,7 @@ public class ListarPedidosControlador {
 
     public void carregarPedidos() {
         areaDePedidos.getItems().clear();
-        ConsultaPersonalizada.obterPedidoConsultas().forEach( pedidoConsulta -> {
+        new ConsultaPersonalizada(App.conexao).obterPedidoConsultas().forEach( pedidoConsulta -> {
             try {
                 FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/botoes.fxml"));
                 Node botoes = carregar.load();

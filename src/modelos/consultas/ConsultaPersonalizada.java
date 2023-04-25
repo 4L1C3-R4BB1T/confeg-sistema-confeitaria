@@ -10,7 +10,6 @@ import aplicacao.App;
 
 import java.util.Date;
 
-import conexoes.FabricarConexao;
 import modelos.consultas.entitidades.PedidoConfirmado;
 import modelos.consultas.entitidades.PedidoConsulta;
 import modelos.consultas.entitidades.PedidoIngrediente;
@@ -26,18 +25,14 @@ import modelos.entidades.Funcionario;
 
 public final class ConsultaPersonalizada {
 
-    private ConsultaPersonalizada() {}
+    private Connection conexao;
 
-    private static Connection conexao;
-
-    static {
-        String url = "jdbc:postgresql://localhost:5432/test";
-        String usuario = "postgres";
-        String senha = "admin";
-        conexao = new FabricarConexao(url, usuario, senha).getConexao();
+    public ConsultaPersonalizada(Connection conexao) {
+        this.conexao = conexao;
     }
+
     
-    public static List<PedidoConsulta> obterPedidoConsultas() {
+    public List<PedidoConsulta> obterPedidoConsultas() {
         List<PedidoConsulta> pedidoConsultas = new ArrayList<>();
         String comando = "SELECT p.cod_pedido as \"pedido\", " + 
             "c.cod_cliente as \"cliente\", " + 
@@ -69,7 +64,7 @@ public final class ConsultaPersonalizada {
         return pedidoConsultas;
     }
 
-    public static List<ReceitaMesConsulta> obterReceitaMesConsultas() {
+    public  List<ReceitaMesConsulta> obterReceitaMesConsultas() {
         List<ReceitaMesConsulta> receitaMesConsultas = new ArrayList<>();
         String comando = "SELECT EXTRACT(year FROM cp.data_confirmacao_pedido) AS \"ano\", " +
             "EXTRACT(month FROM cp.data_confirmacao_pedido) AS \"mes\", " +
@@ -98,7 +93,7 @@ public final class ConsultaPersonalizada {
         return receitaMesConsultas;
     }
 
-    public static List<PedidosClienteConsulta> obterQuantidadeDePedidosPorCliente() {
+    public List<PedidosClienteConsulta> obterQuantidadeDePedidosPorCliente() {
         List<PedidosClienteConsulta> pedidosCliente = new ArrayList<>();
         String comando = "SELECT c.nome_cliente AS \"nome\", " +
             "c.cpf_cliente AS \"cpf\", " +
@@ -126,7 +121,7 @@ public final class ConsultaPersonalizada {
         return pedidosCliente;
     }
 
-    public static List<PedidosSaborConsulta> obterQuantidadeDePedidosPorSabor() {
+    public List<PedidosSaborConsulta> obterQuantidadeDePedidosPorSabor() {
         List<PedidosSaborConsulta> pedidosSabor = new ArrayList<>();
         String comando = "SELECT s.cod_sabor AS \"codigo\", " +
             "s.descricao_sabor AS \"sabor\", " +
@@ -154,7 +149,7 @@ public final class ConsultaPersonalizada {
         return pedidosSabor;
     }
 
-    public static List<PedidoIngrediente> obterPedidosDeIngrediente() {
+    public List<PedidoIngrediente> obterPedidosDeIngrediente() {
         List<PedidoIngrediente> pedidos = new ArrayList<>();
         String comando = "SELECT pc.cod_pedido_compra as codigo, " +
             "f.cod_funcionario as funcionario, " +
@@ -181,7 +176,7 @@ public final class ConsultaPersonalizada {
         return pedidos;
     }
 
-    public static List<PedidoConfirmado> obterPedidosConfirmados() {
+    public List<PedidoConfirmado> obterPedidosConfirmados() {
         List<PedidoConfirmado> pedidos = new ArrayList<>();
         ConfirmacaoPedidoDAO confirmacaoPedidoDAO = new ConfirmacaoPedidoDAO(conexao);
         for (ConfirmacaoPedido cp: confirmacaoPedidoDAO.buscarTodos()) {
@@ -196,7 +191,7 @@ public final class ConsultaPersonalizada {
         return pedidos;
     }
 
-    public static TotalComprasFuncionario totalComprasFuncionarioMes(int ano, int mes, Funcionario funcionario) {
+    public TotalComprasFuncionario totalComprasFuncionarioMes(int ano, int mes, Funcionario funcionario) {
         String comando = "SELECT EXTRACT(YEAR FROM pc.data_pedido_compra) AS \"ano\", " +
             "EXTRACT(MONTH FROM pc.data_pedido_compra) AS \"mes\", " +
             "pc.cod_funcionario AS \"funcionario\", " +

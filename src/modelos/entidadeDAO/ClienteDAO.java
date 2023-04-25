@@ -3,6 +3,7 @@ package modelos.entidadeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +83,29 @@ public class ClienteDAO {
         }
         return null;
     }
+
+    public List<Cliente> filtrar(String nome) {
+        String comando = "SELECT * FROM cliente WHERE LOWER(nome_cliente) LIKE LOWER('%" + nome + "%')";
+        List<Cliente> clientes = new ArrayList<Cliente>();
+        try {
+            Statement stm = conexao.createStatement();
+            ResultSet rs = stm.executeQuery(comando);
+            EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
+            while (rs.next()) {
+                clientes.add(new Cliente(
+                        rs.getLong("cod_cliente"),
+                        rs.getString("nome_cliente"), 
+                        rs.getString("cpf_cliente"),
+                        rs.getString("telefone_cliente"),
+                        enderecoDAO.buscarPorCodigo(rs.getLong("cod_endereco"))
+                ));
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return clientes;
+    }
+
 
     public List<Cliente> buscarTodosComPedidosPendentes() {
         String comando = "SELECT DISTINCT c.* " +

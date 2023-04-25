@@ -142,7 +142,6 @@ public class PrincipalControlador {
     private boolean clicouBotaoConfirmarCompra = false;
     private boolean clicouBotaoRelatorio = false;
     private boolean clicouBotaoGrafico = false;
-    private volatile boolean threadMonitorarPesquisa = true;
 
     @FXML
     public void pesquisar(MouseEvent event) {
@@ -299,7 +298,20 @@ public class PrincipalControlador {
     public void irParaTelaPrincipal(ActionEvent event) {
         removerBotaoAtivo();
         adicionarAtivoNoBotao(principal);
+        areaBolo.getChildren().clear();
+        areaBolo.getChildren().add(App.obterTelaCarregamento());
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+                Platform.runLater(() -> atualizarAreaBolo());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }).start();
     }
+
+
 
     @FXML 
     public void irParaTelaClientes(ActionEvent event) {
@@ -323,21 +335,7 @@ public class PrincipalControlador {
         atualizarAreaBolo();
         botoes = new Button[] { administrador, principal, pedidos, bolos, clientes, relatorios, graficos };
         botoesPedido = new HBox[] { botaoListar, botaoPedir, botaoConfirmar };
-
-        new Thread(() -> {
-
-            while(threadMonitorarPesquisa) {
-
-                Platform.runLater(() -> carregarPesquisa());
-
-                try {
-                    Thread.sleep(400);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }).start();
+    
     }
     
     // Listar Modal
@@ -795,6 +793,11 @@ public class PrincipalControlador {
         }
     }
 
+
+    @FXML 
+    public void monitorarPesquisa(KeyEvent event){
+        carregarPesquisa();
+    }
     
     public void carregarPesquisa() {
         areaBolo.getChildren().clear();
@@ -841,7 +844,6 @@ public class PrincipalControlador {
 
 
     public void fecharTodasTelas() {
-        threadMonitorarPesquisa = false;
         telas.forEach( tela -> {
             if (tela != null) {
                 tela.hide();

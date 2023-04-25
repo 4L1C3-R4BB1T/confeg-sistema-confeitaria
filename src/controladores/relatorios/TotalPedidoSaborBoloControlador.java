@@ -65,7 +65,7 @@ public class TotalPedidoSaborBoloControlador {
 
     public void carregarTotalPedidoSaborBolo() {
         areaDePedidos.getItems().clear();
-        ConsultaPersonalizada 
+        new ConsultaPersonalizada(App.conexao)
             .obterQuantidadeDePedidosPorSabor()
             .forEach( totalPedidoSaborBolo -> areaDePedidos.getItems().add(totalPedidoSaborBolo));
     }

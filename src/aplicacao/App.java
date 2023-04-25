@@ -18,6 +18,11 @@ import javafx.util.Duration;
 import javafx.scene.*;
 import javafx.scene.layout.Pane;
 
+/**
+ *
+ * @author Gabriel, Lívia e Marcelo
+*/
+
 public class App extends Application {
 
     public static Connection conexao;
@@ -27,6 +32,18 @@ public class App extends Application {
         String usuario = "postgres";
         String senha = "admin";
         conexao = new FabricarConexao(url, usuario, senha).getConexao();
+    }
+
+    @Override 
+    public void stop() {
+        try {
+            if (App.conexao != null) {
+                App.conexao.close();
+                System.out.println("A aplicação foi finalizada e os recursos encerrados.");
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
     }
 
     @Override
@@ -122,6 +139,30 @@ public class App extends Application {
     public static Node obterTelaVazia() {
         try {
             FXMLLoader carregar = new FXMLLoader(App.class.getResource("/telas/principal/bolo/vazio.fxml"));
+            Node raiz = carregar.load();
+            return raiz;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Node obterTelaVaziaCrud() {
+        try {
+            FXMLLoader carregar = new FXMLLoader(App.class.getResource("/telas/vazio/vazio.fxml"));
+            Node raiz = carregar.load();
+            return raiz;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return null;
+    }
+
+
+
+    public static Node obterTelaCarregamento() {
+        try {
+            FXMLLoader carregar = new FXMLLoader(App.class.getResource("/telas/principal/carregar.fxml"));
             Node raiz = carregar.load();
             return raiz;
         } catch (Exception erro) {

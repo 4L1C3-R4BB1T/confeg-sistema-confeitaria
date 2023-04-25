@@ -228,7 +228,7 @@ public class PedirIngredienteControlador {
         LocalDate localDate = LocalDate.now();
         int mes = localDate.getMonth().getValue();
         int ano = localDate.getYear();
-        TotalComprasFuncionario tcf = ConsultaPersonalizada.totalComprasFuncionarioMes(ano, mes, getFuncionario());
+        TotalComprasFuncionario tcf = new ConsultaPersonalizada(App.conexao).totalComprasFuncionarioMes(ano, mes, getFuncionario());
         double totalCarrinho = carrinho.stream().map( x -> x.getIngrediente().getPreco() * x.getQuantidade()).reduce(0D, (x, y) -> x + y);
         return ((tcf == null ? 0 : tcf.getTotal()) + totalCarrinho) <= LIMITE_MES;
     }

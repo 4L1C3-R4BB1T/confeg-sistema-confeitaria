@@ -1,5 +1,6 @@
 package controladores.crudPedidoConfirmado;
 
+import aplicacao.App;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -62,7 +63,7 @@ public class CrudPedidoConfirmadoControlador {
 
     public void carregarPedidosConfirmados() {
         areaConfirmados.getItems().clear();
-        ConsultaPersonalizada
+        new ConsultaPersonalizada(App.conexao)
             .obterPedidosConfirmados()
             .forEach( pedidoConfirmado -> {
                 

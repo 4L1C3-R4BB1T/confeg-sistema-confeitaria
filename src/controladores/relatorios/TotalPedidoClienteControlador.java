@@ -68,7 +68,7 @@ public class TotalPedidoClienteControlador {
 
     public void carregarTotalPedidoCliente() {
         areaDePedidos.getItems().clear();
-        ConsultaPersonalizada
+        new ConsultaPersonalizada(App.conexao)
             .obterQuantidadeDePedidosPorCliente()
             .forEach( totalPedidoCliente -> areaDePedidos.getItems().add(totalPedidoCliente));
     }

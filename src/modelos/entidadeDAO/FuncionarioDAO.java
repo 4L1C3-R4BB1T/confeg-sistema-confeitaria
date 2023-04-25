@@ -3,6 +3,7 @@ package modelos.entidadeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -161,6 +162,34 @@ public class FuncionarioDAO {
         } catch (Exception erro) {
             erro.printStackTrace();
         }
+        return funcionarios;
+    }
+
+    public List<Funcionario> filtar(String valor) {
+        String comando = "SELECT * FROM funcionario WHERE LOWER(nome_funcionario) LIKE LOWER('%" + valor + "%')";
+        List<Funcionario> funcionarios = new ArrayList<>();
+        try {
+            Statement stm = conexao.createStatement();
+            ResultSet rs = stm.executeQuery(comando);
+            TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(conexao);
+            EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
+            while(rs.next()) {
+                funcionarios.add(new Funcionario(
+                    rs.getLong("cod_funcionario"),
+                    rs.getString("nome_funcionario"), 
+                    rs.getString("cpf_funcionario"),
+                    tipoDAO.buscarPorCodigo(rs.getLong("cod_tipo_funcionario")),
+                    enderecoDAO.buscarPorCodigo(rs.getLong("cod_endereco")),
+                    rs.getString("email"),
+                    rs.getString("senha")
+                )
+            );
+            }
+
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+
         return funcionarios;
     }
 

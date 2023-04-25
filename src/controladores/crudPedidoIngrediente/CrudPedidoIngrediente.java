@@ -1,5 +1,6 @@
 package controladores.crudPedidoIngrediente;
 
+import aplicacao.App;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -55,7 +56,7 @@ public class CrudPedidoIngrediente {
 
     public void carregarPedidoIngredientes() {
         areaDePedidos.getItems().clear();
-        ConsultaPersonalizada
+        new ConsultaPersonalizada(App.conexao)
             .obterPedidosDeIngrediente()
             .forEach( pedido -> {
                    try {

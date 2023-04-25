@@ -87,7 +87,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="879.0" layoutY="57.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa" AnchorPane.rightAnchor="21.0">
                            <children>
-                              <TextField fx:id="digitado" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" promptText="Pesquisar..." />
+                              <TextField fx:id="digitado" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#monitorarPesquisa" prefWidth="250.0" promptText="Pesquisar..." />
                               <ImageView fitHeight="28.0" fitWidth="28.0" onMouseClicked="#pesquisar" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../_assets/img/lupa.png" />

@@ -64,7 +64,7 @@ public class ReceitaMesControlador {
 
     public void carregarReceitaPorMes() {
         areaDePedidos.getItems().clear();
-        ConsultaPersonalizada
+        new ConsultaPersonalizada(App.conexao)
             .obterReceitaMesConsultas()
             .forEach( receitaMes -> areaDePedidos.getItems().add(receitaMes));
     }

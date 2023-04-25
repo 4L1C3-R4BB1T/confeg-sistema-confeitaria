@@ -143,3 +143,7 @@
     -fx-alignment: center;
 }
 
+.nao-encontrado {
+    -fx-text-fill: #ffffffa9;
+    -fx-font-size: 25px;
+}

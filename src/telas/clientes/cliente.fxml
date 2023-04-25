@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" styleClass="funcionarios" stylesheets="@../funcionarios/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudCliente.CrudClienteControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#apertouEnter" prefHeight="900.0" prefWidth="1200.0" styleClass="funcionarios" stylesheets="@../funcionarios/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.crudCliente.CrudClienteControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
@@ -34,8 +34,8 @@
          <children>
             <HBox alignment="CENTER_LEFT" layoutX="860.0" layoutY="171.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa" AnchorPane.rightAnchor="40.0">
                <children>
-                  <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" promptText="Pesquisar..." />
-                  <ImageView fitHeight="28.0" fitWidth="28.0" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="textFieldPesquisa" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#atualizarPesquisa" prefWidth="250.0" promptText="Pesquisar..." />
+                  <ImageView fitHeight="28.0" fitWidth="28.0" onMouseClicked="#apertouPesquisar" HBox.hgrow="ALWAYS">
                      <image>
                         <Image url="@../_assets/img/lupa.png" />
                      </image>
