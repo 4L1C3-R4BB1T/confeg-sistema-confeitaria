@@ -24,5 +24,4 @@
 .axis {
     -fx-tick-label-font-family: 'Tahoma';
     -fx-tick-label-font-size: 15;
-    -fx-tick-label-fill: rba(0,0,0,0.9);
 }
