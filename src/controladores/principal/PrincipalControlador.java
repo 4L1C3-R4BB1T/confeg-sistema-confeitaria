@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import aplicacao.App;
+import controladores.chat.ChatControlador;
 import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
 import controladores.crudConfirmarPedido.ConfirmarPedidoControlador;
@@ -145,6 +146,7 @@ public class PrincipalControlador {
     private boolean clicouBotaoConfirmarCompra = false;
     private boolean clicouBotaoRelatorio = false;
     private boolean clicouBotaoGrafico = false;
+    private boolean clicouBotaoChat = false;
 
     @FXML
     public void pesquisar(MouseEvent event) {
@@ -457,8 +459,31 @@ public class PrincipalControlador {
     }
 
     @FXML 
-    public void irParaChat(MouseEvent event) {
-        System.out.println("Ir para o chat");
+    public void irParaChat(ActionEvent event) {
+        if (!clicouBotaoChat) {
+            carregarChat();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+        }
+    }
+
+    public void carregarChat() {
+        try {
+            clicouBotaoChat = true;
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/chat/tela.fxml"));
+            Parent elemento = carregar.load();
+            ChatControlador controlador = carregar.getController();
+            Scene scene = new Scene(elemento);
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+            stage.setScene(scene);
+            controlador.setTela(stage);
+            controlador.setConectado(conectado);
+            App.adicionarMovimento(stage, scene);
+            stage.showAndWait();
+            clicouBotaoChat = false;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
     }
    
     public void limparModalMenuAbertos() {

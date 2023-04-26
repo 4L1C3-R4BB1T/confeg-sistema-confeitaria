@@ -68,3 +68,15 @@
 .area-comentario .content {
 	-fx-background-color: rgba(38, 23, 135, 0.2);
 }
+
+.comentario {
+	-fx-background-color: #fff;
+	-fx-background-radius: 10px;
+	-fx-padding: 10px;
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 2);
+}
+
+.comentario .nome {
+	-fx-text-fill: rgba(38, 23, 135, 0.672);
+	-fx-font-style: italic;
+}

@@ -1,6 +1,10 @@
 package modelos.entidades;
 
-public class PedidoCompraIngrediente {
+import java.io.Serializable;
+
+public class PedidoCompraIngrediente implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long codigo;
     private PedidoCompra pedidoCompra;

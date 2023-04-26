@@ -1,11 +1,14 @@
 package modelos.entidades;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import modelos.entidades.enums.Status;
 
-public class PedidoCompra {
+public class PedidoCompra implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long codigo;
     private Funcionario funcionario;
