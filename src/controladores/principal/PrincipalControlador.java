@@ -480,6 +480,9 @@ public class PrincipalControlador {
             controlador.setConectado(conectado);
             App.adicionarMovimento(stage, scene);
             stage.showAndWait();
+            if(controlador.getFracasso()) {
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "CHAT OFFLINE", "O chat fechou para economizar memória.");
+            }
             clicouBotaoChat = false;
         } catch (Exception erro) {
             erro.printStackTrace();

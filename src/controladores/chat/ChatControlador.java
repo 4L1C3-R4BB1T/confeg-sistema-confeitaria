@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import aplicacao.App;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +39,7 @@ public class ChatControlador {
     private Stage tela;
 
     private volatile boolean conexaoAberta = false;
+    private boolean fracasso = false;
 
     @FXML 
     public void apertouEnter(KeyEvent event) {
@@ -60,6 +62,78 @@ public class ChatControlador {
         if (tela != null) {
             tela.setIconified(true);
         }
+    }
+
+    @FXML 
+    public void initialize() {
+        iniciarConexao();
+    }
+
+    public void iniciarConexao() {
+        try {
+            soquete = new Socket("localhost", 3000);
+        } catch (Exception erro) {
+            areaComentario.getChildren().add(App.obterTelaErroChat());
+            new Thread(() -> {
+                try {
+                    Thread.sleep(2000);
+                    Platform.runLater(() -> {
+                        fracasso = true;
+                        encerrar();
+                    });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+    }
+
+    public void enviarObjeto(Object obj) {
+        if (soquete == null) {
+            return;
+        }
+        try {
+            ObjectOutputStream saida = new ObjectOutputStream(soquete.getOutputStream());
+            saida.writeObject(obj);
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
+
+
+    public void encerrar() {
+        if (tela != null) {
+            conexaoAberta = false;
+            try {
+                if (soquete != null) {
+                    soquete.close();
+                }
+            } catch (IOException e) {
+               //
+            }
+            tela.close();
+        }
+    }
+ 
+
+    public String getComentario() {
+        return textFieldComentario.getText();
+    }
+
+    public void setComentario(String comentario) {
+        textFieldComentario.setText(comentario);
+    }
+
+    public Funcionario getConectado() {
+        return conectado;
+    }
+
+    public void setConectado(Funcionario conectado) {
+        this.conectado = conectado;
+        enviarObjeto(conectado);
+        conexaoAberta = true;
+        new Thread(this::obterDados).start();
+
     }
 
     public void adicionarComentarioNaTela(Funcionario funcionario, String comentario) {
@@ -88,62 +162,6 @@ public class ChatControlador {
         }
     }
 
-    @FXML 
-    public void initialize() {
-        iniciarConexao();
-    }
-
-    public void iniciarConexao() {
-        try {
-            soquete = new Socket("25.5.140.3", 3000);
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
-    }
-
-    public void enviarObjeto(Object obj) {
-        try {
-            ObjectOutputStream saida = new ObjectOutputStream(soquete.getOutputStream());
-            saida.writeObject(obj);
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
-    }
-
-
-    public void encerrar() {
-        if (tela != null) {
-            conexaoAberta = false;
-            try {
-                this.soquete.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            tela.close();
-        }
-    }
- 
-
-    public String getComentario() {
-        return textFieldComentario.getText();
-    }
-
-    public void setComentario(String comentario) {
-        textFieldComentario.setText(comentario);
-    }
-
-    public Funcionario getConectado() {
-        return conectado;
-    }
-
-    public void setConectado(Funcionario conectado) {
-        this.conectado = conectado;
-        enviarObjeto(conectado);
-        conexaoAberta = true;
-        new Thread(this::obterDados).start();
-
-    }
-
     public void obterDados() {
         try {
             while (conexaoAberta) {
@@ -165,8 +183,12 @@ public class ChatControlador {
                 }
             }
         } catch (Exception erro) {
-            erro.printStackTrace();
+            //
         }
+    }
+
+    public boolean getFracasso() {
+        return fracasso;
     }
 
     public void setTela(Stage tela) {

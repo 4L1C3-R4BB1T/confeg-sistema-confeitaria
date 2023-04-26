@@ -171,6 +171,18 @@ public class App extends Application {
         return null;
     }
 
+    
+    public static Node obterTelaErroChat() {
+        try {
+            FXMLLoader carregar = new FXMLLoader(App.class.getResource("/telas/chat/erro.fxml"));
+            Node raiz = carregar.load();
+            return raiz;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

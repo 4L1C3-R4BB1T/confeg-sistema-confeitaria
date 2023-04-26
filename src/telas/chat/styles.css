@@ -80,3 +80,8 @@
 	-fx-text-fill: rgba(38, 23, 135, 0.672);
 	-fx-font-style: italic;
 }
+
+.erro .label {
+	-fx-font-size: 25px;
+	-fx-text-fill: #000000af;
+}

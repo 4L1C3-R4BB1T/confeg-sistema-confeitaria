@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
@@ -53,7 +52,6 @@ public class ChatServidor {
 
                     if (objeto instanceof String) {
                         String mensagem = (String) objeto;
-                        System.out.println(mensagem);
                         enviarMensagem(mensagem);
                     }
 
@@ -63,8 +61,9 @@ public class ChatServidor {
 
 
             } catch (Exception e) {
-                e.printStackTrace();
-               
+                Funcionario funcionario = conectados.get(soquete.getInetAddress()).getFuncionario();
+                conectados.remove(soquete.getInetAddress());
+                System.out.println("O usuario: " + funcionario.getNome() + " Saiu do chat");
                 try {
                     soquete.close();
                 } catch (IOException e1) {
