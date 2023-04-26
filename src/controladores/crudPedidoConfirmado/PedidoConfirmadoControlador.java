@@ -76,7 +76,7 @@ public class PedidoConfirmadoControlador {
             controlador.setPedido(confirmacaoPedido);
             palco.showAndWait();
             if (controlador.getSucesso()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Edição realizada com sucesso.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Saiu da edição.");
             } else if (controlador.getFracasso()) {
                 App.exibirAlert(areaDeAlerta, "ERRO", "EDIÇÃO", "Não foi possível realizar a edição.");
             }
