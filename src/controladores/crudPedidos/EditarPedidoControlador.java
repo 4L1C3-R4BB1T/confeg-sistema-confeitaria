@@ -75,6 +75,8 @@ public class EditarPedidoControlador {
     @FXML
     private HBox areaDeAlerta;
 
+    private LocalDate dataLimite;
+
     ClienteDAO clienteDAO = new ClienteDAO(App.conexao);
     FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
     BoloDAO boloDAO = new BoloDAO(App.conexao);
@@ -215,8 +217,8 @@ public class EditarPedidoControlador {
         } else if (getDataPedido() == null) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Selecione a data do pedido");
             return false;
-        } else if (getDataPedido().isBefore(LocalDate.now())) {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "A data do pedido não pode ser anterior a data atual");
+        } else if (getDataPedido().isBefore(dataLimite)) {
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "DATA", "Data abaixo da data do pedido");
             return false;
         } else {
             return true;
@@ -287,6 +289,7 @@ public class EditarPedidoControlador {
 
     public void setData(Date data) {
         dataPedido.setValue(data.toLocalDate());
+        dataLimite = data.toLocalDate();
     }
 
     public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
