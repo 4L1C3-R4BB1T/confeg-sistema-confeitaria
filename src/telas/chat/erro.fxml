@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="727.0" prefWidth="700.0" spacing="5.0" styleClass="erro" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="vBoxConectando" alignment="CENTER" prefHeight="758.0" prefWidth="700.0" spacing="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" text="SERVIDOR FORA DO AR" />
+      <ImageView fitHeight="200.0" fitWidth="200.0">
+         <image>
+            <Image url="@../_assets/img/pedido_mes_carregar.gif" />
+         </image>
+      </ImageView>
+      <Label styleClass="label-conectando" text="CONECTANDO" />
    </children>
 </VBox>

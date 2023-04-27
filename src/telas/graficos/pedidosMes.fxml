@@ -27,7 +27,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="1100.0" styleClass="container" BorderPane.alignment="CENTER">
          <children>
-            <BarChart fx:id="barChart" layoutX="257.0" layoutY="208.0" prefHeight="532.0" prefWidth="1000.0" stylesheets="@styles-bar-chart.css" visible="false" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="208.0">
+            <BarChart fx:id="barChart" layoutX="257.0" layoutY="208.0" prefHeight="532.0" prefWidth="1000.0" stylesheets="@styles-bar-chart.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="208.0">
               <xAxis>
                 <CategoryAxis fx:id="meses" side="BOTTOM" />
               </xAxis>

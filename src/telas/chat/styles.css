@@ -85,3 +85,8 @@
 	-fx-font-size: 25px;
 	-fx-text-fill: #000000af;
 }
+
+.label-conectando {
+	-fx-text-fill: rgba(38, 23, 135, 1);	
+	-fx-font-size: 18px;
+}

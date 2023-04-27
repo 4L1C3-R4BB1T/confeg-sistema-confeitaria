@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -36,13 +37,17 @@ public class ChatControlador {
     @FXML 
     private Label quantidadeConexao;
 
-    private Socket soquete;
+    @FXML 
+    private ScrollPane scrollPaneComentario;
+
+    private volatile Socket soquete;
 
     private Funcionario conectado;
 
     private Stage tela;
 
     private volatile boolean conexaoAberta = false;
+    private volatile boolean conectou = false;
 
     @FXML 
     public void apertouEnter(KeyEvent event) {
@@ -74,28 +79,55 @@ public class ChatControlador {
         }
     }
 
-    @FXML 
-    public void initialize() {
-        iniciarConexao();
+    public void aguardando() {
+        conexaoAberta = false;
+        areaComentario.getChildren().clear();
+        areaComentario.getChildren().add(App.obterTelaErroChat());
+        areaConectados.getChildren().clear();
+        new Thread(() -> {
+            while(!conectou) {
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    //
+                }
+            }
+            Platform.runLater(() -> areaComentario.getChildren().clear());
+        }).start();
+    }
+
+    public void tentandoConectar() {
+        new Thread(() -> {
+            while (!conectou) {
+                try {
+                    Thread.yield();
+                    iniciarConexao();
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    //
+                }
+            }
+            enviarObjeto(conectado);
+            conexaoAberta = true;
+            new Thread(this::obterDados).start();
+       }).start();
     }
 
     public void iniciarConexao() {
         try {
             soquete = new Socket("localhost", 3000);
-        } catch (Exception erro) {
-            areaComentario.getChildren().add(App.obterTelaErroChat());
-        }
+            conectou = true;
+        } catch (Exception erro) {}
     }
 
     public void enviarObjeto(Object obj) {
-        if (soquete == null) {
-            return;
-        }
         try {
             ObjectOutputStream saida = new ObjectOutputStream(soquete.getOutputStream());
             saida.writeObject(obj);
         } catch (Exception erro) {
-            erro.printStackTrace();
+            conectou = false;
+            aguardando();
+            tentandoConectar();
         }
     }
 
@@ -129,10 +161,8 @@ public class ChatControlador {
 
     public void setConectado(Funcionario conectado) {
         this.conectado = conectado;
-        enviarObjeto(conectado);
-        conexaoAberta = true;
-        new Thread(this::obterDados).start();
-
+        aguardando();
+        tentandoConectar();
     }
 
     public void adicionarComentarioNaTela(Funcionario funcionario, String comentario) {

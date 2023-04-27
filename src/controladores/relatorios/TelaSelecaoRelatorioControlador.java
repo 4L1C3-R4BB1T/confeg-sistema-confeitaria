@@ -82,7 +82,7 @@ public class TelaSelecaoRelatorioControlador {
 
           while (!threadProgressoParar) {
                 Platform.runLater(() -> {
-                    double novoProgresso = progresso.getProgress() + 0.02;
+                    double novoProgresso = progresso.getProgress() + 0.05;
                     double progressoNormal = Math.round(novoProgresso * 100);
                     if (progressoNormal > 100) {
                         threadProgressoParar = true;

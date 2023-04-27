@@ -58,7 +58,9 @@ public class ChatServidor {
                     List<Socket> soquetes = conectados.values().stream().map( info -> info.getSocket()).collect(Collectors.toList());
 
                     if (objeto instanceof String) {
-                        enviarMensagem(soquetes, (String) objeto);
+                        String msg = (String) objeto;
+                        System.out.println(msg);
+                        enviarMensagem(soquetes, msg);
                     }
 
                     enviarConectados(soquetes);
