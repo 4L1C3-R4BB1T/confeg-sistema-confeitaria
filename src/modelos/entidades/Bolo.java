@@ -1,8 +1,11 @@
 package modelos.entidades;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Bolo {
+public class Bolo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long codigo;
     private Sabor sabor;

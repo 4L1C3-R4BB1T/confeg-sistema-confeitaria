@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import aplicacao.App;
+import controladores.chat.ChatControlador;
 import controladores.crudBolo.CrudBoloControlador;
 import controladores.crudCliente.CrudClienteControlador;
 import controladores.crudConfirmarPedido.ConfirmarPedidoControlador;
@@ -145,6 +146,7 @@ public class PrincipalControlador {
     private boolean clicouBotaoConfirmarCompra = false;
     private boolean clicouBotaoRelatorio = false;
     private boolean clicouBotaoGrafico = false;
+    private boolean clicouBotaoChat = false;
 
     @FXML
     public void pesquisar(MouseEvent event) {
@@ -457,8 +459,26 @@ public class PrincipalControlador {
     }
 
     @FXML 
-    public void irParaChat(MouseEvent event) {
-        System.out.println("Ir para o chat");
+    public void irParaChat(ActionEvent event) {
+        removerBotaoAtivo();
+        if (!clicouBotaoChat) {
+            adicionarAtivoNoBotao(botaoChat);
+            carregarChat();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
+        }
+    }
+
+    public void carregarChat() {
+        Object[] elementos = App.carregarTela("/chat/tela.fxml");
+        Stage tela = (Stage) elementos[0];
+        ChatControlador controlador = (ChatControlador) elementos[1];
+        controlador.setTela(tela);
+        controlador.setConectado(conectado);
+        clicouBotaoChat = true;
+        tela.showAndWait();
+        clicouBotaoChat = false;
+        botaoChat.getStyleClass().remove("ativo");
     }
    
     public void limparModalMenuAbertos() {
@@ -498,308 +518,168 @@ public class PrincipalControlador {
         }
     }
 
-    public void atualizarAreaBolo() {
-        areaBolo.getChildren().clear();
-        List<Bolo> bolos = boloDAO.buscarTodos();
-
-        if (bolos.size() == 0) {
-            Node vazio = App.obterTelaVazia();
-            areaBolo.getChildren().add(vazio);
-            return;
-        }
-
-        bolos.stream()
-            .map( bolo -> {
-                try {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/principal/bolo/bolo.fxml"));
-                    Node node = carregar.load();
-                    BoloControlador controlador = carregar.getController();
-                    controlador.setImagem(getClass().getResource("/telas/principal/bolo/img/").toExternalForm() + bolo.getSabor().getCodigo() + ".png");
-                    controlador.setDescricao(bolo.getDescricao());
-                    controlador.setFabricao(sdf.format(bolo.getFabricacao()));
-                    controlador.setPeso(bolo.getPeso().toString() + " kg");
-                    controlador.setPreco("R$ " + String.format("%.2f", bolo.getPreco()));
-                    controlador.setValidade(sdf.format(bolo.getVencimento()));
-                    controlador.setBolo(bolo);
-                    controlador.setAreaDeAlerta(areaDeAlerta);
-                    return node;
-                } catch (Exception erro) {
-                    erro.printStackTrace();
-                    return null;
-                }
-            })
-            .forEach( bolo -> {
-                if (bolo != null) {
-                    areaBolo.getChildren().add(bolo);
-                }
-            });
-    }
-
     public void carregarTelaPerfil(Funcionario funcionario) {
-        try {
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/principal/perfil/perfil.fxml"));
-            Parent raiz = carregar.load();
-            PerfilControlador controlador = carregar.getController();
-            controlador.setConectado(funcionario);
-            Scene cena = new Scene(raiz);
-            Stage palco = new Stage();
-            controlador.setTela(palco);
-            telas.add(palco);
-            palco.setScene(cena);
-            clicouPerfil = true;
-            palco.initStyle(StageStyle.UNDECORATED);
-            App.adicionarMovimento(palco, cena);
-            palco.showAndWait();
-            telas.remove(palco);
-            clicouPerfil = false;
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
+        Object[] elementos = App.carregarTela("/principal/perfil/perfil.fxml");
+        Stage tela = (Stage) elementos[0];
+        PerfilControlador controlador = (PerfilControlador) elementos[1];
+        controlador.setTela(tela);
+        controlador.setConectado(funcionario);
+        telas.add(tela);
+        clicouPerfil = true;
+        tela.showAndWait();
+        clicouPerfil = false;
+        telas.remove(tela);
     }
 
     public void carregarTelaLogin() {
-        try {
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/login/login.fxml"));
-            Parent raiz = carregar.load();
-            LoginControlador controlador = carregar.getController();
-            Scene cena = new Scene(raiz);
-            Stage palco = new Stage(StageStyle.UNDECORATED);
-            controlador.setPalco(palco);
-            palco.setScene(cena);
-            fecharTodasTelas();
-            App.adicionarMovimento(palco, cena);
-            palco.show();
-        } catch (Exception erro) {
-            erro.printStackTrace();;
-        }
+        Object[] elementos = App.carregarTela("/login/login.fxml");
+        Stage tela = (Stage) elementos[0];
+        LoginControlador controlador = (LoginControlador) elementos[1];
+        controlador.setPalco(tela);
+        fecharTodasTelas();
+        tela.show();
     }
 
     public void carregarTelaCrudBolo() {
-        try {
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/bolos/bolo.fxml"));
-            Parent raiz = carregar.load();
-            CrudBoloControlador controlador = carregar.getController();
-            Scene cena = new Scene(raiz);
-            Stage palco = new Stage(StageStyle.UNDECORATED);
-            controlador.setTela(palco);
-            palco.setScene(cena);
-            telas.add(palco);
-            clicouBolo = true;
-            App.adicionarMovimento(palco, cena);
-            palco.showAndWait();
-            telas.remove(palco);
-            clicouBolo = false;
-            atualizarAreaBolo();
-            removerBotaoAtivo();
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
+        Object[] elementos = App.carregarTela("/bolos/bolo.fxml");
+        Stage tela = (Stage) elementos[0];
+        CrudBoloControlador controlador = (CrudBoloControlador) elementos[1];
+        controlador.setTela(tela);
+        telas.add(tela);
+        clicouBolo = true;
+        tela.showAndWait();
+        clicouBolo = false;
+        telas.remove(tela);
+        atualizarAreaBolo();
+        removerBotaoAtivo();
     }
 
     public void carregarTelaCrudCliente() {
-        try {
-            clicouCliente = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/clientes/cliente.fxml"));
-            Parent raiz = carregar.load();
-            CrudClienteControlador controlador = carregar.getController();
-            Scene cena = new Scene(raiz);
-            Stage palco = new Stage(StageStyle.UNDECORATED);
-            controlador.setTela(palco);
-            palco.setScene(cena);
-            telas.add(palco);
-            App.adicionarMovimento(palco, cena);
-            palco.showAndWait();
-            telas.remove(palco);
-            clicouCliente = false;
-            removerBotaoAtivo();
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
+        Object[] elementos = App.carregarTela("/clientes/cliente.fxml");
+        Stage tela = (Stage) elementos[0];
+        CrudClienteControlador controlador = (CrudClienteControlador) elementos[1];
+        controlador.setTela(tela);
+        telas.add(tela);
+        clicouCliente = true;
+        tela.showAndWait();
+        clicouCliente = false;
+        telas.remove(tela);
+        removerBotaoAtivo();
     }
 
     public void carregarTelaCrudFuncionario() {
-        try {
-            clicouFuncionario = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/funcionarios/funcionarios.fxml"));
-            Parent raiz = carregar.load();
-            CrudFuncionarioControlador controlador = carregar.getController();
-            Scene cena = new Scene(raiz);
-            Stage palco = new Stage(StageStyle.UNDECORATED);
-            controlador.setTela(palco);
-            palco.setScene(cena);
-            telas.add(palco);
-            App.adicionarMovimento(palco, cena);
-            palco.showAndWait();
-            telas.remove(palco);
-            clicouFuncionario = false;
-            removerBotaoAtivo();
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
+        Object[] elementos = App.carregarTela("/funcionarios/funcionarios.fxml");
+        Stage tela = (Stage) elementos[0];
+        CrudFuncionarioControlador controlador = (CrudFuncionarioControlador) elementos[1];
+        controlador.setTela(tela);
+        telas.add(tela);
+        clicouFuncionario = true;
+        tela.showAndWait();
+        clicouFuncionario = false;
+        removerBotaoAtivo();
     }
 
     public void carregarTelaListarPedidos() {
-        try {
-            clicouBotaoListarPedido = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/pedidos.fxml"));
-            Parent raiz = carregar.load();
-            ListarPedidosControlador controlador = carregar.getController();
-            Scene cena = new Scene(raiz);
-            Stage palco = new Stage(StageStyle.UNDECORATED);
-            controlador.setTela(palco);
-            palco.setScene(cena);
-            telas.add(palco);
-            App.adicionarMovimento(palco, cena);
-            palco.showAndWait();
-            telas.remove(palco);
-            clicouBotaoListarPedido = false;
-            pedidos.getStyleClass().remove("ativo");
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
+        Object[] elementos = App.carregarTela("/pedidos/pedidos.fxml");
+        Stage tela = (Stage) elementos[0];
+        ListarPedidosControlador controlador = (ListarPedidosControlador) elementos[1];
+        controlador.setTela(tela);
+        clicouBotaoListarPedido = true;
+        controlador.setTela(tela);
+        tela.showAndWait();
+        clicouBotaoListarPedido = false;
+        pedidos.getStyleClass().remove("ativo");
     }
 
     public void carregarTelaDePedido() {
-        try {
-            clicouBotaoPedirBolo = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/pedidos/cadastro/registrarPedido.fxml"));
-            Parent raiz = carregar.load();
-            RegistrarPedidoControlador controlador = carregar.getController();
-            Scene cena = new Scene(raiz);
-            Stage palco = new Stage(StageStyle.UNDECORATED);
-            palco.setScene(cena);
-            App.adicionarMovimento(palco, cena);
-            controlador.setTela(palco);
-            palco.showAndWait();
-            clicouBotaoPedirBolo = false;
-            if (controlador.getRegistrouPedido()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido registrado com sucesso");
-            } else if (controlador.getErro()) {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar pedido.");
-            }
-            pedidos.getStyleClass().remove("ativo");
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
+        Object[] elementos = App.carregarTela("/pedidos/cadastro/registrarPedido.fxml");
+        Stage tela = (Stage) elementos[0];
+        RegistrarPedidoControlador controlador = (RegistrarPedidoControlador) elementos[1];
+        controlador.setTela(tela);
+        clicouBotaoPedirBolo = true;
+        tela.showAndWait();
+        clicouBotaoPedirBolo = false;
+        if (controlador.getRegistrouPedido()) 
+            App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido registrado com sucesso");
+        else if (controlador.getErro()) 
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar pedido.");
+        
+        pedidos.getStyleClass().remove("ativo");
     }
 
     public void carregarTelaConfirmarPedido() {
-        try {
-            limparModalMenuAbertos();
-            clicouBotaoConfirmarPedido = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/confirmacao/cadastro/confirmarPedido.fxml"));
-            Parent raiz = carregar.load();
-            ConfirmarPedidoControlador controlador = carregar.getController();
-            Scene cena = new Scene(raiz);
-            Stage palco = new Stage(StageStyle.UNDECORATED);
-            palco.setScene(cena);
-            App.adicionarMovimento(palco, cena);
-            controlador.setTela(palco);
-            palco.showAndWait();
-            clicouBotaoConfirmarPedido = false;
+        Object[] elementos = App.carregarTela("/confirmacao/cadastro/confirmarPedido.fxml");
+        Stage tela = (Stage) elementos[0];
+        ConfirmarPedidoControlador controlador = (ConfirmarPedidoControlador) elementos[1];
+        controlador.setTela(tela);
+        clicouBotaoConfirmarPedido = true;
+        tela.showAndWait();
+        clicouBotaoConfirmarPedido = false;
 
-            if (controlador.getSucesso() && controlador.getDesconto()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido confirmado e 20% desconto aplicado.");
-            } else if (controlador.getSucesso()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido confirmado.");
-            } else if (controlador.getErro()) {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "ERRO", "Não foi possível confirmar o pedido.");
-            }
-            pedidos.getStyleClass().remove("ativo");
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
+        if (controlador.getSucesso() && controlador.getDesconto()) 
+            App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido confirmado e 20% desconto aplicado.");
+         else if (controlador.getSucesso()) 
+            App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido confirmado.");
+        else if (controlador.getErro()) 
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "ERRO", "Não foi possível confirmar o pedido.");
+        
+        pedidos.getStyleClass().remove("ativo");
     }
 
     public void carregarTelaListarPedidoIngredientes() {
-        try {
-            clicouBotaoListarIngrediente = true;    
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/ingredientes/pedidos.fxml"));
-            Parent conteudo = carregar.load();
-            CrudPedidoIngrediente controlador = carregar.getController();
-            Scene scene = new Scene(conteudo);
-            Stage palco = new Stage(StageStyle.UNDECORATED);
-            palco.setScene(scene);
-            controlador.setTela(palco);
-            App.adicionarMovimento(palco, scene);
-            palco.showAndWait();
-            clicouBotaoListarIngrediente = false;
-            pedidos.getStyleClass().remove("ativo");
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
+        Object[] elementos = App.carregarTela("/ingredientes/pedidos.fxml");
+        Stage tela = (Stage) elementos[0];
+        CrudPedidoIngrediente controlador = (CrudPedidoIngrediente) elementos[1];
+        controlador.setTela(tela);
+        clicouBotaoListarIngrediente = true;   
+        tela.showAndWait();
+        clicouBotaoListarIngrediente = false;
+        pedidos.getStyleClass().remove("ativo");
     }
 
     public void carregarTelaPedirIngredientes() {
-        try {
-            clicouBotaoPedirIngrediente = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/ingredientes/cadastro/registrarPedido.fxml"));
-            Parent conteudo = carregar.load();
-            PedirIngredienteControlador controlador = carregar.getController();
-            Scene scene = new Scene(conteudo);
-            Stage palco = new Stage(StageStyle.UNDECORATED);
-            palco.setScene(scene);
-            controlador.setTela(palco);
-            App.adicionarMovimento(palco, scene);
-            palco.showAndWait();
-            if (controlador.getSucesso()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido Ingrediente registrado com sucesso");
-            } else if (controlador.getFracasso()) {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar Pedido de Ingrediente.");
-            }
-            pedidos.getStyleClass().remove("ativo");
-            clicouBotaoPedirIngrediente = false;
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
+        Object[] elementos = App.carregarTela("/ingredientes/cadastro/registrarPedido.fxml");
+        Stage tela = (Stage) elementos[0];
+        PedirIngredienteControlador controlador = (PedirIngredienteControlador) elementos[1];
+        controlador.setTela(tela);
+        clicouBotaoPedirIngrediente = true;
+        tela.showAndWait();
+        clicouBotaoPedirIngrediente = false;
+        if (controlador.getSucesso()) 
+            App.exibirAlert(areaDeAlerta, "SUCESSO", "PEDIDO", "Pedido Ingrediente registrado com sucesso");
+        else if (controlador.getFracasso()) 
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "Não foi possível registrar Pedido de Ingrediente.");
+        
+        pedidos.getStyleClass().remove("ativo");
     }
 
 
     public void carregarTelaListarConfirmados() {
-        try {
-            clicouBotaoListarConfirmacao = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/confirmacao/confirmar.fxml"));
-            Parent conteudo = carregar.load();
-            CrudPedidoConfirmadoControlador controlador = carregar.getController();
-            Scene scene = new Scene(conteudo);
-            Stage palco = new Stage(StageStyle.UNDECORATED);
-            palco.setScene(scene);
-            controlador.setTela(palco);
-            App.adicionarMovimento(palco, scene);
-            palco.showAndWait();
-            clicouBotaoListarConfirmacao = false;
-            pedidos.getStyleClass().remove("ativo");
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
+        Object[] elementos = App.carregarTela("/confirmacao/confirmar.fxml");
+        Stage tela = (Stage) elementos[0];
+        CrudPedidoConfirmadoControlador controlador = (CrudPedidoConfirmadoControlador) elementos[1];
+        clicouBotaoListarConfirmacao = true;
+        controlador.setTela(tela);
+        tela.showAndWait();
+        clicouBotaoListarConfirmacao = false;
+        pedidos.getStyleClass().remove("ativo");
     }
 
     public void carregarTelaConfirmarCompra() {
-        try {
-            clicouBotaoConfirmarCompra = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/ingredientes/confirmar.fxml"));
-            Parent elemento = carregar.load();
-            ConfirmarPedidoIngredienteControlador controlador = carregar.getController();
-            Scene cena = new Scene(elemento);
-            Stage stage = new Stage(StageStyle.UNDECORATED);
-            stage.setScene(cena);
-            App.adicionarMovimento(stage, cena);
-            controlador.setTela(stage);
-            stage.showAndWait();
-            if (controlador.getSucesso()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "CONFIRMAÇÃO", "Confirmação efetuada.");
-            } else if (controlador.getFracasso()) {
-                App.exibirAlert(areaDeAlerta, "ERRO", "CONFIRMAÇÃO", "Não foi possível confirmar a compra.");
-            }
+        Object[] elementos = App.carregarTela("/ingredientes/confirmar.fxml");
+        Stage tela = (Stage) elementos[0];
+        ConfirmarPedidoIngredienteControlador controlador = (ConfirmarPedidoIngredienteControlador) elementos[1];
+        clicouBotaoConfirmarCompra = true;
+        controlador.setTela(tela);
+        tela.showAndWait();
+        clicouBotaoConfirmarCompra = false;
+        if (controlador.getSucesso()) 
+            App.exibirAlert(areaDeAlerta, "SUCESSO", "CONFIRMAÇÃO", "Confirmação efetuada.");
+        else if (controlador.getFracasso()) 
+            App.exibirAlert(areaDeAlerta, "ERRO", "CONFIRMAÇÃO", "Não foi possível confirmar a compra.");
 
-            clicouBotaoConfirmarCompra = false;
-            pedidos.getStyleClass().remove("ativo");
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
+        pedidos.getStyleClass().remove("ativo");
     }
-
 
     @FXML 
     public void monitorarPesquisa(KeyEvent event){
@@ -848,6 +728,44 @@ public class PrincipalControlador {
             }
         });
     
+    }
+
+    public void atualizarAreaBolo() {
+        areaBolo.getChildren().clear();
+        List<Bolo> bolos = boloDAO.buscarTodos();
+
+        if (bolos.size() == 0) {
+            Node vazio = App.obterTelaVazia();
+            areaBolo.getChildren().add(vazio);
+            return;
+        }
+
+        bolos.stream()
+            .map( bolo -> {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/principal/bolo/bolo.fxml"));
+                    Node node = carregar.load();
+                    BoloControlador controlador = carregar.getController();
+                    controlador.setImagem(getClass().getResource("/telas/principal/bolo/img/").toExternalForm() + bolo.getSabor().getCodigo() + ".png");
+                    controlador.setDescricao(bolo.getDescricao());
+                    controlador.setFabricao(sdf.format(bolo.getFabricacao()));
+                    controlador.setPeso(bolo.getPeso().toString() + " kg");
+                    controlador.setPreco("R$ " + String.format("%.2f", bolo.getPreco()));
+                    controlador.setValidade(sdf.format(bolo.getVencimento()));
+                    controlador.setBolo(bolo);
+                    controlador.setAreaDeAlerta(areaDeAlerta);
+                    return node;
+                } catch (Exception erro) {
+                    erro.printStackTrace();
+                    return null;
+                }
+            })
+            .forEach( bolo -> {
+                if (bolo != null) {
+                    areaBolo.getChildren().add(bolo);
+                }
+            });
     }
 
 

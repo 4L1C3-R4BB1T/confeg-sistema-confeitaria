@@ -1,6 +1,10 @@
 package modelos.entidades;
 
-public class MetodoPagamento {
+import java.io.Serializable;
+
+public class MetodoPagamento implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long codigo;
     private String descricao;

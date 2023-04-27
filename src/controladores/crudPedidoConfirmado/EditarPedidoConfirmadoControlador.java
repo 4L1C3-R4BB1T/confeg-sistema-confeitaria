@@ -67,6 +67,8 @@ public class EditarPedidoConfirmadoControlador {
 
     private Stage tela;
 
+    private LocalDate dataLimite;
+
     private boolean sucesso = false;
     private boolean fracasso = false;
 
@@ -148,8 +150,8 @@ public class EditarPedidoConfirmadoControlador {
         if (getData() == null) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "DATA DE CONFIRMAÇÃO", "Preencha a Data de Confirmação");
             return false;
-        } else if (getData().isBefore(LocalDate.now())) {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "DATA DE CONFIRMAÇÃO", "Data abaixo da data de hoje.");
+        } else if (getData().isBefore(dataLimite)) {
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "DATA DE CONFIRMAÇÃO", "Data abaixo da data do pedido");
             return false;
         } else {
             return true;
@@ -180,6 +182,7 @@ public class EditarPedidoConfirmadoControlador {
         clientes.setValue(pc.getCliente());
         pedidos.setValue(pc.getPedido());
         dataConfirmacao.setValue(pc.getDataConfirmacao().toLocalDate());
+        dataLimite = pc.getDataConfirmacao().toLocalDate();
         if (pc.getPago()) {
             pedidoPago.setSelected(true);
         } else {

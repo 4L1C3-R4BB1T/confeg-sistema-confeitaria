@@ -89,7 +89,7 @@ public class PedidoControlador {
             palco.showAndWait();
 
             if (controlador.getRegistrouPedido()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDITAR", "O Pedido com ID: " + pedido.getCodigo() + " saiu da edição.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Saiu da edição.");
             } else if (controlador.getErro()) {
                 App.exibirAlert(areaDeAlerta, "ERRO", "EDITAR", "O Pedido com ID: " + pedido.getCodigo() + " não foi editado.");
             }

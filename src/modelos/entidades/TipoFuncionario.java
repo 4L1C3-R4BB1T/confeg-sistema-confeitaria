@@ -1,6 +1,10 @@
 package modelos.entidades;
 
-public class TipoFuncionario {
+import java.io.Serializable;
+
+public class TipoFuncionario implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long codigo;
     private String descricao;

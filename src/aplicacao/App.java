@@ -171,6 +171,33 @@ public class App extends Application {
         return null;
     }
 
+    
+    public static Node obterTelaErroChat() {
+        try {
+            FXMLLoader carregar = new FXMLLoader(App.class.getResource("/telas/chat/erro.fxml"));
+            Node raiz = carregar.load();
+            return raiz;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Object[] carregarTela(String caminho) {
+        try {
+            FXMLLoader carregador = new FXMLLoader(App.class.getResource("/telas" + caminho));
+            Parent elemento = carregador.load();
+            Object controlador = carregador.getController();
+            Scene cena = new Scene(elemento);
+            Stage tela = new Stage(StageStyle.UNDECORATED);
+            tela.setScene(cena);
+            App.adicionarMovimento(tela, cena);
+            return new Object[] {tela, controlador};
+        } catch (Exception erro) {
+           throw new RuntimeException("Não foi possível carregar a Tela. " + caminho);
+        }
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

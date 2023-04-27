@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,17 +10,18 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1000.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1000.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.chat.ChatControlador">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
          <children>
-            <ImageView layoutX="960.0" layoutY="8.0">
+            <ImageView layoutX="960.0" layoutY="8.0" onMouseClicked="#fechar">
                <image>
                   <Image url="@../_assets/img/fechar.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="913.0" layoutY="7.0">
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="913.0" layoutY="7.0" onMouseClicked="#minimizar">
                <image>
                   <Image url="@../_assets/img/minimizar.png" />
                </image>
@@ -37,32 +37,12 @@
                   <HBox alignment="CENTER" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" spacing="5.0" styleClass="area-conexao" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <Label styleClass="conexao" text="CONEXÕES:" />
-                        <Label prefHeight="23.0" text="500" />
+                        <Label fx:id="quantidadeConexao" prefHeight="23.0" text="0" />
                      </children>
                   </HBox>
                   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutY="99.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
                      <content>
-                        <FlowPane alignment="TOP_CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <AnchorPane prefHeight="120.0" prefWidth="210.0" styleClass="conectado">
-                                 <children>
-                                    <Label alignment="CENTER" layoutX="82.0" layoutY="14.0" styleClass="titulo" text="Funcionário" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                    <HBox alignment="CENTER_LEFT" layoutX="-1.0" layoutY="43.0" prefHeight="32.0" prefWidth="200.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-                                       <children>
-                                          <ImageView>
-                                             <image>
-                                                <Image url="@../_assets/img/pessoa.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label styleClass="nome" text="Gabriel Cardoso" />
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                              </AnchorPane>
-                           </children>
+                        <FlowPane fx:id="areaConectados" alignment="TOP_CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" vgap="10.0">
                            <padding>
                               <Insets top="20.0" />
                            </padding>
@@ -73,7 +53,7 @@
             </AnchorPane>
             <HBox layoutX="250.0" layoutY="779.0" prefHeight="71.0" prefWidth="751.0" styleClass="area-escrita" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="779.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="55.0" prefWidth="80.0" styleClass="botao">
+                  <HBox alignment="CENTER" onMouseClicked="#botaoEnviar" prefHeight="55.0" prefWidth="80.0" styleClass="botao">
                      <children>
                         <ImageView>
                            <image>
@@ -82,10 +62,18 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Insirar uma mensagem" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="textFieldComentario" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#apertouEnter" promptText="Insirar uma mensagem" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <TextArea layoutX="250.0" prefHeight="200.0" prefWidth="751.0" styleClass="area-comentario" text="Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;Gabriel: Oi eu não sou o goku&#10;" wrapText="true" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="248.0" layoutY="259.0" prefHeight="780.0" prefWidth="752.0" vbarPolicy="ALWAYS" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <content>
+                  <VBox fx:id="areaComentario" prefHeight="200.0" prefWidth="100.0" spacing="15.0" styleClass="area-comentario">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
          </children>
       </AnchorPane>
    </center>

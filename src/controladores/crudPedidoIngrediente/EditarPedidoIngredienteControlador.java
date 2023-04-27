@@ -65,6 +65,8 @@ public class EditarPedidoIngredienteControlador {
 
     private Stage tela;
 
+    private LocalDate dataLimite;
+
     private PedidoCompra pedidoCompra;
     private IngredienteDAO ingredienteDAO = new IngredienteDAO(App.conexao);
     private PedidoCompraDAO pedidoCompraDAO = new PedidoCompraDAO(App.conexao);
@@ -215,8 +217,8 @@ public class EditarPedidoIngredienteControlador {
         if (getDataPedido() == null) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "DATA PEDIDO", "Preencha a Data Pedido");
             return false;
-        } else if (getDataPedido().isBefore(LocalDate.now())) {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "DATA PEDIDO", "Data Pedido não pode ser anterior a data atual");
+        } else if (getDataPedido().isBefore(dataLimite)) {
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "DATA", "Data abaixo da data do pedido");
             return false;
         } else {
             return true;
@@ -255,6 +257,7 @@ public class EditarPedidoIngredienteControlador {
     public void setPedidoCompra(PedidoCompra pedidoCompra) {
         this.pedidoCompra = pedidoCompra;
         dataPedido.setValue(pedidoCompra.getDataPedido().toLocalDate());
+        dataLimite = pedidoCompra.getDataPedido().toLocalDate();
         observacao.setText(pedidoCompra.getObservacao());
     }
 

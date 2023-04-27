@@ -33,7 +33,7 @@
 .conectado {
 	-fx-background-color: rgba(38, 23, 135, 0.1);
 	-fx-background-radius: 10px;
-	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.031),2px, 1, 0px, 6px);
+	-fx-margin: 20px;
 }
 
 .conectado .titulo {
@@ -67,4 +67,21 @@
 }
 .area-comentario .content {
 	-fx-background-color: rgba(38, 23, 135, 0.2);
+}
+
+.comentario {
+	-fx-background-color: #fff;
+	-fx-background-radius: 10px;
+	-fx-padding: 10px;
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 2);
+}
+
+.comentario .nome {
+	-fx-text-fill: rgba(38, 23, 135, 0.672);
+	-fx-font-style: italic;
+}
+
+.erro .label {
+	-fx-font-size: 25px;
+	-fx-text-fill: #000000af;
 }

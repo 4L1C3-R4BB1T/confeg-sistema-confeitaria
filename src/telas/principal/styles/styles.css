@@ -170,6 +170,7 @@
     -fx-text-fill: #fff;
     -fx-background-radius: 10px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5px, 0, 0,2px);
+    -fx-font-size: 17px;
 }
 
 .bolo-botao:hover {
