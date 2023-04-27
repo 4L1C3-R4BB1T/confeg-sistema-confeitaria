@@ -27,7 +27,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="1100.0" styleClass="container" BorderPane.alignment="CENTER">
          <children>
-            <BarChart fx:id="barChart" layoutX="257.0" layoutY="208.0" prefHeight="532.0" prefWidth="1000.0" stylesheets="@styles-bar-chart.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="208.0">
+            <BarChart fx:id="barChart" layoutX="257.0" layoutY="208.0" prefHeight="532.0" prefWidth="1000.0" stylesheets="@styles-bar-chart.css" visible="false" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="208.0">
               <xAxis>
                 <CategoryAxis fx:id="meses" side="BOTTOM" />
               </xAxis>
@@ -46,6 +46,11 @@
             </AnchorPane>
             <HBox fx:id="areaDeAlerta" prefHeight="150.0" prefWidth="500.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-10.0" />
             <ComboBox fx:id="ano" layoutX="98.0" layoutY="143.0" prefHeight="45.0" promptText="Ano" styleClass="ano" AnchorPane.leftAnchor="100.0" />
+            <ImageView fx:id="carregamento" fitHeight="200.0" fitWidth="200.0" layoutX="450.0" layoutY="360.0" visible="false">
+               <image>
+                  <Image url="@../_assets/img/pedido_mes_carregar.gif" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

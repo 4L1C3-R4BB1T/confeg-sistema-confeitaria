@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import aplicacao.App;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -33,6 +35,9 @@ public class TotalPedidoMesControlador {
 
     @FXML
     private HBox areaDeAlerta;
+
+    @FXML 
+    private ImageView carregamento;
     
     private Stage tela;
 
@@ -63,7 +68,7 @@ public class TotalPedidoMesControlador {
         observableListAnos = FXCollections.observableArrayList(pedidoDAO.obterAnosQuePossuemConfirmacoes());
         ano.setItems(observableListAnos);
         ano.getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> carregarGrafico(newValue));
+            (observable, oldValue, newValue) -> exibirCarregamento(newValue));
     }
 
     public void carregarGrafico(int ano) {
@@ -89,6 +94,27 @@ public class TotalPedidoMesControlador {
         // personalizar intervalo do eixo y
         pedidos.setUpperBound(maxValue + 2);
     }
+
+    public void exibirCarregamento(int ano) {
+       barChart.setVisible(false);
+        new Thread(() -> {
+            try {
+                Thread.sleep(200);
+                Platform.runLater(() -> {
+                    carregamento.setVisible(true);
+                    carregarGrafico(ano);
+                });
+                Thread.sleep(400);
+                Platform.runLater(() -> {
+                    carregamento.setVisible(false);
+                    App.adicionaEfeitoSuave(barChart);
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
 
     public void encerrar() {
         if (tela != null) {
