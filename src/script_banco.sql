@@ -84,6 +84,7 @@ CREATE TABLE funcionario (
     cod_endereco            INTEGER     NOT NULL, 
     email                   VARCHAR(30) NULL,
     senha                   VARCHAR(15) NULL,
+    conectado               BOOLEAN     NOT NULL    DEFAULT false,
     CONSTRAINT pk_funcionario
         PRIMARY KEY (cod_funcionario),
     CONSTRAINT fk_funcionario_tipo_funcionario

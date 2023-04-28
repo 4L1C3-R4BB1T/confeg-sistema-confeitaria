@@ -158,8 +158,6 @@ public class App extends Application {
         return null;
     }
 
-
-
     public static Node obterTelaCarregamento() {
         try {
             FXMLLoader carregar = new FXMLLoader(App.class.getResource("/telas/principal/carregar.fxml"));
@@ -171,7 +169,6 @@ public class App extends Application {
         return null;
     }
 
-    
     public static Node obterTelaErroChat() {
         try {
             FXMLLoader carregar = new FXMLLoader(App.class.getResource("/telas/chat/erro.fxml"));

@@ -82,4 +82,5 @@ public class TotalPedidoClienteControlador {
     public void setTela(Stage tela) {
         this.tela = tela;
     }
+    
 }

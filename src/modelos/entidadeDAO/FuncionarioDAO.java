@@ -27,7 +27,7 @@ public class FuncionarioDAO {
             TipoFuncionarioDAO tipoDAO = new TipoFuncionarioDAO(conexao);
             EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             if (resultado.next()) {
-                return new Funcionario(
+                Funcionario funcionario = new Funcionario(
                     resultado.getLong("cod_funcionario"),
                     resultado.getString("nome_funcionario"), 
                     resultado.getString("cpf_funcionario"),
@@ -36,11 +36,40 @@ public class FuncionarioDAO {
                     resultado.getString("email"),
                     resultado.getString("senha")
                 );
+                funcionario.setConectado(resultado.getBoolean("conectado"));
+                return funcionario;
             }
+
         } catch (Exception erro) {
             erro.printStackTrace();
         }
         return null;
+    }
+
+    public boolean alterarConectado(Funcionario funcionario) {
+        String comando = "UPDATE funcionario SET conectado = ? WHERE cod_funcionario = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setBoolean(1, funcionario.getConectado());
+            ps.setLong(2, funcionario.getCodigo());
+            return ps.execute();
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean estaConectado(Funcionario funcionario) {
+        String comando = "SELECT * FROM funcionario WHERE cod_funcionario = ? AND conectado = true";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, funcionario.getCodigo());
+            ResultSet resultado = ps.executeQuery();
+            if (resultado.next()) {
+                return true;
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return false;
     }
     
     public Long inserir(Funcionario funcionario) {

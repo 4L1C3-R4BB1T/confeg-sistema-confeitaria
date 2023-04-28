@@ -51,9 +51,9 @@ public class LoginControlador {
     private Button botaoEntrar;
 
     private String[] fotos = {
-            getClass().getResource("/telas/login/img/background-1.png").toExternalForm(),
-            getClass().getResource("/telas/login/img/background-2.png").toExternalForm(),
-            getClass().getResource("/telas/login/img/background-3.png").toExternalForm()
+        getClass().getResource("/telas/login/img/background-1.png").toExternalForm(),
+        getClass().getResource("/telas/login/img/background-2.png").toExternalForm(),
+        getClass().getResource("/telas/login/img/background-3.png").toExternalForm()
     };
 
     private int fotoAtual = 0;
@@ -63,6 +63,8 @@ public class LoginControlador {
     private boolean continuarTrocandoImagem = true;
 
     private boolean clicouBotaoCadastrar = false;
+
+    private boolean jaConectado = false;
 
     private FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
 
@@ -74,28 +76,20 @@ public class LoginControlador {
 
     @FXML 
     public void cadastrar(MouseEvent event) throws Exception {
-        if (clicouBotaoCadastrar) {
-            return; /// Não pode clicar no botão cadastrar e exibir a tela várias vezes, impede isso.
-        }
+        if (clicouBotaoCadastrar) return;
+        Object[] elementos = App.carregarTela("/login/cadastro/cadastro.fxml");
+        Stage tela = (Stage) elementos[0];
+        CadastroControlador controlador = (CadastroControlador) elementos[1];
+        controlador.setTela(tela);
+        telas.add(tela);
         clicouBotaoCadastrar = true;
-        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/login/cadastro/cadastro.fxml"));
-        Parent raiz = carregar.load();
-        CadastroControlador controlador = carregar.getController();
-        Scene cena = new Scene(raiz);
-        Stage palco = new Stage();
-        telas.add(palco);
-        controlador.setTela(palco);
-        palco.setScene(cena);
-        App.adicionarMovimento(palco, cena);
-        palco.initStyle(StageStyle.UNDECORATED);
-        palco.showAndWait();
-        controlador.setEncerrarThreadValidacao(true);
+        tela.showAndWait();
         clicouBotaoCadastrar = false; 
-        if(controlador.dadosForamSalvos()) {
+        controlador.setEncerrarThreadValidacao(true);
+        if (controlador.dadosForamSalvos()) 
             App.exibirAlert(areaDeAlerta, "SUCESSO", "CADASTRO", "Operação realizada com sucesso.");
-        } else if (controlador.getErro()) {
+        else if (controlador.getErro()) 
             App.exibirAlert(areaDeAlerta, "FRACASSO", "CADASTRO", "Não foi possível cadastrar.");
-        }
     }
 
     @FXML // Se a tela de cadastro estiver aberta e a tela de login for fechada, será fechado a tela cadastro tambem.
@@ -112,39 +106,50 @@ public class LoginControlador {
 
     @FXML
     public void entrar(ActionEvent event) {
-        if (podeEntrar()) {
+        entrarNoSistema();
+    }
+
+    @FXML
+    public void clicouTeclado(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            entrarNoSistema();
+        }
+    }
+
+    public void entrarNoSistema() {
+        boolean estaOk = podeEntrar();
+        if (!estaOk && jaConectado) {
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "LOGIN", "Funcionário já conectado");
+        } else if (estaOk) {
             logar();
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "LOGIN", "Email ou Senha inválidos.");
         }
     }
 
-    @FXML
-    public void clicouTeclado(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            if (podeEntrar()) {
-                logar();
-            } else {
-                App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "LOGIN", "Email ou Senha inválidos.");
-            }
-        }
-    }
-
     public boolean podeEntrar() {
-        if (campoUsuario.getText().isEmpty() &&  campoSenha.getText().isEmpty()) {
+        jaConectado = false;
+        if (campoUsuario.getText().isEmpty() &&  
+            campoSenha.getText().isEmpty()) {
             return false;
         }
 
         funcionario = funcionarioDAO.autenticar(campoUsuario.getText(), campoSenha.getText());
 
         if (funcionario != null) {
-            return true;
+            boolean conectado = funcionarioDAO.estaConectado(funcionario);
+            if (!conectado) {
+                funcionario.setConectado(true);
+                funcionarioDAO.alterarConectado(funcionario);
+                return true;
+            }
+            jaConectado = true;
         }
        return false;
     }
 
     public void carregarTelaPrincipal(Funcionario conectado) {
-        try{
+        try {
             FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/principal/principal.fxml"));
             Parent raiz = carregar.load();
             PrincipalControlador controlador = carregar.getController();

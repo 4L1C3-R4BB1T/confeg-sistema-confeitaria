@@ -1,6 +1,5 @@
 package controladores.principal;
 
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +42,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.entidadeDAO.BoloDAO;
+import modelos.entidadeDAO.FuncionarioDAO;
 import modelos.entidades.Bolo;
 import modelos.entidades.Funcionario;
 
@@ -131,6 +131,8 @@ public class PrincipalControlador {
     private BoloDAO boloDAO = new BoloDAO(App.conexao);
 
     private Funcionario conectado;
+
+    private FuncionarioDAO funcionarioDAO = new FuncionarioDAO(App.conexao);
 
     // Verificar se clicou nos botoes para que não haja duplicidade
     private boolean clicouPerfil = false;
@@ -260,6 +262,7 @@ public class PrincipalControlador {
 
     @FXML
     public void fecharTela(MouseEvent event) {
+        desconectar();
         fecharTodasTelas();
     }
 
@@ -316,8 +319,6 @@ public class PrincipalControlador {
         }).start();
     }
 
-
-
     @FXML 
     public void irParaTelaClientes(ActionEvent event) {
         removerBotaoAtivo();
@@ -332,7 +333,13 @@ public class PrincipalControlador {
 
     @FXML
     public void deslogar(MouseEvent event) {
+        desconectar();
         carregarTelaLogin();
+    }
+
+    public void desconectar() {
+        conectado.setConectado(false);
+        funcionarioDAO.alterarConectado(conectado);
     }
 
     @FXML

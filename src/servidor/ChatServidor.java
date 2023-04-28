@@ -1,4 +1,5 @@
 package servidor;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,7 +15,6 @@ import modelos.entidades.Funcionario;
 import servidor.entidades.Conectados;
 import servidor.entidades.Informacao;
 import servidor.entidades.Mensagem;
-
 
 public class ChatServidor {
 
@@ -65,8 +65,6 @@ public class ChatServidor {
 
                     enviarConectados(soquetes);
                 }
-
-
             } catch (Exception e) {
                 try {
                     conectados.remove(soquete.getInetAddress());
@@ -74,7 +72,6 @@ public class ChatServidor {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                
             }
         }
 
@@ -90,19 +87,17 @@ public class ChatServidor {
         }
 
         public void enviarMensagem(List<Socket> soquetes, String conteudo) throws Exception {
-            for(Socket soquete: soquetes) {
+            for (Socket soquete: soquetes) {
                 ObjectOutputStream saida = new ObjectOutputStream(soquete.getOutputStream());
                 Mensagem mensagem = new Mensagem(funcionario, conteudo);
                 saida.writeObject(mensagem);
             } 
         }
+        
     }
 
     public static void main(String[] args) {
         new ChatServidor(3000);
     }
 
-
-
-   
 }

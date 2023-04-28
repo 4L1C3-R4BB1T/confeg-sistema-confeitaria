@@ -41,7 +41,6 @@ public class TelaSelecaoRelatorioControlador {
 
     private volatile boolean threadProgressoParar = false;
   
-
     @FXML
     void fecharTelas(MouseEvent event) {
         encerrar();
@@ -56,7 +55,7 @@ public class TelaSelecaoRelatorioControlador {
             case "Total de Pedidos por cliente":
                 carregarTelaPedidoCliente();
                 break;
-            case "Total de Pedidos sabor de bolo":
+            case "Total de Pedidos por sabor de bolo":
                 carregarTelaPedidoSaborBolo();
                 break;
         }
@@ -64,7 +63,6 @@ public class TelaSelecaoRelatorioControlador {
 
     @FXML
     public void initialize() {
-        
         carregarExibicaoRelatorio();
 
         relatorios.getSelectionModel().selectedItemProperty().addListener((obs, valorAntigo, valorNovo) -> {
@@ -80,7 +78,7 @@ public class TelaSelecaoRelatorioControlador {
         areaDeProgresso.setVisible(true);
         new Thread( () -> {
 
-          while (!threadProgressoParar) {
+            while (!threadProgressoParar) {
                 Platform.runLater(() -> {
                     double novoProgresso = progresso.getProgress() + 0.05;
                     double progressoNormal = Math.round(novoProgresso * 100);
@@ -103,11 +101,11 @@ public class TelaSelecaoRelatorioControlador {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-          }
+            }
 
-          Platform.runLater(() -> {
+            Platform.runLater(() -> {
                 botaoRelatorio.setVisible(true);
-          });
+            });
 
         }).start();
     }
@@ -172,7 +170,7 @@ public class TelaSelecaoRelatorioControlador {
     } 
 
     public void carregarExibicaoRelatorio() {
-        relatorios.getItems().addAll("Receita por Mês", "Total de Pedidos por cliente", "Total de Pedidos sabor de bolo");
+        relatorios.getItems().addAll("Receita por Mês", "Total de Pedidos por cliente", "Total de Pedidos por sabor de bolo");
     }
 
     public void encerrar() {
@@ -188,4 +186,5 @@ public class TelaSelecaoRelatorioControlador {
     public void setTela(Stage tela) {
         this.tela = tela;
     }
+
 }

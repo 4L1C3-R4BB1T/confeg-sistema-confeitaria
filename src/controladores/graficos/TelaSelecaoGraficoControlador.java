@@ -50,13 +50,13 @@ public class TelaSelecaoGraficoControlador {
     @FXML
     void prosseguir(ActionEvent event) {
         switch(getSelecionado()) {
-            case "Bolo mais Pedidos":
+            case "Bolos mais Pedidos":
                 carregarTelaBoloMaisPedido();
                 break;
             case "Métodos de Pagamento mais Utilizados":
                 carregarTelaMetodoPagamentoMaisUtilizado();
                 break;
-            case "Total Pedidos por Mês":
+            case "Total de Pedidos por Mês":
                 carregarTelaTotalPedidoMes();
                 break;
         }
@@ -64,7 +64,6 @@ public class TelaSelecaoGraficoControlador {
 
     @FXML
     public void initialize() {
-        
         carregarExibicaoRelatorio();
 
         graficos.getSelectionModel().selectedItemProperty().addListener((obs, valorAntigo, valorNovo) -> {
@@ -131,7 +130,7 @@ public class TelaSelecaoGraficoControlador {
         areaDeProgresso.setVisible(true);
         new Thread( () -> {
 
-          while (!threadProgressoParar) {
+            while (!threadProgressoParar) {
                 Platform.runLater(() -> {
                     double novoProgresso = progresso.getProgress() + 0.05;
                     double progressoNormal = Math.round(novoProgresso * 100);
@@ -154,15 +153,14 @@ public class TelaSelecaoGraficoControlador {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-          }
+            }
 
-          Platform.runLater(() -> {
+            Platform.runLater(() -> {
                 botaoGrafico.setVisible(true);
-          });
-
+            });
+            
         }).start();
     }
-
 
     public void limparProgresso() {
         progresso.setProgress(0);
@@ -173,7 +171,7 @@ public class TelaSelecaoGraficoControlador {
     } 
 
     public void carregarExibicaoRelatorio() {
-        graficos.getItems().addAll("Bolo mais Pedidos", "Métodos de Pagamento mais Utilizados", "Total Pedidos por Mês");
+        graficos.getItems().addAll("Bolos mais Pedidos", "Métodos de Pagamento mais Utilizados", "Total de Pedidos por Mês");
     }
 
     public void encerrar() {
@@ -189,4 +187,5 @@ public class TelaSelecaoGraficoControlador {
     public void setTela(Stage tela) {
         this.tela = tela;
     }
+
 }

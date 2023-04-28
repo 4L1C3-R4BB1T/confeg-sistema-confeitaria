@@ -5,6 +5,7 @@ public class Funcionario extends Pessoa {
     private TipoFuncionario tipo;
     private String email;
     private String senha;
+    private Boolean conectado;
 
     public Funcionario(String nome, String cpf, TipoFuncionario tipo, Endereco endereco, String email,
             String senha) {
@@ -46,6 +47,14 @@ public class Funcionario extends Pessoa {
         this.senha = senha;
     }
 
+    public void setConectado(Boolean conectado) {
+        this.conectado = conectado;
+    }
+
+    public Boolean getConectado() {
+        return conectado;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -77,9 +86,9 @@ public class Funcionario extends Pessoa {
         return true;
     }
 
-
     @Override 
     public String toString() {
         return nome;
     }
+    
 }

@@ -78,4 +78,5 @@ public class ReceitaMesControlador {
     public void setTela(Stage tela) {
         this.tela = tela;
     }
+    
 }
