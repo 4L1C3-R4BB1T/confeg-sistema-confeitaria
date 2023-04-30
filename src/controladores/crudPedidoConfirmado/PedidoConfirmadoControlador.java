@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.consultas.entitidades.PedidoConfirmado;
 import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
+import modelos.entidadeDAO.PedidoBoloDAO;
 import modelos.entidadeDAO.PedidoDAO;
 import modelos.entidades.ConfirmacaoPedido;
 import modelos.entidades.Pedido;
@@ -42,8 +43,19 @@ public class PedidoConfirmadoControlador {
             App.conexao.setAutoCommit(false);
             try {
                 Pedido pedido = confirmacaoPedido.getPedido();
+                
+                // remover confirmação de pedido
                 confirmacaoPedidoDAO.remover(confirmacaoPedido);
+
+                // remover pedidobolo do pedido
+                PedidoBoloDAO pedidoBoloDAO = new PedidoBoloDAO(App.conexao);
+                pedidoBoloDAO.buscarPorPedido(pedido).forEach(pedidoBolo ->
+                    pedidoBoloDAO.remover(pedidoBolo)
+                );  
+
+                // remover pedido
                 pedidoDAO.remover(pedido);
+
                 App.conexao.commit();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "REMOÇÃO", "A Confirmação de Pedido foi removido.");
                 atualizarPedidosConfirmados.usar();

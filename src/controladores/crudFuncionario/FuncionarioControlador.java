@@ -13,7 +13,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
+import modelos.entidadeDAO.EnderecoDAO;
 import modelos.entidadeDAO.FuncionarioDAO;
+import modelos.entidadeDAO.PedidoBoloDAO;
+import modelos.entidadeDAO.PedidoCompraDAO;
+import modelos.entidadeDAO.PedidoCompraIngredientesDAO;
+import modelos.entidadeDAO.PedidoDAO;
+import modelos.entidades.ConfirmacaoPedido;
 import modelos.entidades.Funcionario;
 import modelos.interfaces.AproveitarFuncao;
 
@@ -65,7 +72,45 @@ public class FuncionarioControlador {
         if (codigo != null) {
             App.conexao.setAutoCommit(false);
            try {
-                funcionarioDAO.remover(funcionarioDAO.buscarPorCodigo(codigo));
+                Funcionario funcionario = funcionarioDAO.buscarPorCodigo(codigo);
+
+                PedidoDAO pedidoDAO = new PedidoDAO(App.conexao);
+                PedidoBoloDAO pedidoBoloDAO = new PedidoBoloDAO(App.conexao);
+                ConfirmacaoPedidoDAO confirmacaoPedidoDAO = new ConfirmacaoPedidoDAO(App.conexao);
+
+                // remover todos os pedidos que estão associados ao funcionario a ser removido
+                pedidoDAO.buscarPorFuncionario(funcionario).forEach(pedido -> {
+                    // remover confirmação do pedido
+                    ConfirmacaoPedido confirmacaoPedido = confirmacaoPedidoDAO.buscarPorPedido(pedido);
+                    if (confirmacaoPedido != null) {
+                        confirmacaoPedidoDAO.remover(confirmacaoPedido);
+                    }
+                    // remover pedidobolo do pedido
+                    pedidoBoloDAO.buscarPorPedido(pedido).forEach(pedidoBolo ->
+                        pedidoBoloDAO.remover(pedidoBolo)
+                    );
+                    // remover pedido
+                    pedidoDAO.remover(pedido);
+                });
+
+                PedidoCompraDAO pedidoCompraDAO = new PedidoCompraDAO(App.conexao);
+                PedidoCompraIngredientesDAO pedidoCompraIngredientesDAO = new PedidoCompraIngredientesDAO(App.conexao);
+                pedidoCompraDAO.buscarPorFuncionario(funcionario).forEach(pedidoCompra -> {
+                    // remover pedidocompraingrediente do pedidocompra
+                    pedidoCompraIngredientesDAO.buscarPorPedidoCompra(pedidoCompra).forEach(PedidoCompraIngrediente -> 
+                        pedidoCompraIngredientesDAO.remover(PedidoCompraIngrediente)
+                    );
+                    // remover pedidocompra
+                    pedidoCompraDAO.remover(pedidoCompra);
+                });
+
+                // remover funcionario
+                funcionarioDAO.remover(funcionario);
+
+                // remover endereco assoaciado ao funcionario
+                EnderecoDAO enderecoDAO = new EnderecoDAO(App.conexao);
+                enderecoDAO.remover(enderecoDAO.buscarPorCodigo(funcionario.getEndereco().getCodigo()));
+
                 atualizarAreaDeFuncionarios.usar();
                 App.conexao.commit();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "O Funcionário com ID: " + codigo + " foi removido.");

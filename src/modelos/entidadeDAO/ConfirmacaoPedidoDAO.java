@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelos.entidades.ConfirmacaoPedido;
+import modelos.entidades.Pedido;
 
 public class ConfirmacaoPedidoDAO {
     
@@ -68,6 +69,29 @@ public class ConfirmacaoPedidoDAO {
         String comando = "SELECT * FROM confirmacao_pedido WHERE cod_confirmacao = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, codigo);
+            ResultSet resultado = ps.executeQuery();
+            ClienteDAO clienteDAO = new ClienteDAO(conexao);
+            PedidoDAO pedidoDAO = new PedidoDAO(conexao);
+            if (resultado.next()) {
+                return new ConfirmacaoPedido(
+                    resultado.getLong("cod_confirmacao"),
+                    clienteDAO.buscarPorCodigo(resultado.getLong("cod_cliente")),
+                    pedidoDAO.buscarPorCodigo(resultado.getLong("cod_pedido")),
+                    resultado.getDate("data_confirmacao_pedido"),
+                    resultado.getBoolean("pago_confirmacao_pedido"),
+                    resultado.getString("observacao_confirmacao_pedido")
+                );
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return null;
+    }
+
+    public ConfirmacaoPedido buscarPorPedido(Pedido pedido) {
+        String comando = "SELECT * FROM confirmacao_pedido WHERE cod_pedido = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, pedido.getCodigo());
             ResultSet resultado = ps.executeQuery();
             ClienteDAO clienteDAO = new ClienteDAO(conexao);
             PedidoDAO pedidoDAO = new PedidoDAO(conexao);

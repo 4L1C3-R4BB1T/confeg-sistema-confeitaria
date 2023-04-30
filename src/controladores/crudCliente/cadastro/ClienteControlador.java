@@ -13,7 +13,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.entidadeDAO.ClienteDAO;
+import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
+import modelos.entidadeDAO.EnderecoDAO;
+import modelos.entidadeDAO.PedidoBoloDAO;
+import modelos.entidadeDAO.PedidoDAO;
 import modelos.entidades.Cliente;
+import modelos.entidades.ConfirmacaoPedido;
 import modelos.interfaces.AproveitarFuncao;
 
 // Bolo para editar ou remover
@@ -60,8 +65,35 @@ public class ClienteControlador {
     public void remover(ActionEvent event) throws Exception {
         if (codigo != null) {
             App.conexao.setAutoCommit(false);
-           try {
-                clienteDAO.remover(clienteDAO.buscarPorCodigo(codigo));
+            try {
+                Cliente cliente = clienteDAO.buscarPorCodigo(codigo);
+                
+                PedidoDAO pedidoDAO = new PedidoDAO(App.conexao);
+                PedidoBoloDAO pedidoBoloDAO = new PedidoBoloDAO(App.conexao);
+                ConfirmacaoPedidoDAO confirmacaoPedidoDAO = new ConfirmacaoPedidoDAO(App.conexao);
+
+                // remover todos os pedidos que estão associados ao cliente a ser removido
+                pedidoDAO.buscarPorCliente(cliente).forEach(pedido -> {
+                    // remover confirmação do pedido
+                    ConfirmacaoPedido confirmacaoPedido = confirmacaoPedidoDAO.buscarPorPedido(pedido);
+                    if (confirmacaoPedido != null) {
+                        confirmacaoPedidoDAO.remover(confirmacaoPedido);
+                    }
+                    // remover pedidobolo do pedido
+                    pedidoBoloDAO.buscarPorPedido(pedido).forEach(pedidoBolo ->
+                        pedidoBoloDAO.remover(pedidoBolo)
+                    );
+                    // remover pedido
+                    pedidoDAO.remover(pedido);
+                });
+
+                // remover cliente
+                clienteDAO.remover(cliente);
+
+                // remover endereco assoaciado ao cliente 
+                EnderecoDAO enderecoDAO = new EnderecoDAO(App.conexao);
+                enderecoDAO.remover(enderecoDAO.buscarPorCodigo(cliente.getEndereco().getCodigo()));
+
                 atualizarAreaDeClientes.usar();
                 App.conexao.commit();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "O cliente com ID: " + codigo + " foi removido.");

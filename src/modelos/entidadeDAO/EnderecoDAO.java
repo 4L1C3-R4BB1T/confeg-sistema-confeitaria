@@ -51,6 +51,18 @@ public class EnderecoDAO {
         }
         return false;
     }
+    
+    public boolean remover(Endereco endereco) {
+        String comando = "DELETE FROM endereco WHERE cod_endereco = ?";
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, endereco.getCodigo());
+            ps.execute();
+            return true;
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return false;
+    }
 
     public Endereco buscarPorCodigo(Long codigo) {
         String comando = "SELECT * FROM endereco WHERE cod_endereco = ?";

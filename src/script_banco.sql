@@ -35,7 +35,7 @@ CREATE TABLE cidade (
         PRIMARY KEY (cod_cidade),
     CONSTRAINT fk_cidade_estado 
         FOREIGN KEY (cod_estado)
-        REFERENCES estado(cod_estado) ON DELETE CASCADE
+        REFERENCES estado(cod_estado)
 );
 
 CREATE TABLE endereco (
@@ -50,10 +50,10 @@ CREATE TABLE endereco (
         PRIMARY KEY (cod_endereco),
     CONSTRAINT fk_endereco_estado
         FOREIGN KEY (cod_estado)
-        REFERENCES estado(cod_estado) ON DELETE CASCADE,
+        REFERENCES estado(cod_estado),
     CONSTRAINT fk_endereco_cidade
         FOREIGN KEY (cod_cidade)
-        REFERENCES cidade(cod_cidade) ON DELETE CASCADE
+        REFERENCES cidade(cod_cidade)
 );
 
 CREATE TABLE tipo_funcionario (
@@ -73,7 +73,7 @@ CREATE TABLE cliente (
         PRIMARY KEY (cod_cliente),
     CONSTRAINT fk_cliente_endereco
         FOREIGN KEY (cod_endereco)
-        REFERENCES endereco(cod_endereco) ON DELETE CASCADE
+        REFERENCES endereco(cod_endereco)
 );
 
 CREATE TABLE funcionario (
@@ -89,10 +89,10 @@ CREATE TABLE funcionario (
         PRIMARY KEY (cod_funcionario),
     CONSTRAINT fk_funcionario_tipo_funcionario
         FOREIGN KEY (cod_tipo_funcionario)
-        REFERENCES tipo_funcionario(cod_tipo_funcionario) ON DELETE CASCADE,
+        REFERENCES tipo_funcionario(cod_tipo_funcionario),
     CONSTRAINT fk_funcionario_endereco
         FOREIGN KEY (cod_endereco)
-        REFERENCES endereco(cod_endereco) ON DELETE CASCADE
+        REFERENCES endereco(cod_endereco)
 );
 
 CREATE TABLE sabor (
@@ -114,7 +114,7 @@ CREATE TABLE bolo (
         PRIMARY KEY (cod_bolo),
     CONSTRAINT fk_bolo_sabor
         FOREIGN KEY (cod_sabor)
-        REFERENCES sabor(cod_sabor) ON DELETE CASCADE
+        REFERENCES sabor(cod_sabor)
 );
 
 CREATE TABLE metodo_pagamento (
@@ -137,13 +137,13 @@ CREATE TABLE pedido (
         PRIMARY KEY (cod_pedido),
     CONSTRAINT fk_pedido_cliente
         FOREIGN KEY (cod_cliente)
-        REFERENCES cliente(cod_cliente) ON DELETE CASCADE,
+        REFERENCES cliente(cod_cliente),
     CONSTRAINT fk_pedido_funcionario
         FOREIGN KEY (cod_funcionario)
-        REFERENCES funcionario(cod_funcionario) ON DELETE CASCADE,
+        REFERENCES funcionario(cod_funcionario),
     CONSTRAINT fk_pedido_metodo_pagamento
         FOREIGN KEY (cod_metodo_pagamento)
-        REFERENCES metodo_pagamento(cod_metodo_pagamento) ON DELETE CASCADE
+        REFERENCES metodo_pagamento(cod_metodo_pagamento) 
 );
 
 CREATE TABLE pedido_bolo (
@@ -155,10 +155,10 @@ CREATE TABLE pedido_bolo (
         PRIMARY KEY (cod_pedido_bolo),
     CONSTRAINT fk_pedido_bolo_pedido
         FOREIGN KEY (cod_pedido)
-        REFERENCES pedido(cod_pedido) ON DELETE CASCADE,
+        REFERENCES pedido(cod_pedido),
     CONSTRAINT fk_pedido_bolo_bolo
         FOREIGN KEY (cod_bolo)
-        REFERENCES bolo(cod_bolo) ON DELETE CASCADE
+        REFERENCES bolo(cod_bolo)
 );
 
 CREATE TABLE confirmacao_pedido (
@@ -172,10 +172,10 @@ CREATE TABLE confirmacao_pedido (
         PRIMARY KEY (cod_confirmacao),
     CONSTRAINT fk_confirmacao_pedido_cliente
         FOREIGN KEY (cod_cliente)
-        REFERENCES cliente(cod_cliente) ON DELETE CASCADE,
+        REFERENCES cliente(cod_cliente),
     CONSTRAINT fk_confirmacao_pedido_pedido
         FOREIGN KEY (cod_pedido)
-        REFERENCES pedido(cod_pedido) ON DELETE CASCADE
+        REFERENCES pedido(cod_pedido)
 );
 
 CREATE TABLE ingrediente (
@@ -196,7 +196,7 @@ CREATE TABLE pedido_compra (
         PRIMARY KEY (cod_pedido_compra),
     CONSTRAINT fk_pedido_compra_ingrediente_funcionario
         FOREIGN KEY (cod_funcionario)
-        REFERENCES funcionario(cod_funcionario) ON DELETE CASCADE
+        REFERENCES funcionario(cod_funcionario)
 );
 
 CREATE TABLE pedido_compra_ingrediente (
@@ -208,10 +208,10 @@ CREATE TABLE pedido_compra_ingrediente (
         PRIMARY KEY (cod_pedido_compra_ingrediente),
     CONSTRAINT fk_pedido_compra_ingrediente_pedido_compra
         FOREIGN KEY (cod_pedido_compra)
-        REFERENCES pedido_compra(cod_pedido_compra) ON DELETE CASCADE,
+        REFERENCES pedido_compra(cod_pedido_compra),
     CONSTRAINT fk_pedido_compra_ingrediente_ingrediente
         FOREIGN KEY (cod_ingrediente)
-        REFERENCES ingrediente(cod_ingrediente) ON DELETE CASCADE
+        REFERENCES ingrediente(cod_ingrediente)
 );
 
 

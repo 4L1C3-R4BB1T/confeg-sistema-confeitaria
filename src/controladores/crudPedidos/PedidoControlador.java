@@ -9,10 +9,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
 import modelos.entidadeDAO.PedidoBoloDAO;
 import modelos.entidadeDAO.PedidoDAO;
+import modelos.entidades.ConfirmacaoPedido;
 import modelos.entidades.Pedido;
-import modelos.entidades.PedidoBolo;
 import modelos.interfaces.AproveitarFuncao;
 
 public class PedidoControlador {
@@ -53,10 +54,20 @@ public class PedidoControlador {
     public void remover(MouseEvent event) throws Exception {
         App.conexao.setAutoCommit(false);
         try {
-            for (PedidoBolo pb: pedidoBoloDAO.buscarPorPedido(pedido)) {
-                pedidoBoloDAO.remover(pb);
-            }
+            // remover confirmação do pedido
+            ConfirmacaoPedidoDAO confirmacaoPedidoDAO = new ConfirmacaoPedidoDAO(App.conexao);
+            ConfirmacaoPedido confirmacaoPedido = confirmacaoPedidoDAO.buscarPorPedido(pedido);
+            confirmacaoPedidoDAO.remover(confirmacaoPedido);
+
+            // remover pedidobolo do pedido
+            PedidoBoloDAO pedidoBoloDAO = new PedidoBoloDAO(App.conexao);
+            pedidoBoloDAO.buscarPorPedido(pedido).forEach(pedidoBolo ->
+                pedidoBoloDAO.remover(pedidoBolo)
+            );  
+
+            // remover pedido
             pedidoDAO.remover(pedido);
+
             App.conexao.commit();
             App.exibirAlert(areaDeAlerta, "SUCESSO", "REMOÇÃO", "O Pedido com ID: " + pedido.getCodigo() + " foi deletado.");
             atualizarPedidos.usar();

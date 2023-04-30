@@ -10,6 +10,7 @@ import java.util.Map;
 
 import modelos.entidades.Bolo;
 import modelos.entidades.Cliente;
+import modelos.entidades.Funcionario;
 import modelos.entidades.Pedido;
 import modelos.entidades.enums.Status;
 
@@ -142,6 +143,33 @@ public class PedidoDAO {
         List<Pedido> pedidos = new ArrayList<>();
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ps.setLong(1, cliente.getCodigo());
+            ResultSet resultado = ps.executeQuery(); 
+            ClienteDAO clienteDAO = new ClienteDAO(conexao);
+            FuncionarioDAO funcionarioDAO = new FuncionarioDAO(conexao);
+            MetodoPagamentoDAO metodoPagamentoDAO = new MetodoPagamentoDAO(conexao);
+            while (resultado.next()) {
+                pedidos.add(new Pedido(
+                    resultado.getLong("cod_pedido"),
+                    clienteDAO.buscarPorCodigo(resultado.getLong("cod_cliente")),
+                    funcionarioDAO.buscarPorCodigo(resultado.getLong("cod_funcionario")),
+                    resultado.getDate("data_pedido"),
+                    metodoPagamentoDAO.buscarPorCodigo(resultado.getLong("cod_metodo_pagamento")),
+                    Status.valueOf(resultado.getString("status_pedido")),
+                    resultado.getString("observacao_pedido"),
+                    resultado.getDouble("desconto_pedido")
+                ));
+            }
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+        return pedidos;
+    }
+
+    public List<Pedido> buscarPorFuncionario(Funcionario funcionario) {
+        String comando = "SELECT * FROM pedido WHERE cod_funcionario = ?";
+        List<Pedido> pedidos = new ArrayList<>();
+        try (PreparedStatement ps = conexao.prepareStatement(comando)) {
+            ps.setLong(1, funcionario.getCodigo());
             ResultSet resultado = ps.executeQuery(); 
             ClienteDAO clienteDAO = new ClienteDAO(conexao);
             FuncionarioDAO funcionarioDAO = new FuncionarioDAO(conexao);

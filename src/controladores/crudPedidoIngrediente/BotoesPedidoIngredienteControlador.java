@@ -50,12 +50,10 @@ public class BotoesPedidoIngredienteControlador {
         if (pedidoCompra != null) {
             App.conexao.setAutoCommit(false);
             try {
-                
-                List<PedidoCompraIngrediente> pedidos = pedidoCompraIngredientesDAO.buscarPorPedidoCompra(pedidoCompra);
-
-                for (PedidoCompraIngrediente pedido : pedidos) {
-                    pedidoCompraIngredientesDAO.remover(pedido);
-                }
+                // remover pedidocompraingrediente do pedidocompra
+                pedidoCompraIngredientesDAO.buscarPorPedidoCompra(pedidoCompra).forEach(pedidoCompraIngrediente ->
+                    pedidoCompraIngredientesDAO.remover(pedidoCompraIngrediente)
+                );
 
                 pedidoCompraDAO.remover(pedidoCompra);
                 App.conexao.commit();

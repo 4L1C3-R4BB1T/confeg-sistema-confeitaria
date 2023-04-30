@@ -15,8 +15,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.entidadeDAO.BoloDAO;
+import modelos.entidadeDAO.ConfirmacaoPedidoDAO;
+import modelos.entidadeDAO.PedidoBoloDAO;
 import modelos.entidadeDAO.PedidoDAO;
 import modelos.entidades.Bolo;
+import modelos.entidades.ConfirmacaoPedido;
 import modelos.interfaces.AproveitarFuncao;
 
 // Bolo para editar ou remover
@@ -65,12 +68,26 @@ public class BoloControlador {
            try {
                 Bolo bolo = boloDAO.buscarPorCodigo(codigo);
                
-                // remover todos os pedidos que estão associados ao bolo a ser removido
                 PedidoDAO pedidoDAO = new PedidoDAO(App.conexao);
-                pedidoDAO.buscarPorBolo(bolo).forEach(pedido ->
-                    pedidoDAO.remover(pedido)
-                );
+                PedidoBoloDAO pedidoBoloDAO = new PedidoBoloDAO(App.conexao);
+                ConfirmacaoPedidoDAO confirmacaoPedidoDAO = new ConfirmacaoPedidoDAO(App.conexao);
 
+                // remover todos os pedidos que estão associados ao bolo a ser removido
+                pedidoDAO.buscarPorBolo(bolo).forEach(pedido -> {
+                    // remover confirmação do pedido
+                    ConfirmacaoPedido confirmacaoPedido = confirmacaoPedidoDAO.buscarPorPedido(pedido);
+                    if (confirmacaoPedido != null) {
+                        confirmacaoPedidoDAO.remover(confirmacaoPedido);
+                    }
+                    // remover pedidobolo do pedido
+                    pedidoBoloDAO.buscarPorPedido(pedido).forEach(pedidoBolo ->
+                        pedidoBoloDAO.remover(pedidoBolo)
+                    );
+                    // remover pedido
+                    pedidoDAO.remover(pedido);
+                });
+
+                // remover bolo
                 boloDAO.remover(bolo);
 
                 App.conexao.commit();
