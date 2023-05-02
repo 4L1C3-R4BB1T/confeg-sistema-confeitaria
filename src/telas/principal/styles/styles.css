@@ -219,3 +219,121 @@
     -fx-font-size: 22px;
     -fx-text-fill: linear-gradient(to bottom, #000000f1, #00000058);
 }
+
+
+/* //////////////////////// */
+
+.area-cart .cart-title {
+    -fx-background-color: rgba(0, 0, 0, 0.79);
+    -fx-border-radius: 10px 10px 0 0;
+    -fx-background-radius: 10px 10px 0 0;
+}
+
+.area-cart .cart-title .label {
+    -fx-text-fill: #fff;
+    -fx-font-size: 20px;
+    -fx-cursor: hand;
+}
+
+.area-cart .cart-scroll-pane {
+    -fx-background-color: none;
+    -fx-border-width: 0;
+}
+
+.area-cart .cart-content {
+    -fx-background-color: #D9D9D9;
+}
+
+.area-cart .card {
+    -fx-background-color: #F0F0F0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.141), 5, 0, 0, 5);
+}
+
+.area-cart .card-photo {
+    -fx-background-color: linear-gradient(to top, #edececee, #fff);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 5, 0, 0, 5);
+    -fx-background-radius: 5px;
+}
+
+.card-photo:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.card-photo .label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #000000ab;
+}
+
+.card-informacao .label {
+    -fx-font-size: 16px;
+    -fx-font-style: italic;
+}
+
+.card-quantity {
+    -fx-alignment: center;
+}
+
+.card-quantity .label {
+    -fx-background-color: #079752;
+    -fx-alignment: center;
+    -fx-text-fill: #fff;
+    -fx-background-radius: 30px;
+    -fx-cursor: pointer;
+    -fx-font-size: 16px;
+}
+
+.card-price {
+    -fx-alignment: center;
+}
+
+.card-price .label {
+    -fx-alignment: center;
+    -fx-font-size: 20px;
+    -fx-text-fill: green;
+}
+
+.card-remove {
+    -fx-alignment: center;
+}
+
+.card-remove .image-view {
+    -fx-cursor: hand;
+}
+
+.card-remove .image-view:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.area-total {
+    -fx-background-color: #fff;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.186), 5, 0, 0, 5);
+}
+
+.area-total-total {
+    -fx-font-size: 18px;
+    -fx-text-fill: #000000be;
+}
+
+.area-total-preco {
+    -fx-text-fill: green;
+    -fx-font-size: 18px;
+}
+
+.area-prosseguir {
+    -fx-background-color: rgba(0, 0, 0, 0.79);
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.area-prosseguir:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.area-prosseguir .label {
+    -fx-text-fill: #fff;
+    -fx-font-size: 20px;
+}

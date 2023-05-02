@@ -96,10 +96,7 @@
                   <Insets bottom="7.0" left="5.0" right="10.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-         </children>
-         <padding>
-            <Insets bottom="5.0" right="5.0" top="2.0" />
-         </padding></HBox>
+         </children></HBox>
    </top>
    <stylesheets>
       <URL value="@../../../../layouts/login/styles/styles.css" />

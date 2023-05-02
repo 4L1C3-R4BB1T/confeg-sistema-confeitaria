@@ -101,6 +101,9 @@ public class PrincipalControlador {
     @FXML
     private Button graficos;
 
+    @FXML
+    private Button carrinho;
+
     private Button[] botoes;
 
     // BOTÕES DO MENU PEDIDO
@@ -122,7 +125,13 @@ public class PrincipalControlador {
     private TextField digitado;
 
     @FXML 
-    public Button botaoChat;
+    private Button botaoChat;
+
+    @FXML 
+    private AnchorPane areaCarrinho;
+
+    @FXML
+    private AnchorPane areaPadrao;
 
     private Stage tela;
     
@@ -149,6 +158,29 @@ public class PrincipalControlador {
     private boolean clicouBotaoRelatorio = false;
     private boolean clicouBotaoGrafico = false;
     private boolean clicouBotaoChat = false;
+
+    public void fecharAreaPadrao() {
+        areaPadrao.setVisible(false);
+    }
+
+    public void fecharCarrinho() {
+        areaCarrinho.setVisible(false);
+        areaPadrao.setVisible(true);
+    }
+
+    @FXML 
+    public void irParaCarrinho(ActionEvent event) {
+        removerBotaoAtivo();
+        adicionarAtivoNoBotao(carrinho);
+        if (areaCarrinho.isVisible()) {
+            App.removerEfeitoSuave(areaCarrinho);
+            removerBotaoAtivo();
+            App.adicionaEfeitoSuave(areaPadrao);
+        } else {
+            fecharAreaPadrao();
+            App.adicionaEfeitoSuave(areaCarrinho);
+        }
+    }
 
     @FXML
     public void pesquisar(MouseEvent event) {
@@ -306,6 +338,7 @@ public class PrincipalControlador {
     public void irParaTelaPrincipal(ActionEvent event) {
         removerBotaoAtivo();
         adicionarAtivoNoBotao(principal);
+        fecharCarrinho();
         areaBolo.getChildren().clear();
         areaBolo.getChildren().add(App.obterTelaCarregamento());
         new Thread(() -> {
@@ -345,7 +378,7 @@ public class PrincipalControlador {
     @FXML
     public void initialize() {
         atualizarAreaBolo();
-        botoes = new Button[] { administrador, principal, pedidos, bolos, clientes, relatorios, graficos, botaoChat };
+        botoes = new Button[] { administrador, principal, pedidos, bolos, clientes, relatorios, graficos, botaoChat, carrinho };
         botoesPedido = new HBox[] { botaoListar, botaoPedir, botaoConfirmar };
     
     }

@@ -25,14 +25,7 @@ import javafx.scene.layout.Pane;
 
 public class App extends Application {
 
-    public static Connection conexao;
-
-    static {
-        String url = "jdbc:postgresql://localhost:5432/test";
-        String usuario = "postgres";
-        String senha = "admin";
-        conexao = new FabricarConexao(url, usuario, senha).getConexao();
-    }
+    public static Connection conexao = new FabricarConexao().getConexao();
 
     @Override 
     public void stop() {
