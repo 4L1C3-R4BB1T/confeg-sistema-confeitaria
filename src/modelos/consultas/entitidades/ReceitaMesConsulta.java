@@ -1,17 +1,19 @@
 package modelos.consultas.entitidades;
 
+import javafx.scene.control.Label;
+
 public class ReceitaMesConsulta {
 
     private Integer ano;
     private Integer mes;
     private Long concluidos;
-    private Double receita;
+    private Label receita = new Label();
 
     public ReceitaMesConsulta(Integer ano, Integer mes, Long concluidos, Double receita) {
         this.ano = ano;
         this.mes = mes;
         this.concluidos = concluidos; 
-        this.receita = receita;
+        setReceita(receita);
     }
 
     public Integer getAno() {
@@ -38,12 +40,13 @@ public class ReceitaMesConsulta {
         this.concluidos = concluidos;
     }
 
-    public Double getReceita() {
+    public Label getReceita() {
         return receita;
     }
 
     public void setReceita(Double receita) {
-        this.receita = receita;
+        this.receita.setStyle("-fx-text-fill: #038700;");
+        this.receita.setText("R$ " + String.valueOf(receita));
     }
     
 }

@@ -3,6 +3,7 @@ package controladores.relatorios;
 import aplicacao.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -33,7 +34,7 @@ public class ReceitaMesControlador {
     private TableColumn<ReceitaMesConsulta, Long> pedidos;
 
     @FXML
-    private TableColumn<ReceitaMesConsulta, Double> receita;
+    private TableColumn<ReceitaMesConsulta, Label> receita;
 
     @FXML
     private HBox areaDeAlerta;
@@ -78,5 +79,5 @@ public class ReceitaMesControlador {
     public void setTela(Stage tela) {
         this.tela = tela;
     }
-    
+
 }

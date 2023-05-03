@@ -3,6 +3,7 @@ package controladores.relatorios;
 import aplicacao.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,7 +31,7 @@ public class TotalPedidoSaborBoloControlador {
     private TableColumn<PedidosSaborConsulta, String> sabor;
 
     @FXML
-    private TableColumn<PedidosSaborConsulta, Double> receita;
+    private TableColumn<PedidosSaborConsulta, Label> receita;
 
     @FXML
     private TableColumn<PedidosSaborConsulta, Long> pedidos;
