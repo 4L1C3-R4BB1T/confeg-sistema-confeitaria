@@ -67,11 +67,11 @@ public class TelaSelecaoGraficoControlador {
         carregarExibicaoRelatorio();
 
         graficos.getSelectionModel().selectedItemProperty().addListener((obs, valorAntigo, valorNovo) -> {
-                if (valorNovo != null) {
-                    threadProgressoParar = true;
-                    limparProgresso();
-                    exibirProgresso();
-                }
+            if (valorNovo != null) {
+                threadProgressoParar = true;
+                limparProgresso();
+                exibirProgresso();
+            }
         });
     }
 

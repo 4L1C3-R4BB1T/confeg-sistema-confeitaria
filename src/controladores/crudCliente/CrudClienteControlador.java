@@ -3,7 +3,6 @@ package controladores.crudCliente;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import aplicacao.App;
 import controladores.crudCliente.cadastro.ClienteCadastrarControlador;
 import controladores.crudCliente.cadastro.ClienteControlador;
@@ -92,44 +91,39 @@ public class CrudClienteControlador {
         pesquisar();
     }
 
-
-
     public void pesquisar() {
-      Platform.runLater(() ->{
-        areaDeClientes.getChildren().clear();
-        String valor = textFieldPesquisa.getText();
+        Platform.runLater(() -> {
+            areaDeClientes.getChildren().clear();
+            String valor = textFieldPesquisa.getText();
 
-        if (valor.intern() == "") {
-            atualizarAreaDeClientes();
-            return;
-        }
+            if (valor.intern() == "") {
+                atualizarAreaDeClientes();
+                return;
+            }
 
-        List<Cliente> clientes = clienteDAO.filtrar(valor);
+            List<Cliente> clientes = clienteDAO.filtrar(valor);
 
-        if (clientes.size() == 0) {
-            areaDeClientes.getChildren().add(App.obterTelaVaziaCrud());
-            return;
-        }
+            if (clientes.size() == 0) {
+                areaDeClientes.getChildren().add(App.obterTelaVaziaCrud());
+                return;
+            }
 
-        clientes.stream()
-            .forEach( cliente -> {
-                try {
-                    FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/clientes/subtela/subtela.fxml"));
-                    Parent raiz = carregar.load();
-                    ClienteControlador controlador = carregar.getController();
-                    controlador.setCodigo(cliente.getCodigo());
-                    controlador.setAreaDeAlerta(areaDeAlerta);
-                    controlador.setNome("COD " + cliente.getCodigo());
-                    controlador.setAtualizarAreaDeClientes(this::atualizarAreaDeClientes);
-                    areaDeClientes.getChildren().add(raiz);
-                } catch(Exception erro) {
-                    erro.printStackTrace();
-                }
+            clientes.stream()
+                .forEach( cliente -> {
+                    try {
+                        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/clientes/subtela/subtela.fxml"));
+                        Parent raiz = carregar.load();
+                        ClienteControlador controlador = carregar.getController();
+                        controlador.setCodigo(cliente.getCodigo());
+                        controlador.setAreaDeAlerta(areaDeAlerta);
+                        controlador.setNome("COD " + cliente.getCodigo());
+                        controlador.setAtualizarAreaDeClientes(this::atualizarAreaDeClientes);
+                        areaDeClientes.getChildren().add(raiz);
+                    } catch(Exception erro) {
+                        erro.printStackTrace();
+                    }
+                });
         });
-
-
-
-      });
     }
 
     @FXML
@@ -165,23 +159,22 @@ public class CrudClienteControlador {
 
     public void atualizarAreaDeClientes() {
         areaDeClientes.getChildren().clear();
-            clienteDAO.buscarTodos()
-                .forEach( cliente -> {
-                    try {
-                        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/clientes/subtela/subtela.fxml"));
-                        Parent raiz = carregar.load();
-                        ClienteControlador controlador = carregar.getController();
-                        controlador.setCodigo(cliente.getCodigo());
-                        controlador.setAreaDeAlerta(areaDeAlerta);
-                        controlador.setNome("COD " + cliente.getCodigo());
-                        controlador.setAtualizarAreaDeClientes(this::atualizarAreaDeClientes);
-                        areaDeClientes.getChildren().add(raiz);
-                    } catch(Exception erro) {
-                        erro.printStackTrace();
-                    }
+        clienteDAO.buscarTodos()
+            .forEach(cliente -> {
+                try {
+                    FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/clientes/subtela/subtela.fxml"));
+                    Parent raiz = carregar.load();
+                    ClienteControlador controlador = carregar.getController();
+                    controlador.setCodigo(cliente.getCodigo());
+                    controlador.setAreaDeAlerta(areaDeAlerta);
+                    controlador.setNome("COD " + cliente.getCodigo());
+                    controlador.setAtualizarAreaDeClientes(this::atualizarAreaDeClientes);
+                    areaDeClientes.getChildren().add(raiz);
+                } catch(Exception erro) {
+                    erro.printStackTrace();
+                }
             });
     }
-
 
     public void fecharTelas() {
         telas.forEach(tela -> {

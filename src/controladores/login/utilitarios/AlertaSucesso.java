@@ -23,7 +23,6 @@ public class AlertaSucesso {
 
     public void setTitulo(String valor) {
         titulo.setText(valor);
-        
     }
 
     public void setDescricao(String valor) {

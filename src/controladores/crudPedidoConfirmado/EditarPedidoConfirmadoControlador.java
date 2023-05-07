@@ -1,9 +1,7 @@
 package controladores.crudPedidoConfirmado;
 
-
 import java.sql.Date;
 import java.time.LocalDate;
-
 
 import aplicacao.App;
 import javafx.event.ActionEvent;
@@ -25,7 +23,6 @@ import modelos.entidades.Pedido;
 import modelos.entidades.enums.Status;
 
 public class EditarPedidoConfirmadoControlador {
-
 
     @FXML
     private ComboBox<Cliente> clientes;
@@ -130,10 +127,7 @@ public class EditarPedidoConfirmadoControlador {
     }
 
     @FXML
-    public void initialize() {
-      
-
-    }
+    public void initialize() {}
 
     public boolean podeSalvar() {
         if (!validarData()) {

@@ -125,9 +125,10 @@ public class EditarPedidoIngredienteControlador {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "PEDIDO", "É necessário ter 1 item no carrinho.");
                 return;
             }
+            
             App.conexao.setAutoCommit(false);
+            
             try {
-
                 pedidoCompra.setDataPedido(Date.valueOf(getDataPedido()));
                 pedidoCompra.setObservacao(getObservacao());
 
@@ -165,7 +166,6 @@ public class EditarPedidoIngredienteControlador {
         colunaQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         carregarIngredientes();
     }
-
 
     public boolean podeSalvar() {
         if (!validarDataPedido()) {
@@ -261,7 +261,6 @@ public class EditarPedidoIngredienteControlador {
         observacao.setText(pedidoCompra.getObservacao());
     }
 
-
     public Ingrediente getIngrediente() {
         return ingredientes.getSelectionModel().getSelectedItem();
     }
@@ -286,5 +285,4 @@ public class EditarPedidoIngredienteControlador {
         return fracasso;
     }
 
-  
 }

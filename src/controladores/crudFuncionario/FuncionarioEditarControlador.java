@@ -117,7 +117,6 @@ public class FuncionarioEditarControlador {
         if (podeCadastrar()) {
             App.conexao.setAutoCommit(false);
             try {
-                
                 funcionario.setTipo(getTipo());
                 funcionario.setNome(getNome());
             
@@ -223,7 +222,6 @@ public class FuncionarioEditarControlador {
             tela.close();
         }
     }
-
 
     public void setTela(Stage tela) {
         this.tela = tela;

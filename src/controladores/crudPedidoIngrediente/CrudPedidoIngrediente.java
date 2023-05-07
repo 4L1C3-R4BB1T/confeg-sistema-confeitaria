@@ -44,7 +44,6 @@ public class CrudPedidoIngrediente {
         encerrar();
     }
 
-
     public void initialize() {
         codigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         funcionario.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -58,26 +57,24 @@ public class CrudPedidoIngrediente {
         areaDePedidos.getItems().clear();
         new ConsultaPersonalizada(App.conexao)
             .obterPedidosDeIngrediente()
-            .forEach( pedido -> {
-                   try {
-
-                        FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/ingredientes/botoes.fxml"));
-                        Node elemento = carregar.load();
-                        BotoesPedidoIngredienteControlador controlador = carregar.getController();
-                        HBox botoes = new HBox();
-                        botoes.getChildren().add(elemento);
-                        pedido.setBotoes(botoes);
-                        controlador.setConteudo(pedido);
-                        controlador.setAreaDeAlerta(areaDeAlerta);
-                        controlador.setAtualizarAreaConteudo(this::carregarPedidoIngredientes);
-                        areaDePedidos.getItems().add(pedido);
-                   } catch (Exception erro) {
-                        erro.printStackTrace();
-                   }
+            .forEach(pedido -> {
+                try {
+                    FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/ingredientes/botoes.fxml"));
+                    Node elemento = carregar.load();
+                    BotoesPedidoIngredienteControlador controlador = carregar.getController();
+                    HBox botoes = new HBox();
+                    botoes.getChildren().add(elemento);
+                    pedido.setBotoes(botoes);
+                    controlador.setConteudo(pedido);
+                    controlador.setAreaDeAlerta(areaDeAlerta);
+                    controlador.setAtualizarAreaConteudo(this::carregarPedidoIngredientes);
+                    areaDePedidos.getItems().add(pedido);
+                } catch (Exception erro) {
+                    erro.printStackTrace();
+                }
             });
     }
        
-
     public void encerrar() {
         if (tela != null) {
             tela.close();

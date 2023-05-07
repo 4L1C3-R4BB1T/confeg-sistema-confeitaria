@@ -174,10 +174,8 @@ public class CrudBoloControlador {
             } catch(Exception erro) {
                 erro.printStackTrace();
             }
-    });
-
+        });
     }
-
 
     public void fecharTelas() {
         telas.forEach(tela -> {

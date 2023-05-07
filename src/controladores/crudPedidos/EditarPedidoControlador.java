@@ -181,8 +181,6 @@ public class EditarPedidoControlador {
         total.setText(String.format("R$ %.2f", totalCarrinho));
     }
 
-
-
     public void carregarClientesFuncionariosBolosPagamento() {
         clientes.getItems().setAll(clienteDAO.buscarTodos());
         funcionarios.getItems().setAll(funcionarioDAO.buscarTodos());
@@ -223,7 +221,6 @@ public class EditarPedidoControlador {
         } else {
             return true;
         }
-
     }
 
     public void encerrar() {
@@ -235,7 +232,6 @@ public class EditarPedidoControlador {
     public void setTela(Stage tela) {
         this.tela = tela;
     }
-
 
     public Cliente getCliente() {
         return clientes.getSelectionModel().getSelectedItem();

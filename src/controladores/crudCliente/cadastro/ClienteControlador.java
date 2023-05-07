@@ -42,7 +42,6 @@ public class ClienteControlador {
 
     private AproveitarFuncao atualizarAreaDeClientes;
 
-
     @FXML
     public void abrirModal(ActionEvent event) {
         if (modal.isVisible()) {
@@ -105,7 +104,6 @@ public class ClienteControlador {
         }
     }
 
-
     public void abrirTelaEditar() {
         try {
             clicouEditar = true;
@@ -128,14 +126,10 @@ public class ClienteControlador {
             } else if (controlador.getErro()){
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Erro interno ou Operação Cancelada.");
             }
-        
-
         } catch (Exception erro) {
             erro.printStackTrace();
         }
     }
-
-    
 
     public void setCodigo(Long codigo) {
         this.codigo = codigo;

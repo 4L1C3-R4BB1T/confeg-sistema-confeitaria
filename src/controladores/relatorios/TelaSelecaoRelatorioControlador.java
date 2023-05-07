@@ -66,18 +66,17 @@ public class TelaSelecaoRelatorioControlador {
         carregarExibicaoRelatorio();
 
         relatorios.getSelectionModel().selectedItemProperty().addListener((obs, valorAntigo, valorNovo) -> {
-                if (valorNovo != null) {
-                    threadProgressoParar = true;
-                    limparProgresso();
-                    exibirProgresso();
-                }
+            if (valorNovo != null) {
+                threadProgressoParar = true;
+                limparProgresso();
+                exibirProgresso();
+            }
         });
     }
 
     public void exibirProgresso() {
         areaDeProgresso.setVisible(true);
         new Thread( () -> {
-
             while (!threadProgressoParar) {
                 Platform.runLater(() -> {
                     double novoProgresso = progresso.getProgress() + 0.05;
@@ -106,7 +105,6 @@ public class TelaSelecaoRelatorioControlador {
             Platform.runLater(() -> {
                 botaoRelatorio.setVisible(true);
             });
-
         }).start();
     }
 

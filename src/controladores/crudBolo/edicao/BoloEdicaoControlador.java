@@ -114,7 +114,9 @@ public class BoloEdicaoControlador {
                     Platform.runLater(() -> validarEdicao());
                     try {
                         Thread.sleep(200);
-                    } catch (Exception erro) {}
+                    } catch (Exception erro) {
+                        erro.printStackTrace();
+                    }
                 }
             }
        }).start();

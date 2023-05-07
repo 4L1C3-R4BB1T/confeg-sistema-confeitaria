@@ -173,7 +173,7 @@ public class PrincipalControlador {
     public void irParaTelaGraficos(ActionEvent  event) {
         removerBotaoAtivo();
         adicionarAtivoNoBotao(graficos);
-        if(!clicouBotaoGrafico) {
+        if (!clicouBotaoGrafico) {
             carregarTelaGraficos();
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A Tela já está sendo exibida.");
@@ -182,7 +182,6 @@ public class PrincipalControlador {
 
     public void carregarTelaGraficos() {
         try {
-            
             FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/graficos/graficos.fxml"));
             Parent elemento = carregar.load();
             TelaSelecaoGraficoControlador controlador = carregar.getController();
@@ -322,7 +321,6 @@ public class PrincipalControlador {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
         }).start();
     }
 
@@ -335,7 +333,6 @@ public class PrincipalControlador {
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
        }
-
     }
 
     @FXML
@@ -354,7 +351,6 @@ public class PrincipalControlador {
         atualizarAreaBolo();
         botoes = new Button[] { administrador, principal, pedidos, bolos, clientes, relatorios, graficos, botaoChat };
         botoesPedido = new HBox[] { botaoListar, botaoPedir, botaoConfirmar };
-    
     }
     
     // Listar Modal
@@ -367,8 +363,7 @@ public class PrincipalControlador {
             fecharModaisPedido();
             adicionarAtivoNoBotaoPedido(botaoListar);
             App.adicionaEfeitoSuave(modalListar);
-        }
-        
+        }   
     }
     
     @FXML
@@ -403,7 +398,6 @@ public class PrincipalControlador {
         }
     }
 
-
     @FXML
     public void abrirListaIngrediente(MouseEvent event)  {
         fecharModaisPedidoESub();
@@ -413,7 +407,6 @@ public class PrincipalControlador {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
         }
     }
-
 
     // Pedir Modal
     @FXML 
@@ -446,7 +439,6 @@ public class PrincipalControlador {
         } else {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela está sendo exibida.");
         }
- 
     }
 
     @FXML
@@ -498,7 +490,6 @@ public class PrincipalControlador {
     public void limparModalMenuAbertos() {
         menuPedidos.setVisible(false);
     }
-
 
     public void removerBotaoPedidoAtivo() {
         Arrays.stream(botoesPedido).forEach(botao -> {
@@ -667,7 +658,6 @@ public class PrincipalControlador {
         pedidos.getStyleClass().remove("ativo");
     }
 
-
     public void carregarTelaListarConfirmados() {
         Object[] elementos = App.carregarTela("/confirmacao/confirmar.fxml");
         Stage tela = (Stage) elementos[0];
@@ -716,7 +706,7 @@ public class PrincipalControlador {
         }
 
         bolos.stream()
-        .map( bolo -> {
+        .map(bolo -> {
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/principal/bolo/bolo.fxml"));
@@ -736,12 +726,11 @@ public class PrincipalControlador {
                 return null;
             }
         })
-        .forEach( bolo -> {
+        .forEach(bolo -> {
             if (bolo != null) {
                 areaBolo.getChildren().add(bolo);
             }
         });
-    
     }
 
     public void atualizarAreaBolo() {
@@ -755,7 +744,7 @@ public class PrincipalControlador {
         }
 
         bolos.stream()
-            .map( bolo -> {
+            .map(bolo -> {
                 try {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/principal/bolo/bolo.fxml"));

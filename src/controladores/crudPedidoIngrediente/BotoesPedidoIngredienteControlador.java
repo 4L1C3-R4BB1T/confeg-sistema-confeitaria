@@ -69,9 +69,7 @@ public class BotoesPedidoIngredienteControlador {
     }
 
     @FXML
-    public void initialize() {
-
-    }
+    public void initialize() {}
 
     public void carregarTelaEditar() {
         try {
@@ -118,4 +116,5 @@ public class BotoesPedidoIngredienteControlador {
     public void setAtualizarAreaConteudo(AproveitarFuncao atualizarAreaConteudo) {
         this.atualizarAreaConteudo = atualizarAreaConteudo;
     }
+    
 }

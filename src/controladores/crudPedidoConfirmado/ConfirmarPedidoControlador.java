@@ -28,7 +28,6 @@ import modelos.validacao.ValidaFormulario;
 
 public class ConfirmarPedidoControlador {
 
-
     @FXML
     private ComboBox<Cliente> clientes;
 
@@ -161,21 +160,16 @@ public class ConfirmarPedidoControlador {
         });
 
         new Thread(() -> {
-
             while (threadValidarCampoAtivo) {
-
                 if (threadPodeValidarCampos) {
                     try {
-
                         Platform.runLater(() -> validarCampos());
                         Thread.sleep(300);
                     } catch (Exception erro) {
                         erro.printStackTrace();
                     }
                 }
-                
             }
-
         }).start();
     }
 
@@ -265,4 +259,5 @@ public class ConfirmarPedidoControlador {
     public boolean getDesconto() {
         return desconto;
     }
+    
 }

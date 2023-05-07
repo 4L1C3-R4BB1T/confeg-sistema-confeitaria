@@ -99,7 +99,6 @@ public class ClienteCadastrarControlador {
     private boolean cadastrou = false;
     private boolean erro = false;
 
-
     @FXML
     public void fechar(ActionEvent event) {
         encerrar();

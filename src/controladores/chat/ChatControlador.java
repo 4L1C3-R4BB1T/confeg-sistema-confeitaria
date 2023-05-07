@@ -88,8 +88,8 @@ public class ChatControlador {
             while(!conectou) {
                 try {
                     Thread.sleep(300);
-                } catch (InterruptedException e) {
-                    //
+                } catch (InterruptedException erro) {
+                    erro.printStackTrace();
                 }
             }
             Platform.runLater(() -> areaComentario.getChildren().clear());
@@ -103,8 +103,8 @@ public class ChatControlador {
                     Thread.yield();
                     iniciarConexao();
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    //
+                } catch (InterruptedException erro) {
+                    erro.printStackTrace();
                 }
             }
             enviarObjeto(conectado);
@@ -139,8 +139,8 @@ public class ChatControlador {
                 if (soquete != null) {
                     soquete.close();
                 }
-            } catch (IOException e) {
-               //
+            } catch (IOException erro) {
+                erro.printStackTrace();
             }
             tela.close();
         }
@@ -212,7 +212,7 @@ public class ChatControlador {
                 }
             }
         } catch (Exception erro) {
-            //
+            erro.printStackTrace();
         }
     }
 

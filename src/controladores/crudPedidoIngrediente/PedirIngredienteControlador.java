@@ -1,6 +1,5 @@
 package controladores.crudPedidoIngrediente;
 
-
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -135,7 +134,6 @@ public class PedirIngredienteControlador {
                 App.conexao.rollback();
                 fracasso = true;
             }
-
         }
     }
 
@@ -185,7 +183,6 @@ public class PedirIngredienteControlador {
     }
 
     public boolean podeSalvar() {
-
         if (getFuncionario() == null) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "INFORMAÇÃO", "Selecione o Funcionário.");
             return false;
@@ -215,7 +212,6 @@ public class PedirIngredienteControlador {
         }
 
         return true;
-
     }
 
     public void atualizarAreaTotal() {
@@ -279,4 +275,5 @@ public class PedirIngredienteControlador {
     public boolean getFracasso() {
         return fracasso;
     }
+    
 }

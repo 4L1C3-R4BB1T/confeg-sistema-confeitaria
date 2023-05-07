@@ -43,7 +43,6 @@ public class CrudPedidoConfirmadoControlador {
 
     private Stage tela;
 
-
     @FXML
     public void fechar(MouseEvent event) {
         encerrar();
@@ -58,15 +57,13 @@ public class CrudPedidoConfirmadoControlador {
         colunaPago.setCellValueFactory(new PropertyValueFactory<>("pago"));
         colunaBotoes.setCellValueFactory(new PropertyValueFactory<>("botoes"));
         carregarPedidosConfirmados();
-      
     }
 
     public void carregarPedidosConfirmados() {
         areaConfirmados.getItems().clear();
         new ConsultaPersonalizada(App.conexao)
             .obterPedidosConfirmados()
-            .forEach( pedidoConfirmado -> {
-                
+            .forEach(pedidoConfirmado -> {
                 try {
                     FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/confirmacao/botoes.fxml"));
                     Node elemento = carregar.load();

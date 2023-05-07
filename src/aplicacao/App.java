@@ -115,14 +115,12 @@ public class App extends Application {
             pane.getChildren().add(alerta);
             adicionaEfeitoSuave(pane);
             new Thread(() -> {
-
                 try {
                     Thread.sleep(1500);
                     Platform.runLater(() -> removerEfeitoSuave(pane));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }).start();
         } catch (Exception erro) {
             throw new RuntimeException("Não foi possível gerar o alerta.");

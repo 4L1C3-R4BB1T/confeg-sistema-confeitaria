@@ -82,7 +82,6 @@ public class ConfirmarPedidoIngredienteControlador {
         });
     }
 
-
     public boolean podeSalvar() {
         if (getPedidoCompra() == null) {
             App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "CAMPO", "Selecione o Pedido.");
@@ -133,4 +132,5 @@ public class ConfirmarPedidoIngredienteControlador {
     public boolean getFracasso() {
         return fracasso;
     }
+    
 }

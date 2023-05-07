@@ -70,9 +70,7 @@ public class PedidoConfirmadoControlador {
     }
 
     @FXML
-    public void initialize() {
-
-    }
+    public void initialize() {}
 
     public void carregarTelaEditar() {
         try {
@@ -110,5 +108,6 @@ public class PedidoConfirmadoControlador {
     public void setAtualizarPedidosConfirmados(AproveitarFuncao atualizarPedidosConfirmados) {
         this.atualizarPedidosConfirmados = atualizarPedidosConfirmados;
     }
+    
 }
  

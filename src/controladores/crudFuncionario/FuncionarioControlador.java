@@ -123,7 +123,6 @@ public class FuncionarioControlador {
     }
 
     public void abrirTelaEditar() {
-
         try {
             clicouEditar = true;
             FXMLLoader carregar = new  FXMLLoader(getClass().getResource("/telas/funcionarios/edicao/edicao.fxml"));
@@ -144,8 +143,6 @@ public class FuncionarioControlador {
             } else if (controlador.getErro()) {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Não foi possível alterar.");
             }
-        
-
         } catch (Exception erro) {
             erro.printStackTrace();
         }
@@ -156,7 +153,6 @@ public class FuncionarioControlador {
         String caminho = getClass().getResource("/telas/funcionarios/subtela/"+ ++geradorImagem + ".png").toExternalForm();
         Image imagem = new Image(caminho);
         foto.setImage(imagem);
-        
     }
 
     public void setCodigo(Long codigo) {

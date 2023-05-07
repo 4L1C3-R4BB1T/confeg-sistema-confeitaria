@@ -16,8 +16,6 @@ import modelos.consultas.entitidades.PedidoConsulta;
 import modelos.entidadeDAO.PedidoDAO;
 import modelos.entidades.Pedido;
 
-// Implementar depois
-
 public class ListarPedidosControlador {
 
     @FXML

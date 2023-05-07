@@ -167,7 +167,6 @@ public class CadastroBoloControlador {
         } 
 
         return !teveErro;
-        
     }
 
     public boolean getCadastrou() {
