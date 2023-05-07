@@ -27,7 +27,6 @@ import modelos.entidades.Funcionario;
 import modelos.entidades.TipoFuncionario;
 import modelos.validacao.ValidaFormulario;
 
-// TELA DE LOGIN/CADASTRO
 public class CadastroFuncionarioControlador {
 
     @FXML
@@ -57,7 +56,7 @@ public class CadastroFuncionarioControlador {
     @FXML
     private TextField numero;
 
-    /// Labels para inserir mensagem de erro na tela de cadastro da tela login
+    /// Labels para inserir mensagem de erro na tela de cadastro 
     @FXML 
     private Label exibirErroNoTipo;
 

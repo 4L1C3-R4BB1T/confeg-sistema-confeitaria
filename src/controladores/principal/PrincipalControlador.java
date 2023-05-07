@@ -101,9 +101,6 @@ public class PrincipalControlador {
     @FXML
     private Button graficos;
 
-    @FXML
-    private Button carrinho;
-
     private Button[] botoes;
 
     // BOTÕES DO MENU PEDIDO
@@ -126,9 +123,6 @@ public class PrincipalControlador {
 
     @FXML 
     private Button botaoChat;
-
-    @FXML 
-    private AnchorPane areaCarrinho;
 
     @FXML
     private AnchorPane areaPadrao;
@@ -161,25 +155,6 @@ public class PrincipalControlador {
 
     public void fecharAreaPadrao() {
         areaPadrao.setVisible(false);
-    }
-
-    public void fecharCarrinho() {
-        areaCarrinho.setVisible(false);
-        areaPadrao.setVisible(true);
-    }
-
-    @FXML 
-    public void irParaCarrinho(ActionEvent event) {
-        removerBotaoAtivo();
-        adicionarAtivoNoBotao(carrinho);
-        if (areaCarrinho.isVisible()) {
-            App.removerEfeitoSuave(areaCarrinho);
-            removerBotaoAtivo();
-            App.adicionaEfeitoSuave(areaPadrao);
-        } else {
-            fecharAreaPadrao();
-            App.adicionaEfeitoSuave(areaCarrinho);
-        }
     }
 
     @FXML
@@ -338,7 +313,6 @@ public class PrincipalControlador {
     public void irParaTelaPrincipal(ActionEvent event) {
         removerBotaoAtivo();
         adicionarAtivoNoBotao(principal);
-        fecharCarrinho();
         areaBolo.getChildren().clear();
         areaBolo.getChildren().add(App.obterTelaCarregamento());
         new Thread(() -> {
@@ -378,7 +352,7 @@ public class PrincipalControlador {
     @FXML
     public void initialize() {
         atualizarAreaBolo();
-        botoes = new Button[] { administrador, principal, pedidos, bolos, clientes, relatorios, graficos, botaoChat, carrinho };
+        botoes = new Button[] { administrador, principal, pedidos, bolos, clientes, relatorios, graficos, botaoChat };
         botoesPedido = new HBox[] { botaoListar, botaoPedir, botaoConfirmar };
     
     }

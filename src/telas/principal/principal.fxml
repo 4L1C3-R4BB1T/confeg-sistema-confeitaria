@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
 <BorderPane onKeyPressed="#pesquisarEnter" prefHeight="900.0" prefWidth="1300.0" styleClass="container" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.principal.PrincipalControlador">
    <center>
@@ -49,15 +48,6 @@
                               <ImageView fitHeight="22.0" fitWidth="18.0">
                                  <image>
                                     <Image url="@../_assets/img/chat.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="carrinho" maxHeight="1.7976931348623157E308" minWidth="37.0" mnemonicParsing="false" onAction="#irParaCarrinho" prefHeight="50.0" prefWidth="57.0">
-                           <graphic>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@../_assets/img/Carrinho.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -102,109 +92,6 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: silver;" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="areaCarrinho" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <VBox layoutX="50.0" layoutY="35.0" prefHeight="500.0" prefWidth="1200.0" styleClass="area-cart" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
-                           <children>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="130.0" styleClass="cart-title">
-                                 <children>
-                                    <Label prefHeight="30.0" prefWidth="56.0" text="ITEM" />
-                                    <Label text="INFORMAÇÕES" />
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="QUANTIDADE" />
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="PREÇO" />
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="REMOVER" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="20.0" right="20.0" />
-                                 </padding>
-                              </HBox>
-                              <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="293.0" prefWidth="1198.0" styleClass="cart-scroll-pane" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
-                                 <content>
-                                    <FlowPane prefHeight="200.0" prefWidth="200.0" styleClass="cart-content" vgap="5.0">
-                                       <children>
-                                          <HBox fillHeight="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="1191.0" spacing="50.0" styleClass="card">
-                                             <children>
-                                                <VBox alignment="CENTER" prefHeight="170.0" prefWidth="170.0" styleClass="card-photo">
-                                                   <children>
-                                                      <ImageView fitHeight="109.0" fitWidth="150.0">
-                                                         <image>
-                                                            <Image url="@../_assets/img/cake-default.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                      <Label text="Bolo de chocolate" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="CENTER_RIGHT" prefHeight="175.0" prefWidth="266.0" styleClass="card-informacao">
-                                                   <children>
-                                                      <HBox prefWidth="200.0" spacing="5.0">
-                                                         <children>
-                                                            <Label text="Sabor:" wrapText="true" />
-                                                            <Label text="Chocolate" wrapText="true" />
-                                                         </children>
-                                                      </HBox>
-                                                      <HBox prefWidth="200.0" spacing="5.0">
-                                                         <children>
-                                                            <Label text="Peso" wrapText="true" />
-                                                            <Label text="100KG" wrapText="true" />
-                                                         </children>
-                                                      </HBox>
-                                                      <HBox prefWidth="200.0" spacing="5.0">
-                                                         <children>
-                                                            <Label text="Ingredientes:" />
-                                                            <Label text="500g de arroz, feijão" wrapText="true" />
-                                                         </children>
-                                                      </HBox>
-                                                      <HBox prefWidth="200.0" spacing="5.0">
-                                                         <children>
-                                                            <Label text="Adicionais" />
-                                                            <Label text="Padrão" wrapText="true" />
-                                                         </children>
-                                                      </HBox>
-                                                   </children>
-                                                </VBox>
-                                                <VBox prefHeight="181.0" prefWidth="127.0" styleClass="card-quantity">
-                                                   <children>
-                                                      <Label prefHeight="35.0" prefWidth="100.0" text="10" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox prefHeight="175.0" prefWidth="175.0" styleClass="card-price">
-                                                   <children>
-                                                      <Label prefHeight="35.0" prefWidth="100.0" text="R$ 1500.00" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox prefHeight="175.0" prefWidth="152.0" styleClass="card-remove">
-                                                   <children>
-                                                      <ImageView>
-                                                         <image>
-                                                            <Image url="@../_assets/img/card-remove.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="15.0" left="30.0" right="15.0" top="10.0" />
-                                             </padding>
-                                          </HBox>
-                                       </children>
-                                    </FlowPane>
-                                 </content>
-                              </ScrollPane>
-                           </children>
-                        </VBox>
-                        <HBox alignment="CENTER" layoutX="927.0" layoutY="567.0" prefHeight="50.0" prefWidth="300.0" spacing="5.0" styleClass="area-total" AnchorPane.rightAnchor="50.0">
-                           <children>
-                              <Label styleClass="area-total-total" text="TOTAL:" />
-                              <Label styleClass="area-total-preco" text="R$ 1500.00" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" layoutX="950.0" layoutY="646.0" prefHeight="50.0" prefWidth="300.0" spacing="5.0" styleClass="area-prosseguir">
-                           <children>
-                              <Label text="PROSSEGUIR" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
                   <AnchorPane fx:id="areaPadrao" prefHeight="200.0" prefWidth="200.0" styleClass="area-conteudo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="879.0" layoutY="57.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="pesquisa" AnchorPane.rightAnchor="21.0">
