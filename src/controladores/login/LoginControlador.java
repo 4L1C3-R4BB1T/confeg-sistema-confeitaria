@@ -3,6 +3,7 @@ package controladores.login;
 import java.util.ArrayList;
 import java.util.List;
 import aplicacao.App;
+import controladores.crudFuncionario.CadastroFuncionarioControlador;
 import controladores.principal.PrincipalControlador;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -74,15 +75,22 @@ public class LoginControlador {
 
     private Timeline timeline;
 
-    @FXML 
+    @FXML
     public void cadastrar(MouseEvent event) throws Exception {
-        if (clicouBotaoCadastrar) return;
-        Object[] elementos = App.carregarTela("/login/cadastro/cadastro.fxml");
+        if (!clicouBotaoCadastrar) {
+            carregarCadastro();
+        } else {
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "ADICIONAR", "Já existe uma janela em aberto.");
+        }
+    }
+
+    public void carregarCadastro() {
+        clicouBotaoCadastrar = true;
+        Object[] elementos = App.carregarTela("/funcionarios/cadastro/cadastro.fxml");
         Stage tela = (Stage) elementos[0];
-        CadastroControlador controlador = (CadastroControlador) elementos[1];
+        CadastroFuncionarioControlador controlador = (CadastroFuncionarioControlador) elementos[1];
         controlador.setTela(tela);
         telas.add(tela);
-        clicouBotaoCadastrar = true;
         tela.showAndWait();
         clicouBotaoCadastrar = false; 
         controlador.setEncerrarThreadValidacao(true);

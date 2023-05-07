@@ -1,4 +1,4 @@
-package controladores.login;
+package controladores.crudFuncionario;
 
 import java.util.stream.Stream;
 import aplicacao.App;
@@ -28,7 +28,7 @@ import modelos.entidades.TipoFuncionario;
 import modelos.validacao.ValidaFormulario;
 
 // TELA DE LOGIN/CADASTRO
-public class CadastroControlador {
+public class CadastroFuncionarioControlador {
 
     @FXML
     private ComboBox<TipoFuncionario> tipo;

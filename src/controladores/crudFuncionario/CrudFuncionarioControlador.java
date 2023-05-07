@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aplicacao.App;
-import controladores.login.CadastroControlador;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -137,9 +136,9 @@ public class CrudFuncionarioControlador {
     public void carregarCadastro() {
         try {
             clicouAdicionar = true;
-            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/login/cadastro/cadastro.fxml"));
+            FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/funcionarios/cadastro/cadastro.fxml"));
             Parent raiz = carregar.load();
-            CadastroControlador controlador = carregar.getController();
+            CadastroFuncionarioControlador controlador = carregar.getController();
             Scene cena = new Scene(raiz);
             Stage palco = new Stage(StageStyle.UNDECORATED);
             App.adicionarMovimento(palco, cena);   
