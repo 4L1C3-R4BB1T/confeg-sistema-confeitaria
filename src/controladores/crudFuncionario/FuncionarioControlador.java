@@ -63,7 +63,7 @@ public class FuncionarioControlador {
         if (!clicouEditar) {
             abrirTelaEditar();
         } else {
-            App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Edição já aberta para o Funcionário.");
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDIÇÃO", "Edição já aberta para o Funcionário.");
         }
     }
 
@@ -139,9 +139,9 @@ public class FuncionarioControlador {
             clicouEditar = false;
             if (controlador.dadosForamSalvos()) {
                 atualizarAreaDeFuncionarios.usar();
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "Edição", "Funcionário alterado com sucesso.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Funcionário alterado com sucesso.");
             } else if (controlador.getErro()) {
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Não foi possível alterar.");
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "EDIÇÃO", "Não foi possível alterar.");
             }
         } catch (Exception erro) {
             erro.printStackTrace();

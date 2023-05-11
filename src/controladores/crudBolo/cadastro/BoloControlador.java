@@ -57,7 +57,7 @@ public class BoloControlador {
         if (!clicouEditar) {
             abrirTelaEditar();
         } else {
-            App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Edição já aberta para o bolo.");
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDIÇÃO", "Edição já aberta para o bolo.");
         }
     }
 
@@ -96,7 +96,7 @@ public class BoloControlador {
            } catch (Exception erro) {
                 erro.printStackTrace();
                 App.conexao.rollback();
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "DELEÇÃO", "Não foi possível remover");
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "DELEÇÃO", "Não foi possível remover.");
            }
         }
     }
@@ -130,9 +130,9 @@ public class BoloControlador {
 
             if (controlador.getAlterou()) {
                 atualizarAreaDeBolos.usar();
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "Edição", "Bolo alterado com sucesso.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Bolo alterado com sucesso.");
             } else if (controlador.getErro()){
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Erro interno.");
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "EDIÇÃO", "Erro interno ou Operação Cancelada.");
             }
 
         } catch (Exception erro) {

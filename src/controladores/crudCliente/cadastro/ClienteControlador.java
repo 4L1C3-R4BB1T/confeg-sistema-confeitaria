@@ -56,7 +56,7 @@ public class ClienteControlador {
         if (!clicouEditar) {
             abrirTelaEditar();
         } else {
-            App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Edição já aberta para o Cliente.");
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDIÇÃO", "Edição já aberta para o Cliente.");
         }
     }
 
@@ -122,9 +122,9 @@ public class ClienteControlador {
 
             if (controlador.getCadastrou()) {
                 atualizarAreaDeClientes.usar();
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "Edição", "Bolo alterado com sucesso.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Cliente alterado com sucesso.");
             } else if (controlador.getErro()){
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "Edição", "Erro interno ou Operação Cancelada.");
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "EDIÇÃO", "Erro interno ou Operação Cancelada.");
             }
         } catch (Exception erro) {
             erro.printStackTrace();

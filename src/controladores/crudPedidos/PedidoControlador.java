@@ -33,11 +33,11 @@ public class PedidoControlador {
     @FXML
     public void editar(MouseEvent event) {
         if (!verificarStatus()) {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDITAR", "Não é possível editar pedido com esse status");
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDIÇÃO", "Não é possível editar pedido com esse status");
         } else if (!clicouBotaoEditar) {
             carregarEditarPedido();
         } else {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDITAR", "A janela já está aberta.");
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDIÇÃO", "Edição já aberta para Pedido.");
         }
     }
 
@@ -69,7 +69,7 @@ public class PedidoControlador {
             pedidoDAO.remover(pedido);
 
             App.conexao.commit();
-            App.exibirAlert(areaDeAlerta, "SUCESSO", "REMOÇÃO", "O Pedido com ID: " + pedido.getCodigo() + " foi deletado.");
+            App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "O Pedido com ID: " + pedido.getCodigo() + " foi removido.");
             atualizarPedidos.usar();
         } catch (Exception erro) {
             App.conexao.rollback();
@@ -100,9 +100,9 @@ public class PedidoControlador {
             palco.showAndWait();
 
             if (controlador.getRegistrouPedido()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Saiu da edição.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Pedido alterado com sucesso.");
             } else if (controlador.getErro()) {
-                App.exibirAlert(areaDeAlerta, "ERRO", "EDITAR", "O Pedido com ID: " + pedido.getCodigo() + " não foi editado.");
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "EDIÇÃO", "O Pedido com ID: " + pedido.getCodigo() + " não foi alterado.");
             }
             clicouBotaoEditar = false;
             atualizarPedidos.usar();

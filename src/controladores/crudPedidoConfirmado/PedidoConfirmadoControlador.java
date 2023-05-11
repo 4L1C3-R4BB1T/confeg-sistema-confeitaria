@@ -33,7 +33,7 @@ public class PedidoConfirmadoControlador {
         if(!clicouBotaoEditar) {
             carregarTelaEditar();
         } else {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "TELA", "A tela já está aberta.");
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDIÇÃO", "Edição já aberta para Confirmação de Pedido.");
         }
     }
 
@@ -57,15 +57,15 @@ public class PedidoConfirmadoControlador {
                 pedidoDAO.remover(pedido);
 
                 App.conexao.commit();
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "REMOÇÃO", "A Confirmação de Pedido foi removido.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "A Confirmação de Pedido com ID: " + confirmacaoPedido.getCodigo() + " foi removida.");
                 atualizarPedidosConfirmados.usar();
             } catch (Exception erro) {
                 erro.printStackTrace();
                 App.conexao.rollback();
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "REMOÇÃO", "Não foi possível remover.");
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "DELEÇÃO", "Não foi possível remover.");
             }
         } else {
-            App.exibirAlert(areaDeAlerta, "FRACASSO", "INTERNO", "Confirmação pedido não setada.");
+            App.exibirAlert(areaDeAlerta, "FRACASSO", "INTERNO", "Confirmação de Pedido não selecionada.");
         }
     }
 
@@ -86,9 +86,9 @@ public class PedidoConfirmadoControlador {
             controlador.setPedido(confirmacaoPedido);
             palco.showAndWait();
             if (controlador.getSucesso()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Saiu da edição.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Confirmação de Pedido alterada com sucesso.");
             } else if (controlador.getFracasso()) {
-                App.exibirAlert(areaDeAlerta, "ERRO", "EDIÇÃO", "Não foi possível realizar a edição.");
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "EDIÇÃO", "Não foi possível realizar a edição.");
             }
             clicouBotaoEditar = false;
             atualizarPedidosConfirmados.usar();

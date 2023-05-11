@@ -41,7 +41,7 @@ public class BotoesPedidoIngredienteControlador {
         if (!clicouBotaoEditar) {
             carregarTelaEditar();
         } else {
-            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "JANELA", "A Janela já está visível.");
+            App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "EDIÇÃO", "Edição já aberta para Pedido de Ingrediente.");
         }
     }
 
@@ -57,12 +57,12 @@ public class BotoesPedidoIngredienteControlador {
 
                 pedidoCompraDAO.remover(pedidoCompra);
                 App.conexao.commit();
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "REMOÇÃO", "Pedido de Compra removido com sucesso.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "O Pedido de Compra com ID: " + pedidoCompra.getCodigo() + " foi removido.");
                 atualizarAreaConteudo.usar();
             } catch (Exception erro) {
                 erro.printStackTrace();
                 App.conexao.rollback();
-                App.exibirAlert(areaDeAlerta, "FRACASSO", "REMOÇÃO", "Erro interno.");
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "DELEÇÃO", "Erro interno.");
             }
         }
 
@@ -92,9 +92,9 @@ public class BotoesPedidoIngredienteControlador {
             App.adicionarMovimento(palco, cena);
             palco.showAndWait();
             if (controlador.getSucesso()) {
-                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Saiu da edição.");
+                App.exibirAlert(areaDeAlerta, "SUCESSO", "EDIÇÃO", "Pedido de Ingrediente alterado com sucesso.");
             } else if (controlador.getFracasso()) {
-                App.exibirAlert(areaDeAlerta, "INFORMAÇÃO", "JANELA", "Não foi possível editar o pedido de ingrediente.");
+                App.exibirAlert(areaDeAlerta, "FRACASSO", "EDIÇÃO", "Não foi possível editar o Pedido de Ingrediente.");
             }
             clicouBotaoEditar = false;
             atualizarAreaConteudo.usar();
