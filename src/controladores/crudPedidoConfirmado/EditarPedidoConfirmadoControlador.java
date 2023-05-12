@@ -113,7 +113,7 @@ public class EditarPedidoConfirmadoControlador {
                     pedido.setStatus(Status.CANCELADO);
                 }
 
-                pedidoDAO.alterarConfirmaco(pedido);
+                pedidoDAO.alterarConfirmacao(pedido);
                 confirmacaoPedidoDAO.alterar(confirmacaoPedido);
                 App.conexao.commit();
                 sucesso = true;

@@ -59,7 +59,7 @@ public class PedidoDAO {
         return false;
     }
 
-    public boolean alterarConfirmaco(Pedido pedido) {
+    public boolean alterarConfirmacao(Pedido pedido) {
         String comando = "UPDATE pedido SET status_pedido = ?, desconto_pedido = ? WHERE cod_pedido = ?";
         try (PreparedStatement ps = conexao.prepareStatement(comando, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, pedido.getStatus().getDescricao());

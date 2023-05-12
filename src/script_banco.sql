@@ -5849,11 +5849,11 @@ INSERT INTO cliente (nome_cliente, cpf_cliente, telefone_cliente, cod_endereco) 
 ('Camila Rodrigues', '01234567899', '32999998888', 10);
 
 INSERT INTO funcionario (nome_funcionario, cpf_funcionario, cod_tipo_funcionario, cod_endereco, email, senha) VALUES
-('Pedro Silva', '12345678900', 1, 11, 'funcionario1@confeg.com', 'funcionario123'),
-('Ana Santos', '23456789011', 1, 12, 'funcionario2@confeg.com', 'funcionario123'),
-('José Pereira', '34567890122', 1, 13, 'funcionario3@confeg.com', 'funcionario123'),
-('Fernanda Alves', '45678901233', 2, 14, 'gerente1@confeg.com', 'gerente123'),
-('Mariana Rodrigues', '56789012344', 1, 15, 'gerente2@confeg.com', 'gerente123'),
+('Pedro Silva', '12345678900', 1, 11, 'funcionario1@confeg.com', 'confeg123'),
+('Ana Santos', '23456789011', 1, 12, 'funcionario2@confeg.com', 'confeg123'),
+('José Pereira', '34567890122', 1, 13, 'funcionario3@confeg.com', 'confeg123'),
+('Fernanda Alves', '45678901233', 2, 14, 'gerente1@confeg.com', 'confeg123'),
+('Mariana Rodrigues', '56789012344', 2, 15, 'gerente2@confeg.com', 'confeg123'),
 ('Teste', '64280112502', 1, 16, 'test', 'test'),
 ('Admin', '64280112502', 2, 17, 'admin', 'admin');
 
