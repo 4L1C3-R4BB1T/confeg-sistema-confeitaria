@@ -136,7 +136,7 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="modalConfirmar" prefHeight="120.0" prefWidth="150.0" visible="false" AnchorPane.leftAnchor="275.0" AnchorPane.topAnchor="40.0">
+                  <AnchorPane fx:id="modalConfirmar" prefHeight="120.0" prefWidth="150.0" visible="false" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="20.0">
                      <children>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="34.0" onMouseClicked="#confirmarCompra" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                            <children>
@@ -154,7 +154,7 @@
                         <String fx:value="submenu" />
                      </styleClass>
                   </AnchorPane>
-                  <AnchorPane fx:id="modalListar" layoutX="115.0" prefHeight="165.0" prefWidth="150.0" visible="false" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="40.0">
+                  <AnchorPane fx:id="modalListar" layoutX="115.0" prefHeight="165.0" prefWidth="150.0" visible="false" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="10.0">
                      <children>
                         <HBox fx:id="botaoListarPedido" alignment="CENTER" layoutX="10.0" layoutY="23.0" onMouseClicked="#abrirListaPedido" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="23.0">
                            <children>
@@ -177,7 +177,7 @@
                         <String fx:value="submenu" />
                      </styleClass>
                   </AnchorPane>
-                  <AnchorPane fx:id="modalPedir" layoutX="274.0" layoutY="41.0" prefHeight="120.0" prefWidth="150.0" visible="false" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="40.0">
+                  <AnchorPane fx:id="modalPedir" layoutX="274.0" layoutY="41.0" prefHeight="120.0" prefWidth="150.0" visible="false" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="20.0">
                      <children>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="34.0" onMouseClicked="#abrirPedirBolo" prefHeight="32.0" prefWidth="130.0" styleClass="botao" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                            <children>

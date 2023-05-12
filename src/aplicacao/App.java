@@ -1,5 +1,8 @@
 package aplicacao;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.Connection;
 
@@ -41,6 +44,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage palco) throws Exception {
+        carregarDados(); // Essa funçao criará toda a estrutura do banco e conjunto dos inserts.
         FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/login/login.fxml"));
         Parent raiz = carregar.load();
         LoginControlador controlador = carregar.getController();
@@ -184,6 +188,27 @@ public class App extends Application {
         } catch (Exception erro) {
            throw new RuntimeException("Não foi possível carregar a Tela. " + caminho);
         }
+    }
+
+    private void carregarDados() throws Exception {
+        String comando = "";
+
+        FileInputStream arquivo = new FileInputStream(getClass().getResource("/script_banco.sql").toExternalForm().replace("file:/", ""));
+        InputStreamReader codificado = new InputStreamReader(arquivo, "UTF-8"); 
+        BufferedReader br = new BufferedReader(codificado);
+        String line = "";
+
+        while ((line = br.readLine()) != null) {
+            comando += line;
+            if (line.endsWith(";") && !line.startsWith("/*")) {
+                App.conexao.createStatement().execute(comando);
+                comando = "";
+            }
+        }
+
+        br.close();
+        arquivo.close();
+        codificado.close();
     }
 
     public static void main(String[] args) {
