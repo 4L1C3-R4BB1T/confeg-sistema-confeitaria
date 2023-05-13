@@ -12,9 +12,19 @@ git clone https://github.com/4L1C3-R4BB1T/confeg-sistema-confeitaria.git
 ```
 2. Abra o projeto em sua IDE de preferência
 3. Associe as bibliotecas do projeto ao classpath
-4. Importe o arquivo **script_banco.sql** para a população do banco de dados  
+4. Altere os dados do banco de dados para seu usuário e senha para a população do banco de dados  
   4.1 Obs.: os dados do banco de dados podem ser alterados no arquivo **configuracoes.properties**
 5. Execute o arquivo **App.java** localizado no diretório **./src/aplicacao/App.java**
+
+---
+
+#### 👩‍💼 Login como Funcionário
+- Email: test
+- Senha: test
+
+#### 🧑‍💼 Login como Gerente 
+- Email: admin
+- Senha: admin
 
 ---
 
