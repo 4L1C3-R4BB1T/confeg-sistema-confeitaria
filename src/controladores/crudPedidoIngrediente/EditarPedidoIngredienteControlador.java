@@ -143,6 +143,7 @@ public class EditarPedidoIngredienteControlador {
                 }
 
                 pedidoCompraDAO.alterar(pedidoCompra);
+                
                 App.conexao.commit();
                 sucesso = true;
                 encerrar();
@@ -188,7 +189,6 @@ public class EditarPedidoIngredienteControlador {
         double totalCarrinho = carrinho.stream().map( x -> x.getIngrediente().getPreco() * x.getQuantidade()).reduce(0D, (x, y) -> x + y);
         total.setText(String.format("R$ %.2f", totalCarrinho));
     }
-
 
     public void limpar() {
         ingredientes.setValue(null);

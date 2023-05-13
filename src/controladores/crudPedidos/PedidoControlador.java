@@ -57,7 +57,9 @@ public class PedidoControlador {
             // remover confirmação do pedido
             ConfirmacaoPedidoDAO confirmacaoPedidoDAO = new ConfirmacaoPedidoDAO(App.conexao);
             ConfirmacaoPedido confirmacaoPedido = confirmacaoPedidoDAO.buscarPorPedido(pedido);
-            confirmacaoPedidoDAO.remover(confirmacaoPedido);
+            if (confirmacaoPedido != null) {
+                confirmacaoPedidoDAO.remover(confirmacaoPedido);
+            }
 
             // remover pedidobolo do pedido
             PedidoBoloDAO pedidoBoloDAO = new PedidoBoloDAO(App.conexao);

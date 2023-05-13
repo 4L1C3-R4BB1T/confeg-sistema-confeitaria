@@ -90,7 +90,8 @@ public class ConfirmarPedidoControlador {
     @FXML
     void salvar(ActionEvent event) throws Exception {
 
-        //Ao ser confirmada a entrega, o pedido deverá ter seu status alterado para CONCLUIDO
+        // Ao ser confirmada a entrega, o pedido deverá ter seu status alterado para CONCLUIDO
+        
         // Caso a data da confirmação do pedido seja mesma do pedido, 
         // o cliente ganhará 2% de desconto sobre o valor total do pedido
         if (validarCampos()) {

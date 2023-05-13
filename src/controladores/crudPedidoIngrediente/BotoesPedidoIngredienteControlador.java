@@ -56,6 +56,7 @@ public class BotoesPedidoIngredienteControlador {
                 );
 
                 pedidoCompraDAO.remover(pedidoCompra);
+                
                 App.conexao.commit();
                 App.exibirAlert(areaDeAlerta, "SUCESSO", "DELEÇÃO", "O Pedido de Compra com ID: " + pedidoCompra.getCodigo() + " foi removido.");
                 atualizarAreaConteudo.usar();
@@ -65,7 +66,6 @@ public class BotoesPedidoIngredienteControlador {
                 App.exibirAlert(areaDeAlerta, "FRACASSO", "DELEÇÃO", "Erro interno.");
             }
         }
-
     }
 
     @FXML
@@ -81,7 +81,6 @@ public class BotoesPedidoIngredienteControlador {
             Stage palco = new Stage(StageStyle.UNDECORATED);
             palco.setScene(cena);
             
-
             List<PedidoCompraIngrediente> carrinho = pedidoCompraIngredientesDAO.buscarPorPedidoCompra(pedidoCompra);
 
             controlador.setItemNaTabela(carrinho);
