@@ -30,12 +30,12 @@ git clone https://github.com/4L1C3-R4BB1T/confeg-sistema-confeitaria.git
 
 O CONFEG possui as seguintes funcionalidades:
 
-🔸 Cadastro de clientes, incluindo nome, endereço, telefone.  
-🔸 Cadastro de funcionários, nome, cargo.  
-🔸 Cadastro de produtos, incluindo nome, descrição, preço de venda e quantidade em estoque.  
+🔸 Cadastro de clientes, com nome, endereço e telefone.  
+🔸 Cadastro de funcionários, com nome, endereço, telefone e tipo.  
+🔸 Cadastro de bolos, com descrição, peso, preço de venda, data de fabricação e validade.  
 🔸 Realização de vendas, permitindo a seleção dos produtos e cálculo do total a ser pago.  
 🔸 Realizaçao de pedidos de ingredientes, permitindo a seleção dos ingredientes e cálculo do total a ser pago.  
-🔸 Controle de estoque, atualizando a quantidade de produtos após cada venda realizada.  
+🔸 Controle de estoque, atualizando a quantidade de produtos após cada venda realizada.    
 
 ---
 
