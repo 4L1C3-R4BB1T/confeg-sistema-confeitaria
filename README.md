@@ -18,13 +18,11 @@ git clone https://github.com/4L1C3-R4BB1T/confeg-sistema-confeitaria.git
 
 ---
 
-#### 👩‍💼 Login como Funcionário
-- Email: test
-- Senha: test
-
-#### 🧑‍💼 Login como Gerente 
-- Email: admin
-- Senha: admin
+|                                |                            |
+| ------------------------------ | -------------------------- |
+| 👩‍💼 Login como **Funcionário** | 🧑‍💼 Login como **Gerente**  |
+| ✉️ **Email:** test            | ✉️ **Email:** admin        |
+| 🔑 **Senha:** test            | 🔑 **Senha:** admin        |
 
 ---
 
