@@ -44,7 +44,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage palco) throws Exception {
-        carregarDados(); // Essa funçao criará toda a estrutura do banco e conjunto dos inserts.
+        carregarDados(); // Essa funçao criará toda a estrutura do banco e conjunto dos inserts
         FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/login/login.fxml"));
         Parent raiz = carregar.load();
         LoginControlador controlador = carregar.getController();
@@ -190,25 +190,36 @@ public class App extends Application {
         }
     }
 
-    private void carregarDados() throws Exception {
-        String comando = "";
+    // Essa funçao criará toda a estrutura do banco e conjunto dos inserts
+    private void carregarDados() {
+        String diretorio = getClass().getResource("/script_banco.sql").toExternalForm().replace("file:/", "");
 
-        FileInputStream arquivo = new FileInputStream(getClass().getResource("/script_banco.sql").toExternalForm().replace("file:/", ""));
-        InputStreamReader codificado = new InputStreamReader(arquivo, "UTF-8"); 
-        BufferedReader br = new BufferedReader(codificado);
-        String line = "";
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(diretorio), "UTF-8"))) {
+            String linha = "";
+            String sql = "";
 
-        while ((line = br.readLine()) != null) {
-            comando += line;
-            if (line.endsWith(";") && !line.startsWith("/*")) {
-                App.conexao.createStatement().execute(comando);
-                comando = "";
+            while ((linha = br.readLine()) != null) {
+                if (!linha.startsWith("/")) {
+                    sql += linha;
+                }
+                if (linha.endsWith(";")) {
+                    App.conexao.createStatement().execute(sql);
+                    if (sql.toLowerCase().startsWith("create")) {
+                        System.out.println(sql.replaceAll(",", ",\n"));
+                        System.out.println();
+                    } else if (sql.toLowerCase().startsWith("drop")) {
+                        System.out.println(sql);
+                    }
+                    sql = "";
+                    Thread.sleep(50);
+                }
             }
-        }
 
-        br.close();
-        arquivo.close();
-        codificado.close();
+            System.out.println("->> OS INSERTS TAMBÉM FORAM EXECUTADOS <<-");
+            System.out.println();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
