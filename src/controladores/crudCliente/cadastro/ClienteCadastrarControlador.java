@@ -163,7 +163,7 @@ public class ClienteCadastrarControlador {
             vf.validarComboBox(erroCidade, getCidade(), "Selecione a Cidade"),
             vf.validarComboBox(erroEstado, getEstado(), "Selecione a Estado"),
             vf.validarCampo(erroBairro, getBairro(), "Preencha o Bairro"),
-            vf.validarCampo(erroRua, getRua(), "Preencha o Rua"),
+            vf.validarCampo(erroRua, getRua(), "Preencha a Rua"),
             vf.validarValorNumerico(erroNumero, getNumero()),
             vf.validarTelefone(erroTelefone, getTelephone())
         ).allMatch(valor -> valor == true);

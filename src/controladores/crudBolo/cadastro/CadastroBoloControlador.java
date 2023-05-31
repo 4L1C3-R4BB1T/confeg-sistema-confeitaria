@@ -135,7 +135,8 @@ public class CadastroBoloControlador {
             vf.validarComboBox(erroSabor, getSabor(), "Selecione o Sabor"),
             vf.validarValorNumerico(erroPreco, getPreco()),
             vf.validarValorNumerico(erroPeso, getPeso()),
-            validarDatas()
+            validarDatas(),
+            vf.validarCampo(erroDescricao, getDescricao(), "Preencha a Descrição")
         ).allMatch( bool -> bool != false);
     }
 
@@ -147,12 +148,12 @@ public class CadastroBoloControlador {
         boolean teveErro = false;
 
         if (getFabricao() == null){
-            erroFabricacao.setText("Preencha a Fabricação.");
+            erroFabricacao.setText("* Preencha a Fabricação.");
             teveErro = true;
         }
 
         if (getVencimento() == null) {
-            erroVencimento.setText("Preencha a Validade.");
+            erroVencimento.setText("* Preencha a Validade.");
             teveErro = true;
         } 
         
@@ -163,6 +164,11 @@ public class CadastroBoloControlador {
 
         if (getVencimento() != null && getVencimento().isBefore(LocalDate.now())) {
             erroVencimento.setText("Vencimento inferior a data atual");
+            teveErro = true;
+        } 
+
+        if (getVencimento() != null && getVencimento().isBefore(getFabricao())) {
+            erroVencimento.setText("Vencimento inferior a data de fabricação");
             teveErro = true;
         } 
 

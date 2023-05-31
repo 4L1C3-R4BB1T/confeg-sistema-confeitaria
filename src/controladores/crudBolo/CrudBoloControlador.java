@@ -104,9 +104,6 @@ public class CrudBoloControlador {
         }
     }
 
-
-
-
     public void atualizarAreaDeBolos() {
         areaDebolos.getChildren().clear();
         List<Bolo> bolos = boloDAO.buscarTodos();

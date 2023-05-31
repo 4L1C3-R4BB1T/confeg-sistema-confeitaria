@@ -29,7 +29,6 @@ public class ValidaFormulario extends Validacao {
                 } else {
                     area.setText("* Selecione um opção.");
                 }
-                area.setText("* Preencha este campo");
             }
             return false;
         } else {
@@ -71,7 +70,7 @@ public class ValidaFormulario extends Validacao {
     }
 
     public boolean validarValorNumerico(Label area, String numero) {
-        if (!this.validarCampo(area, numero, "Preencha o campo número")) {
+        if (!this.validarCampo(area, numero, "Preencha o campo numérico")) {
             return false;
         } else if (!this.validarNumero(numero)) {
             area.setStyle("-fx-text-fill: red;");
