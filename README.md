@@ -46,3 +46,11 @@ O CONFEG possui as seguintes funcionalidades:
 🔸 JavaFX  
 🔸 PostgreSQL  
 🔸 JasperReports  
+
+---
+
+[![License](https://img.shields.io/github/license/4L1C3-R4BB1T/animal-rescue?style=for-the-badge)](https://github.com/4L1C3-R4BB1T/confeg-sistema-confeitaria/blob/main/LICENSE)
+
+---
+
+Made with ❤️ by CONFEG team
