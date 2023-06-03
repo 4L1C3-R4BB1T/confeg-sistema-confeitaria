@@ -35,7 +35,8 @@ O CONFEG possui as seguintes funcionalidades:
 🔸 Cadastro de bolos, com descrição, peso, preço de venda, data de fabricação e validade.  
 🔸 Realização de vendas, permitindo a seleção dos produtos e cálculo do total a ser pago.  
 🔸 Realizaçao de pedidos de ingredientes, permitindo a seleção dos ingredientes e cálculo do total a ser pago.  
-🔸 Controle de estoque, atualizando a quantidade de produtos após cada venda realizada.    
+🔸 Confirmação de pedidos realizados.
+🔸 Chat interno.
 
 ---
 
