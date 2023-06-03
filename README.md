@@ -53,4 +53,4 @@ O CONFEG possui as seguintes funcionalidades:
 
 ---
 
-Made with ❤️ by CONFEG team
+Made with ❤️ by **CONFEG team**
