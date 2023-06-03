@@ -23,4 +23,5 @@ public class Conectados implements Serializable {
     public List<Funcionario> getConectados() {
         return conectados;
     }
+    
 }

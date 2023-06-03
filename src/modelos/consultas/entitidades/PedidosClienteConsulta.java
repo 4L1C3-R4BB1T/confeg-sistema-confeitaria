@@ -40,7 +40,7 @@ public class PedidosClienteConsulta {
 
     public String getTelefone() {
         ValidaFormulario vf = new ValidaFormulario();
-        return vf.formatarTelofone(telefone);
+        return vf.formatarTelefone(telefone);
     }
 
     public void setTelefone(String telefone) {

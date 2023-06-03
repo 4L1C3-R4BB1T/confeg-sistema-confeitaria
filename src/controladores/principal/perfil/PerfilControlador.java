@@ -51,9 +51,10 @@ public class PerfilControlador {
 
     public void setConectado(Funcionario funcionario) {
         if (funcionario != null) {
+            Validacao v = new Validacao();
             setNome(funcionario.getNome());
             setEmail(funcionario.getEmail());
-            setSenha(funcionario.getSenha());
+            setSenha(v.colocarAsterisco(v.decode(funcionario.getSenha())));
             setCpf(validacao.formatarCPF(funcionario.getCpf()));
             setEstado(funcionario.getEndereco().getEstado().getNome());
             setMunicipio(funcionario.getEndereco().getCidade().getNome());

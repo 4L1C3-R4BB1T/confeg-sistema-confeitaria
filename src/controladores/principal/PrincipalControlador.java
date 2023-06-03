@@ -771,7 +771,6 @@ public class PrincipalControlador {
             });
     }
 
-
     public void fecharTodasTelas() {
         telas.forEach( tela -> {
             if (tela != null) {

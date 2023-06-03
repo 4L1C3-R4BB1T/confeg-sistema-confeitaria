@@ -102,7 +102,6 @@ public class Pedido implements Serializable {
         this.observacao = observacao;
     }
 
-
     public void setDesconto(Double desconto) {  
         this.desconto = desconto;
     }

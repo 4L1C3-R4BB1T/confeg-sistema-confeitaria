@@ -52,7 +52,6 @@ public class ValidaFormulario extends Validacao {
             area.setText("✓ Válido");
             return true;
         }
-      
     }
 
     public boolean validarCPF(Label area, String cpf) {
@@ -61,6 +60,10 @@ public class ValidaFormulario extends Validacao {
         } else if (!this.validarCpf(cpf)) {
             area.setStyle("-fx-text-fill: red;");
             area.setText("- Não é um CPF válido");
+            return false;
+        } else if (!this.existeCpf(cpf)) {
+            area.setStyle("-fx-text-fill: red;");
+            area.setText("- CPF não existe");
             return false;
         } else {
             area.setStyle("-fx-text-fill: green;");
@@ -88,7 +91,7 @@ public class ValidaFormulario extends Validacao {
         if (valor == null) {
             area.setText("Preencha o Telefone");
             return false;
-        } else if (!valor.matches("(\\(\\d{2}\\))?\\d{5}-\\d{4}|\\d{11}")) {
+        } else if (!valor.matches("(\\(\\d{2}\\))?\\s?\\d{5}-\\d{4}|\\d{11}")) {
             area.setText("Telefone inválido.");
             return false;
         } else {
@@ -115,4 +118,5 @@ public class ValidaFormulario extends Validacao {
             return true;
         }
     }
+
 }

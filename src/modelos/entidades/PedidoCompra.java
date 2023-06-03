@@ -74,10 +74,10 @@ public class PedidoCompra implements Serializable {
         this.observacao = observacao;
     }
 
-
     @Override 
     public String toString() {
         SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
         return String.format("Cod: %d - %s - Funcionário: %s", codigo, formatar.format(getDataPedido()), funcionario.getNome());
     }
+
 }

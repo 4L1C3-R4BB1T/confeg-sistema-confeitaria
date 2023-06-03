@@ -131,7 +131,6 @@ public class ChatControlador {
         }
     }
 
-
     public void encerrar() {
         if (tela != null) {
             conexaoAberta = false;
@@ -146,7 +145,6 @@ public class ChatControlador {
         }
     }
  
-
     public String getComentario() {
         return textFieldComentario.getText();
     }

@@ -115,7 +115,6 @@ public class TotalPedidoMesControlador {
         }).start();
     }
 
-
     public void encerrar() {
         if (tela != null) {
             tela.close();

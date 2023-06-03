@@ -76,7 +76,6 @@ public class BoloControlador {
         }
     }
 
-
     public void setImagem(String caminho) {
         imagem.setImage(new Image(caminho));
     }

@@ -11,7 +11,6 @@ public class PedidoCompraIngrediente implements Serializable {
     private Ingrediente ingrediente;
     private Long quantidade;
     
-
     public PedidoCompraIngrediente() {}
     
     public PedidoCompraIngrediente(Long codigo, PedidoCompra pedidoCompra, Ingrediente ingrediente, Long quantidade) {

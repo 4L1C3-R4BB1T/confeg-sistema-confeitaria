@@ -114,8 +114,7 @@ public class ClienteEditarControlador {
         if (validarCampos()) {
             App.conexao.setAutoCommit(false);
             try {
-    
-                endereco.setCep(getCep());
+                endereco.setCep(vf.formatarCep(getCep()));
                 endereco.setEstado(getEstado());
                 endereco.setCidade(getCidade());
                 endereco.setBairro(getBairro());
@@ -189,13 +188,13 @@ public class ClienteEditarControlador {
     public void setCliente(Cliente cliente) {
         nome.setText(cliente.getNome());
         cpf.setText(vf.formatarCPF(cliente.getCpf())); // Alterado
-        cep.setText(cliente.getEndereco().getCep());
+        cep.setText(vf.formatarCepEntrada(cliente.getEndereco().getCep()));
         estado.setValue(cliente.getEndereco().getEstado());
         cidade.setValue(cliente.getEndereco().getCidade());
         bairro.setText(cliente.getEndereco().getBairro());
         rua.setText(cliente.getEndereco().getRua());
         numero.setText(String.valueOf(cliente.getEndereco().getNumero()));
-        telefone.setText(vf.formatarTelofone(cliente.getTelefone().trim()));
+        telefone.setText(vf.formatarTelefone(cliente.getTelefone().trim()));
         this.cliente = cliente;
         this.endereco = cliente.getEndereco();
     }

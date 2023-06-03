@@ -3,7 +3,9 @@ package modelos.entidades;
 import java.io.Serializable;
 
 public abstract class Pessoa implements Serializable {
+   
     private static final long serialVersionUID = 1L;
+    
     protected Long codigo;
     protected String nome;
     protected String cpf;

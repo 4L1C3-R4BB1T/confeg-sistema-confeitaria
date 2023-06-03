@@ -107,7 +107,6 @@ public class ClienteDAO {
         return clientes;
     }
 
-
     public List<Cliente> buscarTodosComPedidosPendentes() {
         String comando = "SELECT DISTINCT c.* " +
                "FROM cliente c " +

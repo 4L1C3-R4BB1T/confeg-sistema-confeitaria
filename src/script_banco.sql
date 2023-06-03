@@ -44,7 +44,7 @@ CREATE TABLE endereco (
     cod_estado      INTEGER     NOT NULL,
     cod_cidade      INTEGER     NOT NULL,
     bairro_endereco VARCHAR(30) NOT NULL,
-    rua_endereco    VARCHAR(30) NOT NULL,
+    rua_endereco    VARCHAR(50) NOT NULL,
     numero_endereco INTEGER     NOT NULL,
     CONSTRAINT pk_endereco
         PRIMARY KEY (cod_endereco),
@@ -5815,12 +5815,12 @@ INSERT INTO cidade (cod_cidade, nome_cidade, cod_estado) VALUES
 
 INSERT INTO endereco (cep_endereco, cod_estado, cod_cidade, bairro_endereco, rua_endereco, numero_endereco) VALUES
 ('29313685', 8, 16, 'Marbrasa', 'Rua José Paineiras', 20),
-('20313384', 8, 17, 'Bairro das Flores', 'Rua ABC', 45),
-('21213341', 8, 16, 'Aeroporto', 'Rua Alguma', 321),
-('21234390', 19, 3658, 'Bairro Coqueiral', 'Rua das Araras', 450),
-('20343817', 11, 1630, 'Bairro Castanheiras', 'Rua 1234', 86),
-('12345678', 11, 1630, 'Centro', 'Rua Principal', 123),
-('87654321', 8, 16, 'Jardim América', 'Avenida das Flores', 456),
+('29182804', 8, 17, 'Loteamento Potiguara', 'Rua Diacuí', 45),
+('29104338', 8, 16, 'Ilha dos Bentos', 'Rua dos Pêssegos', 321),
+('29015705', 19, 3658, 'Centro', 'Rampa Odílio Ferreira Silva', 450),
+('29171524', 11, 1630, 'Santa Rita de Cássia', 'Beco Rosa Vermelha', 86),
+('29315762', 11, 1630, 'Jardim Itapemirim', 'Rua Maria Stael de Medeiros Teixeira', 123),
+('29702013', 8, 16, 'Vila Nova', 'Avenida Presidente Kennedy', 456),
 ('23456789', 8, 16, 'Vila Nova', 'Rua das Palmeiras', 789),
 ('45678901', 11, 1649, 'Jardim Botânico', 'Rua das Árvores', 567),
 ('89012345', 11, 1649, 'Barra da Tijuca', 'Avenida da Praia', 890),
@@ -5837,25 +5837,25 @@ INSERT INTO tipo_funcionario (descricao_tipo_funcionario) VALUES
 ('Gerente');
 
 INSERT INTO cliente (nome_cliente, cpf_cliente, telefone_cliente, cod_endereco) VALUES 
-('João Silva', '12345678900', '11999999999', 1),
-('Maria Santos', '23456789011', '21888888888', 2),
-('José Pereira', '34567890122', '31777777777', 3),
-('Ana Souza', '45678901233', '41666666666', 4),
-('Pedro Alves', '56789012344', '51555555555', 5),
-('Luciana Oliveira', '67890123455', '61444444444', 6),
-('Felipe Mendes', '78901234566', '71333333333', 7),
-('Larissa Costa', '89012345677', '81222222222', 8),
-('Ricardo Ferreira', '90123456788', '91111111111', 9),
-('Camila Rodrigues', '01234567899', '32999998888', 10);
+('João Silva', '45564994027', '28972431769', 1),
+('Maria Santos', '92375172035', '28971555766', 2),
+('José Pereira', '27299087065', '28974132967', 3),
+('Ana Souza', '89009122085', '27969557135', 4),
+('Pedro Alves', '28202566002', '28989456124', 5),
+('Luciana Oliveira', '27588034025', '27988708043', 6),
+('Felipe Mendes', '81442888075', '28992434423', 7),
+('Larissa Costa', '42433431018', '27989571753', 8),
+('Ricardo Ferreira', '62287944001', '27972887732', 9),
+('Camila Rodrigues', '24846100090', '28968760562', 10);
 
 INSERT INTO funcionario (nome_funcionario, cpf_funcionario, cod_tipo_funcionario, cod_endereco, email, senha) VALUES
-('Pedro Silva', '12345678900', 1, 11, 'funcionario1@confeg.com', 'confeg123'),
-('Ana Santos', '23456789011', 1, 12, 'funcionario2@confeg.com', 'confeg123'),
-('José Pereira', '34567890122', 1, 13, 'funcionario3@confeg.com', 'confeg123'),
-('Fernanda Alves', '45678901233', 2, 14, 'gerente1@confeg.com', 'confeg123'),
-('Mariana Rodrigues', '56789012344', 2, 15, 'gerente2@confeg.com', 'confeg123'),
-('Teste', '64280112502', 1, 16, 'test', 'test'),
-('Admin', '64280112502', 2, 17, 'admin', 'admin');
+('Pedro Silva', '91290338027', 1, 11, 'funcionario1@confeg.com', 'Y29uZmVnMTIz'),
+('Ana Santos', '84657662074', 1, 12, 'funcionario2@confeg.com', 'Y29uZmVnMTIz'),
+('José Pereira', '29596864033', 1, 13, 'funcionario3@confeg.com', 'Y29uZmVnMTIz'),
+('Fernanda Alves', '87383638018', 2, 14, 'gerente1@confeg.com', 'Y29uZmVnMTIz'),
+('Mariana Rodrigues', '77381947072', 2, 15, 'gerente2@confeg.com', 'Y29uZmVnMTIz'),
+('Teste', '92279154005', 1, 16, 'test', 'dGVzdA=='),
+('Admin', '83469260060', 2, 17, 'admin', 'YWRtaW4=');
 
 INSERT INTO sabor (descricao_sabor) VALUES
 ('Chocolate'),

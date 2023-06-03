@@ -29,6 +29,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import modelos.entidadeDAO.FuncionarioDAO;
 import modelos.entidades.Funcionario;
+import modelos.validacao.ValidaFormulario;
 
 // TELA DE LOGIN
 public class LoginControlador {
@@ -142,8 +143,9 @@ public class LoginControlador {
             return false;
         }
 
-        funcionario = funcionarioDAO.autenticar(campoUsuario.getText(), campoSenha.getText());
-
+        ValidaFormulario vf = new ValidaFormulario();
+        funcionario = funcionarioDAO.autenticar(campoUsuario.getText(), vf.encode(campoSenha.getText()));
+        
         if (funcionario != null) {
             boolean conectado = funcionarioDAO.estaConectado(funcionario);
             if (!conectado) {

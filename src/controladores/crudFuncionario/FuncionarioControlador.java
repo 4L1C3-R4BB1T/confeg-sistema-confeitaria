@@ -46,9 +46,6 @@ public class FuncionarioControlador {
 
     private AproveitarFuncao atualizarAreaDeFuncionarios ;
 
-    private static int geradorImagem = 0;
-    private static int quantidadeImagem = 2;
-
     @FXML
     public void abrirModal(ActionEvent event) {
         if (modal.isVisible()) {
@@ -149,8 +146,7 @@ public class FuncionarioControlador {
     }
 
     public void carregarImagem() {
-        geradorImagem = geradorImagem % quantidadeImagem;
-        String caminho = getClass().getResource("/telas/funcionarios/subtela/"+ ++geradorImagem + ".png").toExternalForm();
+        String caminho = getClass().getResource("/telas/funcionarios/subtela/1.png").toExternalForm();
         Image imagem = new Image(caminho);
         foto.setImage(imagem);
     }

@@ -120,7 +120,7 @@ public class FuncionarioEditarControlador {
                 funcionario.setTipo(getTipo());
                 funcionario.setNome(getNome());
             
-                endereco.setCep(getCep());
+                endereco.setCep(vf.formatarCep(getCep()));
                 endereco.setEstado(getEstado());
                 endereco.setCidade(getCidade());
                 endereco.setBairro(getBairro());
@@ -207,7 +207,7 @@ public class FuncionarioEditarControlador {
         tipo.setValue(funcionario.getTipo());
         nome.setText(funcionario.getNome());
         cpf.setText(vf.formatarCPF(funcionario.getCpf()));// Alterado
-        cep.setText(funcionario.getEndereco().getCep());
+        cep.setText(vf.formatarCepEntrada(funcionario.getEndereco().getCep()));
         estado.setValue(funcionario.getEndereco().getEstado());
         cidade.setValue(funcionario.getEndereco().getCidade());
         bairro.setText(funcionario.getEndereco().getBairro());
