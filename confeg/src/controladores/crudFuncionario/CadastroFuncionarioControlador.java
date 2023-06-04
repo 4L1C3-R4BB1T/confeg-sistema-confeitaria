@@ -113,14 +113,14 @@ public class CadastroFuncionarioControlador {
         if (podeCadastrar()) {
             App.conexao.setAutoCommit(false);
             try {
-                Endereco endereco = new Endereco(getEstado(), getCidade(), getCep(), getBairro(), getRua(), getNumero());
+                Endereco endereco = new Endereco(getEstado(), getCidade(), vf.formatarCep(getCep()), getBairro(), getRua(), getNumero());
                 endereco.setCodigo(enderecoDAO.inserir(endereco));
                 Funcionario funcionario = new Funcionario(getNome(), vf.limparCPF(getCpf()), getTipo(), endereco, getCep(), getBairro());
                 
                 funcionario.setCodigo(funcionarioDAO.inserir(funcionario));
 
                 funcionario.setEmail(funcionarioDAO.gerarEmail(funcionario));
-                funcionario.setSenha("confeg123");
+                funcionario.setSenha("Y29uZmVnMTIz");
                 funcionarioDAO.alterar(funcionario);
 
                 App.conexao.commit();

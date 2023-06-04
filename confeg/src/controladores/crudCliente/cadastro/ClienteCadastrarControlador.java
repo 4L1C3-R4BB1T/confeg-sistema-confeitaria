@@ -114,7 +114,7 @@ public class ClienteCadastrarControlador {
         if (validarCampos()) {
             App.conexao.setAutoCommit(false);
             try {
-                Endereco _endereco = new Endereco(getEstado(), getCidade(), getCep(), getBairro(), getRua(), Integer.parseInt(getNumero()));
+                Endereco _endereco = new Endereco(getEstado(), getCidade(), vf.formatarCep(getCep()), getBairro(), getRua(), Integer.parseInt(getNumero()));
                 _endereco.setCodigo(enderecoDAO.inserir(_endereco));
                 Cliente cliente = new Cliente(getNome(), vf.limparCPF(getCpf()), vf.limparTelefone(getTelephone()), _endereco);
                 clienteDAO.inserir(cliente);
