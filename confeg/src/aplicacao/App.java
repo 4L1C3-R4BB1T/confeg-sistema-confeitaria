@@ -44,7 +44,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage palco) throws Exception {
-        carregarDados(); // Essa funçao criará toda a estrutura do banco e conjunto dos inserts
+        // carregarDados(); // Essa funçao criará toda a estrutura do banco e conjunto dos inserts
         FXMLLoader carregar = new FXMLLoader(getClass().getResource("/telas/login/login.fxml"));
         Parent raiz = carregar.load();
         LoginControlador controlador = carregar.getController();
@@ -191,6 +191,7 @@ public class App extends Application {
     }
 
     // Essa funçao criará toda a estrutura do banco e conjunto dos inserts
+    @SuppressWarnings("unused")
     private void carregarDados() {
         String diretorio = getClass().getResource("/script_banco.sql").toExternalForm().replace("file:/", "");
 
