@@ -177,15 +177,14 @@ public class FuncionarioDAO {
             EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             while (resultado.next()) {
                 funcionarios.add(new Funcionario(
-                        resultado.getLong("cod_funcionario"),
-                        resultado.getString("nome_funcionario"), 
-                        resultado.getString("cpf_funcionario"),
-                        tipoDAO.buscarPorCodigo(resultado.getLong("cod_tipo_funcionario")),
-                        enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
-                        resultado.getString("email"),
-                        resultado.getString("senha")
-                    )
-                );
+                    resultado.getLong("cod_funcionario"),
+                    resultado.getString("nome_funcionario"), 
+                    resultado.getString("cpf_funcionario"),
+                    tipoDAO.buscarPorCodigo(resultado.getLong("cod_tipo_funcionario")),
+                    enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco")),
+                    resultado.getString("email"),
+                    resultado.getString("senha")
+                ));
             }
             return funcionarios;
         } catch (Exception erro) {
@@ -211,15 +210,24 @@ public class FuncionarioDAO {
                     enderecoDAO.buscarPorCodigo(rs.getLong("cod_endereco")),
                     rs.getString("email"),
                     rs.getString("senha")
-                )
-            );
+                ));
             }
-
         } catch (Exception erro) {
             erro.printStackTrace();
         }
-
         return funcionarios;
+    }
+
+    public boolean buscarPorCPF(String valor) {
+        final String sql = String.format("SELECT * FROM funcionario WHERE cpf_funcionario = '%s';", valor);
+        try {
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            if (rs.next()) {
+                return true;
+            }
+        } catch(Exception e) {}
+        return false;
     }
 
     public String gerarEmail(Funcionario funcionario) {

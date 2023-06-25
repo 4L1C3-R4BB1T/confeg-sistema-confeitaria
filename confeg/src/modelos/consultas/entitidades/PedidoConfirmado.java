@@ -25,7 +25,6 @@ public class PedidoConfirmado {
         this.setPago(pago);
     }
     
-
     public Long getCodigo() {
         return codigo;
     }

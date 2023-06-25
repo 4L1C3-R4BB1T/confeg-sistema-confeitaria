@@ -94,11 +94,11 @@ public class ClienteDAO {
             EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             while (rs.next()) {
                 clientes.add(new Cliente(
-                        rs.getLong("cod_cliente"),
-                        rs.getString("nome_cliente"), 
-                        rs.getString("cpf_cliente"),
-                        rs.getString("telefone_cliente"),
-                        enderecoDAO.buscarPorCodigo(rs.getLong("cod_endereco"))
+                    rs.getLong("cod_cliente"),
+                    rs.getString("nome_cliente"), 
+                    rs.getString("cpf_cliente"),
+                    rs.getString("telefone_cliente"),
+                    enderecoDAO.buscarPorCodigo(rs.getLong("cod_endereco"))
                 ));
             }
         } catch (Exception erro) {
@@ -109,23 +109,22 @@ public class ClienteDAO {
 
     public List<Cliente> buscarTodosComPedidosPendentes() {
         String comando = "SELECT DISTINCT c.* " +
-               "FROM cliente c " +
-               "INNER JOIN pedido p " +
-               "ON c.cod_cliente = p.cod_cliente " +
-               "WHERE p.status_pedido = 'PENDENTE'";
+            "FROM cliente c " +
+            "INNER JOIN pedido p " +
+            "ON c.cod_cliente = p.cod_cliente " +
+            "WHERE p.status_pedido = 'PENDENTE'";
         List<Cliente> clientes = new ArrayList<>();
         try (PreparedStatement ps = conexao.prepareStatement(comando)) {
             ResultSet resultado = ps.executeQuery();
             EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             while (resultado.next()) {
                 clientes.add(new Cliente(
-                        resultado.getLong("cod_cliente"),
-                        resultado.getString("nome_cliente"), 
-                        resultado.getString("cpf_cliente"),
-                        resultado.getString("telefone_cliente"),
-                        enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco"))
-                    )
-                );
+                    resultado.getLong("cod_cliente"),
+                    resultado.getString("nome_cliente"), 
+                    resultado.getString("cpf_cliente"),
+                    resultado.getString("telefone_cliente"),
+                    enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco"))
+                ));
             }
         } catch (Exception erro) {
             erro.printStackTrace();
@@ -141,18 +140,31 @@ public class ClienteDAO {
             EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
             while (resultado.next()) {
                 clientes.add(new Cliente(
-                        resultado.getLong("cod_cliente"),
-                        resultado.getString("nome_cliente"), 
-                        resultado.getString("cpf_cliente"),
-                        resultado.getString("telefone_cliente"),
-                        enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco"))
-                    )
-                );
+                    resultado.getLong("cod_cliente"),
+                    resultado.getString("nome_cliente"), 
+                    resultado.getString("cpf_cliente"),
+                    resultado.getString("telefone_cliente"),
+                    enderecoDAO.buscarPorCodigo(resultado.getLong("cod_endereco"))
+                ));
             }
         } catch (Exception erro) {
             erro.printStackTrace();
         }
         return clientes;
+    }
+
+    public boolean buscarPorCPF(String valor) {
+        final String sql = String.format("SELECT * FROM cliente WHERE cpf_cliente = '%s';", valor);
+        try {
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            if (rs.next()) {
+                return true;
+            }
+        } catch(Exception erro) {
+            erro.printStackTrace();
+        }
+        return false;
     }
 
     public Connection getConnection() {

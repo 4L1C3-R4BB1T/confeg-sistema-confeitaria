@@ -10,7 +10,7 @@ public class ValidaFormulario extends Validacao {
             if (msg != null) {
                 area.setText("* " + msg);
             } else {
-                area.setText("* Selecione uma opção.");
+                area.setText("* Selecione uma opção");
             }
             return false;
         } else {
@@ -27,7 +27,7 @@ public class ValidaFormulario extends Validacao {
                 if (msg != null) {
                     area.setText("* " + msg);
                 } else {
-                    area.setText("* Selecione um opção.");
+                    area.setText("* Selecione um opção");
                 }
             }
             return false;
@@ -41,7 +41,7 @@ public class ValidaFormulario extends Validacao {
     }
     
     public boolean validarCep(Label area, String cep) {
-        if (!validarCampo(area, cep, "Preencha o campo CEP.")) {
+        if (!validarCampo(area, cep, "Preencha o campo CEP")) {
             return false;
         } else if (!this.validarCep(cep)) {
             area.setStyle("-fx-text-fill: red;");
@@ -88,11 +88,11 @@ public class ValidaFormulario extends Validacao {
 
     public boolean validarTelefone(Label area, String valor) {
         area.setStyle("-fx-text-fill: red !important;");
-        if (valor == null) {
-            area.setText("Preencha o Telefone");
+        if (valor == null || valor.isEmpty()) {
+            area.setText("* Preencha o Telefone");
             return false;
         } else if (!valor.matches("(\\(\\d{2}\\))?\\s?\\d{5}-\\d{4}|\\d{11}")) {
-            area.setText("Telefone inválido.");
+            area.setText("- Telefone inválido");
             return false;
         } else {
             area.setStyle("-fx-text-fill: green;");

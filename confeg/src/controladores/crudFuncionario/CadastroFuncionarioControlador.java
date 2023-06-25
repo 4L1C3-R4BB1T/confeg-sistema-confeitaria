@@ -56,7 +56,7 @@ public class CadastroFuncionarioControlador {
     @FXML
     private TextField numero;
 
-    /// Labels para inserir mensagem de erro na tela de cadastro 
+    // Labels para inserir mensagem de erro na tela de cadastro 
     @FXML 
     private Label exibirErroNoTipo;
 
@@ -170,15 +170,27 @@ public class CadastroFuncionarioControlador {
     public boolean podeCadastrar() {
         return Stream.of(
             vf.validarComboBox(exibirErroNoTipo, getTipo(), "Selecione o Tipo do Funcionário"),
-            vf.validarCPF(exibirErroNoCpf, getCpf()),
+            vf.validarCampo(exibirErroNoNome, getNome(), "Preencha o Nome"),
             vf.validarCep(exibirErroNoCep, getCep()),
-            vf.validarComboBox(exibirErroNoEstado, getEstado(), "Selecione seu Estado"),
+            vf.validarComboBox(exibirErroNoEstado, getEstado(), "Selecione o Estado"),
             vf.validarComboBox(exibirErroNoCidade, getCidade(), "Selecione a Cidade"),
             vf.validarCampo(exibirErroNoBairro, getBairro(), "Preencha o Bairro"),
             vf.validarCampo(exibirErroNoRua, getRua(), "Preencha a Rua"),
             vf.validarValorNumerico(exibirErroNoNumero, numero.getText()),
-            vf.validarCampo(exibirErroNoNome, getNome(), "Preencha o Nome")
+            cpfIsUnique()
         ).allMatch( valor -> valor == true);
+    }
+
+    private boolean cpfIsUnique() {
+        if (!vf.validarCPF(exibirErroNoCpf, getCpf())) {
+            return false;
+        }
+        if (funcionarioDAO.buscarPorCPF(vf.limparCPF(getCpf()))) {
+            exibirErroNoCpf.setText("- CPF já cadastrado");
+            exibirErroNoCpf.setStyle("-fx-text-fill: red !important;");
+            return true; 
+        }
+        return false;
     }
 
     public void carregarTelaPerfil(Funcionario funcionario) {

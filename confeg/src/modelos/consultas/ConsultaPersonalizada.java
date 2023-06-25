@@ -30,7 +30,6 @@ public final class ConsultaPersonalizada {
     public ConsultaPersonalizada(Connection conexao) {
         this.conexao = conexao;
     }
-
     
     public List<PedidoConsulta> obterPedidoConsultas() {
         List<PedidoConsulta> pedidoConsultas = new ArrayList<>();

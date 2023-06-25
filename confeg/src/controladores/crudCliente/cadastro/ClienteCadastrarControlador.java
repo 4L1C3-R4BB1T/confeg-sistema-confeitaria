@@ -158,15 +158,27 @@ public class ClienteCadastrarControlador {
     public boolean validarCampos() {
        return Stream.of(
             vf.validarCampo(erroNome, getNome(), "Preencha o Nome"),
-            vf.validarCPF(erroCpf, getCpf()),
             vf.validarCep(erroCep, getCep()),
+            vf.validarComboBox(erroEstado, getEstado(), "Selecione o Estado"),
             vf.validarComboBox(erroCidade, getCidade(), "Selecione a Cidade"),
-            vf.validarComboBox(erroEstado, getEstado(), "Selecione a Estado"),
             vf.validarCampo(erroBairro, getBairro(), "Preencha o Bairro"),
             vf.validarCampo(erroRua, getRua(), "Preencha a Rua"),
             vf.validarValorNumerico(erroNumero, getNumero()),
-            vf.validarTelefone(erroTelefone, getTelephone())
+            vf.validarTelefone(erroTelefone, getTelephone()),
+            cpfIsUnique()
         ).allMatch(valor -> valor == true);
+    }
+
+    private boolean cpfIsUnique() {
+        if (!vf.validarCPF(erroCpf, getCpf())) {
+            return false;
+        }
+        if (clienteDAO.buscarPorCPF(vf.limparCPF(getCpf()))) {
+            erroCpf.setText("- CPF já cadastrado");
+            erroCpf.setStyle("-fx-text-fill: red !important;");
+            return true; 
+        }
+        return false;
     }
 
     public void carregarSelecao() {

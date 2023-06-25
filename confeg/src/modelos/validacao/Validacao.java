@@ -96,10 +96,10 @@ public class Validacao {
 
     public String formatarCPF(String valor) {
         if (valor == null) {
-            throw new RuntimeException("CPF: valor passado é null.");
+            throw new RuntimeException("CPF: valor passado é null");
         }
         if (!valor.matches("\\d{11}")) {
-            throw new RuntimeException("CPF: não é uma sequência válida.");
+            throw new RuntimeException("CPF: não é uma sequência válida");
         }
 
         String primeiro = valor.substring(0, 3);
@@ -111,9 +111,9 @@ public class Validacao {
 
     public String limparCPF(String valor) {
         if (valor == null) {
-            throw new RuntimeException("CPF: valor passado é null.");
+            throw new RuntimeException("CPF: valor passado é null");
         } else if (!validarCpf(valor)) {
-            throw new RuntimeException("CPF: não é uma sequência válida.");
+            throw new RuntimeException("CPF: não é uma sequência válida");
         } else {
             return valor.replaceAll("[.-]", "");
         }
@@ -125,9 +125,9 @@ public class Validacao {
 
     public String formatarCepEntrada(String valor) {
         if (valor == null) {
-            throw new RuntimeException("CEP: valor passado é null.");
+            throw new RuntimeException("CEP: valor passado é null");
         } else if (!valor.matches("\\d{8}")) {
-            throw new RuntimeException("CEP: não é uma sequência válida.");
+            throw new RuntimeException("CEP: não é uma sequência válida");
         } else {
             return valor.replaceAll("(\\d{5})(\\d{3})", "$1-$2");
         }
@@ -135,9 +135,9 @@ public class Validacao {
 
     public String formatarTelefone(String valor) {
         if (valor == null) {
-            throw new RuntimeException("Telefone: valor passado é null.");
+            throw new RuntimeException("Telefone: valor passado é null");
         } else if (!valor.matches("\\d{11}")) {
-            throw new RuntimeException("Telefone: não é uma sequência válida.");
+            throw new RuntimeException("Telefone: não é uma sequência válida");
         } else {
             return valor.replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
         }
@@ -147,7 +147,7 @@ public class Validacao {
         if (valor != null) {
             return valor.replaceAll("\\D", "");
         }
-        throw new RuntimeException("Telefone: valor passado é null.");
+        throw new RuntimeException("Telefone: valor passado é null");
     }
 
 }

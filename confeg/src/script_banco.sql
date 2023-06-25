@@ -73,7 +73,9 @@ CREATE TABLE cliente (
         PRIMARY KEY (cod_cliente),
     CONSTRAINT fk_cliente_endereco
         FOREIGN KEY (cod_endereco)
-        REFERENCES endereco(cod_endereco)
+        REFERENCES endereco(cod_endereco),
+    CONSTRAINT uq_cpf_cliente
+        UNIQUE (cpf_cliente)
 );
 
 CREATE TABLE funcionario (
@@ -92,7 +94,9 @@ CREATE TABLE funcionario (
         REFERENCES tipo_funcionario(cod_tipo_funcionario),
     CONSTRAINT fk_funcionario_endereco
         FOREIGN KEY (cod_endereco)
-        REFERENCES endereco(cod_endereco)
+        REFERENCES endereco(cod_endereco),
+    CONSTRAINT uq_cpf_funcionario
+        UNIQUE (cpf_funcionario)
 );
 
 CREATE TABLE sabor (
