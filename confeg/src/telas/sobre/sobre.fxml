@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="1100.0" stylesheets="@../pedidos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.sobre.SobreControlador">
+   <top>
+      <AnchorPane prefHeight="50.0" prefWidth="200.0" styleClass="cabecalho" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="1053.0" layoutY="5.0" onMouseClicked="#fechar" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
+               <image>
+                  <Image url="@../_assets/img/fechar.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="1100.0" styleClass="container" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="50.0" layoutY="25.0" prefHeight="80.0" prefWidth="900.0" styleClass="area-titulo" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="25.0">
+               <children>
+                  <Label layoutY="-1.0" prefHeight="80.0" prefWidth="1000.0" styleClass="titulo" text="SOBRE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label layoutX="50.0" layoutY="105.0" prefHeight="94.0" prefWidth="1000.0" style="-fx-font-size: 20px; -fx-text-alignment: justify; -fx-line-spacing: 10px;" text="CONFEG é um sistema de gerenciamento que tem como finalidade melhorar o controle, a organização e o gerenciamento de recursos em confeitarias." wrapText="true">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </Label>
+            <Label layoutX="50.0" layoutY="199.0" prefHeight="136.0" prefWidth="1000.0" style="-fx-font-size: 20px; -fx-text-alignment: justify; -fx-line-spacing: 10px;" text="O CONFEG é um Sistema de Gerenciamento para Confeitaria que objetiva melhorar o controle, a organização e o gerenciamento de recursos. Possui como principal objetivo facilitar o controle do processo de vendas, trazendo agilidade e simplicidade para a organização, reduzindo gastos desnecessários com materiais utilizados no modo tradicional." wrapText="true">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </Label>
+            <AnchorPane layoutX="50.0" layoutY="382.0" prefHeight="80.0" prefWidth="1000.0" styleClass="area-titulo">
+               <children>
+                  <Label layoutY="-1.0" prefHeight="80.0" prefWidth="1000.0" styleClass="titulo" text="EQUIPE DE DESENVOLVIMENTO" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label layoutX="50.0" layoutY="462.0" prefHeight="94.0" prefWidth="1000.0" style="-fx-font-size: 20px; -fx-text-alignment: justify; -fx-line-spacing: 10px;" text="Gabriel Cardoso Girarde, Livia Guimarães de Jesus e Marcelo Alves Santos." wrapText="true">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

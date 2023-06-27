@@ -22,6 +22,7 @@ import controladores.login.LoginControlador;
 import controladores.principal.bolo.BoloControlador;
 import controladores.principal.perfil.PerfilControlador;
 import controladores.relatorios.TelaSelecaoRelatorioControlador;
+import controladores.sobre.SobreControlador;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -167,6 +168,15 @@ public class PrincipalControlador {
         if (event.getCode() == KeyCode.ENTER) {
             Platform.runLater(() -> carregarPesquisa());
         }
+    }
+
+    @FXML
+    void irParaTelaSobre(ActionEvent event) {
+        Object[] componentes = App.carregarTela("/sobre/sobre.fxml");
+        Stage tela = (Stage) componentes[0];
+        SobreControlador controlador = (SobreControlador) componentes[1];
+        controlador.setStage(tela);
+        tela.show(); 
     }
 
     @FXML 
