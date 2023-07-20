@@ -26,6 +26,11 @@ git clone https://github.com/4L1C3-R4BB1T/confeg-sistema-confeitaria.git
 
 ---
 
+![Login](https://github.com/4L1C3-R4BB1T/confeg-sistema-confeitaria/raw/main/_assets/img1.png "Tela Login")
+![Principal](https://github.com/4L1C3-R4BB1T/confeg-sistema-confeitaria/raw/main/_assets/img2.png "Tela principal")
+
+---
+
 ## 💻 Funcionalidades do Sistema
 
 O CONFEG possui as seguintes funcionalidades:
